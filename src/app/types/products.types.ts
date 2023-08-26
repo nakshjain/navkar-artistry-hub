@@ -1,11 +1,10 @@
 export interface Product {
   id: string
   name: string
-  price: string
-  review: string
+  about: string
   imageUrl: string
   category: string
-  rating: string
+  available: string
 }
 
 export interface ProductsByCategory {

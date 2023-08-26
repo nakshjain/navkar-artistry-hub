@@ -36,7 +36,7 @@ export class ProductsComponent implements OnInit{
   }
 
   getProducts(): void {
-    this.productService.getAllProducts().subscribe(
+    this.productService.getAllAvailableProducts().subscribe(
       (products)=>{
         this.products=products
         console.log(this.products)

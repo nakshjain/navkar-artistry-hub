@@ -17,6 +17,7 @@ export class ProductService {
   private fetchProductData(): void {
     const documentId = '1Rc3UPChXpkP7u2XrJ6mX_JK1ao3y2m-53zVLQZwnxUI';
     const exportUrl = `https://docs.google.com/spreadsheets/d/${documentId}/gviz/tq?tqx=out:json`;
+    console.log(exportUrl)
 
     this.http.get(exportUrl, { responseType: 'text' }).subscribe(
       (response: string) => {
@@ -31,11 +32,10 @@ export class ProductService {
               return {
                 id: row.c[0].v,
                 name: row.c[1].v,
-                price: row.c[2].v,
-                category: row.c[3].v,
-                rating: row.c[4].v,
-                imageUrl: row.c[5].v,
-                review: row.c[6].v,
+                category: row.c[2].v,
+                imageUrl: row.c[3].v,
+                about: row.c[4].v,
+                available:row.c[5].v
               };
             });
             this.dataSubject.next(formattedData)
@@ -52,8 +52,20 @@ export class ProductService {
     );
   }
 
-  getAllProducts(): Observable<Product[]> {
-    return this.products$;
+  getAllAvailableProducts(): Observable<Product[]> {
+    return this.products$.pipe(
+      map((products)=>{
+        const availableProducts: Product[]=[]
+        products.forEach(
+          (product)=>{
+            if(product.available){
+              availableProducts.push(product)
+            }
+          }
+        )
+        return availableProducts
+      })
+    );
   }
 
   getAllProductsByCategory(): Observable<ProductsByCategory[]> {
@@ -63,10 +75,12 @@ export class ProductService {
           const productsByCategory: { [category: string]: Product[] } = {};
 
           products.forEach((product) => {
-            if (productsByCategory[product.category]) {
-              productsByCategory[product.category].push(product);
-            } else {
-              productsByCategory[product.category] = [product];
+            if(product.available){
+              if (productsByCategory[product.category]) {
+                productsByCategory[product.category].push(product);
+              } else {
+                productsByCategory[product.category] = [product];
+              }
             }
           });
           return Object.keys(productsByCategory).map(
@@ -91,7 +105,7 @@ export class ProductService {
   getProductsByCategory(category: string){
     return this.products$.pipe(
       map((products)=>{
-        return products.filter(product => product.category === category)
+        return products.filter(product => product.category === category && product.available)
       })
     )
   }
@@ -101,8 +115,10 @@ export class ProductService {
         map((products)=>{
           const categories: string[]=[]
           products.forEach((product)=>{
-            if(!categories.includes(product.category)){
-              categories.push(product.category)
+            if(product.available) {
+              if(!categories.includes(product.category)) {
+                categories.push(product.category)
+              }
             }
           })
           return categories;

@@ -5,9 +5,9 @@
   <div class="product-about">
     <div class="product-image-main">
       <img class="product-image" src="{{ product.imageUrl }}" alt="Image" />
-      <div class="contact" (click)="contactUs()"> <button class="contact-us">Contact Us</button></div>
+      <div class="contact" (click)="getQuote()"> <button class="contact-us">Get Quote</button></div>
     </div>
-    <div class="product-review">{{product.review}}</div>
+    <div class="product-review">{{product.about}}</div>
   </div>
   <div class="similar-slider">
     <app-image-slider

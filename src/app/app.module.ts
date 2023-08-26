@@ -25,6 +25,8 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatCardModule} from "@angular/material/card";
 import {HttpClientModule} from "@angular/common/http";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { GetQuoteComponent } from './get-quote/get-quote.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowseByCategoryComponent,
     AllProductsComponent,
     ProductsDisplayComponent,
+    ContactUsComponent,
+    GetQuoteComponent,
   ],
   imports: [
     BrowserModule,

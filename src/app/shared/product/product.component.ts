@@ -10,29 +10,38 @@ import {ProductService} from "../../api/product.service";
   styleUrls: ['./product.component.css'],
 })
 export class ProductComponent implements OnInit{
-  product: any;
+  product: Product={
+    id:'',
+    name:'',
+    about:'',
+    imageUrl:'',
+    category:'',
+    available: '0'
+  };
   productsByCategory:Product[]=[]
   titleSimilar='Similar Items'
   backgroundColor='#FFF0F5'
 
-  contactUs(): void {
-    this.router.navigate(['home']);
+  getQuote(): void {
+    this.router.navigate(['get-quote', this.product.id]); // Navigate to detail page with product ID
   }
 
-  getproductById(id: string){
+  getProductById(id: string){
     this.productService.getProductById(id).subscribe(
       (product)=>{
-        this.product=product;
+        if(product){
+          this.product=product;
+          this.getProductsByCategory(this.product.category)
+        }
         this.ngxService.stop()
-        this.getproductsBycategory(this.product.category)
       }
     )
   }
 
-  getproductsBycategory(category: string){
+  getProductsByCategory(category: string){
     this.productService.getProductsByCategory(category).subscribe(
-      (productsBycategory)=>{
-        this.productsByCategory=productsBycategory
+      (productsByCategory)=>{
+        this.productsByCategory=productsByCategory
       }
     )
   }
@@ -45,7 +54,7 @@ export class ProductComponent implements OnInit{
     this.route.params.subscribe(params => {
       this.ngxService.start()
       const productId = params['id'];
-      this.getproductById(productId);
+      this.getProductById(productId);
     });
   }
 }
