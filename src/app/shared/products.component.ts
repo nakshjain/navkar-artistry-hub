@@ -40,7 +40,6 @@ export class ProductsComponent implements OnInit{
       this.productService.getAllArchivedProducts().subscribe(
         (products)=>{
           this.products=products
-          console.log(this.products)
           this.ngxService.stop()
         }
       )
@@ -49,7 +48,6 @@ export class ProductsComponent implements OnInit{
       this.productService.getAllAvailableProducts().subscribe(
         (products)=>{
           this.products=products
-          console.log(this.products)
           this.ngxService.stop()
         }
       )
@@ -57,12 +55,20 @@ export class ProductsComponent implements OnInit{
   }
 
   getCategories(){
-    this.productService.getAllCategories().subscribe(
-      (categories)=>{
-        this.categories=categories
-        console.log(categories)
-      }
-    )
+    if(this.title==='Archived Products') {
+      this.productService.getAllArchivedCategories().subscribe(
+        (categories) => {
+          this.categories = categories
+        }
+      )
+    }
+    else{
+      this.productService.getAllCategories().subscribe(
+        (categories) => {
+          this.categories = categories
+        }
+      )
+    }
   }
 
   constructor(private ngxService:NgxUiLoaderService, private productService: ProductService) {

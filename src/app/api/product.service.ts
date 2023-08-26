@@ -17,7 +17,6 @@ export class ProductService {
   private fetchProductData(): void {
     const documentId = '1Rc3UPChXpkP7u2XrJ6mX_JK1ao3y2m-53zVLQZwnxUI';
     const exportUrl = `https://docs.google.com/spreadsheets/d/${documentId}/gviz/tq?tqx=out:json`;
-    console.log(exportUrl)
 
     this.http.get(exportUrl, { responseType: 'text' }).subscribe(
       (response: string) => {
