@@ -1,0 +1,9 @@
+<div class="rating">
+  <ng-container *ngFor="let star of stars; let i = index">
+        <span class="star">
+            <mat-icon *ngIf="i < filledStars">star</mat-icon>
+            <mat-icon *ngIf="i === filledStars && hasHalfStar">star_half</mat-icon>
+            <mat-icon *ngIf="i >= filledStars && !hasHalfStar || i>filledStars && hasHalfStar">star_border</mat-icon>
+        </span>
+  </ng-container>
+</div>

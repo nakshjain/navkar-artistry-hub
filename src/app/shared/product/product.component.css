@@ -1,0 +1,82 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 26.4px;
+}
+
+ngb-rating{
+  color:yellow;
+  font-size: 250%;
+  padding: 2% 0;
+}
+.product {
+  padding: 2% 0;
+  margin: 0;
+  text-align: center;
+  justify-content: center;
+}
+.product-name {
+  padding: 1% 0;
+  color: #120E0A;
+  font-size: 325%;
+  font-weight: 700;
+}
+.author-name{
+  font-size: 150%;
+  font-style: italic;
+}
+.product-about {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+  padding: 0 10%;
+}
+
+.product-image-main {
+  padding: 2% 0;
+  flex-grow: 1;
+  width: 33%;
+  height: auto;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  border-radius: 5%;
+}
+
+.product-review {
+  padding: 2% 5%;
+  flex-grow: 1;
+  width: 100%;
+  color: #35281E;
+  text-align: left;
+  font-size: 130%;
+}
+.similar-slider{
+  padding: 5% 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .product-about {
+    flex-direction: column;
+    align-items: center;
+  }
+  .product-name {
+    padding: 2% 0;
+    font-size: 200%;
+  }
+  .product-image{
+    width: 100%;
+    height: auto;
+  }
+  .product-image-main{
+    width: 80%;
+  }
+}

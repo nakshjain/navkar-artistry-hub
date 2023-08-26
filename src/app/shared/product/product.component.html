@@ -1,0 +1,22 @@
+<div class="product" id="product" [style.background]="backgroundColor">
+  <div class="product-heading">
+    <div class="product-name">{{product.name}}</div>
+    <div class="author-name">By {{product.author}}</div>
+  </div>
+  <div class="product-about">
+    <div class="product-image-main">
+      <img class="product-image" src="{{ product.imageUrl }}" alt="Image" />
+      <app-product-rating
+        [rating]="product.rating"
+      ></app-product-rating>
+    </div>
+    <div class="product-review">{{product.review}}</div>
+  </div>
+  <div class="similar-slider">
+    <app-image-slider
+      [products]="productsBycategory"
+      [title]="titleSimilar"
+      [category]="product.category"
+    ></app-image-slider>
+  </div>
+</div>

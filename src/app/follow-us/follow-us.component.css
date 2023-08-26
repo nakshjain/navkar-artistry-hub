@@ -1,0 +1,39 @@
+*{
+  font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 26.4px;
+}
+.follow-us{
+  background-color: #2d2b2b;
+  padding: 1%;
+  text-align: center;
+}
+.follow-us-heading{
+  font-size: 350%;
+  padding: 0 0 2%;
+  color: lightblue;
+}
+.social-media{
+  display: flex;
+  justify-content: center;
+}
+.images{
+  padding: 0 1%;
+  display: flex;
+  overflow: hidden;
+}
+.image{
+  max-width: 7vh;
+  max-height: 7vh;
+  width: auto;
+  height: auto;
+}
+.image:hover{
+  max-height: 6vh;
+}
+@media (max-width: 768px) {
+  .follow-us-heading{
+    font-size: 250%;
+  }
+}

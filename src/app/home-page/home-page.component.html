@@ -1,0 +1,7 @@
+<div *ngFor="let category of allproductsBycategory">
+  <app-image-slider
+    [products]="category.products"
+    [category]="category.category"
+    [title]="category.category"
+  ></app-image-slider>
+</div>

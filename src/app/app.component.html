@@ -1,3 +1,31 @@
-<div>
-  Hi
-</div>
+<mat-toolbar class="navbar">
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="sidenav.toggle()" class="button">
+      <mat-icon class="mat-icon">menu</mat-icon>
+    </button>
+    <a routerLink="home" class="nav-heading">
+      <p>{{title}}</p>
+    </a>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav class="sidenav" (click)="sidenav.toggle()">
+    <mat-nav-list>
+      <ul class="nav-menu">
+        <li *ngFor="let element of navbarHeader" class="nav-item">
+          <a class="nav-link" routerLink="{{ element.link }}" mat-list-item>{{
+            element.name
+            }}</a>
+        </li>
+      </ul>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div>
+      <ngx-ui-loader fgsColor="#353535" pbColor="#353535"></ngx-ui-loader>
+      <router-outlet></router-outlet>
+      <app-follow-us></app-follow-us>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

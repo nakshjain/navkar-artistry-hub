@@ -1,0 +1,14 @@
+<div class="filter" [hidden]="hideFilterBar">
+  <div class="select" [hidden]="hideSelectBar">
+    <div class="select-heading">Select Your Prefrences</div>
+    <mat-card class="mat-card">
+      <mat-select placeholder="{{categoryName}}" (selectionChange)="oncategorySelectChanged($event)" [(ngModel)]="categoryName">
+        <mat-option *ngFor="let category of categories" [value]="category">{{category}}</mat-option>
+      </mat-select>
+    </mat-card>
+  </div>
+  <div class="search" [hidden]="hideSearchBar">
+    <div class="search-heading">Search: </div>
+    <input type="text" class="search-input" [(ngModel)]="searchText" (input)="onSearchTextChanged()">
+  </div>
+</div>

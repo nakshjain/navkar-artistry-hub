@@ -6,5 +6,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'navkar-art';
+  title = 'Navkar Art';
+  navbarHeader: any[] = [
+    {
+      id: 'home',
+      name: 'Home',
+      link: 'home',
+    },
+    {
+      id: 'category',
+      name: 'Category',
+      link: 'category',
+    },
+    {
+      id: 'products',
+      name: 'Products',
+      link: 'products',
+    },
+  ];
 }

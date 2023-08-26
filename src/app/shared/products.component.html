@@ -1,0 +1,19 @@
+<div class="main" [style.background]="backgroundColor">
+  <div class="header">
+    <div class="title">{{title}}</div>
+    <div class="search">
+      <app-filter
+        (searchTextChanged)="onSearchTextEntered($event)"
+        (categorySelected)="onCategorySelected($event)"
+        [hideFilterBar]=hideFilterBar
+        [hideSearchBar]=hideSearchBar
+        [hideSelectBar]=hideSelectBar
+        [categoryName]="category"
+      ></app-filter>
+    </div>
+  </div>
+  <app-products-display
+    [searchText]="searchText"
+    [category]="categorySelect"
+  ></app-products-display>
+</div>

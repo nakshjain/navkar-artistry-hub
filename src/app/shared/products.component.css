@@ -1,0 +1,38 @@
+* {
+  font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 26.4px;
+}
+
+.main {
+  min-height: 90vh;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 2%;
+}
+
+.title {
+  flex: 1;
+  font-size: 300%;
+  font-family: 'Abril Fatface', cursive;
+  max-width: 4040px;
+}
+
+.search {
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 1% 0;
+  }
+  .title {
+    font-size: 200%;
+    max-width: 150px;
+  }
+}

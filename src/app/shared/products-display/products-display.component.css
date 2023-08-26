@@ -1,0 +1,24 @@
+.products{
+  padding: 0 0 2% 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product{
+  padding: 1%;
+  overflow: hidden;
+  max-width: calc(100%/7);
+}
+.product-image{
+  width: 100%;
+  object-fit: cover;
+}
+.product-image:hover{
+  transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+  .product {
+    max-width: calc(100%/4);
+  }
+}

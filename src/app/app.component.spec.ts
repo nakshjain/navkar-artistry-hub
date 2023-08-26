@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'navkar-art'`, () => {
+  it(`should have as title 'product-Reviews'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('navkar-art');
+    expect(app.title).toEqual('product-Reviews');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('navkar-art app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('product-Reviews app is running!');
   });
 });
