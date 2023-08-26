@@ -16,18 +16,21 @@ export class FilterComponent implements OnInit{
   @Input()
   categoryName=''
   @Input()
-  categories=['category1', 'category2', 'category3']
+  categories: string[]=[]
+
   @Output()
   categorySelected: EventEmitter<string>=new EventEmitter<string>()
   oncategorySelectChanged(event: any){
     const categorySelect= event.value
     this.categorySelected.emit(categorySelect)
   }
+
   @Output()
   searchTextChanged: EventEmitter<string>=new EventEmitter<string>()
   onSearchTextChanged(){
     this.searchTextChanged.emit(this.searchText)
   }
+
   ngOnInit() {
     if(this.categoryName.length!==0){
       const categoryToEmit=this.categoryName

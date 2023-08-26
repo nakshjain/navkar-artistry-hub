@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Product} from "../types/products.types";
 import {NgxUiLoaderService} from "ngx-ui-loader";
+import {ProductService} from "../api/product.service";
 
 @Component({
   selector: 'app-products',
@@ -10,10 +11,8 @@ import {NgxUiLoaderService} from "ngx-ui-loader";
 export class ProductsComponent implements OnInit{
   @Input()
   title=''
-
   @Input()
   category=''
-
   @Input()
   hideFilterBar: boolean=false
   @Input()
@@ -26,6 +25,7 @@ export class ProductsComponent implements OnInit{
   products: Product[]=[]
   searchText=''
   categorySelect=''
+  categories: string[]=[]
 
   onSearchTextEntered(searchValue: string){
     this.searchText=searchValue
@@ -35,14 +35,32 @@ export class ProductsComponent implements OnInit{
     this.categorySelect=selectValue
   }
 
-  constructor(private ngxService:NgxUiLoaderService) {
+  getProducts(): void {
+    this.productService.getAllProducts().subscribe(
+      (products)=>{
+        this.products=products
+        console.log(this.products)
+        this.ngxService.stop()
+      }
+    )
+  }
+
+  getCategories(){
+    this.productService.getAllCategories().subscribe(
+      (categories)=>{
+        this.categories=categories
+        console.log(categories)
+      }
+    )
+  }
+
+  constructor(private ngxService:NgxUiLoaderService, private productService: ProductService) {
   }
   ngOnInit(): void {
+    this.ngxService.start()
+    this.getCategories()
+    this.getProducts()
     this.onSearchTextEntered(this.searchText)
     this.onCategorySelected(this.categorySelect)
-    this.ngxService.start()
-    setTimeout(()=>{
-      this.ngxService.stop()
-    })
   }
 }

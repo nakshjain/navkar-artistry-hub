@@ -52,7 +52,7 @@ export class ProductService {
     );
   }
 
-  getProductsAll(): Observable<Product[]> {
+  getAllProducts(): Observable<Product[]> {
     return this.products$;
   }
 
@@ -93,6 +93,20 @@ export class ProductService {
       map((products)=>{
         return products.filter(product => product.category === category)
       })
+    )
+  }
+
+  getAllCategories(){
+    return this.products$.pipe(
+        map((products)=>{
+          const categories: string[]=[]
+          products.forEach((product)=>{
+            if(!categories.includes(product.category)){
+              categories.push(product.category)
+            }
+          })
+          return categories;
+        })
     )
   }
 }

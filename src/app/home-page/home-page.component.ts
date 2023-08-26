@@ -9,7 +9,7 @@ import {ProductService} from "../api/product.service";
   styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent implements OnInit{
-  allproductsBycategory: ProductsByCategory[]=[]
+  allProductsByCategory: ProductsByCategory[]=[]
 
   constructor(private ngxService: NgxUiLoaderService, private productService:ProductService) {
   }
@@ -17,8 +17,8 @@ export class HomePageComponent implements OnInit{
   ngOnInit(): void {
     this.ngxService.start()
     this.productService.getAllProductsByCategory().subscribe(
-      (allproductsBycategory)=>{
-        this.allproductsBycategory=allproductsBycategory
+      (allProductsByCategory)=>{
+        this.allProductsByCategory=allProductsByCategory
         this.ngxService.stop()
       }
     )
