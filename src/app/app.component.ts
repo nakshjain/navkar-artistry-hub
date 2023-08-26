@@ -14,14 +14,14 @@ export class AppComponent {
       link: 'home',
     },
     {
-      id: 'category',
-      name: 'Category',
-      link: 'category',
-    },
-    {
       id: 'products',
       name: 'Products',
       link: 'products',
+    },
+    {
+      id: 'archived-products',
+      name: 'Archived Products',
+      link: 'archived-products',
     },
   ];
 }

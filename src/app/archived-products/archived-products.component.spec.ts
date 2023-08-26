@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AllProductsComponent } from './all-products.component';
+import { ArchivedProductsComponent } from './archived-products.component';
 
 describe('AllproductsComponent', () => {
-  let component: AllProductsComponent;
-  let fixture: ComponentFixture<AllProductsComponent>;
+  let component: ArchivedProductsComponent;
+  let fixture: ComponentFixture<ArchivedProductsComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AllProductsComponent]
+      declarations: [ArchivedProductsComponent]
     });
-    fixture = TestBed.createComponent(AllProductsComponent);
+    fixture = TestBed.createComponent(ArchivedProductsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

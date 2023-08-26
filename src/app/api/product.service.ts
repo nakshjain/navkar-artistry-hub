@@ -67,6 +67,21 @@ export class ProductService {
       })
     );
   }
+  getAllArchivedProducts(): Observable<Product[]> {
+    return this.products$.pipe(
+      map((products)=>{
+        const availableProducts: Product[]=[]
+        products.forEach(
+          (product)=>{
+            if(!product.available){
+              availableProducts.push(product)
+            }
+          }
+        )
+        return availableProducts
+      })
+    );
+  }
 
   getAllProductsByCategory(): Observable<ProductsByCategory[]> {
     return this.products$.pipe(
@@ -116,6 +131,21 @@ export class ProductService {
           const categories: string[]=[]
           products.forEach((product)=>{
             if(product.available) {
+              if(!categories.includes(product.category)) {
+                categories.push(product.category)
+              }
+            }
+          })
+          return categories;
+        })
+    )
+  }
+  getAllArchivedCategories(){
+    return this.products$.pipe(
+        map((products)=>{
+          const categories: string[]=[]
+          products.forEach((product)=>{
+            if(!product.available) {
               if(!categories.includes(product.category)) {
                 categories.push(product.category)
               }

@@ -3,12 +3,11 @@ import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-browse-by-category',
-  templateUrl: './browse-by-category.component.html',
-  styleUrls: ['./browse-by-category.component.css']
+  templateUrl: './available-products.component.html',
+  styleUrls: ['./available-products.component.css']
 })
-export class BrowseByCategoryComponent implements OnInit{
-  title='Browse By '
-  categoryHeading='category'
+export class AvailableProductsComponent implements OnInit{
+  categoryHeading='All Products'
   category: any;
   bgColor='lightbrown'
 

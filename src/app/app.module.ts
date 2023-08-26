@@ -18,8 +18,8 @@ import {ProductComponent} from './shared/product/product.component';
 import {FormsModule} from "@angular/forms";
 import { FilterComponent } from './shared/filter/filter.component';
 import { FollowUsComponent } from './follow-us/follow-us.component';
-import { BrowseByCategoryComponent } from './browse-by-category/browse-by-category.component';
-import { AllProductsComponent } from './all-products/all-products.component';
+import { AvailableProductsComponent } from './available-products/available-products.component';
+import { ArchivedProductsComponent } from './archived-products/archived-products.component';
 import { ProductsDisplayComponent } from './shared/products-display/products-display.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatCardModule} from "@angular/material/card";
@@ -37,8 +37,8 @@ import { GetQuoteComponent } from './get-quote/get-quote.component';
     ProductComponent,
     FilterComponent,
     FollowUsComponent,
-    BrowseByCategoryComponent,
-    AllProductsComponent,
+    AvailableProductsComponent,
+    ArchivedProductsComponent,
     ProductsDisplayComponent,
     ContactUsComponent,
     GetQuoteComponent,
