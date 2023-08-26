@@ -31,7 +31,7 @@ export class ProductService {
               return {
                 id: row.c[0].v,
                 name: row.c[1].v,
-                author: row.c[2].v,
+                price: row.c[2].v,
                 category: row.c[3].v,
                 rating: row.c[4].v,
                 imageUrl: row.c[5].v,

@@ -15,7 +15,7 @@
     [config]="slideConfigDesktop"
   >
     <div ngxSlickItem *ngFor="let image of products" class="slide">
-      <img (click)="viewproductDetails(image.id)" src="{{ image.imageUrl }}" class="product-image" alt="{{ image.id }}" />
+      <img (click)="viewProductDetails(image.id)" src="{{ image.imageUrl }}" class="product-image" alt="{{ image.id }}" />
     </div>
   </ngx-slick-carousel>
 </div>
@@ -27,7 +27,7 @@
     [config]="slideConfigMobile"
   >
     <div ngxSlickItem *ngFor="let image of products" class="slide">
-      <img (click)="viewproductDetails(image.id)" src="{{ image.imageUrl }}" class="product-image" alt="{{ image.id }}" />
+      <img (click)="viewProductDetails(image.id)" src="{{ image.imageUrl }}" class="product-image" alt="{{ image.id }}" />
     </div>
   </ngx-slick-carousel>
 </div>

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Product} from "../../types/products.types";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {ProductService} from "../../api/product.service";
@@ -11,19 +11,12 @@ import {ProductService} from "../../api/product.service";
 })
 export class ProductComponent implements OnInit{
   product: any;
-  productsBycategory:Product[]=[]
-  titleSimilar='Similar products'
+  productsByCategory:Product[]=[]
+  titleSimilar='Similar Items'
   backgroundColor='#FFF0F5'
 
-  constructor(private route: ActivatedRoute, private ngxService: NgxUiLoaderService, private productService:ProductService) {
-  }
-
-  ngOnInit(){
-    this.route.params.subscribe(params => {
-      this.ngxService.start()
-      const productId = params['id'];
-      this.getproductById(productId);
-    });
+  contactUs(): void {
+    this.router.navigate(['home']);
   }
 
   getproductById(id: string){
@@ -39,8 +32,20 @@ export class ProductComponent implements OnInit{
   getproductsBycategory(category: string){
     this.productService.getProductsByCategory(category).subscribe(
       (productsBycategory)=>{
-        this.productsBycategory=productsBycategory
+        this.productsByCategory=productsBycategory
       }
     )
+  }
+
+
+  constructor(private router: Router, private route: ActivatedRoute, private ngxService: NgxUiLoaderService, private productService:ProductService) {
+  }
+
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.ngxService.start()
+      const productId = params['id'];
+      this.getproductById(productId);
+    });
   }
 }

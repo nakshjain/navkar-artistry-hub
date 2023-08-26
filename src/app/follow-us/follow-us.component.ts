@@ -17,13 +17,13 @@ export class FollowUsComponent {
       id:'insta',
       name:'Instagram',
       imageLink:'https://drive.google.com/uc?export=view&id=1gEvdJ10RPMDeA_6ABs85kA5XGn_QflQT',
-      link:''
+      link:'https://www.instagram.com/navkarartistryhub/'
     },
     {
       id:'tweet',
       name:'Twitter',
       imageLink:'https://drive.google.com/uc?export=view&id=1jNGbsTGDtHJHnUnKZk8hoY0iPIb9CxVb',
-      link:''
+      link:'https://twitter.com/NavkarArtistry'
     },
   ]
 }

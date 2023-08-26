@@ -24,7 +24,6 @@ import { ProductsDisplayComponent } from './shared/products-display/products-dis
 import {MatSelectModule} from "@angular/material/select";
 import {MatCardModule} from "@angular/material/card";
 import {HttpClientModule} from "@angular/common/http";
-import {ProductRatingComponent} from "./shared/product/product-rating/product-rating.component";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -39,7 +38,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowseByCategoryComponent,
     AllProductsComponent,
     ProductsDisplayComponent,
-    ProductRatingComponent,
   ],
   imports: [
     BrowserModule,

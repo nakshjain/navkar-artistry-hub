@@ -24,10 +24,6 @@ ngb-rating{
   font-size: 325%;
   font-weight: 700;
 }
-.author-name{
-  font-size: 150%;
-  font-style: italic;
-}
 .product-about {
   display: flex;
   flex-grow: 1;
@@ -47,7 +43,15 @@ ngb-rating{
   height: auto;
   border-radius: 5%;
 }
-
+.contact{
+  padding: 5% 0 0;
+  font-size: 150%;
+}
+.contact-us{
+  width: 100%;
+  padding: 2%;
+  border-radius: 10px;
+}
 .product-review {
   padding: 2% 5%;
   flex-grow: 1;
