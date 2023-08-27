@@ -2,47 +2,75 @@
   <div class="product-heading">
     <div class="title">{{title}}</div>
   </div>
+  <div class="caption">{{caption}}</div>
   <div class="product-about">
     <div class="product-image-main">
       <img class="product-image" src="{{ product.imageUrl }}" alt="Image" />
       <div class="product-name">{{product.name}}</div>
     </div>
     <div class="details">
-      <div class="form-heading">Your Information</div>
-      <form (ngSubmit)="submitForm()" #contactForm="ngForm">
-        <div class="form-group">
+      <form (ngSubmit)="submitForm()" #contactForm="ngForm" class="form-details">
+
+        <div class="form-heading">{{yourInfo}}</div>
+
+        <div class="form-group field">
           <label for="title">*title</label>
           <br>
           <select id="title" name="title" [(ngModel)]="formData.title" required>
-            <option value="Mr">Mr</option>
-            <option value="Mrs">Mrs</option>
-            <option value="Miss">Miss</option>
-            <option value="Dr">Dr</option>
+            <option value="{{title}}" *ngFor="let title of titleDropdown">{{title}}</option>
           </select>
-<!--          <input type="text" id="title" name="title" [(ngModel)]="formData.title" required>-->
         </div>
-        <div class="form-group">
-          <label for="lastName">*Last name</label>
+
+        <div class="field-details">
+          <div class="form-group field">
+            <label for="lastName">*Last name</label>
+            <br>
+            <input type="text" id="lastName" name="lastName" [(ngModel)]="formData.lastName" required>
+          </div>
+          <div class="form-group field">
+            <label for="firstName">*First name</label>
+            <br>
+            <input type="text" id="firstName" name="firstName" [(ngModel)]="formData.firstName" required>
+          </div>
+        </div>
+
+        <div class="contact-info">
+          <div  class="field-details">
+            <div class="form-group field">
+              <label for="email">*Email address</label>
+              <br>
+              <input type="email" id="email" name="email" [(ngModel)]="formData.email" required>
+            </div>
+            <div class="form-group field">
+              <label for="contactNumber">*Telephone</label>
+              <br>
+              <input type="number" id="contactNumber" name="contactNumber" [(ngModel)]="formData.contactNumber" required>
+            </div>
+          </div>
           <br>
-          <input type="text" id="lastName" name="lastName" [(ngModel)]="formData.lastName" required>
+          <div class="form-group budget-heading">
+            <label for="communicationMethod">Preferred Communication Method</label>
+            <select id="communicationMethod"  name="communicationMethod" [(ngModel)]="formData.communicationMethod">
+              <option value="email">Email</option>
+              <option value="phone">Telephone</option>
+            </select>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="firstName">*First name</label>
+
+        <br>
+        <div class="form-heading">{{yourBudget}}</div>
+
+        <div class="form-group field">
+          <label for="budget">Budget</label>
           <br>
-          <input type="text" id="firstName" name="firstName" [(ngModel)]="formData.firstName" required>
+          <select id="budget" name="budget" [(ngModel)]="formData.budget" required>
+            <option value="{{budget}}" *ngFor="let budget of budgetDropdown">{{budget}}</option>
+          </select>
         </div>
-        <div class="form-group">
-          <label for="email">*Email address</label>
-          <br>
-          <input type="email" id="email" name="email" [(ngModel)]="formData.email" required>
-        </div>
-        <div class="form-group">
-          <label for="contactNumber">*Telephone</label>
-          <br>
-          <input type="number" id="contactNumber" name="contactNumber" [(ngModel)]="formData.contactNumber" required>
-        </div>
+
         <br>
         <button type="submit" [disabled]="!contactForm.valid">Submit</button>
-      </form></div>
+      </form>
+    </div>
   </div>
 </div>

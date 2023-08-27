@@ -35,7 +35,6 @@ export class ImageSliderComponent {
   }
 
   viewProductDetails(productId: string): void {
-    console.log(this.products)
-    this.router.navigate(['product', productId]); // Navigate to detail page with product ID
+    this.router.navigate(['product', productId]);
   }
 }
