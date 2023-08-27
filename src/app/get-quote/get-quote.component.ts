@@ -51,8 +51,7 @@ export class GetQuoteComponent implements OnInit{
   openEmailClient(): void {
     if (this.formData) {
       console.log()
-      const mailtoLink = `mailto:${this.emailAddress}?subject=${this.emailSubject}&body=${this.emailBody}`;
-      window.location.href = mailtoLink;
+      window.location.href = `mailto:${this.emailAddress}?subject=${this.emailSubject}&body=${this.emailBody}`;
     }
   }
 
