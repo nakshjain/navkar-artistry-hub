@@ -22,6 +22,7 @@ export class GetQuoteComponent implements OnInit{
     imageUrl:'',
     category:'',
     available: '0',
+    price:''
   };
 
   backgroundColor='#FFF0F5'
@@ -35,7 +36,7 @@ export class GetQuoteComponent implements OnInit{
     firstName:'',
     email: '',
     contactNumber: '',
-    communicationMethod:'',
+    communicationMethod:'email',
     budget:''
   };
   greeting='Hello,'
@@ -55,6 +56,17 @@ export class GetQuoteComponent implements OnInit{
     }
   }
 
+  clearForm(){
+    this.formData = {
+      title: '',
+      lastName:'',
+      firstName:'',
+      email: '',
+      contactNumber: '',
+      communicationMethod:'email',
+      budget:''
+    };
+  }
   submitForm() {
     this.aboutUser=`I hope this message finds you well. My name is ` + this.formData.title+` `+this.formData.firstName+` `+this.formData.lastName+  ` . I am interested in your services and would like to inquire about the pricing details for`+this.product.id+`.`
     this.contactUser=`Please reach out to me at `+this.formData.email+` or `+this.formData.contactNumber+` to provide the information. I prefer to be contacted via `+this.formData.communicationMethod+`.`
@@ -63,6 +75,7 @@ export class GetQuoteComponent implements OnInit{
 
     this.emailSubject = encodeURIComponent(`Request for Information - Product Pricing`);
     this.emailBody = encodeURIComponent(this.enquiryMessage);
+    this.clearForm()
     this.openEmailClient()
   }
 

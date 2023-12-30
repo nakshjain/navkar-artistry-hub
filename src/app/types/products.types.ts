@@ -5,6 +5,7 @@ export interface Product {
   imageUrl: string
   category: string
   available: string
+  price: string
 }
 
 export interface ProductsByCategory {

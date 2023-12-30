@@ -17,7 +17,7 @@ import {ProductsComponent} from "./shared/products.component";
 import {ProductComponent} from './shared/product/product.component';
 import {FormsModule} from "@angular/forms";
 import { FilterComponent } from './shared/filter/filter.component';
-import { FollowUsComponent } from './follow-us/follow-us.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AvailableProductsComponent } from './available-products/available-products.component';
 import { ArchivedProductsComponent } from './archived-products/archived-products.component';
 import { ProductsDisplayComponent } from './shared/products-display/products-display.component';
@@ -25,7 +25,6 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatCardModule} from "@angular/material/card";
 import {HttpClientModule} from "@angular/common/http";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ContactUsComponent } from './contact-us/contact-us.component';
 import { GetQuoteComponent } from './get-quote/get-quote.component';
 
 @NgModule({
@@ -36,11 +35,10 @@ import { GetQuoteComponent } from './get-quote/get-quote.component';
     ProductsComponent,
     ProductComponent,
     FilterComponent,
-    FollowUsComponent,
+    ContactUsComponent,
     AvailableProductsComponent,
     ArchivedProductsComponent,
     ProductsDisplayComponent,
-    ContactUsComponent,
     GetQuoteComponent,
   ],
   imports: [

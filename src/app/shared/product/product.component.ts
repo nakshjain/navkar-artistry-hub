@@ -16,7 +16,8 @@ export class ProductComponent implements OnInit{
     about:'',
     imageUrl:'',
     category:'',
-    available: '0'
+    available: '0',
+    price:''
   };
   productsByCategory:Product[]=[]
   titleSimilar='Similar Items'

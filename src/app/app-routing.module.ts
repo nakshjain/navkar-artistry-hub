@@ -9,7 +9,6 @@ import {HomePageComponent} from "./home-page/home-page.component";
 import {ProductComponent} from "./shared/product/product.component";
 import {AvailableProductsComponent} from "./available-products/available-products.component";
 import {ArchivedProductsComponent} from "./archived-products/archived-products.component";
-import {ContactUsComponent} from "./contact-us/contact-us.component";
 import {GetQuoteComponent} from "./get-quote/get-quote.component";
 
 const routes: Routes = [
@@ -17,7 +16,6 @@ const routes: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: 'products', component: AvailableProductsComponent},
   { path: 'archived-products', component: ArchivedProductsComponent},
-  { path: 'contact-us', component: ContactUsComponent},
   { path: 'products/:category', component: AvailableProductsComponent},
   { path: 'product/:id', component: ProductComponent},
   { path: 'get-quote/:id', component: GetQuoteComponent}

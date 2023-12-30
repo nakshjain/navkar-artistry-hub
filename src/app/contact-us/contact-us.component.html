@@ -1,3 +1,12 @@
-<div class="container">
-  <h2>Contact Us</h2>
+<div class="contact-us">
+  <div class="contact-details">
+    <div class="contact-heading">{{title}}</div>
+  </div>
+  <div class="social-media">
+    <div class="images" *ngFor="let link of links">
+      <div>
+        <a href="{{link.link}}" target="_blank"><img src="{{link.imageLink}}" alt="{{link.name}}" class="image"></a>
+      </div>
+    </div>
+  </div>
 </div>

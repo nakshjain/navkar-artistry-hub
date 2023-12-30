@@ -33,6 +33,9 @@ export class ProductsComponent implements OnInit{
 
   onCategorySelected(selectValue: string){
     this.categorySelect=selectValue
+    if(selectValue){
+      this.title=this.categorySelect
+    }
   }
 
   getProducts(): void {

@@ -4,7 +4,7 @@
   padding: 0;
 }
 .mat-icon{
-  transform: scale(1.5);
+  transform: scale(1.2);
 }
 .navbar {
   position: fixed;
@@ -21,7 +21,7 @@
   color: white;
   font-family: 'Playfair Display', serif;
   text-decoration: none;
-  font-size: 250%;
+  font-size: 200%;
 }
 .nav-heading p{
   margin: auto;

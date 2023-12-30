@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 export class ImageSliderComponent {
   @Input()
   slideConfigDesktop={
-    "slidesToShow": 10,
+    "slidesToShow": 7,
     "slidesToScroll": 1,
     "autoplay":true,
     "autoplaySpeed": 900,

@@ -15,7 +15,7 @@ export class ProductService {
   }
 
   private fetchProductData(): void {
-    const documentId = '1Rc3UPChXpkP7u2XrJ6mX_JK1ao3y2m-53zVLQZwnxUI';
+    const documentId = '12ffEL_Y57ZDr9QTfOl6U2SnR_RZrgVQqhrD0crAZMVk';
     const exportUrl = `https://docs.google.com/spreadsheets/d/${documentId}/gviz/tq?tqx=out:json`;
 
     this.http.get(exportUrl, { responseType: 'text' }).subscribe(
@@ -27,6 +27,7 @@ export class ProductService {
           if (jsonStartIndex !== -1 && jsonEndIndex !== -1) {
             const jsonResponse = JSON.parse(response.substring(jsonStartIndex, jsonEndIndex));
             const rawData = jsonResponse.table.rows;
+            console.log(rawData)
             const formattedData = rawData.map((row: any) => {
               return {
                 id: row.c[0].v,
