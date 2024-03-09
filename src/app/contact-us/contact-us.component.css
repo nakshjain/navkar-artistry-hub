@@ -31,9 +31,6 @@
   height: auto;
   padding: 0 10% 0;
 }
-/*.image:hover{*/
-/*  max-height: 4vh;*/
-/*}*/
 @media (max-width: 768px) {
   .contact-details{
     font-size: 250%;

@@ -1,7 +1,7 @@
 <div class="products">
   <ng-container *ngFor="let product of products">
     <div *ngIf="searchText==='' && product.category.includes(category)|| product.name.toLocaleLowerCase().includes(searchText.toLocaleLowerCase()) && product.category.includes(category)" class="product">
-      <div class="image-container">
+      <div class="title-container">
         <img (click)="viewProductDetails(product.id)" [src]="product.imageUrl" class="product-image" alt="{{ product.name }}" />
       </div>
     </div>

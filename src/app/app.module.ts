@@ -26,6 +26,7 @@ import {MatCardModule} from "@angular/material/card";
 import {HttpClientModule} from "@angular/common/http";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GetQuoteComponent } from './get-quote/get-quote.component';
+import { HomePageMainComponent } from './home-page-main/home-page-main.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { GetQuoteComponent } from './get-quote/get-quote.component';
     ArchivedProductsComponent,
     ProductsDisplayComponent,
     GetQuoteComponent,
+    HomePageMainComponent,
   ],
   imports: [
     BrowserModule,

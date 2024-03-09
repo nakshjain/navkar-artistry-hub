@@ -1,14 +1,32 @@
 <mat-toolbar class="navbar">
   <mat-toolbar-row>
-    <button mat-icon-button (click)="sidenav.toggle()" class="button">
-      <mat-icon class="mat-icon">menu</mat-icon>
-    </button>
-    <a routerLink="home" class="nav-heading">
-      <p>{{title}}</p>
-    </a>
+    <div class="nav-main">
+      <div class="nav-left">
+        <button mat-icon-button (click)="sidenav.toggle()" class="button-menu">
+          <mat-icon class="mat-icon">menu</mat-icon>
+        </button>
+        <a routerLink="home" class="nav-heading">
+          <p>{{title}}</p>
+        </a>
+
+      </div>
+      <div class="nav-right">
+        <div *ngFor="let element of navbarHeader"  class="nav-elements">
+          <a routerLink="{{element.link}}" *ngIf="!isSearchBarOpen">{{element.name}}</a>
+        </div>
+        <div class="nav-search">
+          <div *ngIf="isSearchBarOpen" class="search-bar">
+            <input type="text" placeholder="Search...">
+          </div>
+          <button mat-icon-button (click)="toggleSearchBar()" class="button-search">
+            <mat-icon class="mat-icon">search</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>
-
+<hr style="width:50%;margin-left:0">
 <mat-sidenav-container>
   <mat-sidenav #sidenav class="sidenav" (click)="sidenav.toggle()">
     <mat-nav-list>
@@ -21,6 +39,7 @@
       </ul>
     </mat-nav-list>
   </mat-sidenav>
+
   <mat-sidenav-content>
     <div>
       <ngx-ui-loader fgsColor="#353535" pbColor="#353535"></ngx-ui-loader>

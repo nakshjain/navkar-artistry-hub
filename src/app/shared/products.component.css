@@ -19,7 +19,8 @@
 .title {
   flex: 1;
   font-size: 300%;
-  font-family: 'Abril Fatface', cursive;
+  /*font-family: 'Spartan',Sans-Serif;*/
+  /*font-family: 'Abril Fatface', cursive;*/
   max-width: 4040px;
 }
 

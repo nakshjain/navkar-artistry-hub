@@ -1,0 +1,13 @@
+<div class="title-container">
+  <img src="{{titleBackgroundImage}}">
+  <div class="title-box">
+    <p class="title">{{title}}</p>
+  </div>
+</div>
+
+<div class="box-container">
+  <div *ngFor="let element of elements" class="box">
+    <div class="item">{{element.id}}</div>
+    <img src="{{element.imageLink}}" class="image">
+  </div>
+</div>

@@ -6,12 +6,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Navkar Artistry Hub';
+  isSearchBarOpen = false;
+
+  toggleSearchBar() {
+    this.isSearchBarOpen = !this.isSearchBarOpen;
+  }
+  title = 'NAH';
   navbarHeader: any[] = [
     {
       id: 'home',
       name: 'Home',
       link: 'home',
+    },
+    {
+      id: 'artists',
+      name: 'Artists',
+      link: 'artists',
     },
     {
       id: 'products',
@@ -20,7 +30,7 @@ export class AppComponent {
     },
     {
       id: 'archived-products',
-      name: 'Archived Products',
+      name: 'Archived',
       link: 'archived-products',
     },
   ];
