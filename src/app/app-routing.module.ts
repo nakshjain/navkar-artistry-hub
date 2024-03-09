@@ -5,7 +5,6 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatIconModule} from "@angular/material/icon";
 import {MatListModule} from "@angular/material/list";
 import {MatButtonModule} from "@angular/material/button";
-import {HomePageComponent} from "./home-page/home-page.component";
 import {ProductComponent} from "./shared/product/product.component";
 import {AvailableProductsComponent} from "./available-products/available-products.component";
 import {ArchivedProductsComponent} from "./archived-products/archived-products.component";
