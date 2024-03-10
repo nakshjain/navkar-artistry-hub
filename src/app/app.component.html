@@ -16,7 +16,7 @@
         </div>
         <div class="nav-search">
           <div *ngIf="isSearchBarOpen" class="search-bar">
-            <input type="text" placeholder="Search...">
+            <input type="text" placeholder="Search..." [(ngModel)]="searchQuery" (keyup)="search()">
           </div>
           <button mat-icon-button (click)="toggleSearchBar()" class="button-search">
             <mat-icon class="mat-icon">search</mat-icon>

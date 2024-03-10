@@ -11,12 +11,12 @@ import {ProductService} from "../../api/product.service";
 })
 export class ProductComponent implements OnInit{
   product: Product={
-    id:'',
+    _id:'',
     name:'',
     about:'',
-    imageUrl:'',
+    imageLink:'',
     category:'',
-    available: '0',
+    availability: '0',
     price:''
   };
   productsByCategory:Product[]=[]
@@ -24,19 +24,26 @@ export class ProductComponent implements OnInit{
   backgroundColor='#FFF0F5'
 
   getQuote(): void {
-    this.router.navigate(['get-quote', this.product.id]); // Navigate to detail page with product ID
+    this.router.navigate(['get-quote', this.product._id]); // Navigate to detail page with product ID
   }
 
   getProductById(id: string){
     this.productService.getProductById(id).subscribe(
       (product)=>{
-        if(product){
-          this.product=product;
-          this.getProductsByCategory(this.product.category)
-        }
+        this.product=product;
+        this.getProductsByCategory(this.product.category)
         this.ngxService.stop()
       }
     )
+    // this.productService.getProductById1(id).subscribe(
+    //   (product)=>{
+    //     if(product){
+    //       this.product=product;
+    //       this.getProductsByCategory(this.product.category)
+    //     }
+    //     this.ngxService.stop()
+    //   }
+    // )
   }
 
   getProductsByCategory(category: string){

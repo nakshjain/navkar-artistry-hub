@@ -18,6 +18,7 @@ export class HomePageComponent implements OnInit{
     this.ngxService.start()
     this.productService.getAllProductsByCategory().subscribe(
       (allProductsByCategory)=>{
+        console.log()
         this.allProductsByCategory=allProductsByCategory
         this.ngxService.stop()
       }

@@ -34,4 +34,9 @@ export class AppComponent {
       link: 'archived-products',
     },
   ];
+  searchQuery= '';
+
+  search() {
+
+  }
 }

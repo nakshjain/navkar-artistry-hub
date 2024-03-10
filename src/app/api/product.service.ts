@@ -7,90 +7,33 @@ import {BehaviorSubject, map, Observable} from "rxjs";
   providedIn: 'root',
 })
 export class ProductService {
-  private dataSubject: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
-  public products$: Observable<Product[]> = this.dataSubject.asObservable();
+
+  private baseUrl = 'http://localhost:3000'
 
   constructor(private http: HttpClient) {
-    this.fetchProductData();
   }
 
-  private fetchProductData(): void {
-    const documentId = '12ffEL_Y57ZDr9QTfOl6U2SnR_RZrgVQqhrD0crAZMVk';
-    const exportUrl = `https://docs.google.com/spreadsheets/d/${documentId}/gviz/tq?tqx=out:json`;
-
-    this.http.get(exportUrl, { responseType: 'text' }).subscribe(
-      (response: string) => {
-        const startIndex = response.indexOf('google.visualization.Query.setResponse');
-        if (startIndex !== -1) {
-          const jsonStartIndex = response.indexOf('{', startIndex);
-          const jsonEndIndex = response.lastIndexOf('}') + 1;
-          if (jsonStartIndex !== -1 && jsonEndIndex !== -1) {
-            const jsonResponse = JSON.parse(response.substring(jsonStartIndex, jsonEndIndex));
-            const rawData = jsonResponse.table.rows;
-            console.log(rawData)
-            const formattedData = rawData.map((row: any) => {
-              return {
-                id: row.c[0].v,
-                name: row.c[1].v,
-                category: row.c[2].v,
-                imageUrl: row.c[3].v,
-                about: row.c[4].v,
-                available:row.c[5].v
-              };
-            });
-            this.dataSubject.next(formattedData)
-          } else {
-            console.error('Unexpected response format:', response);
-          }
-        } else {
-          console.error('Response does not contain expected data:', response);
-        }
-      },
-      (error) => {
-        console.error('Error fetching Product data:', error);
-      }
-    );
+  getAllProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseUrl}/allProducts`);
   }
-
   getAllAvailableProducts(): Observable<Product[]> {
-    return this.products$.pipe(
-      map((products)=>{
-        const availableProducts: Product[]=[]
-        products.forEach(
-          (product)=>{
-            if(product.available){
-              availableProducts.push(product)
-            }
-          }
-        )
-        return availableProducts
-      })
-    );
-  }
-  getAllArchivedProducts(): Observable<Product[]> {
-    return this.products$.pipe(
-      map((products)=>{
-        const availableProducts: Product[]=[]
-        products.forEach(
-          (product)=>{
-            if(!product.available){
-              availableProducts.push(product)
-            }
-          }
-        )
-        return availableProducts
-      })
-    );
+    return this.http.get<Product[]>(`${this.baseUrl}/getAllAvailableProducts`);
   }
 
+  getAllArchivedProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseUrl}/getAllArchivedProducts`);
+  }
+  getProductsByCategory(category: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseUrl}/getProductsByCategory/${category}`);
+  }
   getAllProductsByCategory(): Observable<ProductsByCategory[]> {
-    return this.products$.pipe(
+    return this.getAllProducts().pipe(
       map(
         (products)=>{
           const productsByCategory: { [category: string]: Product[] } = {};
 
           products.forEach((product) => {
-            if(product.available){
+            if(product.availability){
               if (productsByCategory[product.category]) {
                 productsByCategory[product.category].push(product);
               } else {
@@ -108,29 +51,16 @@ export class ProductService {
       )
     )
   }
-
-  getProductById(id: string){
-    return this.products$.pipe(
-      map((products)=>{
-        return products.find(product=>product.id===id)
-      })
-    )
-  }
-
-  getProductsByCategory(category: string){
-    return this.products$.pipe(
-      map((products)=>{
-        return products.filter(product => product.category === category && product.available)
-      })
-    )
+  getProductById(id: string): Observable<Product> {
+    return this.http.get<Product>(`${this.baseUrl}/getProductById/${id}`);
   }
 
   getAllCategories(){
-    return this.products$.pipe(
+    return this.getAllProducts().pipe(
         map((products)=>{
           const categories: string[]=[]
           products.forEach((product)=>{
-            if(product.available) {
+            if(product.availability) {
               if(!categories.includes(product.category)) {
                 categories.push(product.category)
               }
@@ -141,11 +71,11 @@ export class ProductService {
     )
   }
   getAllArchivedCategories(){
-    return this.products$.pipe(
+    return this.getAllProducts().pipe(
         map((products)=>{
           const categories: string[]=[]
           products.forEach((product)=>{
-            if(!product.available) {
+            if(!product.availability) {
               if(!categories.includes(product.category)) {
                 categories.push(product.category)
               }

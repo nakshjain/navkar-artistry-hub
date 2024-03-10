@@ -1,10 +1,10 @@
 export interface Product {
-  id: string
+  _id: string
   name: string
   about: string
-  imageUrl: string
+  imageLink: string
   category: string
-  available: string
+  availability: string
   price: string
 }
 

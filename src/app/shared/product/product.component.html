@@ -4,13 +4,13 @@
   </div>
   <div class="product-about">
     <div class="product-image-main">
-      <img class="product-image" src="{{ product.imageUrl }}" alt="Image" />
+      <img class="product-image" src="{{ product.imageLink }}" alt="Image" />
 <!--      <div class="product-name">{{product.price}}</div>-->
-      <div class="contact" (click)="getQuote()" *ngIf="product.available"> <button class="contact-us">Get Quote</button></div>
+      <div class="contact" (click)="getQuote()" *ngIf="product.availability"> <button class="contact-us">Get Quote</button></div>
     </div>
     <div class="product-review">{{product.about}}</div>
   </div>
-  <div class="similar-slider" *ngIf="product.available">
+  <div class="similar-slider" *ngIf="product.availability">
     <app-image-slider
       [products]="productsByCategory"
       [title]="titleSimilar"

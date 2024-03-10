@@ -41,19 +41,33 @@ export class ProductsComponent implements OnInit{
   getProducts(): void {
     if(this.title==='Archived Products'){
       this.productService.getAllArchivedProducts().subscribe(
-        (products)=>{
+        (products: Product[])=>{
+          console.log(products)
           this.products=products
           this.ngxService.stop()
         }
       )
+      // this.productService.getAllArchivedProducts1().subscribe(
+      //   (products)=>{
+      //     this.products=products
+      //     this.ngxService.stop()
+      //   }
+      // )
     }
     else{
       this.productService.getAllAvailableProducts().subscribe(
-        (products)=>{
+        (products: Product[])=>{
           this.products=products
           this.ngxService.stop()
         }
       )
+      // this.productService.getAllAvailableProducts1().subscribe(
+      //   (products)=>{
+      //     console.log('Hi')
+      //     // this.products=products
+      //     this.ngxService.stop()
+      //   }
+      // )
     }
   }
 
