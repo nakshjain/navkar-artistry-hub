@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {MatDialog} from "@angular/material/dialog";
+import {LoginComponent} from "./login/login.component";
 
 @Component({
   selector: 'app-root',
@@ -38,5 +40,13 @@ export class AppComponent {
 
   search() {
 
+  }
+
+  openLoginDialog() {
+    this.matDialog.open(LoginComponent,{
+      // width:'350px',
+    })
+  }
+  constructor(private matDialog: MatDialog) {
   }
 }

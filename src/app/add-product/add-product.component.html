@@ -1,0 +1,47 @@
+<div class="product" id="product" [style.background]="backgroundColor">
+  <div class="title">{{title}}</div>
+    <div class="details">
+      <form (ngSubmit)="submitForm()" #contactForm="ngForm" class="form-details">
+
+        <div class="form-group field">
+          <label for="name">Name</label>
+          <br>
+          <input type="text" id="name" name="name" [(ngModel)]="formData.name" required>
+        </div>
+        <br>
+        <div class="form-group field">
+          <label for="category">Category</label>
+          <br>
+          <input type="text" id="category" name="category" [(ngModel)]="formData.category" required>
+        </div>
+        <br>
+        <div class="form-group field">
+          <label for="price">Price</label>
+          <br>
+          <input type="number" id="price" name="price" [(ngModel)]="formData.price" required>
+        </div>
+        <br>
+        <div class="form-group field">
+          <label for="imageLink">Image Link</label>
+          <br>
+          <input type="text" id="imageLink" name="imageLink" [(ngModel)]="formData.imageLink" required>
+        </div>
+        <br>
+        <div class="form-group field">
+          <label for="availability">Availability</label>
+          <br>
+          <select id="availability" name="availability" [(ngModel)]="formData.availability" required>
+            <option value="{{availability}}" *ngFor="let availability of availabilityDropdown">{{availability}}</option>
+          </select>
+        </div>
+        <br>
+        <div class="form-group field">
+          <label for="about">About</label>
+          <br>
+          <input type="text" id="about" name="about" [(ngModel)]="formData.about" required>
+        </div>
+        <button type="button" [disabled]="!contactForm.valid" (click)="submitForm()">Add</button>
+      </form>
+    </div>
+
+</div>

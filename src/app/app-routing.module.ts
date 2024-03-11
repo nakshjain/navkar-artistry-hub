@@ -10,6 +10,7 @@ import {AvailableProductsComponent} from "./available-products/available-product
 import {ArchivedProductsComponent} from "./archived-products/archived-products.component";
 import {GetQuoteComponent} from "./get-quote/get-quote.component";
 import {HomePageMainComponent} from "./home-page-main/home-page-main.component";
+import {AddProductComponent} from "./add-product/add-product.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'archived-products', component: ArchivedProductsComponent},
   { path: 'products/:category', component: AvailableProductsComponent},
   { path: 'product/:id', component: ProductComponent},
-  { path: 'get-quote/:id', component: GetQuoteComponent}
+  { path: 'get-quote/:id', component: GetQuoteComponent},
+  { path: 'add-product', component: AddProductComponent}
 ];
 
 @NgModule({

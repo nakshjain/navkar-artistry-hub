@@ -27,6 +27,9 @@ import {HttpClientModule} from "@angular/common/http";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GetQuoteComponent } from './get-quote/get-quote.component';
 import { HomePageMainComponent } from './home-page-main/home-page-main.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -42,24 +45,28 @@ import { HomePageMainComponent } from './home-page-main/home-page-main.component
     ProductsDisplayComponent,
     GetQuoteComponent,
     HomePageMainComponent,
+    AddProductComponent,
+    LoginComponent,
+
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatListModule,
-    MatButtonModule,
-    MatSelectModule,
-    SlickCarouselModule,
-    NgxUiLoaderModule,
-    MatCardModule,
-    NgbModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatSidenavModule,
+        MatListModule,
+        MatButtonModule,
+        MatSelectModule,
+        SlickCarouselModule,
+        NgxUiLoaderModule,
+        MatCardModule,
+        NgbModule,
+        MatDialogModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

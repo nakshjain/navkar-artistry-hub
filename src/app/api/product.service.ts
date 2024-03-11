@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Product, ProductsByCategory} from "../types/products.types";
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, map, Observable} from "rxjs";
+import {response} from "express";
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,7 @@ export class ProductService {
   getAllProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.baseUrl}/allProducts`);
   }
+
   getAllAvailableProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.baseUrl}/getAllAvailableProducts`);
   }
@@ -83,6 +85,17 @@ export class ProductService {
           })
           return categories;
         })
+    )
+  }
+
+  addProduct(product: any){
+    console.log(product)
+    this.http.post<any>(`${this.baseUrl}/addProduct`,product).subscribe(
+      (response)=>{
+        console.log(response)
+      },error => {
+        console.log(error)
+      }
     )
   }
 }

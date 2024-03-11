@@ -1,0 +1,113 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 26.4px;
+}
+label{
+  padding-top: 1%;
+}
+#title{
+  width: 100%;
+}
+#budget{
+  width: 100%;
+}
+#communicationMethod{
+  margin: 0 0 0 7% ;
+}
+.product {
+  padding: 2% 0;
+  margin: 0;
+  text-align: center;
+  justify-content: center;
+}
+.title {
+  padding: 1% 0;
+  color: #120E0A;
+  font-size: 325%;
+  font-weight: 700;
+}
+.caption{
+  padding: 1% 0 0;
+  font-size: large;
+  font-style: italic;
+}
+.product-about {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+  padding: 0 10%;
+}
+
+.product-image-main {
+  padding: 2% 0;
+  flex-grow: 1;
+  width: 33%;
+  height: auto;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  border-radius: 5%;
+}
+.details {
+  padding: 2% 5%;
+  flex-grow: 1;
+  width: 100%;
+  color: #35281E;
+  text-align: left;
+  font-size: 130%;
+}
+.form-heading{
+  padding-bottom: 2%;
+  font-weight: bold;
+  font-size: larger;
+  font-style: italic;
+}
+.form-details{
+  width: 75%;
+}
+.field{
+  width:35%;
+  flex-grow: 1;
+}
+.field-details{
+  display: flex;
+}
+@media (max-width: 768px) {
+  .product{
+    min-height: 0;
+  }
+  .product-about {
+    flex-direction: column;
+    align-items: center;
+  }
+  .product-name {
+    padding: 2% 0;
+    font-size: 200%;
+  }
+  .product-image{
+    width: 100%;
+    height: auto;
+  }
+  .product-image-main{
+    width: 80%;
+  }
+  .budget-heading {
+    font-size: 65%;
+  }
+  #communicationMethod{
+    margin: 0;
+    width: 100%;
+  }
+  .field{
+    width: 100%;
+  }
+  .field-details{
+    display: block;
+  }
+}
