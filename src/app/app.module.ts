@@ -30,6 +30,7 @@ import { HomePageMainComponent } from './home-page-main/home-page-main.component
 import { AddProductComponent } from './add-product/add-product.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { LoginComponent } from './login/login.component';
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { LoginComponent } from './login/login.component';
         MatCardModule,
         NgbModule,
         MatDialogModule,
+        MatMenuModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

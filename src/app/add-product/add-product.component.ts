@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core'
 import {ActivatedRoute} from "@angular/router";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {ProductService} from "../api/product.service";
-import {Observable, Subscriber} from "rxjs";
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
@@ -24,7 +23,6 @@ export class AddProductComponent{
     availability:''
   };
 
-
   clearForm(){
     this.formData = {
       name: '',
@@ -35,6 +33,7 @@ export class AddProductComponent{
       availability:''
     };
   }
+
   submitForm() {
     // const jsonData=JSON.stringify(this.formData)
     this.productService.addProduct(this.formData)

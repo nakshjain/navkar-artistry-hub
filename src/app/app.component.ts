@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {LoginComponent} from "./login/login.component";
+import {UserService} from "./api/user.service";
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,9 @@ import {LoginComponent} from "./login/login.component";
 })
 export class AppComponent {
   isSearchBarOpen = false;
+  searchQuery= '';
+  isUserLoggedIn=false;
+  user:any;
 
   toggleSearchBar() {
     this.isSearchBarOpen = !this.isSearchBarOpen;
@@ -36,17 +40,46 @@ export class AppComponent {
       link: 'archived-products',
     },
   ];
-  searchQuery= '';
 
   search() {
 
   }
 
   openLoginDialog() {
-    this.matDialog.open(LoginComponent,{
-      // width:'350px',
-    })
+    if(!this.isUserLoggedIn){
+      this.matDialog.open(LoginComponent,{
+        // width:'350px',
+      })
+    }
+    else{
+      this.matDialog.closeAll()
+    }
   }
-  constructor(private matDialog: MatDialog) {
+  ngOnInit(){
+    const localData=localStorage.getItem('signInUser');
+    if(localData){
+      this.user=JSON.parse(localData)
+    }
+  }
+  constructor(private matDialog: MatDialog,private userService: UserService) {
+    this.userService.isLoggedIn.subscribe((loggedIn: boolean) => {
+      this.isUserLoggedIn = loggedIn;
+      this.openLoginDialog()
+    });
+    this.userService.getUser().subscribe(
+      (user)=>{
+        this.user=user;
+        console.log(this.user)
+        localStorage.setItem('signInUser', JSON.stringify(this.user))
+      }
+    )
+  }
+
+  doSomething() {
+
+  }
+
+  doSomethingElse() {
+
   }
 }
