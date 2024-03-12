@@ -23,7 +23,7 @@ import { ArchivedProductsComponent } from './archived-products/archived-products
 import { ProductsDisplayComponent } from './shared/products-display/products-display.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatCardModule} from "@angular/material/card";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GetQuoteComponent } from './get-quote/get-quote.component';
 import { HomePageMainComponent } from './home-page-main/home-page-main.component';
@@ -31,6 +31,7 @@ import { AddProductComponent } from './add-product/add-product.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { LoginComponent } from './login/login.component';
 import {MatMenuModule} from "@angular/material/menu";
+import {AuthInterceptor} from "./interceptor/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -69,7 +70,13 @@ import {MatMenuModule} from "@angular/material/menu";
         MatDialogModule,
         MatMenuModule,
     ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

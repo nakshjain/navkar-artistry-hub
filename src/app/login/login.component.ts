@@ -52,7 +52,8 @@ export class LoginComponent {
         this.responseTextHidden=false
         this.clearSignUpFormData()
       },error => {
-        this.responseText=error.error.error
+        console.log(error)
+        this.responseText=error.error.message
         this.responseTextHidden=false
       }
     )
@@ -64,6 +65,7 @@ export class LoginComponent {
       (response)=>{
         console.log(response)
         this.user=response.user
+        this.userService.setTokens()
         this.userService.setLoggedIn(true)
         this.userService.setUser(this.user)
       },error => {

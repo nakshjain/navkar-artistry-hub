@@ -19,13 +19,15 @@
             <mat-icon>person</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="doSomething()">Item 1</button>
+            <button mat-menu-item (click)="logOut()">Logout</button>
             <button mat-menu-item (click)="doSomethingElse()">Item 2</button>
           </mat-menu>
         </div>
-        <mat-dialog-actions>
-          <button mat-raised-button color="primary" (click)="openLoginDialog()">Login</button>
-        </mat-dialog-actions>
+        <div *ngIf="!isUserLoggedIn">
+          <mat-dialog-actions>
+            <button mat-raised-button color="primary" (click)="openLoginDialog()">Login</button>
+          </mat-dialog-actions>
+        </div>
         <div class="nav-search">
           <div *ngIf="isSearchBarOpen" class="search-bar">
             <input type="text" placeholder="Search..." [(ngModel)]="searchQuery" (keyup)="search()">
