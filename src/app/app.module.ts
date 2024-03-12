@@ -32,6 +32,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import { LoginComponent } from './login/login.component';
 import {MatMenuModule} from "@angular/material/menu";
 import {AuthInterceptor} from "./interceptor/auth.interceptor";
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import {AuthInterceptor} from "./interceptor/auth.interceptor";
     HomePageMainComponent,
     AddProductComponent,
     LoginComponent,
+    FooterComponent,
 
   ],
     imports: [

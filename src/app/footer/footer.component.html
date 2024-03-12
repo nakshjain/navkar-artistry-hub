@@ -1,0 +1,24 @@
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div *ngFor="let element of contactUs" class="footer-elements">
+          <a routerLink="{{element.link}}">{{element.name}}</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Links</h4>
+        <div *ngFor="let element of quickLinks" class="footer-elements">
+          <a routerLink="{{element.link}}">{{element.name}}</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <div *ngFor="let element of followUs" class="footer-elements">
+          <a href="{{element.link}}">{{element.name}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -11,10 +11,11 @@ import {ArchivedProductsComponent} from "./archived-products/archived-products.c
 import {GetQuoteComponent} from "./get-quote/get-quote.component";
 import {HomePageMainComponent} from "./home-page-main/home-page-main.component";
 import {AddProductComponent} from "./add-product/add-product.component";
+import {FooterComponent} from "./footer/footer.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomePageMainComponent },
+  { path: 'home', component: FooterComponent },
   { path: 'products', component: AvailableProductsComponent},
   { path: 'archived-products', component: ArchivedProductsComponent},
   { path: 'products/:category', component: AvailableProductsComponent},
