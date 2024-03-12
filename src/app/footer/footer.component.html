@@ -8,15 +8,17 @@
         </div>
       </div>
       <div class="footer-col">
-        <h4>Links</h4>
+        <h4>Quick Links</h4>
         <div *ngFor="let element of quickLinks" class="footer-elements">
           <a routerLink="{{element.link}}">{{element.name}}</a>
         </div>
       </div>
       <div class="footer-col">
         <h4>Follow Us</h4>
-        <div *ngFor="let element of followUs" class="footer-elements">
-          <a href="{{element.link}}">{{element.name}}</a>
+        <div class="social-media">
+          <div *ngFor="let element of followUs" class="footer-elements social-media-element">
+            <a href="{{element.link}}"><fa-icon [icon]="element.icon" size="2x"></fa-icon></a>
+          </div>
         </div>
       </div>
     </div>

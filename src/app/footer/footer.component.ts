@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import {faFacebook, faTwitter, faInstagram, faYoutube} from "@fortawesome/free-brands-svg-icons";
+
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -54,24 +56,28 @@ export class FooterComponent {
 
   followUs: any[] = [
     {
-      id: 'home',
-      name: 'Home',
+      id: 'facebook',
+      name: 'Facebook',
+      icon:faFacebook,
       link: 'home',
     },
     {
-      id: 'artists',
-      name: 'Artists',
-      link: 'artists',
+      id: 'instagram',
+      name: 'Instagram',
+      icon:faInstagram,
+      link: 'faInstagram',
     },
     {
-      id: 'products',
-      name: 'Products',
-      link: 'products',
+      id: 'twitter',
+      name: 'Twitter',
+      icon:faTwitter,
+      link: 'faTwitter',
     },
     {
-      id: 'archived-products',
-      name: 'Archived',
-      link: 'archived-products',
+      id: 'youtube',
+      name: 'Youtube',
+      icon:faYoutube,
+      link: 'Youtube',
     },
   ];
 

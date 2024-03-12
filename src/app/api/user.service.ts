@@ -8,36 +8,17 @@ import {BehaviorSubject, Observable, tap} from "rxjs";
 export class UserService {
   private baseUrl = 'http://localhost:3000'
   private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  private userSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-  private accessTokenKey = 'accessToken';
-  private refreshTokenKey = 'refreshToken';
+  private tokenKey = '';
 
   constructor(private http: HttpClient) {
   }
 
-  setTokens(): void {
-    localStorage.setItem("accessToken", this.accessTokenKey);
-    localStorage.setItem("refreshToken", this.refreshTokenKey);
+  setToken() {
+    localStorage.setItem("token", this.tokenKey);
   }
 
-  getAccessToken(): string | null {
-    return localStorage.getItem(this.accessTokenKey);
-  }
-
-  getRefreshToken(): string | null {
-    return localStorage.getItem(this.refreshTokenKey);
-  }
-
-  logOutUser(refreshToken: String){
-    return this.http.delete<any>(`${this.baseUrl}/logout`,{ body: { refreshToken } })
-  }
-
-  setUser(user: any) {
-    this.userSubject.next(user);
-  }
-
-  getUser() {
-    return this.userSubject.asObservable();
+  getToken() {
+    return localStorage.getItem("token");
   }
 
   get isLoggedIn() {
@@ -53,15 +34,10 @@ export class UserService {
   loginUser(user: any){
     return this.http.post<any>(`${this.baseUrl}/login`,user,{withCredentials:true}).pipe(
       tap((res)=>{
-        this.accessTokenKey=res.accessToken;
-        this.refreshTokenKey=res.refreshToken;
-        this.setTokens()
+        this.tokenKey=res.token;
+        this.setToken()
       })
     )
-  }
-
-  refreshAccessToken(refreshToken: String) {
-    return this.http.post<any>(`${this.baseUrl}/refreshToken`,refreshToken)
   }
 
   isAuthenticated(){

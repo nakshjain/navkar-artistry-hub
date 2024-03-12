@@ -15,7 +15,7 @@ import {FooterComponent} from "./footer/footer.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: FooterComponent },
+  { path: 'home', component: HomePageMainComponent },
   { path: 'products', component: AvailableProductsComponent},
   { path: 'archived-products', component: ArchivedProductsComponent},
   { path: 'products/:category', component: AvailableProductsComponent},

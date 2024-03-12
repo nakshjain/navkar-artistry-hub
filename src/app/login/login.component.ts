@@ -64,10 +64,8 @@ export class LoginComponent {
     this.userService.loginUser(this.loginFormData).subscribe(
       (response)=>{
         console.log(response)
-        this.user=response.user
-        this.userService.setTokens()
+        this.userService.setToken()
         this.userService.setLoggedIn(true)
-        this.userService.setUser(this.user)
       },error => {
         this.responseText=error.error.error
         this.responseTextHidden=false

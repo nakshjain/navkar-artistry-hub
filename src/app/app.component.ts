@@ -61,28 +61,23 @@ export class AppComponent {
       this.isUserLoggedIn = loggedIn;
       this.openLoginDialog()
     });
-    this.userService.isAuthenticated().subscribe(
-      (res)=>{
-        this.isUserLoggedIn=true;
-        this.openLoginDialog()
-      },(err)=>{
-        this.isUserLoggedIn=false;
-      }
-    )
+    const token = localStorage.getItem('token')??'';
+    if(token){
+      this.userService.isAuthenticated().subscribe(
+        (res)=>{
+          this.isUserLoggedIn=true;
+          this.openLoginDialog()
+        },(err)=>{
+          this.isUserLoggedIn=false;
+        }
+      )
+    }
   }
 
   logOut() {
     this.isUserLoggedIn=false
     this.openLoginDialog()
-    const refreshToken = localStorage.getItem('refreshToken')??'';
-    this.userService.logOutUser(refreshToken).subscribe(
-      (res)=>{
-        localStorage.removeItem("accessToken");
-        localStorage.removeItem("refreshToken");
-      },(error)=>{
-        console.log(error)
-      }
-    );
+    localStorage.removeItem('token')
   }
 
   doSomethingElse() {

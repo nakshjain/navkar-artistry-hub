@@ -17,7 +17,6 @@ import {ProductsComponent} from "./shared/products.component";
 import {ProductComponent} from './shared/product/product.component';
 import {FormsModule} from "@angular/forms";
 import { FilterComponent } from './shared/filter/filter.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AvailableProductsComponent } from './available-products/available-products.component';
 import { ArchivedProductsComponent } from './archived-products/archived-products.component';
 import { ProductsDisplayComponent } from './shared/products-display/products-display.component';
@@ -33,6 +32,7 @@ import { LoginComponent } from './login/login.component';
 import {MatMenuModule} from "@angular/material/menu";
 import {AuthInterceptor} from "./interceptor/auth.interceptor";
 import { FooterComponent } from './footer/footer.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,6 @@ import { FooterComponent } from './footer/footer.component';
     ProductsComponent,
     ProductComponent,
     FilterComponent,
-    ContactUsComponent,
     AvailableProductsComponent,
     ArchivedProductsComponent,
     ProductsDisplayComponent,
@@ -71,6 +70,7 @@ import { FooterComponent } from './footer/footer.component';
         NgbModule,
         MatDialogModule,
         MatMenuModule,
+        FontAwesomeModule,
     ],
   providers: [
     {

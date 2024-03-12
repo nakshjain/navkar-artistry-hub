@@ -46,3 +46,10 @@ body{
   color: white;
   padding-left: 10px;
 }
+.social-media{
+  display: flex;
+  flex-wrap: wrap;
+}
+.social-media-element{
+  margin-right: 10px;
+}
