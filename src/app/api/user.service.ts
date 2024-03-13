@@ -9,6 +9,7 @@ export class UserService {
   private baseUrl = 'http://localhost:3000'
   private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private tokenKey = '';
+  private userDetails: any;
 
   constructor(private http: HttpClient) {
   }
@@ -19,6 +20,14 @@ export class UserService {
 
   getToken() {
     return localStorage.getItem("token");
+  }
+
+  setUser(userDetails: any){
+    this.userDetails=userDetails
+  }
+
+  getUser(){
+    return this.userDetails
   }
 
   get isLoggedIn() {
@@ -40,7 +49,7 @@ export class UserService {
     )
   }
 
-  isAuthenticated(){
-    return this.http.get<any>(`${this.baseUrl}/isAuthenticated`)
+  getUserDetails(){
+    return this.http.get<any>(`${this.baseUrl}/getUserDetails`)
   }
 }

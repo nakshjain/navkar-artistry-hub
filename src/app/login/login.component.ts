@@ -37,7 +37,7 @@ export class LoginComponent {
     };
   }
 
-  isSignDivVisiable: boolean  = true;
+  isSignInVisible: boolean  = true;
 
   responseText=''
   responseTextHidden: boolean=true;
