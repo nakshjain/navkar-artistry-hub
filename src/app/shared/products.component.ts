@@ -47,12 +47,6 @@ export class ProductsComponent implements OnInit{
           this.ngxService.stop()
         }
       )
-      // this.productService.getAllArchivedProducts1().subscribe(
-      //   (products)=>{
-      //     this.products=products
-      //     this.ngxService.stop()
-      //   }
-      // )
     }
     else{
       this.productService.getAllAvailableProducts().subscribe(
@@ -61,13 +55,6 @@ export class ProductsComponent implements OnInit{
           this.ngxService.stop()
         }
       )
-      // this.productService.getAllAvailableProducts1().subscribe(
-      //   (products)=>{
-      //     console.log('Hi')
-      //     // this.products=products
-      //     this.ngxService.stop()
-      //   }
-      // )
     }
   }
 

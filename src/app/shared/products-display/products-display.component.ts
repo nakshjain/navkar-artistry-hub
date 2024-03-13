@@ -21,6 +21,6 @@ export class ProductsDisplayComponent implements OnInit{
   ngOnInit(): void {
   }
   viewProductDetails(productId: string): void {
-    this.router.navigate(['product', productId]); // Navigate to detail page with product ID
+    this.router.navigate(['product', productId]);
   }
 }

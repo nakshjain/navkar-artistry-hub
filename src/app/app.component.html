@@ -5,42 +5,55 @@
         <button mat-icon-button (click)="sidenav.toggle()" class="button-menu">
           <mat-icon class="mat-icon">menu</mat-icon>
         </button>
-        <a routerLink="home" class="nav-heading">
-          <p>{{title}}</p>
-        </a>
-
+        <div *ngFor="let element of navbarHeader"  class="nav-elements">
+          <a routerLink="{{element.link}}">{{element.name}}</a>
+        </div>
+      </div>
+      <div class="nav-mid">
+        <br style="height: 25%">
+        <div>
+          <a routerLink="home" class="nav-title-short">
+            <p>{{title}}</p>
+          </a>
+        </div>
+        <div class="nav-title">
+          <p>Navkar Artistry Hub</p>
+        </div>
       </div>
       <div class="nav-right">
-        <div *ngFor="let element of navbarHeader"  class="nav-elements">
-          <a routerLink="{{element.link}}" *ngIf="!isSearchBarOpen">{{element.name}}</a>
-        </div>
-        <div class="user-logged" *ngIf="isUserLoggedIn">
-          <button mat-icon-button [matMenuTriggerFor]="menu">
-            <mat-icon>person</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="logOut()">Logout</button>
-            <button mat-menu-item (click)="doSomethingElse()">Item 2</button>
-          </mat-menu>
-        </div>
-        <div *ngIf="!isUserLoggedIn">
-          <mat-dialog-actions>
-            <button mat-raised-button color="primary" (click)="openLoginDialog()">Login</button>
-          </mat-dialog-actions>
-        </div>
         <div class="nav-search">
-          <div *ngIf="isSearchBarOpen" class="search-bar">
+          <mat-icon class="mat-icon">search</mat-icon>
+          <div class="search-bar">
             <input type="text" placeholder="Search..." [(ngModel)]="searchQuery" (keyup)="search()">
           </div>
-          <button mat-icon-button (click)="toggleSearchBar()" class="button-search">
-            <mat-icon class="mat-icon">search</mat-icon>
+        </div>
+
+        <div *ngIf="!isUserLoggedIn" class="user-not-logged">
+          <mat-icon>person</mat-icon>
+          <mat-dialog-actions>
+            <button class="nav-login" (click)="openLoginDialog()">Login</button>
+          </mat-dialog-actions>
+        </div>
+        <div *ngIf="isUserLoggedIn" class="user-logged">
+          <button class="avatar-button">{{userInitial}}</button>
+          <button mat-icon-button [matMenuTriggerFor]="menu" class="user-logged-button">
+            <mat-icon>keyboard_arrow_down</mat-icon>
           </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="doSomethingElse()">Item 2</button>
+            <button mat-menu-item (click)="logOut()">Logout</button>
+          </mat-menu>
         </div>
       </div>
     </div>
   </mat-toolbar-row>
+  <mat-toolbar-row class="line-div">
+    <div class="line-div">
+      <hr class="line">
+    </div>
+  </mat-toolbar-row>
 </mat-toolbar>
-<hr style="width:50%;margin-left:0">
+
 <mat-sidenav-container>
   <mat-sidenav #sidenav class="sidenav" (click)="sidenav.toggle()">
     <mat-nav-list>

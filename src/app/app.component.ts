@@ -9,14 +9,11 @@ import {UserService} from "./api/user.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  isSearchBarOpen = false;
   searchQuery= '';
   isUserLoggedIn=false;
   user:any;
+  userInitial=''
 
-  toggleSearchBar() {
-    this.isSearchBarOpen = !this.isSearchBarOpen;
-  }
   title = 'NAH';
   navbarHeader: any[] = [
     {
@@ -72,6 +69,7 @@ export class AppComponent implements OnInit{
           this.user=user
           this.isUserLoggedIn=true;
           this.userService.setUser(user)
+          this.userInitial=user.name[0]
           console.log(user)
           this.openLoginDialog()
         },(err)=>{
