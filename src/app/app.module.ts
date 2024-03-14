@@ -33,6 +33,7 @@ import {MatMenuModule} from "@angular/material/menu";
 import {AuthInterceptor} from "./interceptor/auth.interceptor";
 import { FooterComponent } from './footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AddProductComponent,
     LoginComponent,
     FooterComponent,
+    NavbarComponent,
 
   ],
     imports: [
