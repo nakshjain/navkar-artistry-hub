@@ -1,6 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialog} from "@angular/material/dialog";
-import {UserService} from "./api/user.service";
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',

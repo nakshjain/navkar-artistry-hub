@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {NgxUiLoaderService} from "ngx-ui-loader";
-import {ProductService} from "../api/product.service";
 import {UserService} from "../api/user.service";
-import {User} from "../types/user.types";
 
 @Component({
   selector: 'app-login',
