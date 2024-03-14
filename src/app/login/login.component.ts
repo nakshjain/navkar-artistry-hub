@@ -11,13 +11,6 @@ import {User} from "../types/user.types";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-
-  user: User={
-    name:'',
-    email:'',
-    password:''
-  };
-
   signUpFormData = {
     name: '',
     email:'',
@@ -65,6 +58,7 @@ export class LoginComponent {
       (response)=>{
         console.log(response)
         this.userService.setToken()
+        this.userService.setUser(response)
         this.userService.setLoggedIn(true)
       },error => {
         this.responseText=error.error.error

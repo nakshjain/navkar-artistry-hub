@@ -62,8 +62,9 @@ export class AppComponent implements OnInit{
       this.openLoginDialog()
     });
 
+    this.user=this.userService.getUser()
     const token = localStorage.getItem('token')??'';
-    if(token){
+    if(token && !this.user){
       this.userService.getUserDetails().subscribe(
         (user)=>{
           this.user=user
@@ -86,5 +87,9 @@ export class AppComponent implements OnInit{
   }
 
   doSomethingElse() {
+  }
+
+  openShoppingCart() {
+
   }
 }
