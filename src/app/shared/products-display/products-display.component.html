@@ -1,9 +1,60 @@
-<div class="products">
-  <ng-container *ngFor="let product of products">
-    <div *ngIf="searchText==='' && product.category.includes(category)|| product.name.toLocaleLowerCase().includes(searchText.toLocaleLowerCase()) && product.category.includes(category)" class="product">
-      <div class="title-container">
-        <img (click)="viewProductDetails(product._id)" [src]="product.imageLink" class="product-image" alt="{{ product.name }}" />
+<div class="display">
+  <div class="products-to-display" *ngIf="areProductsFound">
+    <div class="product-display-header">
+      <div class="filter-products">
+        <button (click)="toggleFilterVisibility()">
+          <mat-icon>filter_list</mat-icon>
+          Filter
+        </button>
+      </div>
+      <div *ngIf="searchText.length!=0" class="search-results">
+        We found {{products.length}} results
+      </div>
+      <div class="sort-products">
+        <button (click)="toggleSortingDropdown()">
+          {{selectedSortingOption.name}}
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+        <div class="sort-options" [ngStyle]="{'display': isToSortOpen ? 'block' : 'none'}">
+          <div class="sort-option" *ngFor="let sortingOption of sortingOptions" (click)="selectOption(sortingOption)">{{sortingOption.name}}</div>
+        </div>
       </div>
     </div>
-  </ng-container>
+    <div class="main">
+      <div class="filters-container" [ngClass]="{'hidden':isFilterHidden}">
+        <div class="filters">
+          <div class="out-of-stock-container">
+            <mat-checkbox (change)="onShowOutOfStockChange($event)">Show Out of Stock</mat-checkbox>
+          </div>
+          <mat-icon>arrow-upward</mat-icon>
+          <div class="category-container">
+            <button (click)="toggleCategoriesDropdown()" class="category">
+              Category
+            </button>
+            <div class="category-options" [ngStyle]="{'display': isCategoriesOpen ? 'block' : 'none'}">
+              <div class="category-option" *ngFor="let category of categories">{{category}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="products-container">
+        <div class="products">
+          <ng-container *ngFor="let product of products">
+            <div class="product">
+              <div class="image-container">
+                <img (click)="viewProductDetails(product._id)" [src]="product.imageLink" class="product-image" alt="{{ product.name }}" />
+              </div>
+              <div class="product-description">
+                <div class="product-name">{{product.name}}</div>
+                <div class="product-price">Rs. {{product.price}}.00</div></div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="no-product-to-display" *ngIf="!areProductsFound">
+    <div>
+      Unfortunately, we couldn't find any results for '{{searchText}}'</div>
+  </div>
 </div>

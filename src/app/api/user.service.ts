@@ -7,9 +7,9 @@ import {BehaviorSubject, Observable, tap} from "rxjs";
 })
 export class UserService {
   private baseUrl = 'http://localhost:3000'
+  private userDetails: BehaviorSubject<any> = new BehaviorSubject<any>({});
   private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private tokenKey = '';
-  private userDetails: any;
 
   constructor(private http: HttpClient) {
   }
@@ -22,12 +22,12 @@ export class UserService {
     return localStorage.getItem("token");
   }
 
-  setUser(userDetails: any){
+  setUserLoggedIn(userDetails: any){
     this.userDetails=userDetails
   }
 
-  getUser(){
-    return this.userDetails
+  get userLoggedIn(){
+    return this.userDetails.asObservable()
   }
 
   get isLoggedIn() {

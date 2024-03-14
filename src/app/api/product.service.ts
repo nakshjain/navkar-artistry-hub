@@ -18,13 +18,10 @@ export class ProductService {
     return this.http.get<Product[]>(`${this.baseUrl}/getAllProducts`);
   }
 
-  getAllAvailableProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.baseUrl}/getAllAvailableProducts`);
+  getProducts(sortingOrder: String, priceRange:String, searchText: String, category:String, availability:boolean){
+    return this.http.get<Product[]>(`${this.baseUrl}/getProducts?sortingOrder=${sortingOrder}&priceRange=${priceRange}&searchText=${searchText}&category=${category}&availability=${availability}`)
   }
 
-  getAllArchivedProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.baseUrl}/getAllArchivedProducts`);
-  }
   getProductsByCategory(category: string): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.baseUrl}/getProductsByCategory/${category}`);
   }
@@ -63,21 +60,6 @@ export class ProductService {
           const categories: string[]=[]
           products.forEach((product)=>{
             if(product.availability) {
-              if(!categories.includes(product.category)) {
-                categories.push(product.category)
-              }
-            }
-          })
-          return categories;
-        })
-    )
-  }
-  getAllArchivedCategories(){
-    return this.getAllProducts().pipe(
-        map((products)=>{
-          const categories: string[]=[]
-          products.forEach((product)=>{
-            if(!product.availability) {
               if(!categories.includes(product.category)) {
                 categories.push(product.category)
               }

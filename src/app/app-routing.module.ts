@@ -6,22 +6,22 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatListModule} from "@angular/material/list";
 import {MatButtonModule} from "@angular/material/button";
 import {ProductComponent} from "./shared/product/product.component";
-import {AvailableProductsComponent} from "./available-products/available-products.component";
-import {ArchivedProductsComponent} from "./archived-products/archived-products.component";
+import {ShopComponent} from "./shop/shop.component";
 import {GetQuoteComponent} from "./get-quote/get-quote.component";
 import {HomePageMainComponent} from "./home-page-main/home-page-main.component";
 import {AddProductComponent} from "./add-product/add-product.component";
 import {FooterComponent} from "./footer/footer.component";
+import {SearchResultsComponent} from "./search-results/search-results.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomePageMainComponent },
-  { path: 'products', component: AvailableProductsComponent},
-  { path: 'archived-products', component: ArchivedProductsComponent},
-  { path: 'products/:category', component: AvailableProductsComponent},
+  { path: 'products', component: ShopComponent},
+  { path: 'products/:category', component: ShopComponent},
   { path: 'product/:id', component: ProductComponent},
   { path: 'get-quote/:id', component: GetQuoteComponent},
-  { path: 'add-product', component: AddProductComponent}
+  { path: 'add-product', component: AddProductComponent},
+  { path: 'search-results', component: SearchResultsComponent}
 ];
 
 @NgModule({

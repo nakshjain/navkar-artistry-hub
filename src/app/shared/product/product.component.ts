@@ -20,7 +20,7 @@ export class ProductComponent implements OnInit{
     price:''
   };
   productsByCategory:Product[]=[]
-  titleSimilar='Similar Items'
+  titleSimilar='You may also like'
   backgroundColor='#FFF0F5'
 
   getQuote(): void {
@@ -35,15 +35,6 @@ export class ProductComponent implements OnInit{
         this.ngxService.stop()
       }
     )
-    // this.productService.getProductById1(id).subscribe(
-    //   (product)=>{
-    //     if(product){
-    //       this.product=product;
-    //       this.getProductsByCategory(this.product.category)
-    //     }
-    //     this.ngxService.stop()
-    //   }
-    // )
   }
 
   getProductsByCategory(category: string){

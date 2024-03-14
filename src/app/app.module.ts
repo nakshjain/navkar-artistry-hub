@@ -13,12 +13,9 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ImageSliderComponent } from './shared/image-slider/image-slider.component';
 import {SlickCarouselModule} from "ngx-slick-carousel";
 import {NgxUiLoaderModule} from "ngx-ui-loader";
-import {ProductsComponent} from "./shared/products.component";
 import {ProductComponent} from './shared/product/product.component';
 import {FormsModule} from "@angular/forms";
-import { FilterComponent } from './shared/filter/filter.component';
-import { AvailableProductsComponent } from './available-products/available-products.component';
-import { ArchivedProductsComponent } from './archived-products/archived-products.component';
+import { ShopComponent } from './shop/shop.component';
 import { ProductsDisplayComponent } from './shared/products-display/products-display.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatCardModule} from "@angular/material/card";
@@ -34,17 +31,18 @@ import {AuthInterceptor} from "./interceptor/auth.interceptor";
 import { FooterComponent } from './footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NavbarComponent } from './navbar/navbar.component';
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatInputModule} from "@angular/material/input";
+import { SearchResultsComponent } from './search-results/search-results.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     ImageSliderComponent,
-    ProductsComponent,
     ProductComponent,
-    FilterComponent,
-    AvailableProductsComponent,
-    ArchivedProductsComponent,
+    ShopComponent,
     ProductsDisplayComponent,
     GetQuoteComponent,
     HomePageMainComponent,
@@ -52,28 +50,32 @@ import { NavbarComponent } from './navbar/navbar.component';
     LoginComponent,
     FooterComponent,
     NavbarComponent,
+    SearchResultsComponent,
 
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatSidenavModule,
-        MatListModule,
-        MatButtonModule,
-        MatSelectModule,
-        SlickCarouselModule,
-        NgxUiLoaderModule,
-        MatCardModule,
-        NgbModule,
-        MatDialogModule,
-        MatMenuModule,
-        FontAwesomeModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatSelectModule,
+    SlickCarouselModule,
+    NgxUiLoaderModule,
+    MatCardModule,
+    NgbModule,
+    MatDialogModule,
+    MatMenuModule,
+    FontAwesomeModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    MatCheckboxModule,
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

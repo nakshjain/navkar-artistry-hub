@@ -13,15 +13,14 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  padding: 2%;
+  padding: 1% 0 0 0;
 }
 
 .title {
   flex: 1;
-  font-size: 300%;
-  /*font-family: 'Spartan',Sans-Serif;*/
-  /*font-family: 'Abril Fatface', cursive;*/
+  font-size: 200%;
   max-width: 4040px;
+  text-align: center;
 }
 
 .search {

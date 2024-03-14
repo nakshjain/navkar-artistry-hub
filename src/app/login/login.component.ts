@@ -54,7 +54,7 @@ export class LoginComponent {
       (response)=>{
         console.log(response)
         this.userService.setToken()
-        this.userService.setUser(response)
+        this.userService.setUserLoggedIn(response)
         this.userService.setLoggedIn(true)
       },error => {
         this.responseText=error.error.error

@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {LoginComponent} from "../login/login.component";
 import {MatDialog} from "@angular/material/dialog";
 import {UserService} from "../api/user.service";
+import {auto} from "@popperjs/core";
+import {Product} from "../types/products.types";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
@@ -9,12 +12,13 @@ import {UserService} from "../api/user.service";
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit{
+  title = 'NAH';
   searchQuery= '';
   isUserLoggedIn=false;
   user:any;
   userInitial=''
+  products: Product[]=[]
 
-  title = 'NAH';
   navbarHeader: any[] = [
     {
       id: 'home',
@@ -38,8 +42,10 @@ export class NavbarComponent implements OnInit{
     },
   ];
 
-  search() {
+  showOptions: boolean = false;
 
+  onInputChange(): void {
+    this.showOptions = this.searchQuery.trim().length > 0;
   }
 
   openLoginDialog() {
@@ -53,7 +59,7 @@ export class NavbarComponent implements OnInit{
     }
   }
 
-  constructor(private matDialog: MatDialog,private userService: UserService) {
+  constructor(private matDialog: MatDialog,private userService: UserService,private router: Router) {
   }
 
   ngOnInit(): void {
@@ -61,15 +67,18 @@ export class NavbarComponent implements OnInit{
       this.isUserLoggedIn = loggedIn;
       this.openLoginDialog()
     });
-
-    this.user=this.userService.getUser()
+    this.userService.userLoggedIn.subscribe(
+      (user)=>{
+        this.user=user
+      }
+    )
     const token = localStorage.getItem('token')??'';
-    if(token && !this.user){
+    if(token && Object.keys(this.user).length === 0){
       this.userService.getUserDetails().subscribe(
         (user)=>{
           this.user=user
           this.isUserLoggedIn=true;
-          this.userService.setUser(user)
+          this.userService.setUserLoggedIn(user)
           this.userInitial=user.name[0]
           console.log(user)
           this.openLoginDialog()
@@ -89,8 +98,11 @@ export class NavbarComponent implements OnInit{
   doSomethingElse() {
   }
 
-  openShoppingCart() {
+  protected readonly auto = auto;
 
+  onEnterSearchPressed() {
+    const searchQuery=this.searchQuery
+    this.searchQuery=''
+    this.router.navigate(['/search-results'], { queryParams: { query: searchQuery } });
   }
-
 }
