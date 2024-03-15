@@ -1,4 +1,10 @@
 <div class="display">
+  <div class="header">
+    <div class="header-title">
+      <div class="title">{{title}}</div>
+      <div class="sub-title">{{subTitle}}</div>
+    </div>
+  </div>
   <div class="products-to-display" *ngIf="areProductsFound">
     <div class="product-display-header">
       <div class="filter-products">
@@ -16,7 +22,7 @@
           <mat-icon>keyboard_arrow_down</mat-icon>
         </button>
         <div class="sort-options" [ngStyle]="{'display': isToSortOpen ? 'block' : 'none'}">
-          <div class="sort-option" *ngFor="let sortingOption of sortingOptions" (click)="selectOption(sortingOption)">{{sortingOption.name}}</div>
+          <div class="sort-option" *ngFor="let sortingOption of sortingOptions" (click)="selectSortingOption(sortingOption)">{{sortingOption.name}}</div>
         </div>
       </div>
     </div>
@@ -32,7 +38,7 @@
               Category
             </button>
             <div class="category-options" [ngStyle]="{'display': isCategoriesOpen ? 'block' : 'none'}">
-              <div class="category-option" *ngFor="let category of categories">{{category}}</div>
+              <div class="category-option" *ngFor="let category of categoriesToDisplay" (click)="selectCategoryOption(category)">{{category}}</div>
             </div>
           </div>
         </div>

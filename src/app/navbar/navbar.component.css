@@ -10,9 +10,9 @@
   /*transform: scale(1.2);*/
 }
 .line {
-  border: none; /* Remove default border */
-  border-top: 1px solid black; /* Add a 1px solid line with light gray color */
-  margin: 0; /* Adjust margin as needed */
+  border: none;
+  border-top: 1px solid black;
+  margin: 0;
 }
 .line-div{
   height: 1px;
@@ -43,16 +43,34 @@
   font-size:85%;
   padding: 0 2%;
 }
-.nav-elements a {
+.nav-element{
   color: #444;
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
   text-decoration: none;
   transition: all 0.3s ease;
 }
-.nav-elements a:hover{
+.nav-element:hover{
   color: black;
   padding-left: 10px;
+}
+.sub-categories{
+  display: none;
+  position: absolute;
+  z-index: 9999;
+  background-color: white;
+  padding: 2%;
+  border: 1px solid black;
+}
+.nav-elements:hover .sub-categories{
+  display: block;
+}
+.sub-category{
+  color: #444;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 80%;
+  text-decoration: none;
 }
 .nav-mid{
   align-items: center;

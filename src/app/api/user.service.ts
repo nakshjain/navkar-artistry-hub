@@ -23,7 +23,7 @@ export class UserService {
   }
 
   setUserLoggedIn(userDetails: any){
-    this.userDetails=userDetails
+    this.userDetails.next(userDetails)
   }
 
   get userLoggedIn(){

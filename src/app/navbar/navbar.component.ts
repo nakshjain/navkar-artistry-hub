@@ -5,6 +5,7 @@ import {UserService} from "../api/user.service";
 import {auto} from "@popperjs/core";
 import {Product} from "../types/products.types";
 import {Router} from "@angular/router";
+import {categories, subCategories} from "../types/products-categories";
 
 @Component({
   selector: 'app-navbar',
@@ -18,29 +19,17 @@ export class NavbarComponent implements OnInit{
   user:any;
   userInitial=''
   products: Product[]=[]
+  subCategories=subCategories
 
-  navbarHeader: any[] = [
+  shopHeader: any[] = [
     {
-      id: 'home',
-      name: 'Home',
-      link: 'home',
-    },
-    {
-      id: 'artists',
-      name: 'Artists',
-      link: 'artists',
-    },
-    {
-      id: 'products',
-      name: 'Products',
-      link: 'products',
-    },
-    {
-      id: 'archived-products',
-      name: 'Archived',
-      link: 'archived-products',
+      id: 'shop',
+      name: 'Shop',
+      link: 'shop',
     },
   ];
+
+  navbarHeader=this.shopHeader.concat(categories)
 
   showOptions: boolean = false;
 
@@ -70,6 +59,9 @@ export class NavbarComponent implements OnInit{
     this.userService.userLoggedIn.subscribe(
       (user)=>{
         this.user=user
+        if(user.name){
+          this.userInitial=user.name[0]
+        }
       }
     )
     const token = localStorage.getItem('token')??'';
@@ -79,8 +71,7 @@ export class NavbarComponent implements OnInit{
           this.user=user
           this.isUserLoggedIn=true;
           this.userService.setUserLoggedIn(user)
-          this.userInitial=user.name[0]
-          console.log(user)
+          this.userInitial=this.user.name[0]
           this.openLoginDialog()
         },(err)=>{
           this.isUserLoggedIn=false;

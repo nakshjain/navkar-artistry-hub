@@ -19,6 +19,7 @@ export class ProductService {
   }
 
   getProducts(sortingOrder: String, priceRange:String, searchText: String, category:String, availability:boolean){
+    console.log(category,availability)
     return this.http.get<Product[]>(`${this.baseUrl}/getProducts?sortingOrder=${sortingOrder}&priceRange=${priceRange}&searchText=${searchText}&category=${category}&availability=${availability}`)
   }
 

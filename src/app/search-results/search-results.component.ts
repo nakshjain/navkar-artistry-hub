@@ -26,6 +26,7 @@ export class SearchResultsComponent implements OnInit{
       if (params['query']) {
         this.searchQuery = params['query'];
         console.log('Search query:', this.searchQuery);
+        this.toSearch=this.searchQuery
       }
     });
   }

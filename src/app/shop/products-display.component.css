@@ -1,6 +1,25 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 1% 0 0 0;
+}
+.header-title{
+  flex:1;
+}
+.title {
+  font-size: 200%;
+  max-width: 4040px;
+  text-align: center;
+}
+.sub-title{
+  text-align: center;
+}
+
 .no-product-to-display{
   height: 80vh;
   display: flex;
