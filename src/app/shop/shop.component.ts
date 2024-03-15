@@ -1,15 +1,8 @@
 import {
-  AfterViewInit,
   Component,
-  ElementRef, EventEmitter,
   Input,
-  OnChanges,
   OnInit,
-  Output,
-  SimpleChanges,
-  ViewChild
 } from '@angular/core';
-import {Product} from "../types/products.types";
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatCheckboxChange} from "@angular/material/checkbox";
 import {ProductService} from "../api/product.service";
@@ -17,11 +10,11 @@ import {NgxUiLoaderService} from "ngx-ui-loader";
 import {categories, subCategories} from "../types/products-categories";
 
 @Component({
-  selector: 'app-products-display',
-  templateUrl: './products-display.component.html',
-  styleUrls: ['./products-display.component.css']
+  selector: 'app-shop',
+  templateUrl: './shop.component.html',
+  styleUrls: ['./shop.component.css']
 })
-export class ProductsDisplayComponent implements OnInit{
+export class ShopComponent implements OnInit{
   title='Shop'
   subTitle=''
   @Input()

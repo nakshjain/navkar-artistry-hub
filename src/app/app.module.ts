@@ -15,7 +15,7 @@ import {SlickCarouselModule} from "ngx-slick-carousel";
 import {NgxUiLoaderModule} from "ngx-ui-loader";
 import {ProductComponent} from './shared/product/product.component';
 import {FormsModule} from "@angular/forms";
-import { ProductsDisplayComponent } from './shop/products-display.component';
+import { ShopComponent } from './shop/shop.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatCardModule} from "@angular/material/card";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
@@ -41,7 +41,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     HomePageComponent,
     ImageSliderComponent,
     ProductComponent,
-    ProductsDisplayComponent,
+    ShopComponent,
     GetQuoteComponent,
     HomePageMainComponent,
     AddProductComponent,

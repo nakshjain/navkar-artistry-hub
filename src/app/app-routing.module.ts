@@ -10,14 +10,14 @@ import {GetQuoteComponent} from "./get-quote/get-quote.component";
 import {HomePageMainComponent} from "./home-page-main/home-page-main.component";
 import {AddProductComponent} from "./add-product/add-product.component";
 import {SearchResultsComponent} from "./search-results/search-results.component";
-import {ProductsDisplayComponent} from "./shop/products-display.component";
+import {ShopComponent} from "./shop/shop.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomePageMainComponent },
-  { path: 'shop', component: ProductsDisplayComponent},
-  { path: 'shop/:category', component: ProductsDisplayComponent},
-  { path: 'shop/:category/:subCategory', component: ProductsDisplayComponent},
+  { path: 'shop', component: ShopComponent},
+  { path: 'shop/:category', component: ShopComponent},
+  { path: 'shop/:category/:subCategory', component: ShopComponent},
   { path: 'product/:id', component: ProductComponent},
   { path: 'get-quote/:id', component: GetQuoteComponent},
   { path: 'add-product', component: AddProductComponent},
