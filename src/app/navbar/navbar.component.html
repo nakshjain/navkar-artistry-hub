@@ -1,5 +1,5 @@
 <mat-sidenav-container>
-  <mat-sidenav #sidenav class="filter-sidenav" mode="side">
+  <mat-sidenav #sidenav class="sidenav-filter" mode="side">
     <div class="side-nav-top">
       <mat-icon *ngIf="isCategorySelected" (click)="resetCategory()" class="back-sidenav">keyboard_arrow_left</mat-icon>
       <p *ngIf="isCategorySelected">{{categorySelected.name}}</p>
