@@ -92,7 +92,7 @@ export class ShopComponent implements OnInit{
   }
   getCategories(){
     if(this.category.name===''){
-      this.categoriesToDisplay=this.categories.map(catergory=>catergory.name)
+      this.categoriesToDisplay=this.categories.map(category=>category.name)
     }
     else{
       this.categoriesToDisplay=this.subCategories[this.category.name].map(subCategory=>subCategory.name)
@@ -101,6 +101,7 @@ export class ShopComponent implements OnInit{
 
   onShowOutOfStockChange(event: MatCheckboxChange) {
     this.showOutOfStock = event.checked;
+    this.getProducts()
   }
 
   viewProductDetails(productId: string): void {

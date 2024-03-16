@@ -34,6 +34,7 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatInputModule} from "@angular/material/input";
 import { SearchResultsComponent } from './search-results/search-results.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { MyProfileComponent } from './my-profile/my-profile.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     FooterComponent,
     NavbarComponent,
     SearchResultsComponent,
+    MyProfileComponent,
 
   ],
   imports: [

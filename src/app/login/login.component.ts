@@ -34,14 +34,12 @@ export class LoginComponent {
   constructor(private userService: UserService){}
 
   onRegister() {
-    console.log(this.signUpFormData)
     this.userService.signUpUser(this.signUpFormData).subscribe(
       (response)=>{
         this.responseText=response.message
         this.responseTextHidden=false
         this.clearSignUpFormData()
       },error => {
-        console.log(error)
         this.responseText=error.error.message
         this.responseTextHidden=false
       }
@@ -49,16 +47,15 @@ export class LoginComponent {
   }
 
   onLogin() {
-    console.log(this.loginFormData)
     this.userService.loginUser(this.loginFormData).subscribe(
       (response)=>{
         this.userService.setToken()
         this.userService.setUserLoggedIn(response.user)
         this.userService.setLoggedIn(true)
+        this.userService.setAdmin(response.user.role.includes('admin'))
       },error => {
-        this.responseText=error.error.error
+        this.responseText=error.error.message
         this.responseTextHidden=false
-        console.log(error)
       }
     )
   }

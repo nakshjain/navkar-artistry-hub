@@ -1,5 +1,5 @@
 <mat-sidenav-container>
-  <mat-sidenav #sidenav class="sidenav">
+  <mat-sidenav #sidenav class="filter-sidenav" mode="side">
     <div class="side-nav-top">
       <mat-icon *ngIf="isCategorySelected" (click)="resetCategory()" class="back-sidenav">keyboard_arrow_left</mat-icon>
       <p *ngIf="isCategorySelected">{{categorySelected.name}}</p>
@@ -23,7 +23,7 @@
       </ul>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav #shoppingCart class="sidenav-shopping-cart" (click)="shoppingCart.toggle()" position="end">
+  <mat-sidenav #shoppingCart class="sidenav-shopping-cart" (click)="shoppingCart.toggle()" position="end" mode="side">
     <mat-nav-list>
     </mat-nav-list>
   </mat-sidenav>
@@ -78,13 +78,17 @@
                   <mat-icon>keyboard_arrow_down</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                  <button mat-menu-item (click)="doSomethingElse()">Item 2</button>
+                  <button mat-menu-item *ngFor="let option of userOptions">
+                    <a routerLink="{{option.link}}">
+                      {{ option.name }}
+                    </a>
+                  </button>
                   <button mat-menu-item (click)="logOut()">Logout</button>
                 </mat-menu>
               </div>
             </div>
             <div class="shopping">
-              <button mat-icon-button (click)="shoppingCart.toggle()" class="button-menu">
+              <button mat-icon-button (click)="shoppingCart.toggle()" class="button-shopping-cart">
                 <mat-icon class="mat-icon">add_shopping_cart</mat-icon>
               </button>
             </div>

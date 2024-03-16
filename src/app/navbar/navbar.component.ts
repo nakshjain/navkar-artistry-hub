@@ -34,6 +34,19 @@ export class NavbarComponent implements OnInit{
 
   navbarHeader=this.shopHeader.concat(categories)
 
+  userOptions: any[]=[
+    {
+      id: 'my-profile',
+      name:'My Profile',
+      link:'my-profile'
+    },
+    {
+      id: 'add-product',
+      name:'Add Product',
+      link:'add-product'
+    }
+  ]
+
   showOptions: boolean = false;
 
   onInputChange(): void {
@@ -74,6 +87,8 @@ export class NavbarComponent implements OnInit{
           this.user=user
           this.isUserLoggedIn=true;
           this.userService.setUserLoggedIn(user)
+          this.userService.setLoggedIn(true)
+          this.userService.setAdmin(this.user.role.includes('admin'))
           this.userInitial=this.user.name[0]
           this.openLoginDialog()
         },(err)=>{

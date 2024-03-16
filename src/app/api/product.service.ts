@@ -2,12 +2,13 @@ import {Injectable} from '@angular/core';
 import {Product, ProductsByCategory} from "../types/products.types";
 import {HttpClient} from "@angular/common/http";
 import {map, Observable} from "rxjs";
+import {BASE_URL} from "./config";
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private baseUrl ='https://navkar-artistry-hub-backend.onrender.com'
+  private baseUrl = BASE_URL
 
   constructor(private http: HttpClient) {
   }
