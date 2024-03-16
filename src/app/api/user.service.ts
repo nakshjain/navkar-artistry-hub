@@ -6,7 +6,7 @@ import {BehaviorSubject, tap} from "rxjs";
   providedIn: 'root',
 })
 export class UserService {
-  private baseUrl = 'http://localhost:3000'
+  private baseUrl ='https://navkar-artistry-hub-backend.onrender.com'
   private userDetails: BehaviorSubject<any> = new BehaviorSubject<any>({});
   private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private tokenKey = '';
