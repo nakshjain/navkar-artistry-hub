@@ -7,7 +7,6 @@ import {map, Observable} from "rxjs";
   providedIn: 'root',
 })
 export class ProductService {
-  
   private baseUrl ='https://navkar-artistry-hub-backend.onrender.com'
 
   constructor(private http: HttpClient) {
