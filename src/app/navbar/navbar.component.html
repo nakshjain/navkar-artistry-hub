@@ -1,15 +1,28 @@
 <mat-sidenav-container>
-  <mat-sidenav #sidenav class="sidenav" (click)="sidenav.toggle()">
-      <mat-nav-list>
-        <ul class="nav-menu">
-          <li *ngFor="let element of navbarHeader" class="nav-item">
-            <a class="nav-link" routerLink="{{ element.link }}" mat-list-item>{{
-              element.name
-              }}</a>
-          </li>
-        </ul>
-      </mat-nav-list>
-    </mat-sidenav>
+  <mat-sidenav #sidenav class="sidenav">
+    <div class="side-nav-top">
+      <mat-icon *ngIf="isCategorySelected" (click)="resetCategory()" class="back-sidenav">keyboard_arrow_left</mat-icon>
+      <p *ngIf="isCategorySelected">{{categorySelected.name}}</p>
+      <mat-icon (click)="sidenav.toggle()" class="close-sidenav">close</mat-icon>
+    </div>
+    <mat-nav-list>
+      <ul class="nav-menu" *ngIf="!isCategorySelected">
+        <li *ngFor="let element of navbarHeader" class="sidenav-category">
+          <a class="nav-link" routerLink="{{ element.link }}" mat-list-item (click)="sidenav.toggle()">
+            <p>{{element.name }}</p>
+          </a>
+          <mat-icon (click)="setCategory(element.name)" *ngIf="element.name!='Shop'">keyboard_arrow_right</mat-icon>
+        </li>
+      </ul>
+      <ul class="nav-menu" *ngIf="isCategorySelected">
+        <li *ngFor="let element of subCategoryNavbarHeader" class="sidenav-category">
+          <a class="nav-link" routerLink="{{categorySelected.link}}/{{ element.link }}" mat-list-item (click)="sidenav.toggle()">
+            <p>{{element.name }}</p>
+          </a>
+        </li>
+      </ul>
+    </mat-nav-list>
+  </mat-sidenav>
   <mat-sidenav #shoppingCart class="sidenav-shopping-cart" (click)="shoppingCart.toggle()" position="end">
     <mat-nav-list>
     </mat-nav-list>
@@ -45,7 +58,7 @@
           </div>
           <div class="nav-right">
             <div class="nav-search">
-              <mat-icon class="mat-icon">search</mat-icon>
+              <mat-icon class="mat-icon" (click)="onEnterSearchPressed()">search</mat-icon>
               <div class="search-bar">
                 <input type="text" placeholder="Search..." [(ngModel)]="searchQuery" (keydown.enter)="onEnterSearchPressed()" (input)="onInputChange()" [matAutocomplete]="auto">
               </div>
@@ -54,12 +67,11 @@
               </mat-autocomplete>
             </div>
             <div class="user">
-              <div *ngIf="!isUserLoggedIn" class="user-not-logged">
-                <mat-icon>person</mat-icon>
-                <mat-dialog-actions>
-                  <button class="nav-login" (click)="openLoginDialog()">Login</button>
-                </mat-dialog-actions>
-              </div>
+              <mat-dialog-actions *ngIf="!isUserLoggedIn" class="user-not-logged">
+                <mat-icon (click)="openLoginDialog()">person</mat-icon>
+                <button class="nav-login" (click)="openLoginDialog()">Login</button>
+              </mat-dialog-actions>
+
               <div *ngIf="isUserLoggedIn" class="user-logged">
                 <button class="avatar-button">{{userInitial}}</button>
                 <button mat-icon-button [matMenuTriggerFor]="menu" class="user-logged-button">

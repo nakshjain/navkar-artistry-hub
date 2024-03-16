@@ -19,7 +19,10 @@ export class NavbarComponent implements OnInit{
   user:any;
   userInitial=''
   products: Product[]=[]
+  categorySelected:any
+  isCategorySelected=false
   subCategories=subCategories
+  subCategoryNavbarHeader:any
 
   shopHeader: any[] = [
     {
@@ -95,5 +98,16 @@ export class NavbarComponent implements OnInit{
     const searchQuery=this.searchQuery
     this.searchQuery=''
     this.router.navigate(['/search-results'], { queryParams: { query: searchQuery } });
+  }
+
+  setCategory(inputCategory: string){
+    this.categorySelected=categories.find(category=>category.name===inputCategory)
+    this.subCategoryNavbarHeader=this.subCategories[this.categorySelected.name]
+    this.isCategorySelected=true
+  }
+
+  resetCategory(){
+    this.categorySelected=undefined
+    this.isCategorySelected=false
   }
 }

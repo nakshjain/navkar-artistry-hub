@@ -60,7 +60,6 @@ export class ShopComponent implements OnInit{
   }
 
   constructor(private ngxService:NgxUiLoaderService, private router: Router, private productService:ProductService, private activatedRoute: ActivatedRoute) {
-    console.log(this.category)
   }
 
   getProducts(){
@@ -72,7 +71,14 @@ export class ShopComponent implements OnInit{
         link: '',
       }
     }
-    this.productService.getProducts(this.selectedSortingOption.value, '', this.searchText, this.category.name, !this.showOutOfStock).subscribe(
+    if(!this.subCategory){
+      this.subCategory={
+        id: '',
+        name: '',
+        link: '',
+      }
+    }
+    this.productService.getProducts(this.selectedSortingOption.value, '', this.searchText, this.category.name, this.subCategory.name, !this.showOutOfStock).subscribe(
       (products) => {
         this.products = products
         this.ngxService.stop()
@@ -120,7 +126,12 @@ export class ShopComponent implements OnInit{
       this.subCategory=this.subCategories[this.category.name].find(item=>item.name===category)
     }
     this.toggleFilterVisibility()
-    this.router.navigate([`/${this.category.link}/${this.subCategory.link}`]);
+    if(this.subCategory){
+      this.router.navigate([`/${this.category.link}/${this.subCategory.link}`]);
+    }
+    else{
+      this.router.navigate([`/${this.category.link}`]);
+    }
   }
 
   ngOnInit() {

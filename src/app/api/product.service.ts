@@ -17,9 +17,9 @@ export class ProductService {
     return this.http.get<Product[]>(`${this.baseUrl}/getAllProducts`);
   }
 
-  getProducts(sortingOrder: String, priceRange:String, searchText: String, category:String, availability:boolean){
+  getProducts(sortingOrder: String, priceRange:String, searchText: String, category:String, subCategory:String, availability:boolean){
     console.log(category,availability)
-    return this.http.get<Product[]>(`${this.baseUrl}/getProducts?sortingOrder=${sortingOrder}&priceRange=${priceRange}&searchText=${searchText}&category=${category}&availability=${availability}`)
+    return this.http.get<Product[]>(`${this.baseUrl}/getProducts?sortingOrder=${sortingOrder}&priceRange=${priceRange}&searchText=${searchText}&category=${category}&subCategory=${subCategory}&availability=${availability}`)
   }
 
   getProductsByCategory(category: string): Observable<Product[]> {
@@ -72,12 +72,6 @@ export class ProductService {
 
   addProduct(product: any){
     console.log(product)
-    this.http.post<any>(`${this.baseUrl}/addProduct`,product).subscribe(
-      (response)=>{
-        console.log(response)
-      },error => {
-        console.log(error)
-      }
-    )
+    return this.http.post<any>(`${this.baseUrl}/addProduct`,product)
   }
 }

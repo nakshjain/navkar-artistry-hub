@@ -12,7 +12,17 @@
         <div class="form-group field">
           <label for="category">Category</label>
           <br>
-          <input type="text" id="category" name="category" [(ngModel)]="formData.category" required>
+          <select id="category" name="category" [(ngModel)]="formData.category" (change)="onCategorySelected($event)" required>
+            <option value="{{category.name}}" *ngFor="let category of categories" >{{category.name}}</option>
+          </select>
+        </div>
+        <br>
+        <div class="form-group field">
+          <label for="subCategory">Sub Category</label>
+          <br>
+          <select id="subCategory" name="subCategory" [(ngModel)]="formData.subCategory" required>
+            <option value="{{subCategory.name}}" *ngFor="let subCategory of subCategories[categorySelected]">{{subCategory.name}}</option>
+          </select>
         </div>
         <br>
         <div class="form-group field">
