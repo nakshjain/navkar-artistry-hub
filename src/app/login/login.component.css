@@ -222,3 +222,32 @@
 .generate-OTP-button{
   width: 100%;
 }
+.toggle-mobile{
+  margin-top: 2%;
+}
+.toggle-mobile button{
+  border:none;
+  text-decoration: none;
+
+}
+@media (max-width: 768px) {
+  .sign-up{
+    width: 100%;
+    display: none;
+  }
+  .sign-in{
+    width: 100%;
+  }
+  .container.active .sign-in {
+    transform: none;
+    opacity: 1;
+    z-index: auto;
+    animation: none;
+  }
+  .container.active .sign-up{
+    transform: none;
+  }
+  .toggle-container{
+    display: none;
+  }
+}

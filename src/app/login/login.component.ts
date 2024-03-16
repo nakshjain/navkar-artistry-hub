@@ -7,6 +7,8 @@ import {UserService} from "../api/user.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  isMobileViewLogin=true
+  isMobileView=false
   signUpFormData = {
     name: '',
     email:'',
@@ -31,8 +33,14 @@ export class LoginComponent {
   responseText=''
   responseTextHidden: boolean=true;
 
-  constructor(private userService: UserService){}
+  constructor(private userService: UserService){
+    this.checkViewPort()
+  }
 
+  checkViewPort(){
+    this.isMobileView=window.innerWidth<768
+    console.log(this.isMobileView)
+  }
   onRegister() {
     this.userService.signUpUser(this.signUpFormData).subscribe(
       (response)=>{
@@ -58,6 +66,10 @@ export class LoginComponent {
         this.responseTextHidden=false
       }
     )
+  }
+
+  toggleMobileView() {
+    this.isMobileViewLogin=!this.isMobileViewLogin
   }
 }
 

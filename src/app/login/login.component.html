@@ -1,7 +1,7 @@
 
 <div class="parent">
   <div class="container" [ngClass]="isSignInVisible ? 'active' :'' " id="container">
-    <div class="form-container sign-in" >
+    <div class="form-container sign-in" [style.display]="(isMobileViewLogin || !isMobileView)? 'block' : 'none'">
       <form>
         <h1>Sign In</h1>
         <div class="social-icons">
@@ -16,9 +16,13 @@
         <span *ngIf="!responseTextHidden">{{responseText}}</span>
         <a href="#">→ Forget Your Password? ←</a>
         <button (click)="onLogin()" class="sign-button">Sign In</button>
+        <div class="toggle-mobile">
+          "New to our platform? Sign up
+          <button (click)="toggleMobileView()">here.</button>
+        </div>
       </form>
     </div>
-    <div class="form-container sign-up" >
+    <div class="form-container sign-up" [style.display]="(!isMobileViewLogin || !isMobileView)? 'block' : 'none'">
       <form>
         <h1>Create Account</h1>
         <div class="social-icons">
@@ -38,6 +42,10 @@
         <span>or use your email for registration</span>
         <span *ngIf="!responseTextHidden">{{responseText}}</span>
         <button (click)="onRegister()" class="sign-button">Sign Up</button>
+        <div class="toggle-mobile">
+          Already have an account? Sign in
+          <button (click)="toggleMobileView()">here.</button>
+        </div>
       </form>
     </div>
     <div class="toggle-container">
