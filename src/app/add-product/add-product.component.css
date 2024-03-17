@@ -28,30 +28,6 @@ label{
   font-size: 200%;
   font-weight: 400;
 }
-.caption{
-  padding: 1% 0 0;
-  font-size: large;
-  font-style: italic;
-}
-.product-about {
-  display: flex;
-  flex-grow: 1;
-  flex-direction: row;
-  padding: 0 10%;
-}
-
-.product-image-main {
-  padding: 2% 0;
-  flex-grow: 1;
-  width: 33%;
-  height: auto;
-}
-
-.product-image {
-  width: 100%;
-  height: auto;
-  border-radius: 5%;
-}
 .details {
   padding: 2% 5%;
   flex-grow: 1;
@@ -75,32 +51,8 @@ label{
 .field-details{
   display: flex;
 }
+
 @media (max-width: 768px) {
-  .product{
-    min-height: 0;
-  }
-  .product-about {
-    flex-direction: column;
-    align-items: center;
-  }
-  .product-name {
-    padding: 2% 0;
-    font-size: 200%;
-  }
-  .product-image{
-    width: 100%;
-    height: auto;
-  }
-  .product-image-main{
-    width: 80%;
-  }
-  .budget-heading {
-    font-size: 65%;
-  }
-  #communicationMethod{
-    margin: 0;
-    width: 100%;
-  }
   .field{
     width: 100%;
   }

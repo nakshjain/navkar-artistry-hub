@@ -253,6 +253,11 @@
   .nav-login{
     display: none;
   }
+  .user-logged-button{
+    width: 25px;
+    height: 25px;
+    padding:0;
+  }
   .sidenav-shopping-cart{
     width: 75%;
   }

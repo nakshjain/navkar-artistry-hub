@@ -88,5 +88,12 @@ body{
   .footer-col h4{
     margin-top: 15px;
     margin-bottom: 10px;
+    font-size:14px;
+  }
+  .contact-element{
+    font-size: 12px;
+  }
+  .footer-elements a {
+    font-size: 12px;
   }
 }
