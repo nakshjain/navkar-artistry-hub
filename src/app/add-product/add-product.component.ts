@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core'
+import {Component} from '@angular/core'
 import {ActivatedRoute} from "@angular/router";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {ProductService} from "../api/product.service";
