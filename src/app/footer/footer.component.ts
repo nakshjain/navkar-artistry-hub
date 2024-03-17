@@ -8,29 +8,6 @@ import {faFacebook, faTwitter, faInstagram, faYoutube} from "@fortawesome/free-b
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent {
-  contactUs: any[] = [
-    {
-      id: 'home',
-      name: 'Home',
-      link: 'home',
-    },
-    {
-      id: 'artists',
-      name: 'Artists',
-      link: 'artists',
-    },
-    {
-      id: 'products',
-      name: 'Products',
-      link: 'products',
-    },
-    {
-      id: 'archived-products',
-      name: 'Archived',
-      link: 'archived-products',
-    },
-  ];
-
   quickLinks: any[] = [
     {
       id: 'home',
@@ -38,19 +15,14 @@ export class FooterComponent {
       link: 'home',
     },
     {
-      id: 'artists',
-      name: 'Artists',
-      link: 'artists',
+      id: 'shop',
+      name: 'Shop',
+      link: 'shop',
     },
     {
-      id: 'products',
-      name: 'Products',
-      link: 'products',
-    },
-    {
-      id: 'archived-products',
-      name: 'Archived',
-      link: 'archived-products',
+      id: 'contact-us',
+      name: 'Contact Us',
+      link: 'contact-us',
     },
   ];
 

@@ -146,6 +146,19 @@
 }
 
 @media (max-width: 768px) {
+  .main{
+    flex-direction: column;
+  }
+  .filters-container{
+    width: 100%;
+  }
+  .category-option{
+    text-align: left;
+  }
+  .products-container{
+    overflow-y: visible;
+    height:auto;
+  }
   .product {
     max-width: calc(100%/2);
   }

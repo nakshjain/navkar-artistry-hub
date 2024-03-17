@@ -16,8 +16,8 @@
         <span *ngIf="!responseTextHidden">{{responseText}}</span>
         <a href="#">→ Forget Your Password? ←</a>
         <button (click)="onLogin()" class="sign-button">Sign In</button>
-        <div class="toggle-mobile">
-          "New to our platform? Sign up
+        <div class="toggle-mobile" *ngIf="isMobileView">
+          New to our platform? Sign up
           <button (click)="toggleMobileView()">here.</button>
         </div>
       </form>
@@ -37,12 +37,12 @@
         <input type="password" name="password" [(ngModel)]="signUpFormData.password" placeholder="Password">
         <div class="generate-OTP">
           <button class="generate-OTP-button">Generate OTP</button>
-          <input type="number" name="otp" [(ngModel)]="signUpFormData.password" placeholder="OTP" class="input-otp">
+          <input type="number" name="otp" [(ngModel)]="signUpFormData.otp" placeholder="OTP" class="input-otp">
         </div>
         <span>or use your email for registration</span>
         <span *ngIf="!responseTextHidden">{{responseText}}</span>
         <button (click)="onRegister()" class="sign-button">Sign Up</button>
-        <div class="toggle-mobile">
+        <div class="toggle-mobile" *ngIf="isMobileView">
           Already have an account? Sign in
           <button (click)="toggleMobileView()">here.</button>
         </div>

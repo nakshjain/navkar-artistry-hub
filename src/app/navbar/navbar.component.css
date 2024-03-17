@@ -176,8 +176,7 @@
   color: #121111;
   text-decoration: none;
 }
-.sidenav-filter{
-  background-color: #e8dac6;
+.sidenav-menu{
   width: 80%;
   position: fixed;
   font-family: 'Poppins', sans-serif;
@@ -194,7 +193,7 @@
   margin: auto;
   font-size: 150%;
 }
-.close-sidenav{
+.close-menu-sidenav{
   margin-left: auto;
 }
 .nav-menu{
@@ -214,10 +213,11 @@
   margin: 0 2%;
 }
 .sidenav-shopping-cart{
-  padding-top: 70px;
-  background-color: #e8dac6;
-  width: 35%;
+  width: 25%;
   position: fixed;
+}
+.close-cart-sidenav{
+  margin: 0;
 }
 @media (min-width: 768px) {
   .button-menu{
@@ -252,6 +252,9 @@
   }
   .nav-login{
     display: none;
+  }
+  .sidenav-shopping-cart{
+    width: 75%;
   }
 }
 /*}*/

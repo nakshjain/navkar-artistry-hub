@@ -18,6 +18,8 @@ export class AddProductComponent{
   subCategories=subCategories
 
   categorySelected=''
+  responseText=''
+  responseTextColor='green'
 
   formData = {
     name: '',
@@ -42,17 +44,20 @@ export class AddProductComponent{
   }
 
   submitForm() {
-    // const jsonData=JSON.stringify(this.formData)
     console.log(this.formData)
+    this.ngxService.start()
     this.productService.addProduct(this.formData).subscribe(
       (response)=>{
-        console.log(response)
+        this.responseTextColor='green'
+        this.responseText=response.message
+        this.ngxService.stop()
         this.clearForm()
       },error => {
-        console.log(error)
+        this.responseTextColor='red'
+        this.responseText=error.error.error
+        this.ngxService.stop()
       }
     )
-    // this.clearForm()
   }
 
   constructor(private route: ActivatedRoute, private ngxService: NgxUiLoaderService, private productService:ProductService) {

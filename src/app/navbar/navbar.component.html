@@ -1,14 +1,14 @@
 <mat-sidenav-container>
-  <mat-sidenav #sidenav class="sidenav-filter" mode="side">
+  <mat-sidenav #sidenavmenu class="sidenav-menu" mode="side">
     <div class="side-nav-top">
       <mat-icon *ngIf="isCategorySelected" (click)="resetCategory()" class="back-sidenav">keyboard_arrow_left</mat-icon>
       <p *ngIf="isCategorySelected">{{categorySelected.name}}</p>
-      <mat-icon (click)="sidenav.toggle()" class="close-sidenav">close</mat-icon>
+      <mat-icon (click)="sidenavmenu.toggle()" class="close-menu-sidenav">close</mat-icon>
     </div>
     <mat-nav-list>
       <ul class="nav-menu" *ngIf="!isCategorySelected">
         <li *ngFor="let element of navbarHeader" class="sidenav-category">
-          <a class="nav-link" routerLink="{{ element.link }}" mat-list-item (click)="sidenav.toggle()">
+          <a class="nav-link" routerLink="{{ element.link }}" mat-list-item (click)="sidenavmenu.toggle()">
             <p>{{element.name }}</p>
           </a>
           <mat-icon (click)="setCategory(element.name)" *ngIf="element.name!='Shop'">keyboard_arrow_right</mat-icon>
@@ -16,14 +16,18 @@
       </ul>
       <ul class="nav-menu" *ngIf="isCategorySelected">
         <li *ngFor="let element of subCategoryNavbarHeader" class="sidenav-category">
-          <a class="nav-link" routerLink="{{categorySelected.link}}/{{ element.link }}" mat-list-item (click)="sidenav.toggle()">
+          <a class="nav-link" routerLink="{{categorySelected.link}}/{{ element.link }}" mat-list-item (click)="sidenavmenu.toggle()">
             <p>{{element.name }}</p>
           </a>
         </li>
       </ul>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav #shoppingCart class="sidenav-shopping-cart" (click)="shoppingCart.toggle()" position="end" mode="side">
+  <mat-sidenav #shoppingCart class="sidenav-shopping-cart" position="end" mode="side">
+    <div class="side-nav-top">
+      <mat-icon (click)="shoppingCart.toggle()" class="close-cart-sidenav">close</mat-icon>
+      <p>Your Cart</p>
+    </div>
     <mat-nav-list>
     </mat-nav-list>
   </mat-sidenav>
@@ -33,7 +37,7 @@
       <mat-toolbar-row>
         <div class="nav-main">
           <div class="nav-left">
-            <button mat-icon-button (click)="sidenav.toggle()" class="button-menu">
+            <button mat-icon-button (click)="sidenavmenu.toggle()" class="button-menu">
               <mat-icon class="mat-icon">menu</mat-icon>
             </button>
             <div *ngFor="let element of navbarHeader"  class="nav-elements">
@@ -78,11 +82,10 @@
                   <mat-icon>keyboard_arrow_down</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                  <button mat-menu-item *ngFor="let option of userOptions">
-                    <a routerLink="{{option.link}}">
+                  <button mat-menu-item *ngFor="let option of userOptions" [routerLink]="option.link">
                       {{ option.name }}
-                    </a>
                   </button>
+                  <hr style="margin: 0 5%">
                   <button mat-menu-item (click)="logOut()">Logout</button>
                 </mat-menu>
               </div>

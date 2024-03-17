@@ -23,6 +23,7 @@ export class NavbarComponent implements OnInit{
   isCategorySelected=false
   subCategories=subCategories
   subCategoryNavbarHeader:any
+  isUserAdmin=false
 
   shopHeader: any[] = [
     {
@@ -38,7 +39,7 @@ export class NavbarComponent implements OnInit{
     {
       id: 'my-profile',
       name:'My Profile',
-      link:'my-profile'
+      link:'my-profile',
     },
     {
       id: 'add-product',
@@ -88,6 +89,7 @@ export class NavbarComponent implements OnInit{
           this.isUserLoggedIn=true;
           this.userService.setUserLoggedIn(user)
           this.userService.setLoggedIn(true)
+          this.isUserAdmin=this.user.role.includes('admin')
           this.userService.setAdmin(this.user.role.includes('admin'))
           this.userInitial=this.user.name[0]
           this.openLoginDialog()
@@ -102,9 +104,6 @@ export class NavbarComponent implements OnInit{
     this.isUserLoggedIn=false
     this.openLoginDialog()
     localStorage.removeItem('token')
-  }
-
-  doSomethingElse() {
   }
 
   protected readonly auto = auto;
@@ -124,5 +123,9 @@ export class NavbarComponent implements OnInit{
   resetCategory(){
     this.categorySelected=undefined
     this.isCategorySelected=false
+  }
+
+  setAdmin(){
+
   }
 }
