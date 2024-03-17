@@ -21,6 +21,17 @@ export class ProductService {
     console.log(category,availability)
     return this.http.get<Product[]>(`${this.baseUrl}/getProducts?sortingOrder=${sortingOrder}&priceRange=${priceRange}&searchText=${searchText}&category=${category}&subCategory=${subCategory}&availability=${availability}`)
   }
+  getProductsByPagination(
+    sortingOrder: String,
+    priceRange:String,
+    searchText: String,
+    category:String,
+    subCategory:String,
+    availability:boolean,
+    page: number,
+    pageSize: number){
+    return this.http.get<any>(`${this.baseUrl}/getProductsByPagination?sortingOrder=${sortingOrder}&priceRange=${priceRange}&searchText=${searchText}&category=${category}&subCategory=${subCategory}&availability=${availability}&page=${page}&pageSize=${pageSize}`)
+  }
 
   getProductsByCategory(category: string): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.baseUrl}/getProductsByCategory/${category}`);

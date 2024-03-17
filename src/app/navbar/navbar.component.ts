@@ -111,7 +111,7 @@ export class NavbarComponent implements OnInit{
   onEnterSearchPressed() {
     const searchQuery=this.searchQuery
     this.searchQuery=''
-    this.router.navigate(['/search-results'], { queryParams: { query: searchQuery } });
+    this.router.navigate(['/search'], { queryParams: { query: searchQuery } });
   }
 
   setCategory(inputCategory: string){

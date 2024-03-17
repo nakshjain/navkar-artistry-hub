@@ -1,7 +1,9 @@
 ::-webkit-scrollbar {
   display: none;
 }
-
+.display{
+  font-family: 'Poppins', sans-serif;
+}
 .header {
   display: flex;
   flex-wrap: wrap;
@@ -21,8 +23,10 @@
 }
 
 .no-product-to-display{
-  height: 80vh;
+  height: 60vh;
   display: flex;
+  flex-direction: column;
+  width: 100%;
   align-items: center;
   justify-content: center;
 }
@@ -106,8 +110,6 @@
 }
 .products-container{
   width: 100%;
-  overflow-y: auto;
-  height: 75vh;
 }
 .products{
   padding: 0 0 2% 0;
@@ -144,7 +146,15 @@
 .product-image:hover{
   /*transform: scale(1.2);*/
 }
-
+.pagination-container{
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+.pagination-container button{
+  border: none;
+  text-decoration: none;
+}
 @media (max-width: 768px) {
   .main{
     flex-direction: column;

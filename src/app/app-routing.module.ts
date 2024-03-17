@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'shop', component: ShopComponent},
   { path: 'shop/:category', component: ShopComponent},
   { path: 'shop/:category/:subCategory', component: ShopComponent},
-  { path: 'search-results', component: SearchResultsComponent},
+  { path: 'search', component: SearchResultsComponent},
   { path: 'product/:id', component: ProductComponent},
   { path: 'get-quote/:id', component: GetQuoteComponent},
   { path: 'add-product', canActivate:[authGuard,roleGuard], component: AddProductComponent},

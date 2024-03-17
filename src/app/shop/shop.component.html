@@ -1,20 +1,20 @@
 <div class="display">
   <div class="header">
     <div class="header-title">
-      <div class="title">{{title}}</div>
-      <div class="sub-title">{{subTitle}}</div>
+      <div class="title" *ngIf="!searchText">{{title}}</div>
+      <div class="sub-title" *ngIf="!searchText">{{subTitle}}</div>
+      <div *ngIf="searchText" class="search-results">
+        We found {{products.length}} results
+      </div>
     </div>
   </div>
-  <div class="products-to-display" *ngIf="areProductsFound">
+  <div>
     <div class="product-display-header">
       <div class="filter-products">
-        <button (click)="toggleFilterVisibility()">
+        <button (click)="toggleFilterVisibility();toggleStyles()">
           <mat-icon>filter_list</mat-icon>
           Filter
         </button>
-      </div>
-      <div *ngIf="searchText.length!=0" class="search-results">
-        We found {{products.length}} results
       </div>
       <div class="sort-products">
         <button (click)="toggleSortingDropdown()">
@@ -43,7 +43,7 @@
           </div>
         </div>
       </div>
-      <div class="products-container">
+      <div class="products-container"  *ngIf="totalProducts" [ngStyle]="containerStyles">
         <div class="products">
           <ng-container *ngFor="let product of products">
             <div class="product">
@@ -56,11 +56,30 @@
             </div>
           </ng-container>
         </div>
+        <div class="pagination-container" *ngIf="totalPages !== 0 && totalPages !== 1">
+          <button (click)="prevPage()" [hidden]="currentPage === 1">Previous</button>
+          <ng-container *ngFor="let pageNum of visiblePageNumbers">
+            <ng-container *ngIf="pageNum === -1; else pageButton">
+              <button disabled>&hellip;</button>
+            </ng-container>
+            <ng-template #pageButton>
+              <button (click)="goToPage(pageNum)" [disabled]="pageNum === currentPage">{{ pageNum }}</button>
+            </ng-template>
+          </ng-container>
+          <button (click)="nextPage()" [hidden]="currentPage === totalPages">Next</button>
+        </div>
+      </div>
+      <div class="no-product-to-display" *ngIf="!totalProducts">
+        <div>
+          Oops!
+        </div>
+        <div>
+          No luck this time.
+        </div>
+        <div>
+          Give your search a makeover or tweak those filters!
+        </div>
       </div>
     </div>
-  </div>
-  <div class="no-product-to-display" *ngIf="!areProductsFound">
-    <div>
-      Unfortunately, we couldn't find any results for '{{searchText}}'</div>
   </div>
 </div>
