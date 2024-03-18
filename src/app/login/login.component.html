@@ -5,6 +5,7 @@
         <h1>Sign In</h1>
         <input type="email" formControlName="email" placeholder="Email" [class.invalid]="isInvalidLogin('email')">
         <input type="password" formControlName="password" placeholder="Password" [class.invalid]="isInvalidLogin('password')">
+        <mat-checkbox (click)="updateRememberMe()">Remember me</mat-checkbox>
         <span *ngIf="responseText">{{ responseText }}</span>
         <a href="#">→ Forget Your Password? ←</a>
         <button type="submit" class="sign-button">Sign In</button>
@@ -24,7 +25,9 @@
         </div>
         <span *ngIf="responseText">{{ responseText }}</span>
         <button type="submit" class="sign-button" [disabled]="isSignUpLock">Sign Up</button>
-        <div class="toggle-mobile" *ngIf="isMobileView">Already have an account? Sign in <button type="button" (click)="toggleMobileView()">here.</button></div>
+        <div class="toggle-mobile" *ngIf="isMobileView">
+          Already have an account? Sign in <button type="button" (click)="toggleMobileView()">here.</button>
+        </div>
       </form>
     </div>
     <div class="toggle-container">

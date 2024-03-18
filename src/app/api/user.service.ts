@@ -53,8 +53,8 @@ export class UserService {
     return this.http.post<any>(`${this.baseUrl}/sendOTP`,user)
   }
 
-  loginUser(user: any){
-    return this.http.post<any>(`${this.baseUrl}/login`,user,{withCredentials:true}).pipe(
+  loginUser(user: any, rememberMe: boolean){
+    return this.http.post<any>(`${this.baseUrl}/login?rememberMe=${rememberMe}`,user,{withCredentials:true}).pipe(
       tap((res)=>{
         this.tokenKey=res.token;
         this.setToken()

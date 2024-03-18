@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit{
   isSignUpFieldsLock=false
   isSignUpLock=true
   isSignInVisible: boolean  = true;
+  isRememberMeChecked=false
   responseText=''
   signUpForm =this.fb.group({
     name: ['', Validators.required],
@@ -77,7 +78,6 @@ export class LoginComponent implements OnInit{
     this.isSignUpLock=true
   }
 
-
   onGenerateOTP(){
     this.ngxService.start()
     console.log(this.signUpForm.value)
@@ -120,8 +120,9 @@ export class LoginComponent implements OnInit{
   }
 
   onLogin() {
+    console.log(this.isRememberMeChecked)
     this.ngxService.start()
-    this.userService.loginUser(this.loginForm.value).subscribe(
+    this.userService.loginUser(this.loginForm.value, this.isRememberMeChecked).subscribe(
       (response)=>{
         this.ngxService.stop()
         this.userService.setToken()
@@ -133,6 +134,10 @@ export class LoginComponent implements OnInit{
         this.responseText=error.error.message
       }
     )
+  }
+
+  updateRememberMe(){
+    this.isRememberMeChecked=!this.isRememberMeChecked
   }
 
   toggleMobileView() {

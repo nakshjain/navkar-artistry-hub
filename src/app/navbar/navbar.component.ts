@@ -57,7 +57,6 @@ export class NavbarComponent implements OnInit{
   openLoginDialog() {
     if(!this.isUserLoggedIn){
       this.matDialog.open(LoginComponent,{
-        // width:'350px',
       })
     }
     else{
