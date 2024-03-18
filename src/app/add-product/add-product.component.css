@@ -54,7 +54,10 @@ label{
 
 @media (max-width: 768px) {
   .field{
-    width: 75%;
+    width: 100%;
+  }
+  .field input{
+    width: 100%;
   }
   .field-details{
     display: block;
