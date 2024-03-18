@@ -1,12 +1,7 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {UserService} from "../api/user.service";
 import {NgxUiLoaderService} from "ngx-ui-loader";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-
-interface LoginFormData {
-  email: string;
-  password: string;
-}
+import {FormBuilder, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-login',
