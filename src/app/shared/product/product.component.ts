@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {Product} from "../../types/products.types";
+import {Category, Product} from "../../types/products.types";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {ProductService} from "../../api/product.service";
+import {categories, subCategories} from "../../types/products-categories";
 
 @Component({
   selector: 'app-product',
@@ -10,8 +11,11 @@ import {ProductService} from "../../api/product.service";
   styleUrls: ['./product.component.css'],
 })
 export class ProductComponent implements OnInit{
+  category:any;
+  subCategory:any;
+
   product: Product={
-    _id:'',
+    productId:'',
     name:'',
     about:'',
     imageLink:'',
@@ -24,8 +28,11 @@ export class ProductComponent implements OnInit{
   titleSimilar='You may also like'
   backgroundColor='#FFF0F5'
 
+  categories=categories
+  subCategories=subCategories
+
   getQuote(): void {
-    this.router.navigate(['get-quote', this.product._id]); // Navigate to detail page with product ID
+    this.router.navigate(['get-quote', this.product.productId]); // Navigate to detail page with product ID
   }
 
   getProductById(id: string){
@@ -33,6 +40,7 @@ export class ProductComponent implements OnInit{
       (product)=>{
         this.product=product;
         this.getProductsByCategory(this.product.category)
+        this.getCategory(this.product.category)
         this.ngxService.stop()
       }
     )
@@ -56,5 +64,9 @@ export class ProductComponent implements OnInit{
       const productId = params['id'];
       this.getProductById(productId);
     });
+  }
+
+  getCategory(categoryReceived: string){
+    this.category = categories.find(category => category.name === categoryReceived);
   }
 }

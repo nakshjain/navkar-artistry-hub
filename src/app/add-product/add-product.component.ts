@@ -28,7 +28,8 @@ export class AddProductComponent{
     category: '',
     subCategory: '',
     imageLink: '',
-    availability:''
+    availability:'',
+    quantity:''
   };
 
   clearForm(){
@@ -39,7 +40,8 @@ export class AddProductComponent{
       category: '',
       subCategory: '',
       imageLink: '',
-      availability:''
+      availability:'',
+      quantity:''
     };
   }
 
@@ -56,6 +58,7 @@ export class AddProductComponent{
         this.ngxService.stop()
         this.clearForm()
       },error => {
+        console.log(error)
         this.responseTextColor='red'
         this.responseText=error.error.error
         this.ngxService.stop()

@@ -1,6 +1,6 @@
 <div class="header">
   <div class="title">{{title}}</div>
-  <div routerLink="/shop/{{category}}" class="view-all">
+  <div (click)="viewAllSimilarProducts()" class="view-all">
     <div class="view-all-heading">View All</div>
     <div class="mat-icon-main">
       <mat-icon class="mat-icon">arrow_forward</mat-icon>
@@ -15,7 +15,7 @@
     [config]="slideConfigDesktop"
   >
     <div ngxSlickItem *ngFor="let image of products" class="slide">
-      <img (click)="viewProductDetails(image._id)" src="{{ image.imageLink }}" class="product-image" alt="{{ image.name }}" />
+      <img (click)="viewProductDetails(image.productId)" src="{{ image.imageLink }}" class="product-image" alt="{{ image.name }}" />
     </div>
   </ngx-slick-carousel>
 </div>
@@ -27,7 +27,7 @@
     [config]="slideConfigMobile"
   >
     <div ngxSlickItem *ngFor="let image of products" class="slide">
-      <img (click)="viewProductDetails(image._id)" src="{{ image.imageLink }}" class="product-image" alt="{{ image._id }}" />
+      <img (click)="viewProductDetails(image.productId)" src="{{ image.imageLink }}" class="product-image" alt="{{ image.productId }}" />
     </div>
   </ngx-slick-carousel>
 </div>

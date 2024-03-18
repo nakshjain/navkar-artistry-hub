@@ -46,9 +46,9 @@ export class UserService {
   }
 
   signUpUser(user: any){
-    console.log(user)
     return this.http.post<any>(`${this.baseUrl}/signUp`,user)
   }
+
   sendOTP(user: any){
     return this.http.post<any>(`${this.baseUrl}/sendOTP`,user)
   }

@@ -122,6 +122,7 @@ export class ShopComponent implements OnInit, OnChanges{
         this.generatePageNumbers()
       },(error)=>{
         console.log(error)
+        this.ngxService.stop()
       }
     )
     this.getCategories()
@@ -299,4 +300,9 @@ export class ShopComponent implements OnInit, OnChanges{
       this.getProducts()
     }
   }
+
+  addToCart(product: any){
+    console.log(product)
+  }
+
 }

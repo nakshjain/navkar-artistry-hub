@@ -48,11 +48,15 @@
           <ng-container *ngFor="let product of products">
             <div class="product">
               <div class="image-container">
-                <img (click)="viewProductDetails(product._id)" [src]="product.imageLink" class="product-image" alt="{{ product.name }}" />
+                <img (click)="viewProductDetails(product.productId)" [src]="product.imageLink" class="product-image" alt="{{ product.name }}" />
               </div>
               <div class="product-description">
                 <div class="product-name">{{product.name}}</div>
-                <div class="product-price">Rs. {{product.price}}.00</div></div>
+                <div class="product-price">Rs. {{product.price}}.00</div>
+              </div>
+              <div class="add-to-cart">
+                <button (click)="addToCart(product)">Add to cart</button>
+              </div>
             </div>
           </ng-container>
         </div>

@@ -25,7 +25,7 @@ export class ImageSliderComponent {
     "infinite": true
   }
   @Input()
-  category: string=''
+  category:any
   @Input()
   title: string=''
   @Input()
@@ -36,5 +36,9 @@ export class ImageSliderComponent {
 
   viewProductDetails(productId: string): void {
     this.router.navigate(['product', productId]);
+  }
+
+  viewAllSimilarProducts(){
+    this.router.navigate([this.category.link]);
   }
 }

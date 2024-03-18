@@ -32,6 +32,12 @@
         </div>
         <br>
         <div class="form-group field">
+          <label for="quantity">Quantity</label>
+          <br>
+          <input type="number" id="quantity" name="quantity" [(ngModel)]="formData.quantity" required>
+        </div>
+        <br>
+        <div class="form-group field">
           <label for="imageLink">Image Link</label>
           <br>
           <input type="text" id="imageLink" name="imageLink" [(ngModel)]="formData.imageLink" required>

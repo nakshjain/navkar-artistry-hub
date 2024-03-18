@@ -17,10 +17,6 @@ export class ProductService {
     return this.http.get<Product[]>(`${this.baseUrl}/getAllProducts`);
   }
 
-  getProducts(sortingOrder: String, priceRange:String, searchText: String, category:String, subCategory:String, availability:boolean){
-    console.log(category,availability)
-    return this.http.get<Product[]>(`${this.baseUrl}/getProducts?sortingOrder=${sortingOrder}&priceRange=${priceRange}&searchText=${searchText}&category=${category}&subCategory=${subCategory}&availability=${availability}`)
-  }
   getProductsByPagination(
     sortingOrder: String,
     priceRange:String,
@@ -61,8 +57,8 @@ export class ProductService {
       )
     )
   }
-  getProductById(id: string): Observable<Product> {
-    return this.http.get<Product>(`${this.baseUrl}/getProductById/${id}`);
+  getProductById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/getProductById/${id}`);
   }
 
   getAllCategories(){

@@ -16,7 +16,7 @@ export class GetQuoteComponent implements OnInit{
 
   title='Get Quote'
   product: Product={
-    _id:'',
+    productId:'',
     name:'',
     about:'',
     imageLink:'',
@@ -69,7 +69,7 @@ export class GetQuoteComponent implements OnInit{
     };
   }
   submitForm() {
-    this.aboutUser=`I hope this message finds you well. My name is ` + this.formData.title+` `+this.formData.firstName+` `+this.formData.lastName+  ` . I am interested in your services and would like to inquire about the pricing details for`+this.product._id+`.`
+    this.aboutUser=`I hope this message finds you well. My name is ` + this.formData.title+` `+this.formData.firstName+` `+this.formData.lastName+  ` . I am interested in your services and would like to inquire about the pricing details for`+this.product.productId+`.`
     this.contactUser=`Please reach out to me at `+this.formData.email+` or `+this.formData.contactNumber+` to provide the information. I prefer to be contacted via `+this.formData.communicationMethod+`.`
     this.budgetUser=`Additionally, I am curious about the budget required for this service. Could you please provide me with an estimate of the budget range? My budget for this project is approximately `+this.formData.budget+`.`
     this.enquiryMessage=this.greeting+'\n'+this.aboutUser+'\n'+this.contactUser+'\n'+this.budgetUser+'\n'+this.endingStatement

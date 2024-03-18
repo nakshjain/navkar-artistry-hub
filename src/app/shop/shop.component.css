@@ -146,6 +146,13 @@
 .product-image:hover{
   /*transform: scale(1.2);*/
 }
+.add-to-cart{
+  display: flex;
+  justify-content: center;
+}
+.add-to-cart button{
+
+}
 .pagination-container{
   margin-bottom: 20px;
   display: flex;

@@ -1,5 +1,5 @@
 export interface Product {
-  _id: string
+  productId: string
   name: string
   about: string
   imageLink: string
