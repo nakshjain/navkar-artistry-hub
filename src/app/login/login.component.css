@@ -59,7 +59,9 @@
   margin-top: 10px;
   cursor: pointer;
 }
-
+.sign-button:disabled{
+  background-color: gray;
+}
 .container button.hidden{
   background-color: transparent;
   border-color: #fff;
@@ -85,7 +87,9 @@
   width: 100%;
   outline: none;
 }
-
+.container input.invalid{
+  border: 1px solid red;
+}
 .form-container{
   position: absolute;
   top: 0;
@@ -214,12 +218,37 @@
 .container.active .toggle-right{
   transform: translateX(200%);
 }
-
+.edit-details{
+  margin-left: auto;
+  background-color: #512da8;
+  color: #fff;
+  font-size: 12px;
+  padding: 2%;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
 .generate-OTP{
   display: flex;
 }
 .generate-OTP-button{
   width: 100%;
+  background-color: #512da8;
+  color: #fff;
+  font-size: 12px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.generate-OTP-button:disabled{
+  background-color: gray;
 }
 .toggle-mobile{
   margin-top: 2%;
@@ -227,12 +256,10 @@
 .toggle-mobile button{
   border:none;
   text-decoration: none;
-
 }
 @media (max-width: 768px) {
   .sign-up{
     width: 100%;
-    display: none;
   }
   .sign-in{
     width: 100%;

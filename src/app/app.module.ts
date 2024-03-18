@@ -14,7 +14,7 @@ import { ImageSliderComponent } from './shared/image-slider/image-slider.compone
 import {SlickCarouselModule} from "ngx-slick-carousel";
 import {NgxUiLoaderModule} from "ngx-ui-loader";
 import {ProductComponent} from './shared/product/product.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ShopComponent } from './shop/shop.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatCardModule} from "@angular/material/card";
@@ -36,6 +36,7 @@ import { SearchResultsComponent } from './search-results/search-results.componen
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { MyProfileComponent } from './my-profile/my-profile.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,29 +54,30 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
     MyProfileComponent,
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatListModule,
-    MatButtonModule,
-    MatSelectModule,
-    SlickCarouselModule,
-    NgxUiLoaderModule,
-    MatCardModule,
-    NgbModule,
-    MatDialogModule,
-    MatMenuModule,
-    FontAwesomeModule,
-    MatAutocompleteModule,
-    MatInputModule,
-    MatCheckboxModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatSidenavModule,
+        MatListModule,
+        MatButtonModule,
+        MatSelectModule,
+        SlickCarouselModule,
+        NgxUiLoaderModule,
+        MatCardModule,
+        NgbModule,
+        MatDialogModule,
+        MatMenuModule,
+        FontAwesomeModule,
+        MatAutocompleteModule,
+        MatInputModule,
+        MatCheckboxModule,
+        ReactiveFormsModule,
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

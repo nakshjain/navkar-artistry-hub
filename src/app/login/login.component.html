@@ -1,64 +1,43 @@
-
 <div class="parent">
-  <div class="container" [ngClass]="isSignInVisible ? 'active' :'' " id="container">
-    <div class="form-container sign-in" [style.display]="(isMobileViewLogin || !isMobileView)? 'block' : 'none'">
-      <form>
+  <div class="container" [ngClass]="isSignInVisible ? 'active' : ''" id="container">
+    <div class="form-container sign-in" *ngIf="isMobileViewLogin || !isMobileView">
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
         <h1>Sign In</h1>
-        <div class="social-icons">
-          <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-          <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-          <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-        </div>
-        <span>or use your email password</span>
-        <input type="email" name="email" [(ngModel)]="loginFormData.email" placeholder="Email">
-        <input type="password" name="password" [(ngModel)]="loginFormData.password" placeholder="Password">
-        <span *ngIf="!responseTextHidden">{{responseText}}</span>
+        <input type="email" formControlName="email" placeholder="Email" [class.invalid]="isInvalidLogin('email')">
+        <input type="password" formControlName="password" placeholder="Password" [class.invalid]="isInvalidLogin('password')">
+        <span *ngIf="responseText">{{ responseText }}</span>
         <a href="#">→ Forget Your Password? ←</a>
-        <button (click)="onLogin()" class="sign-button">Sign In</button>
-        <div class="toggle-mobile" *ngIf="isMobileView">
-          New to our platform? Sign up
-          <button (click)="toggleMobileView()">here.</button>
-        </div>
+        <button type="submit" class="sign-button">Sign In</button>
+        <div class="toggle-mobile" *ngIf="isMobileView">New to our platform? Sign up <button type="button" (click)="toggleMobileView()">here.</button></div>
       </form>
     </div>
-    <div class="form-container sign-up" [style.display]="(!isMobileViewLogin || !isMobileView)? 'block' : 'none'">
-      <form>
+    <div class="form-container sign-up" *ngIf="!isMobileViewLogin || !isMobileView">
+      <form [formGroup]="signUpForm" (ngSubmit)="onRegister()">
         <h1>Create Account</h1>
-        <div class="social-icons">
-          <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-          <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-          <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-        </div>
-        <span>or use your email for registration</span>
-        <input type="email" name="email" [(ngModel)]="signUpFormData.email" placeholder="Email">
-        <input type="text" name="name" [(ngModel)]="signUpFormData.name" placeholder="Name">
-        <input type="password" name="password" [(ngModel)]="signUpFormData.password" placeholder="Password">
+        <input type="text" formControlName="name" placeholder="Name" [readonly]="isSignUpFieldsLock" [class.invalid]="isInvalidSignUp('name')">
+        <input type="email" formControlName="email" placeholder="Email" [readonly]="isSignUpFieldsLock" [class.invalid]="isInvalidSignUp('email')">
+        <input type="password" formControlName="password" placeholder="Password" [readonly]="isSignUpFieldsLock" [class.invalid]="isInvalidSignUp('password')">
+        <button type="button" class="edit-details" *ngIf="isSignUpFieldsLock" (click)="editDetails()">Edit Details</button>
         <div class="generate-OTP">
-          <button class="generate-OTP-button">Generate OTP</button>
-          <input type="number" name="otp" [(ngModel)]="signUpFormData.otp" placeholder="OTP" class="input-otp">
+          <button type="button" class="generate-OTP-button" (click)="onGenerateOTP()" [disabled]="!signUpForm.get('name')?.valid || !signUpForm.get('email')?.valid || !signUpForm.get('password')?.valid">Generate OTP</button>
+          <input type="number" formControlName="otp" placeholder="OTP" class="input-otp">
         </div>
-        <span>or use your email for registration</span>
-        <span *ngIf="!responseTextHidden">{{responseText}}</span>
-        <button (click)="onRegister()" class="sign-button">Sign Up</button>
-        <div class="toggle-mobile" *ngIf="isMobileView">
-          Already have an account? Sign in
-          <button (click)="toggleMobileView()">here.</button>
-        </div>
+        <span *ngIf="responseText">{{ responseText }}</span>
+        <button type="submit" class="sign-button" [disabled]="isSignUpLock">Sign Up</button>
+        <div class="toggle-mobile" *ngIf="isMobileView">Already have an account? Sign in <button type="button" (click)="toggleMobileView()">here.</button></div>
       </form>
     </div>
     <div class="toggle-container">
       <div class="toggle">
-        <div class="toggle-panel toggle-left">
+        <div class="toggle-panel toggle-left" *ngIf="isSignInVisible">
           <h1>Welcome Back!</h1>
-          <p>Enter your personal details to use all of site features</p>
-          <button type="button" class="hidden sign-button" id="login" (click)="isSignInVisible = false; responseTextHidden=true">Sign Up</button>
+          <p>Enter your personal details to use all site features</p>
+          <button type="button" class="hidden sign-button" id="login" (click)="toggleSignIn()">Sign Up</button>
         </div>
-        <div class="toggle-panel toggle-right">
+        <div class="toggle-panel toggle-right" *ngIf="!isSignInVisible">
           <h1>Hello, Friend!</h1>
-          <p>Register with your personal details to use all of site features</p>
-          <button type="button" class="hidden sign-button" id="register" (click)="isSignInVisible = true; responseTextHidden=true">Sign In</button>
+          <p>Register with your personal details to use all site features</p>
+          <button type="button" class="hidden sign-button" id="register" (click)="toggleSignIn()">Sign In</button>
         </div>
       </div>
     </div>

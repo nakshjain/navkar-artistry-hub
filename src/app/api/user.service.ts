@@ -46,8 +46,13 @@ export class UserService {
   }
 
   signUpUser(user: any){
+    console.log(user)
     return this.http.post<any>(`${this.baseUrl}/signUp`,user)
   }
+  sendOTP(user: any){
+    return this.http.post<any>(`${this.baseUrl}/sendOTP`,user)
+  }
+
   loginUser(user: any){
     return this.http.post<any>(`${this.baseUrl}/login`,user,{withCredentials:true}).pipe(
       tap((res)=>{
@@ -56,7 +61,6 @@ export class UserService {
       })
     )
   }
-
   getUserDetails(){
     return this.http.get<any>(`${this.baseUrl}/getUserDetails`)
   }
