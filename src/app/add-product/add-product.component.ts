@@ -12,7 +12,6 @@ export class AddProductComponent{
 
   title='Add Product'
 
-  backgroundColor='#FFF0F5'
   availabilityDropdown=['true', 'false']
   categories=categories
   subCategories=subCategories
