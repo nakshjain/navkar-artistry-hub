@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CartService} from "../../api/cart.service";
 import {CartProduct, Product} from "../../types/products.types";
+import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-add-to-cart',
@@ -13,18 +14,28 @@ export class AddToCartComponent implements OnInit{
   cartItem:any
   isProductAvailable=true
   itemInCart=0
-  constructor(private cartService:CartService) {
+  constructor(private cartService:CartService, private snackBar:MatSnackBar) {
   }
 
+  openSnackBar(message: string, action: string): void {
+    const config = new MatSnackBarConfig();
+    config.duration = 3000;
+    config.horizontalPosition = 'right';
+    config.verticalPosition = 'top';
+
+    this.snackBar.open(message, action, config)
+  }
   ngOnInit(){
   }
   addToCart(product: any){
     console.log(product)
     this.cartService.addToCart(product).subscribe(
       (data)=>{
+        this.openSnackBar('Item Added!', 'Success');
         this.cartItem=data.cart
         this.isProductAvailable=this.checkIfAvailable(this.cartItem)
       },(error)=>{
+        this.openSnackBar('Failed to add!', 'Error');
         console.log(error)
       }
     )
@@ -33,10 +44,11 @@ export class AddToCartComponent implements OnInit{
   removeItem() {
     this.cartService.removeFromCart(this.product).subscribe(
       (response)=>{
-        console.log(response)
+        this.openSnackBar('Item Removed from Cart', 'Success');
         this.isProductAvailable=true
         this.itemInCart=0
       },(error)=>{
+        this.openSnackBar('Failed to Remove from Cart!', 'Error');
         console.log(error)
       }
     )

@@ -103,6 +103,7 @@ export class NavbarComponent implements OnInit{
     this.isUserLoggedIn=false
     this.userService.setLoggedIn(false)
     const currentUrl=this.router.url
+    this.matDialog.closeAll()
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
       this.router.navigate([currentUrl]);
     });
