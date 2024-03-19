@@ -3,6 +3,7 @@ import {CartService} from "../api/cart.service";
 import {CartProduct, Product} from "../types/products.types";
 import {Router} from "@angular/router";
 import {UserService} from "../api/user.service";
+import {NgxUiLoaderService} from "ngx-ui-loader";
 
 @Component({
   selector: 'app-cart',
@@ -12,32 +13,35 @@ import {UserService} from "../api/user.service";
 export class CartComponent implements OnInit{
   cart:CartProduct[]=[]
 
-  constructor(private router: Router, private cartService: CartService, private userService:UserService) {
+  constructor(private router: Router, private cartService: CartService, private userService:UserService, private ngxService:NgxUiLoaderService,) {
 
   }
 
   ngOnInit(): void {
-    this.userService.isLoggedIn.subscribe((loggedIn: boolean) => {
-    });
     this.getCart()
   }
 
   getCart(){
+    this.ngxService.start()
     this.cartService.getCartProducts().subscribe(
       (response)=>{
         this.cart=response.cart
+        this.ngxService.stop()
       },(error)=>{
         console.log(error)
+        this.ngxService.stop()
     }
     )
   }
 
   updateItem(cartItem: CartProduct, quantity?: number){
-    console.log(cartItem)
+    this.ngxService.start()
     this.cartService.addToCart(cartItem.product,quantity).subscribe(
       (response)=>{
+        this.ngxService.stop()
         this.getCart()
       },(error)=>{
+        this.ngxService.stop()
         console.log(error)
       }
     )
@@ -51,12 +55,14 @@ export class CartComponent implements OnInit{
   }
 
   removeItem(product: Product) {
+    this.ngxService.start()
     this.cartService.removeFromCart(product).subscribe(
       (response)=>{
-        console.log(response)
         this.getCart()
+        this.ngxService.stop()
       },(error)=>{
         console.log(error)
+        this.ngxService.stop()
       }
     )
   }

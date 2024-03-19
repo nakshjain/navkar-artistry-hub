@@ -1,6 +1,7 @@
 button{
   border: none;
   padding: 0;
+  background-color: white;
 }
 .display{
   font-family: 'Poppins', sans-serif;
@@ -39,6 +40,10 @@ button{
   justify-content: center;
   align-items: center;
   width: calc(48%/3);
+}
+.quantity-box{
+  border: 1px solid black;
+  padding:0 15%
 }
 .image-container{
   width:15%
@@ -95,6 +100,10 @@ button{
   .quantity{
     flex: 1;
     justify-content: left;
+  }
+  .quantity-box{
+    padding:0 2%;
+    display: flex;
   }
   .total{
     flex: 1;

@@ -28,13 +28,15 @@
         </div>
         <div class="price">Rs. {{cartItem.product.price}}</div>
         <div class="quantity">
-          <button (click)="updateItem(cartItem,-1)">
-            <mat-icon style="vertical-align: middle;">remove</mat-icon>
-          </button>
-          <p>{{cartItem.quantity}}</p>
-          <button (click)="updateItem(cartItem)" [disabled]="cartItem.quantity===cartItem.product.quantity">
-            <mat-icon style="vertical-align: middle;">add</mat-icon>
-          </button>
+          <div class="quantity quantity-box">
+            <button (click)="updateItem(cartItem,-1)">
+              <mat-icon style="vertical-align: middle;">remove</mat-icon>
+            </button>
+            <p>{{cartItem.quantity}}</p>
+            <button (click)="updateItem(cartItem)" [disabled]="cartItem.quantity===cartItem.product.quantity">
+              <mat-icon style="vertical-align: middle;">add</mat-icon>
+            </button>
+          </div>
         </div>
         <div class="total">{{cartItem.product.price*cartItem.quantity}}</div>
         <div class="remove">
@@ -59,13 +61,15 @@
           </div>
           <div class="quantity-total">
             <div class="quantity">
-              <button (click)="updateItem(cartItem,-1)">
-                <mat-icon style="vertical-align: middle;">remove</mat-icon>
-              </button>
-              <p>{{cartItem.quantity}}</p>
-              <button (click)="updateItem(cartItem)" [disabled]="cartItem.quantity===cartItem.product.quantity">
-                <mat-icon style="vertical-align: middle;">add</mat-icon>
-              </button>
+              <div class="quantity-box">
+                <button (click)="updateItem(cartItem,-1)">
+                  <mat-icon style="vertical-align: middle;">remove</mat-icon>
+                </button>
+                <p>{{cartItem.quantity}}</p>
+                <button (click)="updateItem(cartItem)" [disabled]="cartItem.quantity===cartItem.product.quantity">
+                  <mat-icon style="vertical-align: middle;">add</mat-icon>
+                </button>
+              </div>
             </div>
             <div class="total">Rs. {{cartItem.product.price*cartItem.quantity}}</div>
           </div>
