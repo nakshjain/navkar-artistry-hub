@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {Category, Product} from "../../types/products.types";
+import {Product} from "../../types/products.types";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {ProductService} from "../../api/product.service";
 import {categories, subCategories} from "../../types/products-categories";
@@ -22,7 +22,8 @@ export class ProductComponent implements OnInit{
     category:'',
     subCategory:'',
     availability: '0',
-    price:''
+    price:0,
+    quantity:0
   };
   productsByCategory:Product[]=[]
   titleSimilar='You may also like'

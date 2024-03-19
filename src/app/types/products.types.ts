@@ -6,7 +6,8 @@ export interface Product {
   category: string
   subCategory:string
   availability: string
-  price: string
+  price: number
+  quantity: number
 }
 export interface ProductsByCategory {
   category: string
@@ -16,4 +17,8 @@ export interface Category{
   id: string
   name: string
   link: string
+}
+export interface CartProduct{
+  product: Product
+  quantity: number
 }

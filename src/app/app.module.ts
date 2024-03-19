@@ -35,7 +35,9 @@ import {MatInputModule} from "@angular/material/input";
 import { SearchResultsComponent } from './search-results/search-results.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { MyProfileComponent } from './my-profile/my-profile.component';
-
+import { AddToCartComponent } from './shared/add-to-cart/add-to-cart.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -52,32 +54,35 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
     NavbarComponent,
     SearchResultsComponent,
     MyProfileComponent,
+    AddToCartComponent,
+    CartComponent,
 
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatSidenavModule,
-        MatListModule,
-        MatButtonModule,
-        MatSelectModule,
-        SlickCarouselModule,
-        NgxUiLoaderModule,
-        MatCardModule,
-        NgbModule,
-        MatDialogModule,
-        MatMenuModule,
-        FontAwesomeModule,
-        MatAutocompleteModule,
-        MatInputModule,
-        MatCheckboxModule,
-        ReactiveFormsModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatSelectModule,
+    SlickCarouselModule,
+    NgxUiLoaderModule,
+    MatCardModule,
+    NgbModule,
+    MatDialogModule,
+    MatMenuModule,
+    FontAwesomeModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    MatCheckboxModule,
+    ReactiveFormsModule,
+    MatSnackBarModule,
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

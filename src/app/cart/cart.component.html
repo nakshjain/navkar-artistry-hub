@@ -1,0 +1,49 @@
+<div class="display">
+  <div class="header">
+    <div class="sub-header">
+      <div class="title">Your Cart</div>
+      <div><button (click)="continueShopping()">continue shopping</button></div>
+    </div>
+    <div class="product-header">
+      <div class="product">Product</div>
+      <div class="price">Price</div>
+      <div class="quantity">Quantity</div>
+      <div class="total">Total</div>
+    </div>
+  </div>
+  <hr>
+  <div class="cart">
+    <div *ngFor="let cartItem of cart">
+      <div class="product-header">
+        <div class="product">
+          <div class="image-container" (click)="goToProduct(cartItem.product)">
+            <img [src]="cartItem.product.imageLink" alt="{{cartItem.product.name}}" class="product-image">
+          </div>
+          <div class="product-name">
+            <button (click)="goToProduct(cartItem.product)">
+              {{cartItem.product.name}}
+            </button>
+            <div style="font-size: 80%">{{cartItem.product.subCategory.slice(0, -1)}}, {{cartItem.product.category}}</div>
+          </div>
+        </div>
+        <div class="price">Rs. {{cartItem.product.price}}</div>
+        <div class="quantity">
+          <button (click)="updateItem(cartItem,-1)">
+            <mat-icon style="vertical-align: middle;">remove</mat-icon>
+          </button>
+          <p>{{cartItem.quantity}}</p>
+          <button (click)="updateItem(cartItem)" [disabled]="cartItem.quantity===cartItem.product.quantity">
+            <mat-icon style="vertical-align: middle;">add</mat-icon>
+          </button>
+        </div>
+        <div class="total">{{cartItem.product.price*cartItem.quantity}}</div>
+        <div class="remove">
+          <button (click)="removeItem(cartItem.product)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+      <hr>
+    </div>
+  </div>
+</div>

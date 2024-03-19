@@ -23,7 +23,8 @@ export class GetQuoteComponent implements OnInit{
     category:'',
     subCategory:'',
     availability: '0',
-    price:''
+    price:0,
+    quantity:0
   };
 
   backgroundColor='#FFF0F5'

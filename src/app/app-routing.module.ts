@@ -14,6 +14,7 @@ import {ShopComponent} from "./shop/shop.component";
 import {authGuard} from "./security/auth.guard";
 import {MyProfileComponent} from "./my-profile/my-profile.component";
 import {roleGuard} from "./security/role.guard";
+import {CartComponent} from "./cart/cart.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'get-quote/:id', component: GetQuoteComponent},
   { path: 'add-product', canActivate:[authGuard,roleGuard], component: AddProductComponent},
   { path: 'my-profile', canActivate:[authGuard], component: MyProfileComponent},
+  { path: 'cart', canActivate:[authGuard], component: CartComponent},
 ];
 
 @NgModule({

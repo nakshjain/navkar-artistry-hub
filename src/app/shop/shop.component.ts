@@ -8,6 +8,7 @@ import {MatCheckboxChange} from "@angular/material/checkbox";
 import {ProductService} from "../api/product.service";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {categories, subCategories} from "../types/products-categories";
+import {CartService} from "../api/cart.service";
 
 @Component({
   selector: 'app-shop',
@@ -85,7 +86,11 @@ export class ShopComponent implements OnInit, OnChanges{
     this.getProducts()
   }
 
-  constructor(private ngxService:NgxUiLoaderService, private router: Router, private productService:ProductService, private activatedRoute: ActivatedRoute) {
+  constructor(private ngxService:NgxUiLoaderService,
+              private router: Router,
+              private productService:ProductService,
+              private activatedRoute: ActivatedRoute,
+              private cartService: CartService) {
   }
 
   getProducts(){
@@ -265,6 +270,7 @@ export class ShopComponent implements OnInit, OnChanges{
   }
 
   ngOnInit() {
+    let reloadTriggered=false
     this.ngxService.start()
     this.handleRouting()
     this.checkMobileView()
@@ -300,9 +306,4 @@ export class ShopComponent implements OnInit, OnChanges{
       this.getProducts()
     }
   }
-
-  addToCart(product: any){
-    console.log(product)
-  }
-
 }

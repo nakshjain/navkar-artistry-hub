@@ -54,9 +54,9 @@
                 <div class="product-name">{{product.name}}</div>
                 <div class="product-price">Rs. {{product.price}}.00</div>
               </div>
-              <div class="add-to-cart">
-                <button (click)="addToCart(product)">Add to cart</button>
-              </div>
+              <app-add-to-cart
+                [product]="product"
+              ></app-add-to-cart>
             </div>
           </ng-container>
         </div>

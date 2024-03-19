@@ -101,6 +101,11 @@ export class NavbarComponent implements OnInit{
 
   logOut() {
     this.isUserLoggedIn=false
+    this.userService.setLoggedIn(false)
+    const currentUrl=this.router.url
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate([currentUrl]);
+    });
     this.openLoginDialog()
     localStorage.removeItem('token')
   }
@@ -126,5 +131,9 @@ export class NavbarComponent implements OnInit{
 
   setAdmin(){
 
+  }
+
+  goToCart() {
+    this.router.navigate(['/cart'])
   }
 }

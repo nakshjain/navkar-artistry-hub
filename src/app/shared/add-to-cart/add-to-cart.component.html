@@ -1,0 +1,7 @@
+<div class="add-to-cart">
+  <button (click)="addToCart(product)" [disabled]="!isProductAvailable">Add to cart</button>
+</div>
+<div *ngIf="itemInCart" class="item-in-cart">
+  <p>{{itemInCart}} in cart - </p>
+  <button (click)="removeItem()">Remove</button>
+</div>

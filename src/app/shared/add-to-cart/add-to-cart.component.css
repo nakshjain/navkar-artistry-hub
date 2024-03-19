@@ -1,0 +1,20 @@
+.item-in-cart{
+  display: flex;
+  align-items: center;
+}
+.item-in-cart p{
+  font-size:80%;
+  font-weight: bold;
+  margin:0 1px
+}
+.item-in-cart button{
+  font-size: 80%;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: #007185;
+  font-weight: 300;
+}
+.item-in-cart button:hover{
+  color: #ec5050;
+}
