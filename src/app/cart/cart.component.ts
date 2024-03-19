@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CartService} from "../api/cart.service";
-import {CartProduct, Product} from "../types/products.types";
+import {CartItem, Product} from "../types/products.types";
 import {Router} from "@angular/router";
 import {UserService} from "../api/user.service";
 import {NgxUiLoaderService} from "ngx-ui-loader";
@@ -11,7 +11,8 @@ import {NgxUiLoaderService} from "ngx-ui-loader";
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit{
-  cart:CartProduct[]=[]
+  cart:CartItem[]=[]
+  totalAmount=0
 
   constructor(private router: Router, private cartService: CartService, private userService:UserService, private ngxService:NgxUiLoaderService,) {
 
@@ -27,6 +28,7 @@ export class CartComponent implements OnInit{
       (response)=>{
         this.cart=response.cart
         this.ngxService.stop()
+        this.getTotalAmount(this.cart)
       },(error)=>{
         console.log(error)
         this.ngxService.stop()
@@ -34,7 +36,7 @@ export class CartComponent implements OnInit{
     )
   }
 
-  updateItem(cartItem: CartProduct, quantity?: number){
+  updateItem(cartItem: CartItem, quantity?: number){
     this.ngxService.start()
     this.cartService.addToCart(cartItem.product,quantity).subscribe(
       (response)=>{
@@ -63,6 +65,15 @@ export class CartComponent implements OnInit{
       },(error)=>{
         console.log(error)
         this.ngxService.stop()
+      }
+    )
+  }
+
+  getTotalAmount(cartItems: CartItem[]){
+    this.totalAmount=0
+    cartItems.forEach(
+      (cartItem)=>{
+        this.totalAmount+=cartItem.product.price*cartItem.quantity
       }
     )
   }

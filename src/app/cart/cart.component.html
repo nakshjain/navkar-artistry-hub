@@ -4,83 +4,117 @@
       <div class="title">My Cart</div>
       <div><button (click)="continueShopping()">continue shopping</button></div>
     </div>
-    <div class="product-header">
-      <div class="product">Product</div>
-      <div class="price">Price</div>
-      <div class="quantity">Quantity</div>
-      <div class="total">Total</div>
-    </div>
   </div>
-  <hr>
   <div class="cart">
-    <div *ngFor="let cartItem of cart">
-      <div class="product-display">
-        <div class="product">
-          <div class="image-container" (click)="goToProduct(cartItem.product)">
-            <img [src]="cartItem.product.imageLink" alt="{{cartItem.product.name}}" class="product-image">
-          </div>
-          <div class="product-name">
-            <button (click)="goToProduct(cartItem.product)">
-              {{cartItem.product.name}}
-            </button>
-            <div style="font-size: 80%">{{cartItem.product.subCategory.slice(0, -1)}}, {{cartItem.product.category}}</div>
-          </div>
-        </div>
-        <div class="price">Rs. {{cartItem.product.price}}</div>
-        <div class="quantity">
-          <div class="quantity quantity-box">
-            <button (click)="updateItem(cartItem,-1)">
-              <mat-icon style="vertical-align: middle;">remove</mat-icon>
-            </button>
-            <p>{{cartItem.quantity}}</p>
-            <button (click)="updateItem(cartItem)" [disabled]="cartItem.quantity===cartItem.product.quantity">
-              <mat-icon style="vertical-align: middle;">add</mat-icon>
-            </button>
-          </div>
-        </div>
-        <div class="total">{{cartItem.product.price*cartItem.quantity}}</div>
-        <div class="remove">
-          <button (click)="removeItem(cartItem.product)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </div>
+    <div class="cart-display">
+      <div class="product-header">
+        <div class="product">Product</div>
+        <div class="price">Price</div>
+        <div class="quantity">Quantity</div>
+        <div class="total-per-product">Total</div>
       </div>
-      <div class="product-display-mobile">
-        <div class="image-container" (click)="goToProduct(cartItem.product)">
-          <img [src]="cartItem.product.imageLink" alt="{{cartItem.product.name}}" class="product-image">
-        </div>
-        <div class="details">
+      <hr>
+      <div *ngFor="let cartItem of cart">
+        <div class="product-display">
           <div class="product">
+            <div class="image-container" (click)="goToProduct(cartItem.product)">
+              <img [src]="cartItem.product.imageLink" alt="{{cartItem.product.name}}" class="product-image">
+            </div>
             <div class="product-name">
               <button (click)="goToProduct(cartItem.product)">
                 {{cartItem.product.name}}
               </button>
               <div style="font-size: 80%">{{cartItem.product.subCategory.slice(0, -1)}}, {{cartItem.product.category}}</div>
             </div>
-            <div class="price">Rs. {{cartItem.product.price}}</div>
           </div>
-          <div class="quantity-total">
-            <div class="quantity">
-              <div class="quantity-box">
-                <button (click)="updateItem(cartItem,-1)">
-                  <mat-icon style="vertical-align: middle;">remove</mat-icon>
-                </button>
-                <p>{{cartItem.quantity}}</p>
-                <button (click)="updateItem(cartItem)" [disabled]="cartItem.quantity===cartItem.product.quantity">
-                  <mat-icon style="vertical-align: middle;">add</mat-icon>
-                </button>
-              </div>
+          <div class="price">Rs. {{cartItem.product.price}}</div>
+          <div class="quantity">
+            <div class="quantity quantity-box">
+              <button (click)="updateItem(cartItem,-1)">
+                <mat-icon style="vertical-align: middle;">remove</mat-icon>
+              </button>
+              <p>{{cartItem.quantity}}</p>
+              <button (click)="updateItem(cartItem)" [disabled]="cartItem.quantity===cartItem.product.quantity">
+                <mat-icon style="vertical-align: middle;">add</mat-icon>
+              </button>
             </div>
-            <div class="total">Rs. {{cartItem.product.price*cartItem.quantity}}</div>
+          </div>
+          <div class="total-per-product">{{cartItem.product.price*cartItem.quantity}}</div>
+          <div class="remove">
+            <button (click)="removeItem(cartItem.product)">
+              <mat-icon>delete</mat-icon>
+            </button>
           </div>
         </div>
-        <div class="remove">
-          <button (click)="removeItem(cartItem.product)">
-            <mat-icon>close</mat-icon>
-          </button>
+        <div class="product-display-mobile">
+          <div class="image-container" (click)="goToProduct(cartItem.product)">
+            <img [src]="cartItem.product.imageLink" alt="{{cartItem.product.name}}" class="product-image">
+          </div>
+          <div class="details">
+            <div class="product">
+              <div class="product-name">
+                <button (click)="goToProduct(cartItem.product)">
+                  {{cartItem.product.name}}
+                </button>
+                <div style="font-size: 80%">{{cartItem.product.subCategory.slice(0, -1)}}, {{cartItem.product.category}}</div>
+              </div>
+              <div class="price">Rs. {{cartItem.product.price}}</div>
+            </div>
+            <div class="quantity-total">
+              <div class="quantity">
+                <div class="quantity-box">
+                  <button (click)="updateItem(cartItem,-1)">
+                    <mat-icon style="vertical-align: middle;">remove</mat-icon>
+                  </button>
+                  <p>{{cartItem.quantity}}</p>
+                  <button (click)="updateItem(cartItem)" [disabled]="cartItem.quantity===cartItem.product.quantity">
+                    <mat-icon style="vertical-align: middle;">add</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <div class="total-per-product">Rs. {{cartItem.product.price*cartItem.quantity}}</div>
+            </div>
+          </div>
+          <div class="remove">
+            <button (click)="removeItem(cartItem.product)">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+    <div class="summary-display">
+      <div class="summary-header">
+        Order Summary
+      </div>
+      <div class="summary">
+        <div class="sub-total">
+          <div class="sub-total-header">
+            Total
+          </div>
+          <div class="sub-total-amount">
+            Rs. {{totalAmount}}.00
+          </div>
+        </div>
+        <div>
+          Delivery Charges
         </div>
       </div>
-      <hr>
+      <div>
+        Have Coupon
+      </div>
+      <div class="total">
+        <div class="total-header">
+          Total
+        </div>
+        <div class="total-amount">
+          Rs. {{totalAmount}}.00
+        </div>
+      </div>
+      <div class="checkout">
+        <button>CHECKOUT</button>
+      </div>
     </div>
   </div>
 </div>

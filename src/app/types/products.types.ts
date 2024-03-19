@@ -18,7 +18,7 @@ export interface Category{
   name: string
   link: string
 }
-export interface CartProduct{
+export interface CartItem {
   product: Product
   quantity: number
 }

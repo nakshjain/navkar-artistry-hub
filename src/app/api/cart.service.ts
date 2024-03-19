@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import {CartProduct} from "../types/products.types";
-import {UserService} from "./user.service";
+import {CartItem} from "../types/products.types";
 import {HttpClient} from "@angular/common/http";
 import {BASE_URL} from "./config";
 
@@ -47,7 +46,7 @@ export class CartService {
 
   initializeCart() {
     if (!localStorage.getItem('cart')) {
-      const initialCartData:CartProduct[] = [];
+      const initialCartData:CartItem[] = [];
       localStorage.setItem('cart', JSON.stringify(initialCartData));
     }
   }

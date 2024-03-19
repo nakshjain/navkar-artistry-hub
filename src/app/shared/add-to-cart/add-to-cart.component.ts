@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CartService} from "../../api/cart.service";
-import {CartProduct} from "../../types/products.types";
+import {CartItem} from "../../types/products.types";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
 
 @Component({
@@ -54,7 +54,7 @@ export class AddToCartComponent implements OnInit{
     )
   }
 
-  checkIfAvailable(cartItem:CartProduct){
+  checkIfAvailable(cartItem:CartItem){
     this.itemInCart=cartItem.quantity
     return !(cartItem.quantity === cartItem.product.quantity);
   }
