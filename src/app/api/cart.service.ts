@@ -10,7 +10,7 @@ import {BASE_URL} from "./config";
 export class CartService {
   private baseUrl =BASE_URL
   user:any
-  constructor(private http:HttpClient, private userService: UserService){ }
+  constructor(private http:HttpClient){ }
 
   getCartProducts(){
     return this.http.get<any>(`${this.baseUrl}/getCart`)

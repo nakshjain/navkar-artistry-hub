@@ -89,8 +89,7 @@ export class ShopComponent implements OnInit, OnChanges{
   constructor(private ngxService:NgxUiLoaderService,
               private router: Router,
               private productService:ProductService,
-              private activatedRoute: ActivatedRoute,
-              private cartService: CartService) {
+              private activatedRoute: ActivatedRoute) {
   }
 
   getProducts(){
@@ -270,7 +269,6 @@ export class ShopComponent implements OnInit, OnChanges{
   }
 
   ngOnInit() {
-    let reloadTriggered=false
     this.ngxService.start()
     this.handleRouting()
     this.checkMobileView()

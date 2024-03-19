@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CartService} from "../api/cart.service";
-import {ProductService} from "../api/product.service";
 import {CartProduct, Product} from "../types/products.types";
 import {Router} from "@angular/router";
-import {response} from "express";
 import {UserService} from "../api/user.service";
 
 @Component({
