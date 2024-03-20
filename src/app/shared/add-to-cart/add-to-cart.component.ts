@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {CartService} from "../../api/cart.service";
 import {CartItem} from "../../types/products.types";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
+import {AuthService} from "../../api/auth.service";
 
 @Component({
   selector: 'app-add-to-cart',
@@ -15,9 +16,17 @@ export class AddToCartComponent implements OnInit{
   isProductAvailable=true
   itemInCart=0
   isProductAdding=false
-  constructor(private cartService:CartService, private snackBar:MatSnackBar) {
+  isUserLoggedIn=false
+  constructor(private cartService:CartService,
+              private authService:AuthService,
+              private snackBar:MatSnackBar) {
   }
 
+  ngOnInit(){
+    this.authService.isLoggedIn.subscribe((loggedIn: boolean) => {
+      this.isUserLoggedIn = loggedIn;
+    });
+  }
   openSnackBar(message: string, action: string): void {
     const config = new MatSnackBarConfig();
     config.duration = 3000;
@@ -26,35 +35,50 @@ export class AddToCartComponent implements OnInit{
 
     this.snackBar.open(message, action, config)
   }
-  ngOnInit(){
-  }
-  addToCart(product: any){
-    this.isProductAdding=true
-    this.cartService.addToCart(product).subscribe(
-      (data)=>{
-        this.openSnackBar('Item Added!', 'Success');
-        this.isProductAdding=false
-        this.cartItem=data.cart
-        this.isProductAvailable=this.checkIfAvailable(this.cartItem)
-      },(error)=>{
-        this.openSnackBar('Failed to add!', 'Error');
-        this.isProductAdding=false
-        console.log(error)
-      }
-    )
+
+  addToCart(){
+    if(this.isUserLoggedIn){
+      this.isProductAdding=true
+      this.cartService.addToCart(this.product).subscribe(
+        (data)=>{
+          this.openSnackBar('Item Added!', 'Success');
+          this.isProductAdding=false
+          this.cartItem=data.cart
+          this.isProductAvailable=this.checkIfAvailable(this.cartItem)
+        },(error)=>{
+          this.openSnackBar('Failed to add!', 'Error');
+          this.isProductAdding=false
+          console.log(error)
+        }
+      )
+    }
+    else{
+      this.cartService.addToCartUserNotLogged(this.product)
+      this.itemInCart=this.cartService.getCartItemQuantity(this.product)
+      this.isProductAvailable=this.product.quantity>this.itemInCart
+      this.openSnackBar('Item Added!', 'Success');
+    }
   }
 
   removeItem() {
-    this.cartService.removeFromCart(this.product).subscribe(
-      (response)=>{
-        this.openSnackBar('Item Removed from Cart', 'Success');
-        this.isProductAvailable=true
-        this.itemInCart=0
-      },(error)=>{
-        this.openSnackBar('Failed to Remove from Cart!', 'Error');
-        console.log(error)
-      }
-    )
+    if(this.isUserLoggedIn){
+      this.cartService.removeFromCart(this.product).subscribe(
+        (response)=>{
+          this.openSnackBar('Item Removed from Cart', 'Success');
+          this.isProductAvailable=true
+          this.itemInCart=0
+        },(error)=>{
+          this.openSnackBar('Failed to Remove from Cart!', 'Error');
+          console.log(error)
+        }
+      )
+    }
+    else {
+      this.cartService.removeFromCartUserNotLogged(this.product)
+      this.openSnackBar('Item Removed from Cart', 'Success');
+      this.itemInCart=this.cartService.getCartItemQuantity(this.product)
+      this.isProductAvailable=this.product.quantity>this.itemInCart
+    }
   }
 
   checkIfAvailable(cartItem:CartItem){

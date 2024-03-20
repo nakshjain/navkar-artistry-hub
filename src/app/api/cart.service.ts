@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {CartItem} from "../types/products.types";
+import {CartItem, Product} from "../types/products.types";
 import {HttpClient} from "@angular/common/http";
 import {BASE_URL} from "./config";
 
@@ -22,38 +22,65 @@ export class CartService {
     return this.http.post<any>(`${this.baseUrl}/removeFromCart`,cartProduct)
   }
 
-  // addToCartUserNotLogged(productId:string){
-  //   this.initializeCart()
-  //   this.userService.getUserDetails().subscribe(
-  //     (user)=>{
-  //       this.user=user
-  //     },(error)=>{
-  //       console.log(error)
-  //     }
-  //   )
-  //   let cart : CartProduct[]=JSON.parse(localStorage.getItem('cart') || '[]')
-  //   let index=cart.findIndex(cartItem => cartItem.productId === productId)
-  //   if(index===-1){
-  //     let cartItem:CartProduct={productId:productId,quantity:1}
-  //     cart.push(cartItem)
-  //   }
-  //   else{
-  //     cart[index].quantity+=1
-  //   }
-  //   localStorage.setItem('cart', JSON.stringify(cart));
-  //   console.log(cart)
-  // }
-
-  initializeCart() {
+  mergeCart(cart: any, email: any){
+    return this.http.post<any>(`${this.baseUrl}/mergeCart`,{ cart: cart, email: email })
+  }
+  getCartProductsUserNotLogged(){
+    let cart: CartItem[] = JSON.parse(localStorage.getItem('cart') || '[]');
+    return cart
+  }
+  initializeCartUserNotLogged() {
     if (!localStorage.getItem('cart')) {
       const initialCartData:CartItem[] = [];
       localStorage.setItem('cart', JSON.stringify(initialCartData));
     }
   }
 
-  // getCartItemQuantity(productId: string): number {
-  //   let cart: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
-    // let cartItem = cart.find(item => item.productId === productId);
-    // return cartItem ? cartItem.quantity : 0;
-  // }
+  getCartItemQuantity(cartProduct: Product): number {
+    let cart: CartItem[] = JSON.parse(localStorage.getItem('cart') || '[]');
+    let index=cart.findIndex(cartItem => cartItem.product.productId === cartProduct.productId)
+    if(index!==-1){
+      return cart[index].quantity
+    }
+    else{
+      return 0
+    }
+  }
+
+  addToCartUserNotLogged(cartProduct: Product, quantityToAdd?: Number){
+    this.initializeCartUserNotLogged()
+    let cart : CartItem[]=JSON.parse(localStorage.getItem('cart') || '[]')
+    let index=cart.findIndex(cartItem => cartItem.product.productId === cartProduct.productId)
+    if(index!==-1){
+      if(quantityToAdd===-1){
+        cart[index].quantity-=1
+        if(cart[index].quantity<=0){
+          cart.splice(index,1)
+        }
+      }else{
+        if(this.getCartItemQuantity(cartProduct)<cartProduct.quantity){
+          cart[index].quantity+=1
+        }
+        else{
+          cart[index].quantity=cartProduct.quantity
+        }
+      }
+    }
+    else{
+      if(this.getCartItemQuantity(cartProduct)<cartProduct.quantity){
+        let cartItem:CartItem={product:cartProduct,quantity:1}
+        cart.push(cartItem)
+      }
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
+
+  removeFromCartUserNotLogged(cartProduct: Product){
+    let cart : CartItem[]=JSON.parse(localStorage.getItem('cart') || '[]')
+    let index=cart.findIndex(cartItem => cartItem.product.productId === cartProduct.productId)
+    if(index!==-1){
+      cart.splice(index,1)
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
 }

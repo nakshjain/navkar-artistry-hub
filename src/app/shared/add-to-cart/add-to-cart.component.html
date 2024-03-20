@@ -1,7 +1,7 @@
 <div class="spinner" *ngIf="isProductAdding"></div>
 <div *ngIf="!isProductAdding">
   <div class="add-to-cart">
-    <button (click)="addToCart(product)" [disabled]="!isProductAvailable">Add to cart</button>
+    <button (click)="addToCart()" [disabled]="!isProductAvailable">Add to cart</button>
   </div>
   <div *ngIf="itemInCart" class="item-in-cart">
     <p>{{itemInCart}} in cart - </p>

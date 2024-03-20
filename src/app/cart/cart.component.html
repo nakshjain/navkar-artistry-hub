@@ -133,8 +133,11 @@
           Rs. {{totalAmount}}.00
         </div>
       </div>
-      <div class="checkout">
+      <div class="checkout" *ngIf="isUserLoggedIn">
         <button>CHECKOUT</button>
+      </div>
+      <div class="checkout" *ngIf="!isUserLoggedIn">
+        <button (click)="openLoginDialog()">LOGIN TO CHECKOUT</button>
       </div>
     </div>
   </div>

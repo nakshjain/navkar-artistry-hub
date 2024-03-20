@@ -4,6 +4,7 @@ import {NgxUiLoaderService} from "ngx-ui-loader";
 import {FormBuilder, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {UserService} from "../api/user.service";
+import {CartService} from "../api/cart.service";
 
 @Component({
   selector: 'app-login',
@@ -32,6 +33,7 @@ export class LoginComponent implements OnInit{
   constructor(private ngxService:NgxUiLoaderService,
               private authService: AuthService,
               private userService: UserService,
+              private cartService: CartService,
               private fb:FormBuilder,
               private router:Router) {
     this.checkViewPort()
@@ -79,11 +81,8 @@ export class LoginComponent implements OnInit{
 
   onGenerateOTP(){
     this.ngxService.start()
-    console.log(this.signUpForm.value)
-    console.log(this.signUpForm.valid)
     this.authService.sendOTP(this.signUpForm.value).subscribe(
       (response)=>{
-        console.log(response)
         this.responseText=response.message
         this.isSignUpFieldsLock=true
         this.ngxService.stop()
@@ -106,7 +105,6 @@ export class LoginComponent implements OnInit{
     this.authService.signUpUser(this.signUpForm.value).subscribe(
       (response)=>{
         this.ngxService.stop()
-        console.log(response)
         this.responseText=response.message
         this.clearSignUpFormData()
       },error => {
@@ -118,11 +116,15 @@ export class LoginComponent implements OnInit{
   }
 
   onLogin() {
+    let isLogged=false
     this.ngxService.start()
     this.authService.loginUser(this.loginForm.value, this.isRememberMeChecked).subscribe(
       (response)=>{
         this.ngxService.stop()
+        isLogged=true
         this.setLoginDetails(response)
+        const email=this.loginForm.value.email
+        this.mergeCart(email)
       },error => {
         this.ngxService.stop()
         this.responseText=error.error.message
@@ -130,6 +132,16 @@ export class LoginComponent implements OnInit{
     )
   }
 
+  mergeCart(email: any){
+    const cart=this.cartService.getCartProductsUserNotLogged()
+    this.cartService.mergeCart(cart, email).subscribe(
+      (response)=>{
+        localStorage.removeItem('cart')
+      },(err)=>{
+        console.log(err)
+      }
+    )
+  }
   updateRememberMe(){
     this.isRememberMeChecked=!this.isRememberMeChecked
   }
