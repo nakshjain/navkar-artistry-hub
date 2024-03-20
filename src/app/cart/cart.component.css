@@ -86,14 +86,22 @@ button{
   width: 100%;
   padding: 2% 5%;
 }
-.sub-total{
+.charge{
   display: flex;
+  margin: 1.5% 0;
 }
-.sub-total-header{
+.charge-header{
   flex:1;
 }
-.sub-total-amount{
+.charge-amount{
   right: 0;
+  display: flex;
+}
+.charge-amount p{
+  margin-bottom: 0;
+}
+.apply-coupon button{
+  color: indianred;
 }
 .total{
   width: 100%;
@@ -115,13 +123,22 @@ button{
   width: 100%;
 }
 .checkout button{
-  height: 220%;
+  height: 44px;
   width: 100%;
   color: white;
   font-weight: 400;
   background-color: green;
 }
 @media(max-width: 768px){
+  .cart{
+    display: block;
+  }
+  .cart-display{
+    width: 100%;
+  }
+  .summary-display{
+    width: 100%;
+  }
   .product-header{
     display: none;
   }

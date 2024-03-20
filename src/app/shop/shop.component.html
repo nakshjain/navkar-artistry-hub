@@ -54,9 +54,11 @@
                 <div class="product-name">{{product.name}}</div>
                 <div class="product-price">Rs. {{product.price}}.00</div>
               </div>
-              <app-add-to-cart
-                [product]="product"
-              ></app-add-to-cart>
+              <div *ngIf="product.availability">
+                <app-add-to-cart
+                  [product]="product"
+                ></app-add-to-cart>
+              </div>
             </div>
           </ng-container>
         </div>

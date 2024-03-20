@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'get-quote/:id', component: GetQuoteComponent},
   { path: 'add-product', canActivate:[authGuard,roleGuard], component: AddProductComponent},
   { path: 'my-profile', canActivate:[authGuard], component: MyProfileComponent},
-  { path: 'cart', canActivate:[authGuard], component: CartComponent},
+  { path: 'cart', component: CartComponent},
 ];
 
 @NgModule({

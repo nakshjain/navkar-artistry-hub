@@ -14,6 +14,7 @@ export class AddToCartComponent implements OnInit{
   cartItem:any
   isProductAvailable=true
   itemInCart=0
+  isProductAdding=false
   constructor(private cartService:CartService, private snackBar:MatSnackBar) {
   }
 
@@ -28,14 +29,16 @@ export class AddToCartComponent implements OnInit{
   ngOnInit(){
   }
   addToCart(product: any){
-    console.log(product)
+    this.isProductAdding=true
     this.cartService.addToCart(product).subscribe(
       (data)=>{
         this.openSnackBar('Item Added!', 'Success');
+        this.isProductAdding=false
         this.cartItem=data.cart
         this.isProductAvailable=this.checkIfAvailable(this.cartItem)
       },(error)=>{
         this.openSnackBar('Failed to add!', 'Error');
+        this.isProductAdding=false
         console.log(error)
       }
     )

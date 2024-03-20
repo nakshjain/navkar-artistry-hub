@@ -3,8 +3,8 @@
     <div class="form-container sign-in" *ngIf="isMobileViewLogin || !isMobileView">
       <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
         <h1>Sign In</h1>
-        <input type="email" formControlName="email" placeholder="Email" [class.invalid]="isInvalidLogin('email')">
-        <input type="password" formControlName="password" placeholder="Password" [class.invalid]="isInvalidLogin('password')">
+        <input type="email" formControlName="email" placeholder="Email" autocomplete="username" [class.invalid]="isInvalidLogin('email')">
+        <input type="password" formControlName="password" placeholder="Password" autocomplete="current-password" [class.invalid]="isInvalidLogin('password')">
         <mat-checkbox (click)="updateRememberMe()">Remember me</mat-checkbox>
         <span *ngIf="responseText">{{ responseText }}</span>
         <a href="#">→ Forget Your Password? ←</a>
@@ -16,8 +16,8 @@
       <form [formGroup]="signUpForm" (ngSubmit)="onRegister()">
         <h1>Create Account</h1>
         <input type="text" formControlName="name" placeholder="Name" [readonly]="isSignUpFieldsLock" [class.invalid]="isInvalidSignUp('name')">
-        <input type="email" formControlName="email" placeholder="Email" [readonly]="isSignUpFieldsLock" [class.invalid]="isInvalidSignUp('email')">
-        <input type="password" formControlName="password" placeholder="Password" [readonly]="isSignUpFieldsLock" [class.invalid]="isInvalidSignUp('password')">
+        <input type="email" formControlName="email" placeholder="Email" autocomplete="username" [readonly]="isSignUpFieldsLock" [class.invalid]="isInvalidSignUp('email')">
+        <input type="password" formControlName="password" placeholder="Password" autocomplete="new-password" [readonly]="isSignUpFieldsLock" [class.invalid]="isInvalidSignUp('password')">
         <button type="button" class="edit-details" *ngIf="isSignUpFieldsLock" (click)="editDetails()">Edit Details</button>
         <div class="generate-OTP">
           <button type="button" class="generate-OTP-button" (click)="onGenerateOTP()" [disabled]="!signUpForm.get('name')?.valid || !signUpForm.get('email')?.valid || !signUpForm.get('password')?.valid">Generate OTP</button>

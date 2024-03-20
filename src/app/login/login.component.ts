@@ -2,6 +2,7 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {UserService} from "../api/user.service";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {FormBuilder, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -29,7 +30,8 @@ export class LoginComponent implements OnInit{
 
   constructor(private ngxService:NgxUiLoaderService,
               private userService: UserService,
-              private fb:FormBuilder) {
+              private fb:FormBuilder,
+              private router:Router) {
     this.checkViewPort()
   }
 
@@ -115,15 +117,11 @@ export class LoginComponent implements OnInit{
   }
 
   onLogin() {
-    console.log(this.isRememberMeChecked)
     this.ngxService.start()
     this.userService.loginUser(this.loginForm.value, this.isRememberMeChecked).subscribe(
       (response)=>{
         this.ngxService.stop()
-        this.userService.setToken()
-        this.userService.setUserLoggedIn(response.user)
-        this.userService.setLoggedIn(true)
-        this.userService.setAdmin(response.user.role.includes('admin'))
+        this.setLoginDetails(response)
       },error => {
         this.ngxService.stop()
         this.responseText=error.error.message
@@ -137,12 +135,22 @@ export class LoginComponent implements OnInit{
 
   toggleMobileView() {
     this.isMobileViewLogin=!this.isMobileViewLogin
-    console.log(this.isMobileViewLogin)
   }
 
   toggleSignIn(){
     this.isSignInVisible = !this.isSignInVisible;
     this.responseText=''
+  }
+
+  setLoginDetails(response: any){
+    this.userService.setToken()
+    this.userService.setUserLoggedIn(response.user)
+    this.userService.setLoggedIn(true)
+    this.userService.setAdmin(response.user.role.includes('admin'))
+    const currentUrl=this.router.url
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate([currentUrl]);
+    });
   }
 }
 

@@ -5,7 +5,7 @@
       <div><button (click)="continueShopping()">continue shopping</button></div>
     </div>
   </div>
-  <div class="cart">
+  <div class="cart" *ngIf="cart.length!==0">
     <div class="cart-display">
       <div class="product-header">
         <div class="product">Product</div>
@@ -89,20 +89,41 @@
         Order Summary
       </div>
       <div class="summary">
-        <div class="sub-total">
-          <div class="sub-total-header">
-            Total
+        <div class="charge">
+          <div class="charge-header">
+            Sub Total
           </div>
-          <div class="sub-total-amount">
+          <div class="charge-amount">
             Rs. {{totalAmount}}.00
           </div>
         </div>
-        <div>
-          Delivery Charges
+        <div class="charge">
+          <div class="charge-header">
+            Coupon Discount
+          </div>
+          <div class="charge-amount">
+            <div class="apply-coupon"><button>Apply Coupon</button></div>
+            <div></div>
+          </div>
         </div>
-      </div>
-      <div>
-        Have Coupon
+        <div class="charge">
+          <div class="charge-header">
+            Platform Fee
+          </div>
+          <div class="charge-amount">
+            <p style="text-decoration: line-through;margin-right: 3px">Rs. 79.00 </p>
+            <p style="color: forestgreen; right:0">Free !</p>
+          </div>
+        </div>
+        <div class="charge">
+          <div class="charge-header">
+            Shipping
+          </div>
+          <div class="charge-amount">
+            <p style="text-decoration: line-through;margin-right: 3px">Rs. 109.00 </p>
+            <p style="color: forestgreen; right:0">Free!</p>
+          </div>
+        </div>
       </div>
       <div class="total">
         <div class="total-header">

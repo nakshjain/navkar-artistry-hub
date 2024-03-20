@@ -4,6 +4,7 @@ import {CartItem, Product} from "../types/products.types";
 import {Router} from "@angular/router";
 import {UserService} from "../api/user.service";
 import {NgxUiLoaderService} from "ngx-ui-loader";
+import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-cart',
@@ -14,7 +15,11 @@ export class CartComponent implements OnInit{
   cart:CartItem[]=[]
   totalAmount=0
 
-  constructor(private router: Router, private cartService: CartService, private userService:UserService, private ngxService:NgxUiLoaderService,) {
+  constructor(private router: Router,
+              private cartService: CartService,
+              private userService:UserService,
+              private ngxService:NgxUiLoaderService,
+              private snackBar: MatSnackBar) {
 
   }
 
@@ -45,6 +50,8 @@ export class CartComponent implements OnInit{
       },(error)=>{
         this.ngxService.stop()
         console.log(error)
+        this.openSnackBar(error.error.message, 'Error !')
+        this.getCart()
       }
     )
   }
@@ -60,10 +67,12 @@ export class CartComponent implements OnInit{
     this.ngxService.start()
     this.cartService.removeFromCart(product).subscribe(
       (response)=>{
+        this.openSnackBar(response.message, 'Success !')
         this.getCart()
         this.ngxService.stop()
       },(error)=>{
         console.log(error)
+        this.openSnackBar(error.error.message, 'Error !')
         this.ngxService.stop()
       }
     )
@@ -76,5 +85,15 @@ export class CartComponent implements OnInit{
         this.totalAmount+=cartItem.product.price*cartItem.quantity
       }
     )
+  }
+
+
+  openSnackBar(message: string, action: string): void {
+    const config = new MatSnackBarConfig();
+    config.duration = 3000;
+    config.horizontalPosition = 'center';
+    config.verticalPosition = 'top';
+
+    this.snackBar.open(message, action, config)
   }
 }

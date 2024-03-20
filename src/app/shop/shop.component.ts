@@ -9,6 +9,7 @@ import {ProductService} from "../api/product.service";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {categories, subCategories} from "../types/products-categories";
 import {CartService} from "../api/cart.service";
+import {Product} from "../types/products.types";
 
 @Component({
   selector: 'app-shop',
@@ -26,7 +27,7 @@ export class ShopComponent implements OnInit, OnChanges{
 
   showOutOfStock=false
 
-  products: any[]=[]
+  products: Product[]=[]
   categoriesToDisplay:string[]=[]
   categories=categories
   subCategories=subCategories
