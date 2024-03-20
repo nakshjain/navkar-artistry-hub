@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginComponent} from "../login/login.component";
 import {MatDialog} from "@angular/material/dialog";
-import {UserService} from "../api/user.service";
+import {AuthService} from "../api/auth.service";
 import {auto} from "@popperjs/core";
 import {Product} from "../types/products.types";
 import {Router} from "@angular/router";
 import {categories, subCategories} from "../types/products-categories";
+import {UserService} from "../api/user.service";
 
 @Component({
   selector: 'app-navbar',
@@ -64,11 +65,14 @@ export class NavbarComponent implements OnInit{
     }
   }
 
-  constructor(private matDialog: MatDialog,private userService: UserService,private router: Router) {
+  constructor(private matDialog: MatDialog,
+              private authService: AuthService,
+              private userService: UserService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
-    this.userService.isLoggedIn.subscribe((loggedIn: boolean) => {
+    this.authService.isLoggedIn.subscribe((loggedIn: boolean) => {
       this.isUserLoggedIn = loggedIn;
       this.openLoginDialog()
     });
@@ -87,9 +91,9 @@ export class NavbarComponent implements OnInit{
           this.user=user
           this.isUserLoggedIn=true;
           this.userService.setUserLoggedIn(user)
-          this.userService.setLoggedIn(true)
+          this.authService.setLoggedIn(true)
           this.isUserAdmin=this.user.role.includes('admin')
-          this.userService.setAdmin(this.user.role.includes('admin'))
+          this.authService.setAdmin(this.user.role.includes('admin'))
           this.userInitial=this.user.name[0]
           this.openLoginDialog()
         },(err)=>{
@@ -101,7 +105,7 @@ export class NavbarComponent implements OnInit{
 
   logOut() {
     this.isUserLoggedIn=false
-    this.userService.setLoggedIn(false)
+    this.authService.setLoggedIn(false)
     const currentUrl=this.router.url
     this.matDialog.closeAll()
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {

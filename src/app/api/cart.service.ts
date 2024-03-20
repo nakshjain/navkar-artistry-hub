@@ -7,7 +7,7 @@ import {BASE_URL} from "./config";
   providedIn: 'root'
 })
 export class CartService {
-  private baseUrl =BASE_URL
+  private baseUrl =BASE_URL+'/cart'
   user:any
   constructor(private http:HttpClient){ }
 

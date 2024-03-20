@@ -1,8 +1,9 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {UserService} from "../api/user.service";
+import {AuthService} from "../api/auth.service";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {FormBuilder, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {UserService} from "../api/user.service";
 
 @Component({
   selector: 'app-login',
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit{
   });
 
   constructor(private ngxService:NgxUiLoaderService,
+              private authService: AuthService,
               private userService: UserService,
               private fb:FormBuilder,
               private router:Router) {
@@ -79,7 +81,7 @@ export class LoginComponent implements OnInit{
     this.ngxService.start()
     console.log(this.signUpForm.value)
     console.log(this.signUpForm.valid)
-    this.userService.sendOTP(this.signUpForm.value).subscribe(
+    this.authService.sendOTP(this.signUpForm.value).subscribe(
       (response)=>{
         console.log(response)
         this.responseText=response.message
@@ -101,7 +103,7 @@ export class LoginComponent implements OnInit{
 
   onRegister() {
     this.ngxService.start()
-    this.userService.signUpUser(this.signUpForm.value).subscribe(
+    this.authService.signUpUser(this.signUpForm.value).subscribe(
       (response)=>{
         this.ngxService.stop()
         console.log(response)
@@ -109,7 +111,6 @@ export class LoginComponent implements OnInit{
         this.clearSignUpFormData()
       },error => {
         this.ngxService.stop()
-
         console.log(error)
         this.responseText=error.error.message
       }
@@ -118,7 +119,7 @@ export class LoginComponent implements OnInit{
 
   onLogin() {
     this.ngxService.start()
-    this.userService.loginUser(this.loginForm.value, this.isRememberMeChecked).subscribe(
+    this.authService.loginUser(this.loginForm.value, this.isRememberMeChecked).subscribe(
       (response)=>{
         this.ngxService.stop()
         this.setLoginDetails(response)
@@ -143,10 +144,10 @@ export class LoginComponent implements OnInit{
   }
 
   setLoginDetails(response: any){
-    this.userService.setToken()
+    this.authService.setToken()
     this.userService.setUserLoggedIn(response.user)
-    this.userService.setLoggedIn(true)
-    this.userService.setAdmin(response.user.role.includes('admin'))
+    this.authService.setLoggedIn(true)
+    this.authService.setAdmin(response.user.role.includes('admin'))
     const currentUrl=this.router.url
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
       this.router.navigate([currentUrl]);

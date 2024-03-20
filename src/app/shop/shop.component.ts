@@ -8,7 +8,6 @@ import {MatCheckboxChange} from "@angular/material/checkbox";
 import {ProductService} from "../api/product.service";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {categories, subCategories} from "../types/products-categories";
-import {CartService} from "../api/cart.service";
 import {Product} from "../types/products.types";
 
 @Component({

@@ -39,7 +39,7 @@
               </button>
             </div>
           </div>
-          <div class="total-per-product">{{cartItem.product.price*cartItem.quantity}}</div>
+          <div class="total-per-product">Rs. {{cartItem.product.price*cartItem.quantity}}</div>
           <div class="remove">
             <button (click)="removeItem(cartItem.product)">
               <mat-icon>delete</mat-icon>

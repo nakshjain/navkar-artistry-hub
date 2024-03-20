@@ -8,7 +8,7 @@ import {BASE_URL} from "./config";
   providedIn: 'root',
 })
 export class ProductService {
-  private baseUrl = BASE_URL
+  private baseUrl = BASE_URL+'/product'
 
   constructor(private http: HttpClient) {
   }

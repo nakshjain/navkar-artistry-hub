@@ -1,10 +1,10 @@
 import {CanActivateFn, Router} from '@angular/router';
 import {inject} from "@angular/core";
-import {UserService} from "../api/user.service";
+import {AuthService} from "../api/auth.service";
 import {map} from "rxjs";
 
 export const roleGuard: CanActivateFn = (route, state) => {
-  const userService=inject(UserService)
+  const userService=inject(AuthService)
   const router=inject(Router)
   return userService.isAdmin.pipe(
     map(res=>{

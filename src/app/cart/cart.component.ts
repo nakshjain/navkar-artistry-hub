@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CartService} from "../api/cart.service";
 import {CartItem, Product} from "../types/products.types";
 import {Router} from "@angular/router";
-import {UserService} from "../api/user.service";
+import {AuthService} from "../api/auth.service";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
 
@@ -17,7 +17,7 @@ export class CartComponent implements OnInit{
 
   constructor(private router: Router,
               private cartService: CartService,
-              private userService:UserService,
+              private userService:AuthService,
               private ngxService:NgxUiLoaderService,
               private snackBar: MatSnackBar) {
 
