@@ -96,7 +96,7 @@ export class NavbarComponent implements OnInit{
           this.authService.setAdmin(this.user.role.includes('admin'))
           this.userInitial=this.user.name[0]
           this.openLoginDialog()
-        },(err)=>{
+        },(error)=>{
           this.isUserLoggedIn=false;
         }
       )

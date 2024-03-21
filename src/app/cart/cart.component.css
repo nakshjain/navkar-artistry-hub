@@ -6,6 +6,7 @@ button{
 .display{
   font-family: 'Poppins', sans-serif;
   padding: 2%;
+  min-height: 80vh;
 }
 .title{
   flex: 1;
@@ -129,6 +130,10 @@ button{
   font-weight: 400;
   background-color: green;
 }
+.empty-cart{
+  margin-top: 2%;
+  text-align: center;
+}
 @media(max-width: 768px){
   .cart{
     display: block;
@@ -186,5 +191,8 @@ button{
     right:0;
     align-self: flex-start;
     justify-content: right;
+  }
+  .empty-cart{
+    margin-top: 15%;
   }
 }
