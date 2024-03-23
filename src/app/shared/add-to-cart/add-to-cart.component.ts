@@ -12,6 +12,8 @@ import {AuthService} from "../../api/auth.service";
 export class AddToCartComponent implements OnInit{
   @Input()
   product: any
+  @Input()
+  title='Add to Cart'
   cartItem:any
   isProductAvailable=true
   itemInCart=0

@@ -42,6 +42,7 @@ import { AddressBookComponent } from './account/address-book/address-book.compon
 import { ProfileComponent } from './account/profile/profile.component';
 import { AddAddressComponent } from './account/address-book/add-address/add-address.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
+import { AddToWishlistComponent } from './shared/add-to-wishlist/add-to-wishlist.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { WishlistComponent } from './wishlist/wishlist.component';
     ProfileComponent,
     AddressBookComponent,
     AddAddressComponent,
-    WishlistComponent
+    WishlistComponent,
+    AddToWishlistComponent
   ],
   imports: [
     BrowserModule,

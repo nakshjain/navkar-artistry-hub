@@ -1,1 +1,43 @@
-<p>wishlist works!</p>
+<div class="display">
+  <div>
+
+  </div>
+  <div class="header">
+    <div class="title">My Wishlist</div>
+    <div>
+      <button (click)="continueShopping()">
+        continue shopping
+      </button>
+    </div>
+  </div>
+  <div class="sub-header" *ngIf="wishlist.length!==0">
+    {{wishlist.length}}
+    <span *ngIf="wishlist.length===1">Item</span>
+    <span *ngIf="wishlist.length!==1">Items</span>
+  </div>
+
+  <div class="wishlist">
+    <ng-container *ngFor="let product of wishlist">
+      <div class="product">
+        <div class="image-container">
+          <img (click)="viewProductDetails(product.productId)" [src]="product.imageLink" class="product-image" alt="{{ product.name }}" />
+        </div>
+        <div class="product-description">
+          <div class="product-name">{{product.name}}</div>
+          <div class="product-price">Rs. {{product.price}}.00</div>
+        </div>
+        <div class="edit-product">
+          <div *ngIf="product.availability">
+            <app-add-to-cart
+              [title]="'Move to Cart'"
+              [product]="product"
+            ></app-add-to-cart>
+          </div>
+          <button (click)="removeFromWishlist(product)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

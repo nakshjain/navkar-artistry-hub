@@ -72,6 +72,20 @@ export class ShopComponent implements OnInit, OnChanges{
               private wishlistService: WishlistService) {
   }
 
+  ngOnInit() {
+    this.ngxService.start()
+    this.handleRouting()
+    this.checkMobileView()
+    this.wishlistService.fetchWishlist()
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['searchText']) {
+      console.log(this.searchText)
+      this.getProducts()
+    }
+  }
+
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.checkMobileView();
@@ -270,12 +284,6 @@ export class ShopComponent implements OnInit, OnChanges{
     }
   }
 
-  ngOnInit() {
-    this.ngxService.start()
-    this.handleRouting()
-    this.checkMobileView()
-  }
-
   handleRouting(){
     let categoryReceived=''
     let subCategoryReceived=''
@@ -298,13 +306,6 @@ export class ShopComponent implements OnInit, OnChanges{
   handleTitle(title?: string, subTitle?: string){
     this.title=title || 'Shop'
     this.subTitle=subTitle || ''
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['searchText']) {
-      console.log(this.searchText)
-      this.getProducts()
-    }
   }
 
   addToWishList(product: string){

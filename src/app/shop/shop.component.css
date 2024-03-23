@@ -3,6 +3,7 @@
 }
 .display{
   font-family: 'Poppins', sans-serif;
+  line-height: 1.5;
 }
 .header {
   display: flex;
@@ -130,20 +131,16 @@
   position: relative;
   display: inline-block;
 }
-.image-container button{
+.add-to-wishlist{
   position: absolute;
   top:10px;
   right: 10px;
-  background-color: transparent;
-  border: none;
-  padding: 0;
-}
-.image-container button:hover{
-  transform: scale(1.1);
 }
 .product-description{
-  margin-top: auto;
+  margin-top: 2%;
   flex-grow: 1;
+  font-size: 120%;
+  font-weight: 500;
 }
 .product-image{
   width: 100%;
@@ -157,13 +154,6 @@
 }
 .product-image:hover{
   /*transform: scale(1.2);*/
-}
-.add-to-cart{
-  display: flex;
-  justify-content: center;
-}
-.add-to-cart button{
-
 }
 .pagination-container{
   margin-bottom: 20px;
