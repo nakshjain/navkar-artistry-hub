@@ -151,7 +151,6 @@ export class LoginComponent implements OnInit{
   setLoginDetails(response: any){
     sessionStorage.setItem('userDetails', JSON.stringify(response.user));
     this.authService.setToken()
-    this.authService.setAdmin(response.user.role.includes('admin'))
     window.location.reload()
   }
 }

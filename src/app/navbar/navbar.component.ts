@@ -47,11 +47,6 @@ export class NavbarComponent implements OnInit{
       name:'My Addresses',
       link:'my-account/address-book',
 
-    },
-    {
-      id: 'add-product',
-      name:'Add Product',
-      link:'add-product'
     }
   ]
 
@@ -80,10 +75,8 @@ export class NavbarComponent implements OnInit{
   ngOnInit(): void {
     const storedUserDetails = sessionStorage.getItem('userDetails');
     this.user = storedUserDetails ? JSON.parse(storedUserDetails) : null;
-    console.log(this.user)
     if(this.user){
-      this.isUserLoggedIn=true
-      this.userInitial=this.user.name[0]
+      this.initializeNavbar(this.user)
     }
     else{
       this.isUserLoggedIn=false;
@@ -92,12 +85,8 @@ export class NavbarComponent implements OnInit{
     if(token && !this.user){
       this.userService.getUserDetails().subscribe(
         (user)=>{
-          this.user=user
-          this.isUserLoggedIn=true;
           sessionStorage.setItem('userDetails', JSON.stringify(user));
-          this.isUserAdmin=this.user.role.includes('admin')
-          this.authService.setAdmin(this.user.role.includes('admin'))
-          this.openLoginDialog()
+          this.initializeNavbar(user)
         },(error)=>{
           this.isUserLoggedIn=false;
           sessionStorage.removeItem('userDetails');
@@ -108,8 +97,6 @@ export class NavbarComponent implements OnInit{
 
   logOut() {
     this.isUserLoggedIn=false
-    this.matDialog.closeAll()
-    this.openLoginDialog()
     localStorage.removeItem('token')
     sessionStorage.removeItem('userDetails');
     window.location.reload()
@@ -134,15 +121,27 @@ export class NavbarComponent implements OnInit{
     this.isCategorySelected=false
   }
 
-  setAdmin(){
-
-  }
-
   goToCart() {
     this.router.navigate(['/cart'])
   }
 
   goToWishlist() {
     this.router.navigate(['/wishlist'])
+  }
+
+  initializeNavbar(user: any){
+    this.user=user
+    this.isUserLoggedIn=true;
+    this.userInitial=this.user.name[0]
+    const isUserAdmin=this.user.role.includes('admin')
+    if(isUserAdmin){
+      this.userOptions.push(
+        {
+          id: 'add-product',
+          name:'Add Product',
+          link:'add-product'
+        })
+    }
+    this.openLoginDialog()
   }
 }

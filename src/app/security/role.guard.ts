@@ -6,7 +6,7 @@ import {map} from "rxjs";
 export const roleGuard: CanActivateFn = (route, state) => {
   const userService=inject(AuthService)
   const router=inject(Router)
-  return userService.isAdmin.pipe(
+  return userService.isAdminBackend().pipe(
     map(res=>{
       if(res){
         return true
