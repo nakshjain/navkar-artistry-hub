@@ -20,7 +20,6 @@ export class AddToCartComponent implements OnInit{
   isProductAdding=false
   isUserLoggedIn=false
   constructor(private cartService:CartService,
-              private authService:AuthService,
               private snackBar:MatSnackBar) {
   }
 

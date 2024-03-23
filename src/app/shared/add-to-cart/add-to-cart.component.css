@@ -1,4 +1,8 @@
-.display{
+.spinner-container{
+  display: flex;
+  justify-content: center;
+}
+.add-to-cart{
   display: flex;
   justify-content: center;
 }
@@ -16,6 +20,7 @@
 .item-in-cart{
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .item-in-cart p{
   font-size:80%;
