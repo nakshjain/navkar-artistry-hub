@@ -9,24 +9,31 @@ import {Router} from "@angular/router";
 })
 export class WishlistComponent implements OnInit{
   wishlist: any
+  isUserLoggedIn=false
   constructor(private wishlistService: WishlistService,
               private router: Router) {
   }
 
   ngOnInit() {
+    const storedUserDetails = sessionStorage.getItem('userDetails');
+    if(storedUserDetails){
+      this.isUserLoggedIn=true
+    }
     this.getWishlist()
   }
 
   getWishlist(){
-    this.wishlistService.getWishlist().subscribe(
-      (response)=>{
-        console.log(response)
-        this.wishlist=response.wishlist
-        console.log(this.wishlist)
-      },(error)=>{
-        console.log(error)
-      }
-    )
+    if(this.isUserLoggedIn){
+      this.wishlistService.getWishlist().subscribe(
+        (response)=>{
+          console.log(response)
+          this.wishlist=response.wishlist
+          console.log(this.wishlist)
+        },(error)=>{
+          console.log(error)
+        }
+      )
+    }
   }
 
   continueShopping(){

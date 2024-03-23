@@ -1,7 +1,4 @@
 <div class="display">
-  <div>
-
-  </div>
   <div class="header">
     <div class="title">My Wishlist</div>
     <div>
@@ -10,13 +7,13 @@
       </button>
     </div>
   </div>
-  <div class="sub-header" *ngIf="wishlist.length!==0">
+  <div class="sub-header" *ngIf="wishlist">
     {{wishlist.length}}
     <span *ngIf="wishlist.length===1">Item</span>
     <span *ngIf="wishlist.length!==1">Items</span>
   </div>
 
-  <div class="wishlist">
+  <div class="wishlist" *ngIf="wishlist">
     <ng-container *ngFor="let product of wishlist">
       <div class="product">
         <div class="image-container">
