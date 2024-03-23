@@ -1,7 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {WishlistService} from "../../api/wishlist.service";
-import {response} from "express";
-
 @Component({
   selector: 'app-add-to-wishlist',
   templateUrl: './add-to-wishlist.component.html',
