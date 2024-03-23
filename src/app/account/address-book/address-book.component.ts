@@ -3,7 +3,6 @@ import {MatDialog} from "@angular/material/dialog";
 import {AddAddressComponent} from "./add-address/add-address.component";
 import {UserService} from "../../api/user.service";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
-import {response} from "express";
 
 @Component({
   selector: 'app-my-addresses',
@@ -49,7 +48,7 @@ export class AddressBookComponent implements OnInit{
 
   removeAddress(address: any){
     this.userService.removeAddress(address).subscribe(
-      (res)=>{
+      (response)=>{
         this.getUserDetailsFromService()
       },(error)=>{
         this.openSnackBar(error.error.message, 'Failed')

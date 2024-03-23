@@ -2,8 +2,6 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {AuthService} from "../api/auth.service";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {FormBuilder, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
-import {UserService} from "../api/user.service";
 import {CartService} from "../api/cart.service";
 
 @Component({

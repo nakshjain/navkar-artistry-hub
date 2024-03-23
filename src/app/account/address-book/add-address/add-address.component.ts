@@ -3,7 +3,6 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {UserService} from "../../../api/user.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
-import {AuthService} from "../../../api/auth.service";
 
 @Component({
   selector: 'app-add-address',
@@ -65,7 +64,7 @@ export class AddAddressComponent {
 
   onAddAddress() {
     this.userService.addAddress(this.addressForm.value).subscribe(
-      (res)=>{
+      (response)=>{
         this.openSnackBar('Address added successfully', 'Success')
         this.addressForm.reset()
         this.dialogRef.close()
@@ -80,7 +79,7 @@ export class AddAddressComponent {
   onUpdateAddress() {
     console.log(this.addressForm.value)
     this.userService.updateAddress(this.addressForm.value, this.updateAddressId).subscribe(
-      (res)=>{
+      (response)=>{
         this.openSnackBar('Address updated successfully', 'Success')
         this.addressForm.reset()
         this.dialogRef.close()
