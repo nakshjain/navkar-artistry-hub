@@ -32,10 +32,8 @@ export class LoginComponent implements OnInit{
 
   constructor(private ngxService:NgxUiLoaderService,
               private authService: AuthService,
-              private userService: UserService,
               private cartService: CartService,
-              private fb:FormBuilder,
-              private router:Router) {
+              private fb:FormBuilder) {
     this.checkViewPort()
   }
 
@@ -116,18 +114,15 @@ export class LoginComponent implements OnInit{
   }
 
   onLogin() {
-    let isLogged=false
     this.ngxService.start()
     this.authService.loginUser(this.loginForm.value, this.isRememberMeChecked).subscribe(
       (response)=>{
-        this.ngxService.stop()
-        isLogged=true
         this.setLoginDetails(response)
-        const email=this.loginForm.value.email
-        this.mergeCart(email)
-      },error => {
+        this.mergeCart(this.loginForm.value.email)
         this.ngxService.stop()
+      },error => {
         this.responseText=error.error.message
+        this.ngxService.stop()
       }
     )
   }
@@ -136,11 +131,11 @@ export class LoginComponent implements OnInit{
     const cart=this.cartService.getCartProductsUserNotLogged()
     this.cartService.mergeCart(cart, email).subscribe(
       (response)=>{
-        localStorage.removeItem('cart')
       },(err)=>{
         console.log(err)
       }
     )
+    localStorage.removeItem('cart')
   }
   updateRememberMe(){
     this.isRememberMeChecked=!this.isRememberMeChecked
@@ -156,14 +151,10 @@ export class LoginComponent implements OnInit{
   }
 
   setLoginDetails(response: any){
+    sessionStorage.setItem('userDetails', JSON.stringify(response.user));
     this.authService.setToken()
-    this.userService.setUserLoggedIn(response.user)
-    this.authService.setLoggedIn(true)
     this.authService.setAdmin(response.user.role.includes('admin'))
-    const currentUrl=this.router.url
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-      this.router.navigate([currentUrl]);
-    });
+    window.location.reload()
   }
 }
 

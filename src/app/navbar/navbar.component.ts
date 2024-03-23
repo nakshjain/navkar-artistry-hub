@@ -38,9 +38,15 @@ export class NavbarComponent implements OnInit{
 
   userOptions: any[]=[
     {
-      id: 'my-profile',
-      name:'My Profile',
-      link:'my-profile',
+      id: 'my-account',
+      name:'My Account',
+      link:'my-account/profile',
+    },
+    {
+      id: 'my-addresses',
+      name:'My Addresses',
+      link:'my-account/address-book',
+
     },
     {
       id: 'add-product',
@@ -72,32 +78,29 @@ export class NavbarComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.authService.isLoggedIn.subscribe((loggedIn: boolean) => {
-      this.isUserLoggedIn = loggedIn;
-      this.openLoginDialog()
-    });
-    this.userService.userLoggedIn.subscribe(
-      (user)=>{
-        this.user=user
-        if(user.name){
-          this.userInitial=user.name[0]
-        }
-      }
-    )
+    const storedUserDetails = sessionStorage.getItem('userDetails');
+    this.user = storedUserDetails ? JSON.parse(storedUserDetails) : null;
+    console.log(this.user)
+    if(this.user){
+      this.isUserLoggedIn=true
+      this.userInitial=this.user.name[0]
+    }
+    else{
+      this.isUserLoggedIn=false;
+    }
     const token = localStorage.getItem('token')??'';
-    if(token && Object.keys(this.user).length === 0){
+    if(token && !this.user){
       this.userService.getUserDetails().subscribe(
         (user)=>{
           this.user=user
           this.isUserLoggedIn=true;
-          this.userService.setUserLoggedIn(user)
-          this.authService.setLoggedIn(true)
+          sessionStorage.setItem('userDetails', JSON.stringify(user));
           this.isUserAdmin=this.user.role.includes('admin')
           this.authService.setAdmin(this.user.role.includes('admin'))
-          this.userInitial=this.user.name[0]
           this.openLoginDialog()
         },(error)=>{
           this.isUserLoggedIn=false;
+          sessionStorage.removeItem('userDetails');
         }
       )
     }
@@ -105,14 +108,11 @@ export class NavbarComponent implements OnInit{
 
   logOut() {
     this.isUserLoggedIn=false
-    this.authService.setLoggedIn(false)
-    const currentUrl=this.router.url
     this.matDialog.closeAll()
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-      this.router.navigate([currentUrl]);
-    });
     this.openLoginDialog()
     localStorage.removeItem('token')
+    sessionStorage.removeItem('userDetails');
+    window.location.reload()
   }
 
   protected readonly auto = auto;
@@ -140,5 +140,9 @@ export class NavbarComponent implements OnInit{
 
   goToCart() {
     this.router.navigate(['/cart'])
+  }
+
+  goToWishlist() {
+    this.router.navigate(['/wishlist'])
   }
 }

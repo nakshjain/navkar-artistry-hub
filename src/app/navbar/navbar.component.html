@@ -77,7 +77,7 @@
               </mat-dialog-actions>
 
               <div *ngIf="isUserLoggedIn" class="user-logged">
-                <button class="avatar-button">{{userInitial}}</button>
+                <button class="avatar-button" routerLink="my-account/profile">{{userInitial}}</button>
                 <button mat-icon-button [matMenuTriggerFor]="menu" class="user-logged-button">
                   <mat-icon>keyboard_arrow_down</mat-icon>
                 </button>
@@ -89,6 +89,11 @@
                   <button mat-menu-item (click)="logOut()">Logout</button>
                 </mat-menu>
               </div>
+            </div>
+            <div class="shopping">
+              <button mat-icon-button (click)="goToWishlist()" class="button-shopping-cart">
+                <mat-icon>favorite_border</mat-icon>
+              </button>
             </div>
             <div class="shopping">
               <button mat-icon-button (click)="goToCart()" class="button-shopping-cart">

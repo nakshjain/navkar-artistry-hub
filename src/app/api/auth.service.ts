@@ -8,7 +8,6 @@ import {BASE_URL} from "./config";
 })
 export class AuthService {
   private baseUrl =BASE_URL+'/auth'
-  private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private isAdminSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private tokenKey = '';
 
@@ -23,12 +22,6 @@ export class AuthService {
     return localStorage.getItem("token");
   }
 
-  get isLoggedIn() {
-    return this.isLoggedInSubject.asObservable();
-  }
-  setLoggedIn(value: boolean) {
-    this.isLoggedInSubject.next(value);
-  }
   get isAdmin() {
     return this.isAdminSubject.asObservable();
   }
@@ -51,5 +44,9 @@ export class AuthService {
         this.setToken()
       })
     )
+  }
+
+  isAuthenticated(){
+    return this.http.get<any>(`${this.baseUrl}/isAuthenticated`)
   }
 }

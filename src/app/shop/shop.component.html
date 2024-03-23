@@ -49,6 +49,9 @@
             <div class="product">
               <div class="image-container">
                 <img (click)="viewProductDetails(product.productId)" [src]="product.imageLink" class="product-image" alt="{{ product.name }}" />
+                <button (click)="addToWishList(product.productId)">
+                  <mat-icon>favorite_border</mat-icon>
+                </button>
               </div>
               <div class="product-description">
                 <div class="product-name">{{product.name}}</div>

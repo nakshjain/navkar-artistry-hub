@@ -23,9 +23,10 @@ export class AddToCartComponent implements OnInit{
   }
 
   ngOnInit(){
-    this.authService.isLoggedIn.subscribe((loggedIn: boolean) => {
-      this.isUserLoggedIn = loggedIn;
-    });
+    const storedUserDetails = sessionStorage.getItem('userDetails');
+    if(storedUserDetails){
+      this.isUserLoggedIn=true
+    }
   }
   openSnackBar(message: string, action: string): void {
     const config = new MatSnackBarConfig();

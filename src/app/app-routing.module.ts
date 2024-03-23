@@ -12,9 +12,12 @@ import {AddProductComponent} from "./add-product/add-product.component";
 import {SearchResultsComponent} from "./search-results/search-results.component";
 import {ShopComponent} from "./shop/shop.component";
 import {authGuard} from "./security/auth.guard";
-import {MyProfileComponent} from "./my-profile/my-profile.component";
 import {roleGuard} from "./security/role.guard";
 import {CartComponent} from "./cart/cart.component";
+import {AccountComponent} from "./account/account.component";
+import {AddressBookComponent} from "./account/address-book/address-book.component";
+import {ProfileComponent} from "./account/profile/profile.component";
+import {WishlistComponent} from "./wishlist/wishlist.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -25,13 +28,23 @@ const routes: Routes = [
   { path: 'search', component: SearchResultsComponent},
   { path: 'product/:id', component: ProductComponent},
   { path: 'get-quote/:id', component: GetQuoteComponent},
-  { path: 'add-product', canActivate:[authGuard,roleGuard], component: AddProductComponent},
-  { path: 'my-profile', canActivate:[authGuard], component: MyProfileComponent},
   { path: 'cart', component: CartComponent},
+  { path: 'wishlist', component: WishlistComponent},
+  { path: 'add-product', canActivate:[authGuard,roleGuard], component: AddProductComponent},
+  { path: 'my-account',
+    component: AccountComponent,
+    canActivate:[authGuard],
+    children:[
+      { path: '', redirectTo: '/', pathMatch: 'full' },
+      { path: 'profile', component: ProfileComponent},
+      { path: 'address-book', component: AddressBookComponent}
+    ]
+  },
 ];
 
 @NgModule({
   imports: [
+    RouterModule.forChild(routes),
     RouterModule.forRoot(routes, {
       scrollPositionRestoration: 'top'
     }),

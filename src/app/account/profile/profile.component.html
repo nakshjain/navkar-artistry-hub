@@ -1,0 +1,32 @@
+<div class="display">
+  <div>
+    <div class="header">My Account</div>
+    <div class="sub-header">View and edit your personal info below.</div>
+  </div>
+
+  <div class="my-profile">
+    <form [formGroup]="userDetailForm">
+      <ng-container *ngFor="let key of userDetailsArray">
+        <div class="info">
+          <div class="title">{{ key.key }}</div>
+          <div class="details" #detailDiv>
+            <div class="detail">{{ key.value }}</div>
+            <button (click)="toggleEdit(detailDiv, keyInput)">
+              <p *ngIf="key.value">Edit</p>
+              <p *ngIf="!key.value">Add</p>
+            </button>
+          </div>
+          <div class="input-detail" #keyInput style="display: none">
+            <input type="text" formControlName="{{ key.key }}" [class.invalid]="isInvalidUserDetail(key.key)">
+          </div>
+        </div>
+      </ng-container>
+
+      <div>
+        <button (click)="onUpdateDetails()" [disabled]="!userDetailForm.valid">
+          Update
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

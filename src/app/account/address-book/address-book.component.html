@@ -1,0 +1,50 @@
+<div class="display">
+  <div>
+    <div class="header">My Addresses</div>
+    <div class="sub-header">Add or manage addresses that you often use</div>
+  </div>
+
+  <div class="address-book">
+    <div class="address">
+      <div class="add-address">
+        <button (click)="openDialog()">
+          <div class="icon-container">
+            <mat-icon>add</mat-icon>
+          </div>
+          <div>Add New Address</div>
+        </button>
+      </div>
+    </div>
+    <div *ngFor="let address of addresses" class="address">
+      <div style="font-weight: bold;">
+        {{address.name}}
+      </div>
+      <div>
+        {{address.streetAddress}}
+      </div>
+      <div>
+        {{address.locality}}
+      </div>
+      <div>
+        {{address.region + ', ' +address.state + ' ' + address.pinCode}}
+      </div>
+      <div>
+        {{address.country}}
+      </div>
+      <div>
+        {{address.contactNumber}}
+      </div>
+      <div class="buttons">
+        <div class="edit">
+          <button (click)="editAddress(address)">Edit</button>
+        </div>
+        <div class="remove">
+          <button (click)="removeAddress(address)">Remove</button>
+        </div>
+        <div class="set-as-default" (click)="setDefaultAddress(address)" *ngIf="userDetails.defaultAddress !==address._id">
+          <button>Set as default</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="display">
+  <div class="header" *ngIf="!isEditForm">
+    Add New Address
+  </div>
+  <div class="header" *ngIf="isEditForm">
+    Update Address
+  </div>
+  <div class="container">
+    <form [formGroup]="addressForm">
+      <input type="text" formControlName="name" placeholder="Name" [class.invalid]="isInvalidAddress('name')">
+      <input type="text" formControlName="streetAddress" placeholder="Street Address" [class.invalid]="isInvalidAddress('streetAddress')">
+      <input type="text" formControlName="locality" placeholder="Area, Street, Sector, Village" [class.invalid]="isInvalidAddress('locality')">
+      <input type="text" formControlName="region" placeholder="Town/City" [class.invalid]="isInvalidAddress('region')">
+      <input type="text" formControlName="state" placeholder="State" [class.invalid]="isInvalidAddress('state')">
+      <input type="text" formControlName="country" placeholder="Country" [class.invalid]="isInvalidAddress('country')">
+      <input type="number" formControlName="pinCode" placeholder="Pincode" [class.invalid]="isInvalidAddress('pinCode')">
+      <input type="number" formControlName="contactNumber" placeholder="Contact Number" [class.invalid]="isInvalidAddress('contactNo')">
+      <button (click)="onAddAddress()" *ngIf="!isEditForm">
+        Add
+      </button>
+      <button (click)="onUpdateAddress()" *ngIf="isEditForm">
+        Update
+      </button>
+    </form>
+  </div>
+  <div>
+  </div>
+</div>

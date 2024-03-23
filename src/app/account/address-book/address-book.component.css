@@ -1,0 +1,62 @@
+.display{
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.5;
+}
+.header{
+  font-weight: bold;
+  font-size: 150%;
+  margin-bottom: 1%;
+}
+.address-book{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.address{
+  padding: 2%;
+  margin: 1%;
+  width: 48%;
+  border: 1px solid black;
+  font-size: 110%;
+}
+.add-address{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.add-address button{
+  border: none;
+  background-color: white;
+}
+.icon-container{
+  transform: scale(2);
+}
+.buttons{
+  margin-top: 1%;
+  display: flex;
+}
+.edit,.remove{
+}
+.set-as-default{
+  flex: 1;
+}
+.buttons button{
+  border:none;
+  padding:0;
+  margin-right: 10px;
+  background-color: white;
+  color: blue;
+}
+
+@media (max-width: 768px) {
+  .address-book{
+    display: block;
+  }
+  .address{
+    width: 100%;
+  }
+  .icon-container{
+    transform: scale(1.5);
+  }
+}

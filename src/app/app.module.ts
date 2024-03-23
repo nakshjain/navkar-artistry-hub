@@ -34,10 +34,14 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatInputModule} from "@angular/material/input";
 import { SearchResultsComponent } from './search-results/search-results.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
-import { MyProfileComponent } from './my-profile/my-profile.component';
 import { AddToCartComponent } from './shared/add-to-cart/add-to-cart.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { CartComponent } from './cart/cart.component';
+import { AccountComponent } from './account/account.component';
+import { AddressBookComponent } from './account/address-book/address-book.component';
+import { ProfileComponent } from './account/profile/profile.component';
+import { AddAddressComponent } from './account/address-book/add-address/add-address.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 @NgModule({
   declarations: [
@@ -53,10 +57,13 @@ import { CartComponent } from './cart/cart.component';
     FooterComponent,
     NavbarComponent,
     SearchResultsComponent,
-    MyProfileComponent,
     AddToCartComponent,
     CartComponent,
-
+    AccountComponent,
+    ProfileComponent,
+    AddressBookComponent,
+    AddAddressComponent,
+    WishlistComponent
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@ import {ProductService} from "../api/product.service";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {categories, subCategories} from "../types/products-categories";
 import {Product} from "../types/products.types";
+import {WishlistService} from "../api/wishlist.service";
 
 @Component({
   selector: 'app-shop',
@@ -64,6 +65,13 @@ export class ShopComponent implements OnInit, OnChanges{
   totalProducts=0
   isMobileView=false
 
+  constructor(private ngxService:NgxUiLoaderService,
+              private router: Router,
+              private productService:ProductService,
+              private activatedRoute: ActivatedRoute,
+              private wishlistService: WishlistService) {
+  }
+
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.checkMobileView();
@@ -84,12 +92,6 @@ export class ShopComponent implements OnInit, OnChanges{
     this.isToSortOpen=false
     this.currentPage=1
     this.getProducts()
-  }
-
-  constructor(private ngxService:NgxUiLoaderService,
-              private router: Router,
-              private productService:ProductService,
-              private activatedRoute: ActivatedRoute) {
   }
 
   getProducts(){
@@ -303,5 +305,16 @@ export class ShopComponent implements OnInit, OnChanges{
       console.log(this.searchText)
       this.getProducts()
     }
+  }
+
+  addToWishList(product: string){
+    console.log(product)
+    this.wishlistService.addToWishlist(product).subscribe(
+      (res)=>{
+        console.log(res)
+      },(error)=>{
+        console.log(error)
+      }
+    )
   }
 }

@@ -1,0 +1,42 @@
+.display{
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.5;
+}
+.header{
+  font-weight: bold;
+  font-size: 150%;
+  margin-bottom: 1%;
+}
+.address-book{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.my-profile{}
+.info{
+  margin-bottom: 1%;
+  width: 50%;
+}
+.title{
+  font-size: 120%;
+  font-weight: 400;
+}
+.details{
+  display: flex;
+  width: 100%;
+}
+.details button{
+  margin-left: auto;
+  border: none;
+  background-color: white;
+  padding: 0;
+}
+.input-detail{
+  width: 100%;
+}
+.input-detail input{
+  width: 100%;
+  padding: 2%;
+  border: 1px solid gray;
+  border-radius: 10px;
+}

@@ -27,10 +27,11 @@ export class CartComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.authService.isLoggedIn.subscribe((loggedIn: boolean) => {
-      this.isUserLoggedIn = loggedIn;
-    });
-      this.getCart()
+    const storedUserDetails = sessionStorage.getItem('userDetails');
+    if(storedUserDetails){
+      this.isUserLoggedIn=true
+    }
+    this.getCart()
   }
 
   getCart(){

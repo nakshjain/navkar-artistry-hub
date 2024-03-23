@@ -1,0 +1,30 @@
+<div class="display">
+  <div class="header">
+    <div class="title">
+      Account Overview
+    </div>
+    <button (click)="toggleMenuVisibility()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <div class="my-account">
+    <div class="side-nav" *ngIf="!isMenuHidden">
+      <div *ngFor="let navHeader of navHeaders" class="navHeader">
+        <button [routerLink]="navHeader.link">
+          <div class="navHeader-title">{{navHeader.name}}</div>
+          <div class="icon-container">
+            <mat-icon>keyboard_arrow_right</mat-icon>
+          </div>
+        </button>
+      </div>
+      <div class="navHeader">
+        <button (click)="logOut()">
+          <div class="navHeader-title">Logout</div>
+        </button>
+      </div>
+    </div>
+    <div class="details">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
