@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {BehaviorSubject, tap} from "rxjs";
+import {tap} from "rxjs";
 import {BASE_URL} from "./config";
 
 @Injectable({

@@ -11,29 +11,30 @@ import {categories, subCategories} from "../../types/products-categories";
   styleUrls: ['./product.component.css'],
 })
 export class ProductComponent implements OnInit{
+  product: any
+  quantity=1
+
   category:any;
   subCategory:any;
 
-  product: Product={
-    productId:'',
-    name:'',
-    about:'',
-    imageLink:'',
-    category:'',
-    subCategory:'',
-    availability: '0',
-    price:0,
-    quantity:0
-  };
   productsByCategory:Product[]=[]
   titleSimilar='You may also like'
-  backgroundColor='#FFF0F5'
 
   categories=categories
   subCategories=subCategories
 
-  getQuote(): void {
-    this.router.navigate(['get-quote', this.product.productId]); // Navigate to detail page with product ID
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private ngxService: NgxUiLoaderService,
+              private productService:ProductService) {
+  }
+
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.ngxService.start()
+      const productId = params['id'];
+      this.getProductById(productId);
+    });
   }
 
   getProductById(id: string){
@@ -43,6 +44,8 @@ export class ProductComponent implements OnInit{
         this.getProductsByCategory(this.product.category)
         this.getCategory(this.product.category)
         this.ngxService.stop()
+      },(error)=>{
+        console.log(error)
       }
     )
   }
@@ -55,19 +58,22 @@ export class ProductComponent implements OnInit{
     )
   }
 
-
-  constructor(private router: Router, private route: ActivatedRoute, private ngxService: NgxUiLoaderService, private productService:ProductService) {
-  }
-
-  ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.ngxService.start()
-      const productId = params['id'];
-      this.getProductById(productId);
-    });
-  }
-
   getCategory(categoryReceived: string){
     this.category = categories.find(category => category.name === categoryReceived);
+  }
+
+  decreaseQuantity() {
+    if(this.quantity > 0){
+      this.quantity-=1
+    }
+  }
+
+  onInputQuantity(){
+    if(this.quantity < 0){
+      this.quantity=0
+    }
+  }
+  increaseQuantity() {
+    this.quantity+=1
   }
 }

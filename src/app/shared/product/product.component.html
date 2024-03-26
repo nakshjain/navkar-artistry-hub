@@ -1,20 +1,66 @@
-<div class="product" id="product" [style.background]="backgroundColor">
-  <div class="product-heading">
-    <div class="product-name">{{product.name}}</div>
+<div class="display">
+  <div class="navigation-header">
+    <div class="home" routerLink="/home">Home > </div>
+    <div class="category"> {{product.category}} > </div>
+    <div class="subCategory"> {{product.subCategory}}</div>
   </div>
-  <div class="product-about">
-    <div class="product-image-main">
+  <div class="product-display">
+    <div class="image-container">
       <img class="product-image" src="{{ product.imageLink }}" alt="Image" />
-<!--      <div class="product-name">{{product.price}}</div>-->
-      <div class="contact" (click)="getQuote()" *ngIf="product.availability"> <button class="contact-us">Get Quote</button></div>
     </div>
-    <div class="product-review">{{product.about}}</div>
+    <div class="product-header">
+      <div class="product-name">{{product.name}}</div>
+      <div class="product-category">{{product.category}} | {{product.subCategory}}</div>
+      <div class="product-price rupee">{{product.price}}</div>
+      <div class="quantity-container">
+        <p>Quantity</p>
+        <div class="quantity">
+          <div class="icon-container" (click)="decreaseQuantity()">
+            <mat-icon>remove</mat-icon>
+          </div>
+          <input type="number" [(ngModel)]="quantity" (input)="onInputQuantity()">
+          <div class="icon-container" (click)="increaseQuantity()">
+            <mat-icon>add</mat-icon>
+          </div>
+        </div>
+      </div>
+      <div class="cart-wishlist">
+        <div class="cart">
+          <app-add-to-cart
+            [product]="product"
+          ></app-add-to-cart>
+        </div>
+        <div class="wishlist">
+          <app-add-to-wishlist
+            [product]="product"
+          ></app-add-to-wishlist>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="similar-slider" *ngIf="product.availability">
-    <app-image-slider
-      [products]="productsByCategory"
-      [title]="titleSimilar"
-      [category]="category"
-    ></app-image-slider>
+  <div class="product-details">
+
   </div>
 </div>
+
+
+<!--<div class="product" id="product">-->
+<!--  <div class="product-heading">-->
+<!--    <div class="product-name">{{product.name}}</div>-->
+<!--  </div>-->
+<!--  <div class="product-about">-->
+<!--    <div class="product-image-main">-->
+<!--      <img class="product-image" src="{{ product.imageLink }}" alt="Image" />-->
+<!--&lt;!&ndash;      <div class="product-name">{{product.price}}</div>&ndash;&gt;-->
+<!--      <div class="contact" (click)="getQuote()" *ngIf="product.availability"> <button class="contact-us">Get Quote</button></div>-->
+<!--    </div>-->
+<!--    <div class="product-review">{{product.about}}</div>-->
+<!--  </div>-->
+<!--  <div class="similar-slider" *ngIf="product.availability">-->
+<!--    <app-image-slider-->
+<!--      [products]="productsByCategory"-->
+<!--      [title]="titleSimilar"-->
+<!--      [category]="category"-->
+<!--    ></app-image-slider>-->
+<!--  </div>-->
+<!--</div>-->

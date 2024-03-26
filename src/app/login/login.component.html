@@ -15,7 +15,8 @@
     <div class="form-container sign-up" *ngIf="!isMobileViewLogin || !isMobileView">
       <form [formGroup]="signUpForm" (ngSubmit)="onRegister()">
         <h1>Create Account</h1>
-        <input type="text" formControlName="name" placeholder="Name" [readonly]="isSignUpFieldsLock" [class.invalid]="isInvalidSignUp('name')">
+        <input type="text" formControlName="name"
+               placeholder="Name" [readonly]="isSignUpFieldsLock" [class.invalid]="isInvalidSignUp('name')">
         <input type="email" formControlName="email" placeholder="Email" autocomplete="username" [readonly]="isSignUpFieldsLock" [class.invalid]="isInvalidSignUp('email')">
         <input type="password" formControlName="password" placeholder="Password" autocomplete="new-password" [readonly]="isSignUpFieldsLock" [class.invalid]="isInvalidSignUp('password')">
         <button type="button" class="edit-details" *ngIf="isSignUpFieldsLock" (click)="editDetails()">Edit Details</button>

@@ -37,6 +37,7 @@ export class AddToWishlistComponent implements OnInit{
           const currentWishlist=this.wishlistService.wishlistCache.getValue()
           const updatedWishlist = currentWishlist.filter(item => item.productId !== productId);
           this.wishlistService.wishlistCache.next(updatedWishlist);
+          this.isProductInWislist=false
         },(error)=>{
           console.log(error)
         }
@@ -48,6 +49,7 @@ export class AddToWishlistComponent implements OnInit{
           const currentWishlist=this.wishlistService.wishlistCache.getValue()
           currentWishlist.push(this.product);
           this.wishlistService.wishlistCache.next(currentWishlist);
+          this.isProductInWislist=true
         },(error)=>{
           console.log(error)
         }
