@@ -19,7 +19,7 @@ export class GetQuoteComponent implements OnInit{
     productId:'',
     name:'',
     about:'',
-    imageLink:'',
+    imageLinks:[''],
     category:'',
     subCategory:'',
     availability: '0',

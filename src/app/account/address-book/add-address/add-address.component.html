@@ -15,10 +15,10 @@
       <input type="text" formControlName="country" placeholder="Country" [class.invalid]="isInvalidAddress('country')">
       <input type="number" formControlName="pinCode" placeholder="Pincode" [class.invalid]="isInvalidAddress('pinCode')">
       <input type="number" formControlName="contactNumber" placeholder="Contact Number" [class.invalid]="isInvalidAddress('contactNo')">
-      <button (click)="onAddAddress()" *ngIf="!isEditForm">
+      <button (click)="onAddAddress()" *ngIf="!isEditForm" [disabled]="!addressForm.valid">
         Add
       </button>
-      <button (click)="onUpdateAddress()" *ngIf="isEditForm">
+      <button (click)="onUpdateAddress()" *ngIf="isEditForm" [disabled]="!addressForm.valid">
         Update
       </button>
     </form>

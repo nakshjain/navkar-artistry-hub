@@ -54,8 +54,15 @@ button{
 .edit-product button{
   margin-left: auto;
 }
+.empty-wishlist{
+  margin-top: 2%;
+  text-align: center;
+}
 @media(max-width: 768px){
   .product{
     max-width: 50%;
+  }
+  .empty-wishlist{
+    margin-top: 15%;
   }
 }

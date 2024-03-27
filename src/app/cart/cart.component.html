@@ -18,7 +18,7 @@
         <div class="product-display">
           <div class="product">
             <div class="image-container" (click)="goToProduct(cartItem.product)">
-              <img [src]="cartItem.product.imageLink" alt="{{cartItem.product.name}}" class="product-image">
+              <img [src]="cartItem.product.imageLinks[0]" alt="{{cartItem.product.name}}" class="product-image">
             </div>
             <div class="product-name">
               <button (click)="goToProduct(cartItem.product)">
@@ -48,7 +48,7 @@
         </div>
         <div class="product-display-mobile">
           <div class="image-container" (click)="goToProduct(cartItem.product)">
-            <img [src]="cartItem.product.imageLink" alt="{{cartItem.product.name}}" class="product-image">
+            <img [src]="cartItem.product.imageLinks[0]" alt="{{cartItem.product.name}}" class="product-image">
           </div>
           <div class="details">
             <div class="product">

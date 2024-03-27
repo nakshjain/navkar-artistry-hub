@@ -28,7 +28,7 @@ export class AddProductComponent{
     price:'',
     category: '',
     subCategory: '',
-    imageLink: '',
+    imageLinks: [''] as string[],
     availability:'',
     quantity:''
   };
@@ -40,18 +40,20 @@ export class AddProductComponent{
       price:'',
       category: '',
       subCategory: '',
-      imageLink: '',
+      imageLinks: [''] as string[],
       availability:'',
       quantity:''
     };
   }
-
+  addImageLink() {
+    this.formData.imageLinks.push('');
+  }
   submitForm() {
     console.log(this.formData)
     this.ngxService.start()
-    const imageUrl=this.formData.imageLink
-    const imageId = imageUrl.split("/").pop();
-    this.formData.imageLink=`https://i.imgur.com/${imageId}.jpeg`
+    // const imageUrl=this.formData.imageLink
+    // const imageId = imageUrl.split("/").pop();
+    // this.formData.imageLink=`https://i.imgur.com/${imageId}.jpeg`
     this.productService.addProduct(this.formData).subscribe(
       (response)=>{
         this.openSnackBar('Product added successfully!', 'Success');

@@ -60,7 +60,7 @@ export class AddressBookComponent implements OnInit{
       (user)=>{
         sessionStorage.clear()
         sessionStorage.setItem('userDetails', JSON.stringify(user));
-        window.location.reload()
+        this.getUserDetails()
       },(error)=>{
         this.openSnackBar(error.error.message, 'Failed')
       }

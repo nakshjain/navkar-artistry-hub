@@ -16,23 +16,25 @@
       </div>
     </div>
     <div *ngFor="let address of addresses" class="address">
-      <div style="font-weight: bold;">
-        {{address.name}}
-      </div>
-      <div>
-        {{address.streetAddress}}
-      </div>
-      <div>
-        {{address.locality}}
-      </div>
-      <div>
-        {{address.region + ', ' +address.state + ' ' + address.pinCode}}
-      </div>
-      <div>
-        {{address.country}}
-      </div>
-      <div>
-        {{address.contactNumber}}
+      <div class="address-detail">
+        <div style="font-weight: bold;">
+          {{address.name}}
+        </div>
+        <div>
+          {{address.streetAddress}}
+        </div>
+        <div>
+          {{address.locality}}
+        </div>
+        <div>
+          {{address.region + ', ' +address.state + ' ' + address.pinCode}}
+        </div>
+        <div>
+          {{address.country}}
+        </div>
+        <div>
+          {{address.contactNumber}}
+        </div>
       </div>
       <div class="buttons">
         <div class="edit">
@@ -43,6 +45,9 @@
         </div>
         <div class="set-as-default" (click)="setDefaultAddress(address)" *ngIf="userDetails.defaultAddress !==address._id">
           <button>Set as default</button>
+        </div>
+        <div class="mark-as-default" (click)="setDefaultAddress(address)" *ngIf="userDetails.defaultAddress ===address._id">
+          <button>Marked as default</button>
         </div>
       </div>
     </div>

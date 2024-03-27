@@ -1,17 +1,26 @@
 <div class="display">
   <div class="navigation-header">
     <div class="home" routerLink="/home">Home > </div>
-    <div class="category"> {{product.category}} > </div>
-    <div class="subCategory"> {{product.subCategory}}</div>
+    <div class="category" routerLink="/shop/{{category.id}}"> {{category.name}} > </div>
+    <div class="subCategory" routerLink="/shop/{{category.id}}/{{subCategory.id}}"> {{subCategory.name}}</div>
   </div>
   <div class="product-display">
     <div class="image-container">
-      <img class="product-image" src="{{ product.imageLink }}" alt="Image" />
+      <div class="side-nav-images">
+        <div *ngFor="let image of product.imageLinks">
+          <img class="product-image" src="{{ image }}" alt="Image" (click)="changeMainImage(image)"/>
+        </div>
+      </div>
+      <div class="main-image">
+        <img class="product-image" src="{{ mainImage }}" alt="Image" />
+      </div>
     </div>
     <div class="product-header">
       <div class="product-name">{{product.name}}</div>
-      <div class="product-category">{{product.category}} | {{product.subCategory}}</div>
+      <div class="product-category">{{product.subCategory}} | {{product.category}}</div>
       <div class="product-price rupee">{{product.price}}</div>
+      <div class="artist"> By Niyati Jain </div>
+      <hr>
       <div class="quantity-container">
         <p>Quantity</p>
         <div class="quantity">
@@ -28,6 +37,9 @@
         <div class="cart">
           <app-add-to-cart
             [product]="product"
+            [borderRadius]="'0px'"
+            [height]="'42px'"
+            [quantityToAdd]="quantity"
           ></app-add-to-cart>
         </div>
         <div class="wishlist">
@@ -36,10 +48,26 @@
           ></app-add-to-wishlist>
         </div>
       </div>
+      <div class="product-about">
+        <div class="product-about-title">About this item</div>
+        <div class="product-about">
+          <ul>
+            <ng-container *ngFor="let sentence of aboutProduct">
+              <li>
+                <span [innerHTML]="sentence"></span>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="product-details">
-
+  <div class="similar-slider" *ngIf="product.availability">
+    <app-image-slider
+      [products]="productsByCategory"
+      [title]="titleSimilar"
+      [category]="category"
+    ></app-image-slider>
   </div>
 </div>
 

@@ -2,7 +2,7 @@ export interface Product {
   productId: string
   name: string
   about: string
-  imageLink: string
+  imageLinks: [string]
   category: string
   subCategory:string
   availability: string

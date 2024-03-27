@@ -13,6 +13,8 @@ import {categories, subCategories} from "../../types/products-categories";
 export class ProductComponent implements OnInit{
   product: any
   quantity=1
+  mainImage=''
+  aboutProduct: any
 
   category:any;
   subCategory:any;
@@ -42,12 +44,20 @@ export class ProductComponent implements OnInit{
       (product)=>{
         this.product=product;
         this.getProductsByCategory(this.product.category)
-        this.getCategory(this.product.category)
+        this.getCategory()
+        this.getSubCategory()
+        this.getAboutProduct()
+        console.log(product)
+        this.mainImage=this.product.imageLinks[0]
         this.ngxService.stop()
       },(error)=>{
         console.log(error)
       }
     )
+  }
+
+  changeMainImage(image: any){
+    this.mainImage=image
   }
 
   getProductsByCategory(category: string){
@@ -58,8 +68,17 @@ export class ProductComponent implements OnInit{
     )
   }
 
-  getCategory(categoryReceived: string){
-    this.category = categories.find(category => category.name === categoryReceived);
+  getCategory(){
+    this.category = categories.find(category => category.name === this.product.category);
+  }
+
+  getSubCategory(){
+    this.subCategory = subCategories[this.category.name].find(subCategory=> subCategory.name===this.product.subCategory);
+  }
+
+  getAboutProduct(){
+    const sentences=this.product.about.split('.').filter((sentence: string) => sentence.trim() !== '');
+    this.aboutProduct=sentences.map((sentence: string) => `${sentence.trim()}.`);
   }
 
   decreaseQuantity() {

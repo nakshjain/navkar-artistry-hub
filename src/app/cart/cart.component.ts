@@ -40,6 +40,7 @@ export class CartComponent implements OnInit{
       this.cartService.getCartProducts().subscribe(
         (response) => {
           this.cart = response.cart
+          console.log(response)
           this.ngxService.stop()
           this.getTotalAmount(this.cart)
         }, (error) => {
@@ -107,6 +108,7 @@ export class CartComponent implements OnInit{
     this.totalAmount=0
     cartItems.forEach(
       (cartItem)=>{
+        console.log(cartItem)
         this.totalAmount+=cartItem.product.price*cartItem.quantity
       }
     )

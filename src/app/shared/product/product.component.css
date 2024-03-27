@@ -1,5 +1,5 @@
 .display{
-  padding:2% 10%;
+  padding:30px;
   font-family: 'Poppins', sans-serif;
   line-height: 1.5;
 }
@@ -7,34 +7,63 @@
   display: flex;
   cursor: pointer;
   font-weight: 500;
+  margin-bottom: 1%;
 }
 .product-display{
   display: flex;
 }
 .image-container{
+  width: 60%;
+  display: flex;
+  flex: 0 0 auto;
+  position: sticky;
+  height: 100%;
+  top: 120px;
+  overflow: hidden;
+}
+.side-nav-images{
+  width: 20%;
+  text-align: center;
+}
+.side-nav-images img{
+  width: 65%;
+  margin: 1%;
+}
+.main-image{
   flex:1;
-  width: 100%;
   text-align: center;
 }
 .product-image{
   position: relative;
   display: inline-block;
   object-fit: cover;
-  width: 80%;
+  width: 85%;
 }
 .product-header{
   flex: 1;
+  overflow-y: auto;
+  margin: 1% 2% 0;
 }
 .product-name{
-  font-size: 300%;
+  font-size: 280%;
   font-weight: 400;
 }
+.product-category{
+  font-size: 120%;
+}
 .product-price{
-  margin:2% 0;
+  /*margin:2% 0;*/
   font-size:150%;
+  margin: 15px 0;
 }
 .rupee::before {
   content: "\20B9";
+}
+.artist{
+  margin: 3% 0;
+}
+.quantity-container{
+  margin: 3% 0;
 }
 .quantity-container p{
   font-size: 120%;
@@ -43,8 +72,8 @@
   display: flex;
 }
 .quantity input{
-  width: 36px;
-  height: 36px;
+  width: 42px;
+  height: 42px;
   border: 1px solid black;
   text-align: center;
   margin: 0 2px;
@@ -58,14 +87,18 @@ input[type=number]::-webkit-outer-spin-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width:36px;
-  height: 36px;
+  width:42px;
+  height: 42px;
   border: 1px solid black;
 }
 .cart-wishlist{
-  margin: 2% 0;
+  margin: 3% 0;
   display: flex;
   font-size: 150%;
+}
+.cart{
+  width: 70%;
+  margin-right: 2%;
 }
 .wishlist{
   display: flex;
@@ -74,6 +107,19 @@ input[type=number]::-webkit-outer-spin-button {
   width: 5%;
   transform: scale(1.5);
   padding-bottom: 4px;
+}
+.product-about-title{
+  font-size: 150%;
+  font-weight: 500;
+}
+.product-about{
+  text-align: justify;
+}
+
+
+
+.similar-slider{
+  width: 100%;
 }
 /*.product {*/
 /*  padding: 2% 0;*/

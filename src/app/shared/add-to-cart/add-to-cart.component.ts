@@ -14,6 +14,13 @@ export class AddToCartComponent implements OnInit{
   product: any
   @Input()
   title='Add to Cart'
+  @Input()
+  borderRadius='100px'
+  @Input()
+  height='auto'
+  @Input()
+  quantityToAdd=1
+
   cartItem:any
   isProductAvailable=true
   itemInCart=0
@@ -41,7 +48,7 @@ export class AddToCartComponent implements OnInit{
   addToCart(){
     if(this.isUserLoggedIn){
       this.isProductAdding=true
-      this.cartService.addToCart(this.product).subscribe(
+      this.cartService.addToCart(this.product,this.quantityToAdd).subscribe(
         (data)=>{
           this.openSnackBar('Item Added!', 'Success');
           this.isProductAdding=false
