@@ -8,7 +8,6 @@ import {MatButtonModule} from "@angular/material/button";
 import {ProductComponent} from "./shared/product/product.component";
 import {GetQuoteComponent} from "./get-quote/get-quote.component";
 import {HomePageMainComponent} from "./home-page-main/home-page-main.component";
-import {AddProductComponent} from "./manage-products/add-product/add-product.component";
 import {SearchResultsComponent} from "./search-results/search-results.component";
 import {ShopComponent} from "./shop/shop.component";
 import {authGuard} from "./security/auth.guard";

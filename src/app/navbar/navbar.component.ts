@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginComponent} from "../login/login.component";
 import {MatDialog} from "@angular/material/dialog";
-import {AuthService} from "../api/auth.service";
-import {auto} from "@popperjs/core";
 import {Product} from "../types/products.types";
 import {Router} from "@angular/router";
 import {categories, subCategories} from "../types/products-categories";
