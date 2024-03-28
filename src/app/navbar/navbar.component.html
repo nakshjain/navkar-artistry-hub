@@ -1,6 +1,15 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenavmenu class="sidenav-menu" mode="side">
     <div class="side-nav-top">
+      <div class="nav-search-sidenav" *ngIf="!isCategorySelected">
+        <mat-icon class="mat-icon" (click)="onEnterSearchPressed()">search</mat-icon>
+        <div class="search-bar">
+          <input type="text" placeholder="Search..." [(ngModel)]="searchQuery" (keydown.enter)="onEnterSearchPressed()" (input)="onInputChange()" [matAutocomplete]="auto">
+        </div>
+        <mat-autocomplete #auto>
+          <mat-option *ngIf="showOptions">Red</mat-option>
+        </mat-autocomplete>
+      </div>
       <mat-icon *ngIf="isCategorySelected" (click)="resetCategory()" class="back-sidenav">keyboard_arrow_left</mat-icon>
       <p *ngIf="isCategorySelected">{{categorySelected.name}}</p>
       <mat-icon (click)="sidenavmenu.toggle()" class="close-menu-sidenav">close</mat-icon>
@@ -9,7 +18,7 @@
       <ul class="nav-menu" *ngIf="!isCategorySelected">
         <li *ngFor="let element of navbarHeader" class="sidenav-category">
           <a class="nav-link" routerLink="{{ element.link }}" mat-list-item (click)="sidenavmenu.toggle()">
-            <p>{{element.name }}</p>
+            <p>{{element.name}}</p>
           </a>
           <mat-icon (click)="setCategory(element.name)" *ngIf="element.name!='Shop'">keyboard_arrow_right</mat-icon>
         </li>
