@@ -17,7 +17,7 @@ import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
 export class ManageProductsComponent implements OnInit{
   allProducts: any
   dataSource: any
-  displayedColumns=['image', 'name', 'category', 'subCategory', 'price', 'availability', 'action']
+  displayedColumns=['image', 'name', 'category', 'subCategory', 'price', 'availability', 'quantity', 'action']
   @ViewChild(MatPaginator) paginator !: MatPaginator
   @ViewChild(MatSort) sort !: MatSort
   constructor(private matDialog: MatDialog,
@@ -43,6 +43,7 @@ export class ManageProductsComponent implements OnInit{
   }
   openAddEditProductDialog(product?: Product) {
     const dialogRef=this.matDialog.open(AddProductComponent,{
+      width: '500px',
       data: product
     })
     dialogRef.componentInstance.closeDialogEvent.subscribe(() => {
