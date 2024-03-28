@@ -1,0 +1,60 @@
+<div class="product" id="product">
+  <div class="title">{{title}}</div>
+  <div class="details">
+    <form [formGroup]="productForm" class="form-details">
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" placeholder="Product Name">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="category" placeholder="Select Category">
+          <mat-option *ngFor="let category of categories" [value]="category.name" (click)="onCategorySelected(category.name)">{{ category.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" *ngIf="categorySelected">
+        <mat-label>Sub Category</mat-label>
+        <mat-select formControlName="subCategory" placeholder="Select Sub Category">
+          <mat-option *ngFor="let subCategory of subCategories[categorySelected]" [value]="subCategory.name">{{ subCategory.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Price</mat-label>
+        <input matInput type="number" formControlName="price" placeholder="Product Price">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Is in Stock</mat-label>
+        <mat-select formControlName="availability" placeholder="Select Availability">
+          <mat-option *ngFor="let availability of ['true', 'false']" [value]="availability">{{ availability }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Quantity</mat-label>
+        <input matInput type="number" formControlName="quantity" placeholder="Enter Quantity Available">
+      </mat-form-field>
+
+      <ng-container formArrayName="imageLinks">
+        <div (click)="addImageLink()">Add Image Link</div>
+        <div *ngFor="let control of getControls(); let i = index">
+          <mat-form-field appearance="fill">
+            <mat-label>Image Link {{ i + 1 }}</mat-label>
+            <input matInput type="text" [formControlName]="i" placeholder="Image URL">
+          </mat-form-field>
+        </div>
+      </ng-container>
+
+      <mat-form-field appearance="fill">
+        <mat-label>About</mat-label>
+        <textarea matInput formControlName="about" placeholder="About Product" name="about" required></textarea>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="addProduct()"  [disabled]="productForm.invalid" *ngIf="!isEditForm">{{title}}</button>
+      <button mat-raised-button color="primary" (click)="updateProduct()" [disabled]="productForm.invalid" *ngIf="isEditForm">{{title}}</button>
+    </form>
+  </div>
+
+</div>

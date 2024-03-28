@@ -2,7 +2,6 @@ import {Component, Input, OnInit} from '@angular/core';
 import {CartService} from "../../api/cart.service";
 import {CartItem} from "../../types/products.types";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
-import {AuthService} from "../../api/auth.service";
 
 @Component({
   selector: 'app-add-to-cart',

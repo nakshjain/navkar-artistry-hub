@@ -67,7 +67,6 @@ export class NavbarComponent implements OnInit{
   }
 
   constructor(private matDialog: MatDialog,
-              private authService: AuthService,
               private userService: UserService,
               private router: Router) {
   }
@@ -102,7 +101,21 @@ export class NavbarComponent implements OnInit{
     window.location.reload()
   }
 
-  protected readonly auto = auto;
+  initializeNavbar(user: any){
+    this.user=user
+    this.isUserLoggedIn=true;
+    this.userInitial=this.user.name[0]
+    const isUserAdmin=this.user.role.includes('admin')
+    if(isUserAdmin){
+      this.userOptions.push(
+        {
+          id: 'manage-products',
+          name:'Manage Products',
+          link:'manage-products'
+        })
+    }
+    this.openLoginDialog()
+  }
 
   onEnterSearchPressed() {
     const searchQuery=this.searchQuery
@@ -129,19 +142,4 @@ export class NavbarComponent implements OnInit{
     this.router.navigate(['/wishlist'])
   }
 
-  initializeNavbar(user: any){
-    this.user=user
-    this.isUserLoggedIn=true;
-    this.userInitial=this.user.name[0]
-    const isUserAdmin=this.user.role.includes('admin')
-    if(isUserAdmin){
-      this.userOptions.push(
-        {
-          id: 'add-product',
-          name:'Add Product',
-          link:'add-product'
-        })
-    }
-    this.openLoginDialog()
-  }
 }

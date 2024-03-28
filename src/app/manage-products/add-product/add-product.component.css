@@ -5,23 +5,12 @@
   font-variant: normal;
   line-height: 26.4px;
 }
-label{
-  padding-top: 1%;
-}
-#title{
-  width: 100%;
-}
-#budget{
-  width: 100%;
-}
-#communicationMethod{
-  margin: 0 0 0 7% ;
-}
 .product {
   padding: 2% 0;
-  margin: 0;
+  margin: 2%;
   text-align: center;
-  justify-content: center;
+  overflow-y: auto;
+  height: 600px
 }
 .title {
   padding: 1% 0;
@@ -29,11 +18,12 @@ label{
   font-weight: 400;
 }
 .details {
-  padding: 2% 5%;
   flex-grow: 1;
-  width: 100%;
-  text-align: left;
   font-size: 130%;
+}
+form{
+  display: flex;
+  flex-direction: column;
 }
 .form-heading{
   padding-bottom: 2%;
@@ -41,12 +31,10 @@ label{
   font-size: larger;
   font-style: italic;
 }
-.form-details{
-  width: 75%;
-}
 .field{
-  width:35%;
+  /*width:35%;*/
   flex-grow: 1;
+  display: flex;
 }
 .field-details{
   display: flex;

@@ -22,7 +22,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GetQuoteComponent } from './get-quote/get-quote.component';
 import { HomePageMainComponent } from './home-page-main/home-page-main.component';
-import { AddProductComponent } from './add-product/add-product.component';
+import { AddProductComponent } from './manage-products/add-product/add-product.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { LoginComponent } from './login/login.component';
 import {MatMenuModule} from "@angular/material/menu";
@@ -43,6 +43,11 @@ import { ProfileComponent } from './account/profile/profile.component';
 import { AddAddressComponent } from './account/address-book/add-address/add-address.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { AddToWishlistComponent } from './shared/add-to-wishlist/add-to-wishlist.component';
+import { ManageProductsComponent } from './manage-products/manage-products.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatSortModule} from "@angular/material/sort";
+import { ConfirmDeleteDialogComponent } from './manage-products/confirm-delete-dialog/confirm-delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +70,9 @@ import { AddToWishlistComponent } from './shared/add-to-wishlist/add-to-wishlist
     AddressBookComponent,
     AddAddressComponent,
     WishlistComponent,
-    AddToWishlistComponent
+    AddToWishlistComponent,
+    ManageProductsComponent,
+    ConfirmDeleteDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -91,6 +98,9 @@ import { AddToWishlistComponent } from './shared/add-to-wishlist/add-to-wishlist
     MatCheckboxModule,
     ReactiveFormsModule,
     MatSnackBarModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   providers: [
     {
