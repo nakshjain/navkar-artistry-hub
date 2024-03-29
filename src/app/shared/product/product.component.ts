@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {Product} from "../../types/products.types";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {ProductService} from "../../api/product.service";
