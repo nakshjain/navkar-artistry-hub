@@ -56,7 +56,7 @@ export class AddToCartComponent implements OnInit{
         },(error)=>{
           this.openSnackBar('Failed to add!', 'Error');
           this.isProductAdding=false
-          console.log(error)
+          console.error(error)
         }
       )
     }
@@ -77,7 +77,7 @@ export class AddToCartComponent implements OnInit{
           this.itemInCart=0
         },(error)=>{
           this.openSnackBar('Failed to Remove from Cart!', 'Error');
-          console.log(error)
+          console.error(error)
         }
       )
     }

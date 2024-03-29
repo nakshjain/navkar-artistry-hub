@@ -18,7 +18,7 @@ export class WishlistService{
         this.wishlistCache.next(response.wishlist);
       },
       (error) => {
-        console.log(error);
+        console.error(error);
       }
     );
   }

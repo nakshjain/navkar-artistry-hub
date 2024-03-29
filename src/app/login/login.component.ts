@@ -84,7 +84,7 @@ export class LoginComponent implements OnInit{
         this.isSignUpLock=false
         this.ngxUiLoaderService.stop()
       },(error)=>{
-        console.log(error)
+        console.error(error)
         this.responseText=error.error.message
         this.ngxUiLoaderService.stop()
       }
@@ -105,7 +105,7 @@ export class LoginComponent implements OnInit{
         this.clearSignUpFormData()
         this.ngxUiLoaderService.stop()
       },error => {
-        console.log(error)
+        console.error(error)
         this.responseText=error.error.message
         this.ngxUiLoaderService.stop()
       }
@@ -130,8 +130,8 @@ export class LoginComponent implements OnInit{
     const cart=this.cartService.getCartProductsUserNotLogged()
     this.cartService.mergeCart(cart, email).subscribe(
       (response)=>{
-      },(err)=>{
-        console.log(err)
+      },(error)=>{
+        console.error(error)
       }
     )
     localStorage.removeItem('cart')

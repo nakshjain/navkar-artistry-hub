@@ -139,7 +139,7 @@ export class ShopComponent implements OnInit, OnChanges{
         this.generatePageNumbers()
         this.ngxUiLoaderService.stop()
       },(error)=>{
-        console.log(error)
+        console.error(error)
         this.ngxUiLoaderService.stop()
       }
     )

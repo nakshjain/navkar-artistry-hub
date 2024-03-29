@@ -86,7 +86,7 @@ export class AddProductComponent{
         this.closeDialog()
         this.ngxUiLoaderService.stop()
       },error => {
-        console.log(error)
+        console.error(error)
         this.openSnackBar(error.error.error, 'Error');
         this.responseTextColor='red'
         this.responseText=error.error.error
@@ -103,7 +103,7 @@ export class AddProductComponent{
         this.closeDialog()
         this.ngxUiLoaderService.stop()
       },error => {
-        console.log(error)
+        console.error(error)
         this.responseTextColor='red'
         this.responseText=error.error.error
         this.openSnackBar(error.error.error, 'Error');

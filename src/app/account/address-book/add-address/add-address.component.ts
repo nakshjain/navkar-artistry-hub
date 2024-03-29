@@ -70,7 +70,7 @@ export class AddAddressComponent {
         this.getUserDetails()
       },(error)=>{
         this.openSnackBar(error.error.message, 'Failed')
-        console.log(error)
+        console.error(error)
       }
     )
   }
@@ -84,7 +84,7 @@ export class AddAddressComponent {
         this.getUserDetails()
       },(error)=>{
         this.openSnackBar(error.error.message, 'Failed')
-        console.log(error)
+        console.error(error)
       }
     )
   }
@@ -96,7 +96,7 @@ export class AddAddressComponent {
         sessionStorage.setItem('userDetails', JSON.stringify(user));
         window.location.reload()
       },(error)=>{
-        console.log(error)
+        console.error(error)
       }
     )
   }

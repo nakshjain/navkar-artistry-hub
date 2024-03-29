@@ -51,7 +51,7 @@ export class AddToWishlistComponent implements OnInit{
           this.wishlistService.wishlistCache.next(updatedWishlist);
           this.isProductInWishlist=false
         },(error)=>{
-          console.log(error)
+          console.error(error)
         }
       )
     }
@@ -63,7 +63,7 @@ export class AddToWishlistComponent implements OnInit{
           this.wishlistService.wishlistCache.next(currentWishlist);
           this.isProductInWishlist=true
         },(error)=>{
-          console.log(error)
+          console.error(error)
         }
       )
     }

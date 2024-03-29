@@ -33,7 +33,7 @@ export class WishlistComponent implements OnInit{
           this.wishlist=response.wishlist
           this.ngxUiLoaderService.stop()
         },(error)=>{
-          console.log(error)
+          console.error(error)
           this.ngxUiLoaderService.stop()
         }
       )
@@ -57,7 +57,7 @@ export class WishlistComponent implements OnInit{
         this.wishlistService.wishlistCache.next(updatedWishlist);
         this.getWishlist()
       },(error)=>{
-        console.log(error)
+        console.error(error)
       }
     )
   }

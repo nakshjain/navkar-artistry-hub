@@ -69,7 +69,7 @@ export class ProductComponent implements OnInit{
         this.ngxUiLoaderService.stop()
         this.mainImage=this.product.imageLinks[0]
       },(error)=>{
-        console.log(error)
+        console.error(error)
         this.ngxUiLoaderService.stop()
       }
     )
