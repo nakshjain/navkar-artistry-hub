@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {CartService} from "../api/cart.service";
 import {CartItem, Product} from "../types/products.types";
 import {Router} from "@angular/router";
-import {AuthService} from "../api/auth.service";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
 import {LoginComponent} from "../login/login.component";
 import {MatDialog} from "@angular/material/dialog";

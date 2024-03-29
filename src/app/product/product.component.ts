@@ -53,10 +53,6 @@ export class ProductComponent implements OnInit{
     });
   }
 
-  private initializeValue(){
-
-  }
-
   getProductById(id: string){
     this.productService.getProductById(id).subscribe(
       (product)=>{
