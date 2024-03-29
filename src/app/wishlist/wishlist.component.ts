@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {WishlistService} from "../api/wishlist.service";
 import {Router} from "@angular/router";
 import {NgxUiLoaderService} from "ngx-ui-loader";
+import {Product} from "../types/products.types";
 
 @Component({
   selector: 'app-wishlist',
@@ -9,7 +10,7 @@ import {NgxUiLoaderService} from "ngx-ui-loader";
   styleUrls: ['./wishlist.component.css']
 })
 export class WishlistComponent implements OnInit{
-  wishlist: any
+  wishlist: Product[]=[];
   isUserLoggedIn=false
   constructor(private ngxUiLoaderService:NgxUiLoaderService,
               private wishlistService: WishlistService,
