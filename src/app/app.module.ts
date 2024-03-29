@@ -14,9 +14,7 @@ import { ImageSliderComponent } from './shared/image-slider/image-slider.compone
 import {SlickCarouselModule} from "ngx-slick-carousel";
 import {
   NgxUiLoaderConfig,
-  NgxUiLoaderHttpModule,
-  NgxUiLoaderModule,
-} from "ngx-ui-loader";
+  NgxUiLoaderModule} from "ngx-ui-loader";
 import {ProductComponent} from './product/product.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ShopComponent } from './shop/shop.component';
