@@ -5,6 +5,7 @@ import {Product} from "../types/products.types";
 import {Router} from "@angular/router";
 import {categories, subCategories} from "../types/products-categories";
 import {UserService} from "../api/user.service";
+import {NgxUiLoaderService} from "ngx-ui-loader";
 
 @Component({
   selector: 'app-navbar',
@@ -64,7 +65,8 @@ export class NavbarComponent implements OnInit{
     }
   }
 
-  constructor(private matDialog: MatDialog,
+  constructor(private ngxUiLoaderService:NgxUiLoaderService,
+              private matDialog: MatDialog,
               private userService: UserService,
               private router: Router) {
   }
@@ -80,13 +82,16 @@ export class NavbarComponent implements OnInit{
     }
     const token = localStorage.getItem('token')??'';
     if(token && !this.user){
+      this.ngxUiLoaderService.start()
       this.userService.getUserDetails().subscribe(
         (user)=>{
           sessionStorage.setItem('userDetails', JSON.stringify(user));
           this.initializeNavbar(user)
+          this.ngxUiLoaderService.stop()
         },(error)=>{
           this.isUserLoggedIn=false;
           sessionStorage.removeItem('userDetails');
+          this.ngxUiLoaderService.stop()
         }
       )
     }

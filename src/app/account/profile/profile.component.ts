@@ -53,7 +53,6 @@ export class ProfileComponent implements OnInit{
   }
 
   onUpdateDetails() {
-    console.log(this.userDetailForm.value)
   }
 
   toggleEdit(detailDiv: HTMLElement, inputDiv: HTMLElement): void {

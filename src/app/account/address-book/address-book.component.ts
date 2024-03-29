@@ -3,6 +3,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {AddAddressComponent} from "./add-address/add-address.component";
 import {UserService} from "../../api/user.service";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
+import {NgxUiLoaderService} from "ngx-ui-loader";
 
 @Component({
   selector: 'app-my-addresses',
@@ -13,7 +14,8 @@ export class AddressBookComponent implements OnInit{
   userDetails: any;
   addresses:any;
 
-  constructor(private matDialog: MatDialog,
+  constructor(private ngxUiLoaderService: NgxUiLoaderService,
+              private matDialog: MatDialog,
               private userService: UserService,
               private snackBar: MatSnackBar) {
   }
@@ -41,7 +43,6 @@ export class AddressBookComponent implements OnInit{
     const storedUserDetails = sessionStorage.getItem('userDetails');
     const userDetails = storedUserDetails ? JSON.parse(storedUserDetails) : null;
     this.addresses=userDetails.addresses
-    console.log(userDetails)
     this.userDetails=userDetails
     this.sortAddresses()
   }
@@ -56,13 +57,16 @@ export class AddressBookComponent implements OnInit{
     )
   }
   getUserDetailsFromService(){
+    this.ngxUiLoaderService.start()
     this.userService.getUserDetails().subscribe(
       (user)=>{
         sessionStorage.clear()
         sessionStorage.setItem('userDetails', JSON.stringify(user));
         this.getUserDetails()
+        this.ngxUiLoaderService.stop()
       },(error)=>{
         this.openSnackBar(error.error.message, 'Failed')
+        this.ngxUiLoaderService.stop()
       }
     )
   }
@@ -72,7 +76,6 @@ export class AddressBookComponent implements OnInit{
   }
 
   setDefaultAddress(address: any){
-    console.log(address._id)
     this.userService.setDefaultAddress(address._id).subscribe(
       (response)=>{
         this.getUserDetailsFromService()

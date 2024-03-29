@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
 import {LoginComponent} from "../login/login.component";
 import {MatDialog} from "@angular/material/dialog";
+import {NgxUiLoaderService} from "ngx-ui-loader";
 
 @Component({
   selector: 'app-cart',
@@ -15,7 +16,8 @@ export class CartComponent implements OnInit{
   cart:CartItem[]=[]
   totalAmount=0
   isUserLoggedIn=false
-  constructor(private router: Router,
+  constructor(private ngxUiLoaderService:NgxUiLoaderService,
+              private router: Router,
               private cartService: CartService,
               private snackBar: MatSnackBar,
               private matDialog: MatDialog) {
@@ -31,14 +33,16 @@ export class CartComponent implements OnInit{
   }
 
   getCart(){
+    this.ngxUiLoaderService.start()
     if(this.isUserLoggedIn) {
       this.cartService.getCartProducts().subscribe(
         (response) => {
           this.cart = response.cart
-          console.log(response)
           this.getTotalAmount(this.cart)
+          this.ngxUiLoaderService.stop()
         }, (error) => {
           console.log(error)
+          this.ngxUiLoaderService.stop()
         }
       )
     }
@@ -95,7 +99,6 @@ export class CartComponent implements OnInit{
     this.totalAmount=0
     cartItems.forEach(
       (cartItem)=>{
-        console.log(cartItem)
         this.totalAmount+=cartItem.product.price*cartItem.quantity
       }
     )

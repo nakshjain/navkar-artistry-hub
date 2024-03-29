@@ -33,7 +33,6 @@ export class AddAddressComponent {
       this.initForm(data)
       this.isEditForm=true
       this.updateAddressId=data._id
-      console.log(this.updateAddressId)
     }
   }
 
@@ -77,7 +76,6 @@ export class AddAddressComponent {
   }
 
   onUpdateAddress() {
-    console.log(this.addressForm.value)
     this.userService.updateAddress(this.addressForm.value, this.updateAddressId).subscribe(
       (response)=>{
         this.openSnackBar('Address updated successfully', 'Success')

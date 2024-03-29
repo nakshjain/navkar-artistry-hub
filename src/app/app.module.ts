@@ -112,7 +112,6 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     MatSelectModule,
     SlickCarouselModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
-    NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
     MatCardModule,
     NgbModule,
     MatDialogModule,

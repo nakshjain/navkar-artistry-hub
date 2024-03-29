@@ -5,6 +5,7 @@ import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {FormArray, FormBuilder, Validators} from "@angular/forms";
 import {Product} from "../../types/products.types";
+import {NgxUiLoaderService} from "ngx-ui-loader";
 
 @Component({
   selector: 'app-add-product',
@@ -45,7 +46,8 @@ export class AddProductComponent{
     this.closeDialogEvent.emit();
   }
 
-  constructor(private fb: FormBuilder,
+  constructor(private ngxUiLoaderService:NgxUiLoaderService,
+              private fb: FormBuilder,
               private productService:ProductService,
               private snackBar: MatSnackBar,
               @Inject(MAT_DIALOG_DATA) public data: any) {
@@ -77,29 +79,35 @@ export class AddProductComponent{
   }
 
   addProduct() {
+    this.ngxUiLoaderService.start()
     this.productService.addProduct(this.productForm.value).subscribe(
       (response)=>{
         this.openSnackBar(this.productForm.value.name+' added successfully!', 'Success');
         this.closeDialog()
+        this.ngxUiLoaderService.stop()
       },error => {
         console.log(error)
         this.openSnackBar(error.error.error, 'Error');
         this.responseTextColor='red'
         this.responseText=error.error.error
+        this.ngxUiLoaderService.stop()
       }
     )
   }
   updateProduct() {
+    this.ngxUiLoaderService.start()
     const productFormUpdate={...this.productForm.value, productId: this.productId};
     this.productService.updateProduct(productFormUpdate).subscribe(
       (response)=>{
         this.openSnackBar(productFormUpdate.name+' updated successfully!', 'Success');
         this.closeDialog()
+        this.ngxUiLoaderService.stop()
       },error => {
         console.log(error)
         this.responseTextColor='red'
         this.responseText=error.error.error
         this.openSnackBar(error.error.error, 'Error');
+        this.ngxUiLoaderService.stop()
       }
     )
   }

@@ -2,6 +2,7 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {AuthService} from "../api/auth.service";
 import {FormBuilder, Validators} from "@angular/forms";
 import {CartService} from "../api/cart.service";
+import {NgxUiLoaderService} from "ngx-ui-loader";
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,8 @@ export class LoginComponent implements OnInit{
     password: ['', Validators.required]
   });
 
-  constructor(private authService: AuthService,
+  constructor(private ngxUiLoaderService:NgxUiLoaderService,
+              private authService: AuthService,
               private cartService: CartService,
               private fb:FormBuilder) {
     this.checkViewPort()
@@ -74,14 +76,17 @@ export class LoginComponent implements OnInit{
   }
 
   onGenerateOTP(){
+    this.ngxUiLoaderService.start()
     this.authService.sendOTP(this.signUpForm.value).subscribe(
       (response)=>{
         this.responseText=response.message
         this.isSignUpFieldsLock=true
         this.isSignUpLock=false
+        this.ngxUiLoaderService.stop()
       },(error)=>{
         console.log(error)
         this.responseText=error.error.message
+        this.ngxUiLoaderService.stop()
       }
     )
   }
@@ -92,24 +97,31 @@ export class LoginComponent implements OnInit{
   }
 
   onRegister() {
+    this.ngxUiLoaderService.start(
+    )
     this.authService.signUpUser(this.signUpForm.value).subscribe(
       (response)=>{
         this.responseText=response.message
         this.clearSignUpFormData()
+        this.ngxUiLoaderService.stop()
       },error => {
         console.log(error)
         this.responseText=error.error.message
+        this.ngxUiLoaderService.stop()
       }
     )
   }
 
   onLogin() {
+    this.ngxUiLoaderService.start()
     this.authService.loginUser(this.loginForm.value, this.isRememberMeChecked).subscribe(
       (response)=>{
         this.setLoginDetails(response)
         this.mergeCart(this.loginForm.value.email)
+        this.ngxUiLoaderService.stop()
       },error => {
         this.responseText=error.error.message
+        this.ngxUiLoaderService.stop()
       }
     )
   }

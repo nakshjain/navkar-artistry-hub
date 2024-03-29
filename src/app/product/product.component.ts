@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {Category, Product} from "../types/products.types";
 import {ProductService} from "../api/product.service";
 import {categories, subCategories} from "../types/products-categories";
+import {NgxUiLoaderService} from "ngx-ui-loader";
 
 @Component({
   selector: 'app-product',
@@ -14,6 +15,7 @@ export class ProductComponent implements OnInit{
   quantity=1
   mainImage=''
   aboutProduct: any
+  quantityAvailable=1
 
   category: Category;
   subCategory: Category;
@@ -21,7 +23,8 @@ export class ProductComponent implements OnInit{
   productsByCategory:Product[]=[]
   titleSimilar='You may also like'
 
-  constructor(private route: ActivatedRoute,
+  constructor(private ngxUiLoaderService:NgxUiLoaderService,
+              private route: ActivatedRoute,
               private productService:ProductService) {
     this.product = {
       productId: "",
@@ -54,16 +57,20 @@ export class ProductComponent implements OnInit{
   }
 
   getProductById(id: string){
+    this.ngxUiLoaderService.start()
     this.productService.getProductById(id).subscribe(
       (product)=>{
         this.product=product;
+        this.quantityAvailable=product.quantity
         this.getProductsByCategory(this.product.category)
         this.getCategory()
         this.getSubCategory()
         this.getAboutProduct()
+        this.ngxUiLoaderService.stop()
         this.mainImage=this.product.imageLinks[0]
       },(error)=>{
         console.log(error)
+        this.ngxUiLoaderService.stop()
       }
     )
   }
@@ -108,6 +115,8 @@ export class ProductComponent implements OnInit{
   onInputQuantity(){
     if(this.quantity < 0){
       this.quantity=0
+    }else if(this.quantity>this.quantityAvailable){
+      this.quantity=this.quantityAvailable
     }
   }
   increaseQuantity() {

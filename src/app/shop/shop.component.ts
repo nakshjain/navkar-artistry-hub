@@ -9,6 +9,7 @@ import {ProductService} from "../api/product.service";
 import {categories, subCategories} from "../types/products-categories";
 import {Product} from "../types/products.types";
 import {WishlistService} from "../api/wishlist.service";
+import {NgxUiLoaderService} from "ngx-ui-loader";
 
 @Component({
   selector: 'app-shop',
@@ -64,7 +65,8 @@ export class ShopComponent implements OnInit, OnChanges{
   totalProducts=0
   isMobileView=false
 
-  constructor(private router: Router,
+  constructor(private ngxUiLoaderService:NgxUiLoaderService,
+              private router: Router,
               private productService:ProductService,
               private activatedRoute: ActivatedRoute,
               private wishlistService: WishlistService) {
@@ -78,7 +80,6 @@ export class ShopComponent implements OnInit, OnChanges{
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['searchText']) {
-      console.log(this.searchText)
       this.getProducts()
     }
   }
@@ -106,6 +107,7 @@ export class ShopComponent implements OnInit, OnChanges{
   }
 
   getProducts(){
+    this.ngxUiLoaderService.start()
     if(!this.category){
       this.category={
         id: '',
@@ -135,8 +137,10 @@ export class ShopComponent implements OnInit, OnChanges{
         this.totalPages=data.totalPages
         this.areProductsFound=true
         this.generatePageNumbers()
+        this.ngxUiLoaderService.stop()
       },(error)=>{
         console.log(error)
+        this.ngxUiLoaderService.stop()
       }
     )
     this.getCategories()
@@ -210,7 +214,6 @@ export class ShopComponent implements OnInit, OnChanges{
     this.visiblePageNumbers = visiblePages;
   }
 
-
   getCategories(){
     if(this.category.name===''){
       this.categoriesToDisplay=this.categories.map(category=>category.name)
@@ -221,8 +224,8 @@ export class ShopComponent implements OnInit, OnChanges{
   }
 
   containerStyles: any = {
-    'overflow-y': 'hidden', // Initially hidden
-    'height': 'auto' // Initial height
+    'overflow-y': 'hidden',
+    'height': 'auto'
   };
 
   stylesApplied: boolean = false;
@@ -299,16 +302,5 @@ export class ShopComponent implements OnInit, OnChanges{
   handleTitle(title?: string, subTitle?: string){
     this.title=title || 'Shop'
     this.subTitle=subTitle || ''
-  }
-
-  addToWishList(product: string){
-    console.log(product)
-    this.wishlistService.addToWishlist(product).subscribe(
-      (res)=>{
-        console.log(res)
-      },(error)=>{
-        console.log(error)
-      }
-    )
   }
 }

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {WishlistService} from "../api/wishlist.service";
 import {Router} from "@angular/router";
+import {NgxUiLoaderService} from "ngx-ui-loader";
 
 @Component({
   selector: 'app-wishlist',
@@ -10,7 +11,8 @@ import {Router} from "@angular/router";
 export class WishlistComponent implements OnInit{
   wishlist: any
   isUserLoggedIn=false
-  constructor(private wishlistService: WishlistService,
+  constructor(private ngxUiLoaderService:NgxUiLoaderService,
+              private wishlistService: WishlistService,
               private router: Router) {
   }
 
@@ -23,14 +25,15 @@ export class WishlistComponent implements OnInit{
   }
 
   getWishlist(){
+    this.ngxUiLoaderService.start()
     if(this.isUserLoggedIn){
       this.wishlistService.getWishlist().subscribe(
         (response)=>{
-          console.log(response)
           this.wishlist=response.wishlist
-          console.log(this.wishlist)
+          this.ngxUiLoaderService.stop()
         },(error)=>{
           console.log(error)
+          this.ngxUiLoaderService.stop()
         }
       )
     }

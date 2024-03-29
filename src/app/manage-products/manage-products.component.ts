@@ -8,6 +8,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {AddProductComponent} from "./add-product/add-product.component";
 import {ConfirmDeleteDialogComponent} from "./confirm-delete-dialog/confirm-delete-dialog.component";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
+import {NgxUiLoaderService} from "ngx-ui-loader";
 
 @Component({
   selector: 'app-manage-products',
@@ -20,7 +21,8 @@ export class ManageProductsComponent implements OnInit{
   displayedColumns=['image', 'name', 'category', 'subCategory', 'price', 'availability', 'quantity', 'action']
   @ViewChild(MatPaginator) paginator !: MatPaginator
   @ViewChild(MatSort) sort !: MatSort
-  constructor(private matDialog: MatDialog,
+  constructor(private ngxUiLoaderService:NgxUiLoaderService,
+              private matDialog: MatDialog,
               private productService:ProductService,
               private snackBar: MatSnackBar,) {
   }
@@ -30,14 +32,17 @@ export class ManageProductsComponent implements OnInit{
   }
 
   getProducts(){
+    this.ngxUiLoaderService.start()
     this.productService.getAllProducts().subscribe(
       (response)=>{
         this.allProducts=response
         this.dataSource=new MatTableDataSource<Product>(this.allProducts)
         this.dataSource.paginator=this.paginator
         this.dataSource.sort=this.sort
+        this.ngxUiLoaderService.stop()
       },(error)=>{
         console.log(error)
+        this.ngxUiLoaderService.stop()
       }
     )
   }
