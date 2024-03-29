@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core'
 import {ActivatedRoute} from "@angular/router";
-import {NgxUiLoaderService} from "ngx-ui-loader";
 import {ProductService} from "../api/product.service";
 import {Product} from "../types/products.types";
 
@@ -85,7 +84,6 @@ export class GetQuoteComponent implements OnInit{
     this.productService.getProductById(id).subscribe(
       (product)=>{
         this.product=product;
-        this.ngxService.stop()
       }
     )
     // this.productService.getProductById1(id).subscribe(
@@ -97,12 +95,11 @@ export class GetQuoteComponent implements OnInit{
     // )
   }
 
-  constructor(private route: ActivatedRoute, private ngxService: NgxUiLoaderService, private productService:ProductService) {
+  constructor(private route: ActivatedRoute, private productService:ProductService) {
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.ngxService.start()
       const productId = params['id'];
       this.getProductById(productId);
     });

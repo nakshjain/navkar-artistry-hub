@@ -1,6 +1,5 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {AuthService} from "../api/auth.service";
-import {NgxUiLoaderService} from "ngx-ui-loader";
 import {FormBuilder, Validators} from "@angular/forms";
 import {CartService} from "../api/cart.service";
 
@@ -28,8 +27,7 @@ export class LoginComponent implements OnInit{
     password: ['', Validators.required]
   });
 
-  constructor(private ngxService:NgxUiLoaderService,
-              private authService: AuthService,
+  constructor(private authService: AuthService,
               private cartService: CartService,
               private fb:FormBuilder) {
     this.checkViewPort()
@@ -76,17 +74,14 @@ export class LoginComponent implements OnInit{
   }
 
   onGenerateOTP(){
-    this.ngxService.start()
     this.authService.sendOTP(this.signUpForm.value).subscribe(
       (response)=>{
         this.responseText=response.message
         this.isSignUpFieldsLock=true
-        this.ngxService.stop()
         this.isSignUpLock=false
       },(error)=>{
         console.log(error)
         this.responseText=error.error.message
-        this.ngxService.stop()
       }
     )
   }
@@ -97,14 +92,11 @@ export class LoginComponent implements OnInit{
   }
 
   onRegister() {
-    this.ngxService.start()
     this.authService.signUpUser(this.signUpForm.value).subscribe(
       (response)=>{
-        this.ngxService.stop()
         this.responseText=response.message
         this.clearSignUpFormData()
       },error => {
-        this.ngxService.stop()
         console.log(error)
         this.responseText=error.error.message
       }
@@ -112,15 +104,12 @@ export class LoginComponent implements OnInit{
   }
 
   onLogin() {
-    this.ngxService.start()
     this.authService.loginUser(this.loginForm.value, this.isRememberMeChecked).subscribe(
       (response)=>{
         this.setLoginDetails(response)
         this.mergeCart(this.loginForm.value.email)
-        this.ngxService.stop()
       },error => {
         this.responseText=error.error.message
-        this.ngxService.stop()
       }
     )
   }

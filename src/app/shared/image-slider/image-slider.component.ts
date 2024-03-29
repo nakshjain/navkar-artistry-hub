@@ -9,27 +9,29 @@ import {Router} from "@angular/router";
 })
 export class ImageSliderComponent {
   @Input()
-  slideConfigDesktop={
-    "slidesToShow": 7,
-    "slidesToScroll": 1,
-    "autoplay":true,
-    "autoplaySpeed": 900,
-    "infinite": true
-  }
-  @Input()
-  slideConfigMobile={
-    "slidesToShow": 3,
-    "slidesToScroll": 1,
-    "autoplay":true,
-    "autoplaySpeed": 900,
-    "infinite": true
-  }
-  @Input()
   category:any
   @Input()
   title: string=''
   @Input()
   products :Product[]=[]
+
+  slideConfig={
+    "slidesToShow": 7,
+    "slidesToScroll": 1,
+    "autoplay":true,
+    "autoplaySpeed": 900,
+    "pauseOnHover": true,
+    "infinite": true,
+    "responsive":[
+      {
+        "breakpoint": 768,
+        "settings":{
+          "slidesToShow": 3,
+          "slidesToScroll": 1,
+        }
+      }
+    ]
+  }
 
   constructor(private router: Router){
   }

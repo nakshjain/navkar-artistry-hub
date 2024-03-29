@@ -6,7 +6,6 @@ import {
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatCheckboxChange} from "@angular/material/checkbox";
 import {ProductService} from "../api/product.service";
-import {NgxUiLoaderService} from "ngx-ui-loader";
 import {categories, subCategories} from "../types/products-categories";
 import {Product} from "../types/products.types";
 import {WishlistService} from "../api/wishlist.service";
@@ -65,15 +64,13 @@ export class ShopComponent implements OnInit, OnChanges{
   totalProducts=0
   isMobileView=false
 
-  constructor(private ngxService:NgxUiLoaderService,
-              private router: Router,
+  constructor(private router: Router,
               private productService:ProductService,
               private activatedRoute: ActivatedRoute,
               private wishlistService: WishlistService) {
   }
 
   ngOnInit() {
-    this.ngxService.start()
     this.handleRouting()
     this.checkMobileView()
     this.wishlistService.fetchWishlist()
@@ -109,7 +106,6 @@ export class ShopComponent implements OnInit, OnChanges{
   }
 
   getProducts(){
-    this.ngxService.start()
     if(!this.category){
       this.category={
         id: '',
@@ -138,11 +134,9 @@ export class ShopComponent implements OnInit, OnChanges{
         this.products = data.products
         this.totalPages=data.totalPages
         this.areProductsFound=true
-        this.ngxService.stop()
         this.generatePageNumbers()
       },(error)=>{
         console.log(error)
-        this.ngxService.stop()
       }
     )
     this.getCategories()
@@ -213,7 +207,6 @@ export class ShopComponent implements OnInit, OnChanges{
         }
       }
     }
-    console.log(visiblePages)
     this.visiblePageNumbers = visiblePages;
   }
 

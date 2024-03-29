@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Inject, Output} from '@angular/core'
-import {NgxUiLoaderService} from "ngx-ui-loader";
 import {ProductService} from "../../api/product.service";
 import {categories, subCategories} from "../../types/products-categories";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
@@ -47,7 +46,6 @@ export class AddProductComponent{
   }
 
   constructor(private fb: FormBuilder,
-              private ngxService: NgxUiLoaderService,
               private productService:ProductService,
               private snackBar: MatSnackBar,
               @Inject(MAT_DIALOG_DATA) public data: any) {
@@ -79,35 +77,29 @@ export class AddProductComponent{
   }
 
   addProduct() {
-    this.ngxService.start()
     this.productService.addProduct(this.productForm.value).subscribe(
       (response)=>{
         this.openSnackBar(this.productForm.value.name+' added successfully!', 'Success');
-        this.ngxService.stop()
         this.closeDialog()
       },error => {
         console.log(error)
         this.openSnackBar(error.error.error, 'Error');
         this.responseTextColor='red'
         this.responseText=error.error.error
-        this.ngxService.stop()
       }
     )
   }
   updateProduct() {
-    this.ngxService.start()
     const productFormUpdate={...this.productForm.value, productId: this.productId};
     this.productService.updateProduct(productFormUpdate).subscribe(
       (response)=>{
         this.openSnackBar(productFormUpdate.name+' updated successfully!', 'Success');
-        this.ngxService.stop()
         this.closeDialog()
       },error => {
         console.log(error)
         this.responseTextColor='red'
         this.responseText=error.error.error
         this.openSnackBar(error.error.error, 'Error');
-        this.ngxService.stop()
       }
     )
   }

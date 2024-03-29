@@ -3,7 +3,6 @@ import {CartService} from "../api/cart.service";
 import {CartItem, Product} from "../types/products.types";
 import {Router} from "@angular/router";
 import {AuthService} from "../api/auth.service";
-import {NgxUiLoaderService} from "ngx-ui-loader";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
 import {LoginComponent} from "../login/login.component";
 import {MatDialog} from "@angular/material/dialog";
@@ -19,8 +18,6 @@ export class CartComponent implements OnInit{
   isUserLoggedIn=false
   constructor(private router: Router,
               private cartService: CartService,
-              private authService:AuthService,
-              private ngxService:NgxUiLoaderService,
               private snackBar: MatSnackBar,
               private matDialog: MatDialog) {
 
@@ -36,16 +33,13 @@ export class CartComponent implements OnInit{
 
   getCart(){
     if(this.isUserLoggedIn) {
-      this.ngxService.start()
       this.cartService.getCartProducts().subscribe(
         (response) => {
           this.cart = response.cart
           console.log(response)
-          this.ngxService.stop()
           this.getTotalAmount(this.cart)
         }, (error) => {
           console.log(error)
-          this.ngxService.stop()
         }
       )
     }
@@ -57,13 +51,10 @@ export class CartComponent implements OnInit{
 
   updateItem(cartItem: CartItem, quantity?: number){
     if(this.isUserLoggedIn){
-      this.ngxService.start()
       this.cartService.addToCart(cartItem.product,quantity).subscribe(
         (response)=>{
-          this.ngxService.stop()
           this.getCart()
         },(error)=>{
-          this.ngxService.stop()
           console.log(error)
           this.openSnackBar(error.error.message, 'Error !')
           this.getCart()
@@ -85,16 +76,13 @@ export class CartComponent implements OnInit{
 
   removeItem(product: Product) {
     if(this.isUserLoggedIn){
-      this.ngxService.start()
       this.cartService.removeFromCart(product).subscribe(
         (response)=>{
           this.openSnackBar(response.message, 'Success !')
           this.getCart()
-          this.ngxService.stop()
         },(error)=>{
           console.log(error)
           this.openSnackBar(error.error.message, 'Error !')
-          this.ngxService.stop()
         }
       )
     }

@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {WishlistService} from "../../api/wishlist.service";
+import {Product} from "../../types/products.types";
 @Component({
   selector: 'app-add-to-wishlist',
   templateUrl: './add-to-wishlist.component.html',
@@ -7,11 +8,22 @@ import {WishlistService} from "../../api/wishlist.service";
 })
 export class AddToWishlistComponent implements OnInit{
   @Input()
-  product: any
+  product: Product;
 
-  isProductInWislist=false
+  isProductInWishlist=false
 
   constructor(private wishlistService: WishlistService) {
+    this.product = {
+      productId: "",
+      name: "",
+      about: "",
+      imageLinks: [""],
+      category: "",
+      subCategory: "",
+      availability: "",
+      price: 0,
+      quantity: 0
+    };
     this.checkIfInWishlist()
   }
 
@@ -23,7 +35,7 @@ export class AddToWishlistComponent implements OnInit{
     this.wishlistService.wishlistCache.subscribe(
       (wishlist)=>{
         if(wishlist.length!==0){
-          this.isProductInWislist=wishlist.some((item)=> item.productId===this.product.productId)
+          this.isProductInWishlist=wishlist.some((item)=> item.productId===this.product.productId)
         }
       }
     )
@@ -31,13 +43,13 @@ export class AddToWishlistComponent implements OnInit{
 
   toggleWishList(){
     const productId=this.product.productId
-    if(this.isProductInWislist){
+    if(this.isProductInWishlist){
       this.wishlistService.removeFromWishlist(productId).subscribe(
         (response)=>{
           const currentWishlist=this.wishlistService.wishlistCache.getValue()
           const updatedWishlist = currentWishlist.filter(item => item.productId !== productId);
           this.wishlistService.wishlistCache.next(updatedWishlist);
-          this.isProductInWislist=false
+          this.isProductInWishlist=false
         },(error)=>{
           console.log(error)
         }
@@ -49,7 +61,7 @@ export class AddToWishlistComponent implements OnInit{
           const currentWishlist=this.wishlistService.wishlistCache.getValue()
           currentWishlist.push(this.product);
           this.wishlistService.wishlistCache.next(currentWishlist);
-          this.isProductInWislist=true
+          this.isProductInWishlist=true
         },(error)=>{
           console.log(error)
         }

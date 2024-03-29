@@ -5,30 +5,24 @@
 .title{
   font-size: 150%;
   padding: 0 0.5%;
-  color: #36180d;
   font-weight: 500;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 .view-all{
   padding: 0 0.5%;
   display: flex;
   text-decoration: none;
-  color: #36180d;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 }
 .view-all-heading{
-  text-align: center;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 .mat-icon-main{
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 .mat-icon{
@@ -46,18 +40,18 @@
   padding: 0 6%;
   cursor: pointer;
 }
-.slide{
-  /*padding: 0 1%;*/
+.about-product{
+  text-align: center;
+  max-width: 100%;
 }
-.mobile{
-  display: none;
-}
-
-@media (max-width: 768px) {
-  .mobile{
-    display: block;
-  }
-  .desktop{
-    display: none;
-  }
+.product-name{
+  margin-top: 1%;
+  font-size: 120%;
+  font-weight: 400;
+  max-height: 25px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

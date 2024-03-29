@@ -12,8 +12,12 @@ import {MatButtonModule} from "@angular/material/button";
 import { HomePageComponent } from './home-page/home-page.component';
 import { ImageSliderComponent } from './shared/image-slider/image-slider.component';
 import {SlickCarouselModule} from "ngx-slick-carousel";
-import {NgxUiLoaderModule} from "ngx-ui-loader";
-import {ProductComponent} from './shared/product/product.component';
+import {
+  NgxUiLoaderConfig,
+  NgxUiLoaderHttpModule,
+  NgxUiLoaderModule,
+} from "ngx-ui-loader";
+import {ProductComponent} from './product/product.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ShopComponent } from './shop/shop.component';
 import {MatSelectModule} from "@angular/material/select";
@@ -48,6 +52,26 @@ import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
 import { ConfirmDeleteDialogComponent } from './manage-products/confirm-delete-dialog/confirm-delete-dialog.component';
+
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+  "delay": 0,
+  "fastFadeOut": true,
+  "fgsColor": "#000000",
+  "fgsPosition": "center-center",
+  "fgsSize": 140,
+  "fgsType": "three-strings",
+  "gap": 24,
+  "logoPosition": "center-center",
+  "logoSize": 120,
+  "logoUrl": "assets/logo.png",
+  "masterLoaderId": "master",
+  "overlayBorderRadius": "0",
+  "overlayColor": "rgba(40, 40, 40, 0.8)",
+  "pbColor": "rgba(0,0,0,0.6)",
+  "pbDirection": "ltr",
+  "pbThickness": 2,
+  "hasProgressBar": true,
+}
 
 @NgModule({
   declarations: [
@@ -87,7 +111,8 @@ import { ConfirmDeleteDialogComponent } from './manage-products/confirm-delete-d
     MatButtonModule,
     MatSelectModule,
     SlickCarouselModule,
-    NgxUiLoaderModule,
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+    NgxUiLoaderHttpModule.forRoot({ showForeground: true }),
     MatCardModule,
     NgbModule,
     MatDialogModule,

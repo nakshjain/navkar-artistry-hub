@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {Product} from "../../types/products.types";
-import {NgxUiLoaderService} from "ngx-ui-loader";
-import {ProductService} from "../../api/product.service";
-import {categories, subCategories} from "../../types/products-categories";
+import {Category, Product} from "../types/products.types";
+import {ProductService} from "../api/product.service";
+import {categories, subCategories} from "../types/products-categories";
 
 @Component({
   selector: 'app-product',
@@ -11,31 +10,51 @@ import {categories, subCategories} from "../../types/products-categories";
   styleUrls: ['./product.component.css'],
 })
 export class ProductComponent implements OnInit{
-  product: any
+  product: Product;
   quantity=1
   mainImage=''
   aboutProduct: any
 
-  category:any;
-  subCategory:any;
+  category: Category;
+  subCategory: Category;
 
   productsByCategory:Product[]=[]
   titleSimilar='You may also like'
 
-  categories=categories
-  subCategories=subCategories
-
   constructor(private route: ActivatedRoute,
-              private ngxService: NgxUiLoaderService,
               private productService:ProductService) {
+    this.product = {
+      productId: "",
+      name: "",
+      about: "",
+      imageLinks: [""],
+      category: "",
+      subCategory: "",
+      availability: "",
+      price: 0,
+      quantity: 0
+    };
+    this.category={
+      id:'',
+      name:'',
+      link:''
+    };
+    this.subCategory={
+      id:'',
+      name:'',
+      link:''
+    };
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.ngxService.start()
       const productId = params['id'];
       this.getProductById(productId);
     });
+  }
+
+  private initializeValue(){
+
   }
 
   getProductById(id: string){
@@ -46,9 +65,7 @@ export class ProductComponent implements OnInit{
         this.getCategory()
         this.getSubCategory()
         this.getAboutProduct()
-        console.log(product)
         this.mainImage=this.product.imageLinks[0]
-        this.ngxService.stop()
       },(error)=>{
         console.log(error)
       }
@@ -68,11 +85,17 @@ export class ProductComponent implements OnInit{
   }
 
   getCategory(){
-    this.category = categories.find(category => category.name === this.product.category);
+    const category=categories.find(category => category.name === this.product.category);
+    if(category) {
+      this.category = category
+    }
   }
 
   getSubCategory(){
-    this.subCategory = subCategories[this.category.name].find(subCategory=> subCategory.name===this.product.subCategory);
+    const subCategory = subCategories[this.category.name].find(subCategory=> subCategory.name===this.product.subCategory)
+    if(subCategory){
+      this.subCategory=subCategory
+    }
   }
 
   getAboutProduct(){
