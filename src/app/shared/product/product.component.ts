@@ -25,8 +25,7 @@ export class ProductComponent implements OnInit{
   categories=categories
   subCategories=subCategories
 
-  constructor(private router: Router,
-              private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
               private ngxService: NgxUiLoaderService,
               private productService:ProductService) {
   }

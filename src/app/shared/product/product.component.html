@@ -7,7 +7,7 @@
   <div class="product-display">
     <div class="image-container">
       <div class="side-nav-images">
-        <div *ngFor="let image of product.imageLinks">
+        <div *ngFor="let image of product.imageLinks" class="side-nav-product-image">
           <img class="product-image" src="{{ image }}" alt="Image" (click)="changeMainImage(image)"/>
         </div>
       </div>

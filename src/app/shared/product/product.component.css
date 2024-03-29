@@ -1,5 +1,5 @@
 .display{
-  padding:30px;
+  padding:3%;
   font-family: 'Poppins', sans-serif;
   line-height: 1.5;
 }
@@ -115,11 +115,35 @@ input[type=number]::-webkit-outer-spin-button {
 .product-about{
   text-align: justify;
 }
-
-
-
 .similar-slider{
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  .product-display{
+    display: block;
+  }
+  .image-container {
+    position: inherit;
+    flex-direction: column;
+    width: 100%;
+  }
+  .main-image{
+    order:1;
+    margin-bottom: 10px;
+  }
+  .side-nav-images{
+    order: 2;
+    display: flex;
+    width: 100%;
+  }
+  .product-image{
+    width: 100%;
+    margin: 0;
+  }
+  .side-nav-product-image{
+    width: 20%;
+  }
 }
 /*.product {*/
 /*  padding: 2% 0;*/
