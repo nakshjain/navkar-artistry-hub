@@ -45,4 +45,12 @@ export class AuthService {
   isAdminBackend(){
     return this.http.get<any>(`${this.baseUrl}/isAdmin`)
   }
+
+  resetPassword(user: any){
+    return this.http.post<any>(`${this.baseUrl}/resetPassword`,user)
+  }
+
+  resetPasswordSendOTP(email: string){
+    return this.http.post<any>(`${this.baseUrl}/resetPassword/sendOTP`, {email: email})
+  }
 }

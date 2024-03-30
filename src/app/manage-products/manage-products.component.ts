@@ -41,7 +41,6 @@ export class ManageProductsComponent implements OnInit{
         this.dataSource.sort=this.sort
         this.ngxUiLoaderService.stop()
       },(error)=>{
-        console.error(error)
         this.ngxUiLoaderService.stop()
       }
     )
@@ -92,7 +91,6 @@ export class ManageProductsComponent implements OnInit{
         this.getProducts()
       }, (error)=>{
         this.openSnackBar(error.error, 'Error');
-        console.error(error)
       }
     )
   }

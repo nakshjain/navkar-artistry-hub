@@ -49,6 +49,7 @@ export class CartComponent implements OnInit{
     else{
       this.cart=this.cartService.getCartProductsUserNotLogged()
       this.getTotalAmount(this.cart)
+      this.ngxUiLoaderService.stop()
     }
   }
 
@@ -58,7 +59,6 @@ export class CartComponent implements OnInit{
         (response)=>{
           this.getCart()
         },(error)=>{
-          console.error(error)
           this.openSnackBar(error.error.message, 'Error !')
           this.getCart()
         }
@@ -84,7 +84,6 @@ export class CartComponent implements OnInit{
           this.openSnackBar(response.message, 'Success !')
           this.getCart()
         },(error)=>{
-          console.error(error)
           this.openSnackBar(error.error.message, 'Error !')
         }
       )

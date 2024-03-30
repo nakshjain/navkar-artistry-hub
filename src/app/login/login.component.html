@@ -1,49 +1,92 @@
 <div class="parent">
   <div class="container" [ngClass]="isSignInVisible ? 'active' : ''" id="container">
-    <div class="form-container sign-in" *ngIf="isMobileViewLogin || !isMobileView">
+    <div class="form-container sign-in" *ngIf="(isMobileViewLogin || !isMobileView) &&!isForgotPassword">
       <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
         <h1>Sign In</h1>
         <input type="email" formControlName="email" placeholder="Email" autocomplete="username" [class.invalid]="isInvalidLogin('email')">
-        <input type="password" formControlName="password" placeholder="Password" autocomplete="current-password" [class.invalid]="isInvalidLogin('password')">
+        <div class="password">
+          <input type="{{ showPassword ? 'text' : 'password' }}" formControlName="password" placeholder="Password" autocomplete="current-password" [class.invalid]="isInvalidLogin('password')">
+          <button type="button" mat-icon-button (click)="togglePasswordVisibility()">
+            <mat-icon>{{ showPassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+          </button>
+        </div>
         <mat-checkbox (click)="updateRememberMe()">Remember me</mat-checkbox>
-        <span *ngIf="responseText">{{ responseText }}</span>
-        <a href="#">→ Forget Your Password? ←</a>
+        <a (click)="toggleForgotPassword()">→ Forget Your Password? ←</a>
         <button type="submit" class="sign-button" [disabled]="!loginForm.valid">Sign In</button>
-        <div class="toggle-mobile" *ngIf="isMobileView">New to our platform? Sign up <button type="button" (click)="toggleMobileView()">here.</button></div>
+        <div class="toggle-mobile" *ngIf="isMobileView">
+          New to our platform? Sign up
+          <button type="button" (click)="toggleMobileView()">
+            here.
+          </button>
+        </div>
       </form>
     </div>
-    <div class="form-container sign-up" *ngIf="!isMobileViewLogin || !isMobileView">
+    <div class="form-container sign-up" *ngIf="(!isMobileViewLogin || !isMobileView) && !isForgotPassword">
       <form [formGroup]="signUpForm" (ngSubmit)="onRegister()">
         <h1>Create Account</h1>
         <input type="text" formControlName="name"
                placeholder="Name" [readonly]="isSignUpFieldsLock" [class.invalid]="isInvalidSignUp('name')">
         <input type="email" formControlName="email" placeholder="Email" autocomplete="username" [readonly]="isSignUpFieldsLock" [class.invalid]="isInvalidSignUp('email')">
-        <input type="password" formControlName="password" placeholder="Password" autocomplete="new-password" [readonly]="isSignUpFieldsLock" [class.invalid]="isInvalidSignUp('password')">
+        <div class="password">
+          <input type="{{ showPassword ? 'text' : 'password' }}" formControlName="password" placeholder="Password" autocomplete="new-password" [readonly]="isSignUpFieldsLock" [class.invalid]="isInvalidLogin('password')">
+          <button type="button" mat-icon-button (click)="togglePasswordVisibility()" [disabled]="isSignUpFieldsLock">
+            <mat-icon>{{ showPassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+          </button>
+        </div>
         <button type="button" class="edit-details" *ngIf="isSignUpFieldsLock" (click)="editDetails()">Edit Details</button>
         <div class="generate-OTP">
           <button type="button" class="generate-OTP-button" (click)="onGenerateOTP()" [disabled]="!signUpForm.get('name')?.valid || !signUpForm.get('email')?.valid || !signUpForm.get('password')?.valid">Generate OTP</button>
           <input type="number" formControlName="otp" placeholder="OTP" class="input-otp">
         </div>
-        <span *ngIf="responseText">{{ responseText }}</span>
         <button type="submit" class="sign-button" [disabled]="isSignUpLock">Sign Up</button>
         <div class="toggle-mobile" *ngIf="isMobileView">
-          Already have an account? Sign in <button type="button" (click)="toggleMobileView()">here.</button>
+          Already have an account? Sign in
+          <button type="button" (click)="toggleMobileView()">
+            here.
+          </button>
         </div>
       </form>
     </div>
     <div class="toggle-container">
       <div class="toggle">
-        <div class="toggle-panel toggle-left" *ngIf="isSignInVisible">
+        <div class="toggle-panel toggle-left" *ngIf="isSignInVisible && !isForgotPassword">
           <h1>Welcome Back!</h1>
-          <p>Enter your personal details to use all site features</p>
+          <p>Please provide your login credentials to access all features.</p>
+          <p>We're here to ensure that your experience is both seamless and secure.</p>
           <button type="button" class="hidden sign-button" id="login" (click)="toggleSignIn()">Sign Up</button>
         </div>
         <div class="toggle-panel toggle-right" *ngIf="!isSignInVisible">
-          <h1>Hello, Friend!</h1>
-          <p>Register with your personal details to use all site features</p>
+          <h1>Start your journey!</h1>
+          <p>Create your account to unlock a world of possibilities</p>
+          <p>Let's get started by filling in your details</p>
           <button type="button" class="hidden sign-button" id="register" (click)="toggleSignIn()">Sign In</button>
         </div>
+        <div class="toggle-panel toggle-left" *ngIf="isForgotPassword">
+          <h1>Lost you key?</h1>
+          <p>Enter your email to unlock.</p>
+          <button type="button" class="hidden sign-button" id="forgotPassword" (click)="toggleForgotPassword()">Sign In</button>
+        </div>
       </div>
+    </div>
+    <div class="form-container forgot-password sign-in" *ngIf="isForgotPassword">
+      <form [formGroup]="forgotPasswordForm">
+        <h1>Forgot Password?</h1>
+        <input type="email" formControlName="email" placeholder="Email" autocomplete="username" [class.invalid]="isInvalidLogin('email')" [readOnly]="resetPasswordOtpSent">
+        <input type="number" formControlName="otp" placeholder="Enter OTP" [class.invalid]="isInvalidLogin('password')" [readOnly]="!resetPasswordOtpSent">
+        <div class="password">
+          <input type="{{ showPassword ? 'text' : 'password' }}" formControlName="password" placeholder="Password" autocomplete="new-password" [readOnly]="!resetPasswordOtpSent" [class.invalid]="isInvalidLogin('password')">
+          <button type="button" mat-icon-button (click)="togglePasswordVisibility()" [disabled]="!resetPasswordOtpSent">
+            <mat-icon>{{ showPassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+          </button>
+        </div>
+        <button type="submit" class="sign-button" [disabled]="isInvalidLogin('email')" (click)=resetPasswordSendOTP() *ngIf="!resetPasswordOtpSent">Send OTP</button>
+        <button type="submit" class="sign-button" [disabled]="forgotPasswordForm.invalid" (click)=resetPassword() *ngIf="resetPasswordOtpSent">Reset Password</button>
+        <div class="toggle-mobile" *ngIf="isMobileView">
+          <button type="button" (click)="toggleForgotPassword()">
+            Back to sign in
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
