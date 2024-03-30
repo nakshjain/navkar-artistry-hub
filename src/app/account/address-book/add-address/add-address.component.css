@@ -24,3 +24,9 @@
 .container input.invalid{
   border: 1px solid red;
 }
+@media(max-width: 768px){
+  .display{
+    padding: 1%;
+    width: 100%;
+  }
+}
