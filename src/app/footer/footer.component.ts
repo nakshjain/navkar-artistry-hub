@@ -8,6 +8,9 @@ import {faFacebook, faTwitter, faInstagram, faYoutube} from "@fortawesome/free-b
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent {
+  phoneNumber='1234567890'
+  message=''
+  emailAddress='navkarartistryhub@gmail.com'
   quickLinks: any[] = [
     {
       id: 'home',
@@ -52,5 +55,13 @@ export class FooterComponent {
       link: 'Youtube',
     },
   ];
+  sendMessageOnWhatsApp() {
+    const whatsappUrl = `https://wa.me/+91${this.phoneNumber}`;
+    window.open(whatsappUrl, '_blank');
+  }
 
+  sendEmail() {
+    const emailUrl = `mailto:${this.emailAddress}`;
+    window.open(emailUrl, '_blank');
+  }
 }

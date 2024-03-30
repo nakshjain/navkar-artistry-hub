@@ -8,11 +8,11 @@
         </div>
         <div class="contact-element">
           Talk to us on Whatsapp :
-          <a href="">+91-1234567890</a>
+          <a (click)="sendMessageOnWhatsApp()">+91-{{phoneNumber}}</a>
         </div>
         <div class="contact-element">
           Email us :
-          <a href="">navkarartistryhub@gmail.com</a>
+          <a (click)="sendEmail()">{{emailAddress}}</a>
         </div>
       </div>
       <div class="footer-col">
