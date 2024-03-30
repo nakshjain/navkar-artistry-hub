@@ -1,6 +1,6 @@
 <div class="display">
-  <button (click)="toggleWishList()">
-    <mat-icon *ngIf="isProductInWishlist">favorite</mat-icon>
-    <mat-icon *ngIf="!isProductInWishlist">favorite_border</mat-icon>
+  <button (click)="toggleWishList()" [disabled]="isPulsating">
+    <mat-icon *ngIf="isProductInWishlist" [@pulsate]="isPulsating ? 'in' : 'out'">favorite</mat-icon>
+    <mat-icon *ngIf="!isProductInWishlist" [@pulsate]="isPulsating ? 'in' : 'out'">favorite_border</mat-icon>
   </button>
 </div>

@@ -120,6 +120,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .similar-slider{
   width: 100%;
+  margin-top: 2%;
 }
 
 @media (max-width: 768px) {

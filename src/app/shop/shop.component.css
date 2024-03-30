@@ -72,12 +72,16 @@
 .sort-options{
   right: 2%;
   display: none;
-  z-index: 9999; /* Ensure the dropdown is on top of other content */
+  z-index: 9999;
   background-color: white;
   position: absolute;
+  width: 10%;
 }
 .sort-option{
   text-align: right;
+  font-size: 110%;
+  padding: 0 2px;
+  width: 100%;
 }
 .main{
   display: flex;
@@ -96,14 +100,21 @@
   position: relative;
   display: inline-block;
 }
-
 .category{
   border: none;
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
+  display: flex;
+  width: 100%;
+  padding: 1% 0 1% 11px;
+}
+.category p{
+  flex: 1;
+  text-align: left;
 }
 .category-options{
   display: none;
+  padding: 1% 0 1% 11px;
 }
 .category-option{
   text-align: right;
@@ -164,6 +175,11 @@
   border: none;
   text-decoration: none;
 }
+@media (min-width: 768px) {
+  hr{
+    display: none;
+  }
+}
 @media (max-width: 768px) {
   .main{
     flex-direction: column;
@@ -173,6 +189,9 @@
   }
   .category-option{
     text-align: left;
+  }
+  .sort-options{
+    width: 40%;
   }
   .products-container{
     overflow-y: visible;

@@ -34,7 +34,7 @@ export class ShopComponent implements OnInit, OnChanges{
   areProductsFound=true
   isFilterHidden=true
   isToSortOpen=false
-  isCategoriesOpen=false
+  isCategoriesOpen=true
 
   selectedSortingOption={
     name:'Sort',
@@ -43,11 +43,11 @@ export class ShopComponent implements OnInit, OnChanges{
 
   sortingOptions=[
     {
-      name:'Price, low to high',
+      name:'Price: Low to High',
       value:'price: 1',
     },
     {
-      name:'Price, high to low',
+      name:'Price: High to Low',
       value:'price: -1',
     },
     {

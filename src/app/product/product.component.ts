@@ -20,7 +20,7 @@ export class ProductComponent implements OnInit{
   category: Category;
   subCategory: Category;
 
-  productsByCategory:Product[]=[]
+  similarProducts:Product[]=[]
   titleSimilar='You may also like'
 
   constructor(private ngxUiLoaderService:NgxUiLoaderService,
@@ -82,7 +82,11 @@ export class ProductComponent implements OnInit{
   getProductsByCategory(category: string){
     this.productService.getProductsByCategory(category).subscribe(
       (productsByCategory)=>{
-        this.productsByCategory=productsByCategory
+        productsByCategory.forEach((product)=>{
+          if(product.productId!==this.product.productId){
+            this.similarProducts.push(product)
+          }
+        })
       }
     )
   }

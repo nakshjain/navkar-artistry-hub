@@ -32,16 +32,18 @@
           <div class="out-of-stock-container">
             <mat-checkbox (change)="onShowOutOfStockChange($event)">Show Out of Stock</mat-checkbox>
           </div>
-          <mat-icon>arrow-upward</mat-icon>
           <div class="category-container">
             <button (click)="toggleCategoriesDropdown()" class="category">
-              Category
+              <p>Category</p>
+              <mat-icon *ngIf="!isCategoriesOpen">keyboard_arrow_down</mat-icon>
+              <mat-icon *ngIf="isCategoriesOpen">keyboard_arrow_up</mat-icon>
             </button>
             <div class="category-options" [ngStyle]="{'display': isCategoriesOpen ? 'block' : 'none'}">
               <div class="category-option" *ngFor="let category of categoriesToDisplay" (click)="selectCategoryOption(category)">{{category}}</div>
             </div>
           </div>
         </div>
+        <hr style="border: 1px solid black;">
       </div>
       <div class="products-container"  *ngIf="totalProducts" [ngStyle]="containerStyles">
         <div class="products">

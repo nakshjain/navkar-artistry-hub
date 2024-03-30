@@ -55,3 +55,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+@media (max-width: 768px) {
+  .view-all{
+    padding: 0 2%;
+  }
+}
