@@ -46,8 +46,8 @@
         <div class="set-as-default" (click)="setDefaultAddress(address)" *ngIf="userDetails.defaultAddress !==address._id">
           <button>Set as default</button>
         </div>
-        <div class="mark-as-default" (click)="setDefaultAddress(address)" *ngIf="userDetails.defaultAddress ===address._id">
-          <button>Marked as default</button>
+        <div class="mark-as-default" *ngIf="userDetails.defaultAddress ===address._id">
+          Marked as default
         </div>
       </div>
     </div>

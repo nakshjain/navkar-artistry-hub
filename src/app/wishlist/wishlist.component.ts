@@ -28,15 +28,20 @@ export class WishlistComponent implements OnInit{
   getWishlist(){
     this.ngxUiLoaderService.start()
     if(this.isUserLoggedIn){
-      this.wishlistService.getWishlist().subscribe(
-        (response)=>{
-          this.wishlist=response.wishlist
-          this.ngxUiLoaderService.stop()
-        },(error)=>{
-          console.error(error)
-          this.ngxUiLoaderService.stop()
-        }
-      )
+      if(this.isUserLoggedIn){
+        this.wishlistService.getWishlist().subscribe(
+          (response)=>{
+            this.wishlist=response.wishlist
+            this.ngxUiLoaderService.stop()
+          },(error)=>{
+            console.error(error)
+            this.ngxUiLoaderService.stop()
+          }
+        )
+      }
+    } else{
+      this.wishlist=this.wishlistService.getWishlistUserNotLogged()
+      this.ngxUiLoaderService.stop()
     }
   }
 
@@ -50,15 +55,20 @@ export class WishlistComponent implements OnInit{
 
   removeFromWishlist(product: any){
     const productId=product.productId
-    this.wishlistService.removeFromWishlist(productId).subscribe(
-      (response)=>{
-        const currentWishlist=this.wishlistService.wishlistCache.getValue()
-        const updatedWishlist = currentWishlist.filter(item => item.productId !== productId);
-        this.wishlistService.wishlistCache.next(updatedWishlist);
-        this.getWishlist()
-      },(error)=>{
-        console.error(error)
-      }
-    )
+    if(this.isUserLoggedIn){
+      this.wishlistService.removeFromWishlist(productId).subscribe(
+        (response)=>{
+          const currentWishlist=this.wishlistService.wishlistCache.getValue()
+          const updatedWishlist = currentWishlist.filter(item => item.productId !== productId);
+          this.wishlistService.wishlistCache.next(updatedWishlist);
+          this.getWishlist()
+        },(error)=>{
+          console.error(error)
+        }
+      )
+    } else{
+      this.wishlistService.removeFromWishlistUserNotLogged(productId)
+      this.getWishlist()
+    }
   }
 }

@@ -21,6 +21,7 @@ export class AddToWishlistComponent implements OnInit{
 
   isProductInWishlist=false
   isPulsating: boolean = false;
+  isUserLoggedIn=false
 
   constructor(private wishlistService: WishlistService) {
     this.product = {
@@ -38,6 +39,10 @@ export class AddToWishlistComponent implements OnInit{
   }
 
   ngOnInit(){
+    const storedUserDetails = sessionStorage.getItem('userDetails');
+    if(storedUserDetails){
+      this.isUserLoggedIn=true
+    }
     this.checkIfInWishlist()
   }
 
@@ -55,32 +60,43 @@ export class AddToWishlistComponent implements OnInit{
     this.isPulsating = true;
     const productId=this.product.productId
     if(this.isProductInWishlist){
-      this.wishlistService.removeFromWishlist(productId).subscribe(
-        (response)=>{
-          const currentWishlist=this.wishlistService.wishlistCache.getValue()
-          const updatedWishlist = currentWishlist.filter(item => item.productId !== productId);
-          this.wishlistService.wishlistCache.next(updatedWishlist);
-          this.isProductInWishlist=false
-          this.isPulsating = false
-        },(error)=>{
-          console.error(error)
-          this.isPulsating = false
-        }
-      )
-    }
-    else{
-      this.wishlistService.addToWishlist(productId).subscribe(
-        (response)=>{
-          const currentWishlist=this.wishlistService.wishlistCache.getValue()
-          currentWishlist.push(this.product);
-          this.wishlistService.wishlistCache.next(currentWishlist);
-          this.isProductInWishlist=true
-          this.isPulsating = false
-        },(error)=>{
-          console.error(error)
-          this.isPulsating = false
-        }
-      )
+      if(this.isUserLoggedIn){
+        this.wishlistService.removeFromWishlist(productId).subscribe(
+          (response)=>{
+            const currentWishlist=this.wishlistService.wishlistCache.getValue()
+            const updatedWishlist = currentWishlist.filter(item => item.productId !== productId);
+            this.wishlistService.wishlistCache.next(updatedWishlist);
+            this.isProductInWishlist=false
+            this.isPulsating = false
+          },(error)=>{
+            console.error(error)
+            this.isPulsating = false
+          }
+        )
+      } else{
+        this.wishlistService.removeFromWishlistUserNotLogged(productId)
+        this.isProductInWishlist=false
+        this.isPulsating = false
+      }
+    } else{
+      if(this.isUserLoggedIn){
+        this.wishlistService.addToWishlist(productId).subscribe(
+          (response)=>{
+            const currentWishlist=this.wishlistService.wishlistCache.getValue()
+            currentWishlist.push(this.product);
+            this.wishlistService.wishlistCache.next(currentWishlist);
+            this.isProductInWishlist=true
+            this.isPulsating = false
+          },(error)=>{
+            console.error(error)
+            this.isPulsating = false
+          }
+        )
+      } else{
+        this.wishlistService.addToWishlistUserNotLogged(this.product)
+        this.isProductInWishlist=true
+        this.isPulsating = false
+      }
     }
   }
 }

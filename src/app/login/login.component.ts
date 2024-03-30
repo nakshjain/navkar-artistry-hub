@@ -3,6 +3,7 @@ import {AuthService} from "../api/auth.service";
 import {FormBuilder, Validators} from "@angular/forms";
 import {CartService} from "../api/cart.service";
 import {NgxUiLoaderService} from "ngx-ui-loader";
+import {WishlistService} from "../api/wishlist.service";
 
 @Component({
   selector: 'app-login',
@@ -31,6 +32,7 @@ export class LoginComponent implements OnInit{
   constructor(private ngxUiLoaderService:NgxUiLoaderService,
               private authService: AuthService,
               private cartService: CartService,
+              private wishlistService: WishlistService,
               private fb:FormBuilder) {
     this.checkViewPort()
   }
@@ -118,6 +120,7 @@ export class LoginComponent implements OnInit{
       (response)=>{
         this.setLoginDetails(response)
         this.mergeCart(this.loginForm.value.email)
+        this.mergeWishlist(this.loginForm.value.email)
         this.ngxUiLoaderService.stop()
       },error => {
         this.responseText=error.error.message
@@ -136,6 +139,19 @@ export class LoginComponent implements OnInit{
     )
     localStorage.removeItem('cart')
   }
+
+  mergeWishlist(email: any){
+    const wishlist=this.wishlistService.getWishlistUserNotLogged()
+    console.log(wishlist)
+    this.wishlistService.mergeWishlist(wishlist, email).subscribe(
+      (response)=>{
+      },(error)=>{
+        console.error(error)
+      }
+    )
+    localStorage.removeItem('wishlist')
+  }
+
   updateRememberMe(){
     this.isRememberMeChecked=!this.isRememberMeChecked
   }
