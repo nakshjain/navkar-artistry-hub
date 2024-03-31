@@ -18,7 +18,7 @@ export class AddToCartComponent implements OnInit{
   @Input()
   height='auto'
   @Input()
-  quantityToAdd=1
+  quantityToAdd:any
 
   cartItem:any
   isProductAvailable=true

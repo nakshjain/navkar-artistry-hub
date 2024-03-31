@@ -20,7 +20,7 @@ import {WishlistComponent} from "./wishlist/wishlist.component";
 import {ManageProductsComponent} from "./manage-products/manage-products.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', component: HomePageMainComponent },
   { path: 'home', component: HomePageMainComponent },
   { path: 'shop', component: ShopComponent},
   { path: 'shop/:category', component: ShopComponent},
@@ -40,6 +40,7 @@ const routes: Routes = [
       { path: 'address-book', component: AddressBookComponent}
     ]
   },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

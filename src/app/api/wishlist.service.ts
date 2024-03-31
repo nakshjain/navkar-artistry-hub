@@ -82,7 +82,7 @@ export class WishlistService{
     this.getWishlistUserNotLogged()
   }
 
-  mergeWishlist(wishlist: any, email: any){
-    return this.http.post<any>(`${this.baseUrl}/mergeWishlist`,{ wishlist: wishlist, email: email })
+  mergeWishlist(wishlist: any, userId: any){
+    return this.http.post<any>(`${this.baseUrl}/mergeWishlist`,{ wishlist: wishlist, userId: userId })
   }
 }

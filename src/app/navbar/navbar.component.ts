@@ -101,7 +101,9 @@ export class NavbarComponent implements OnInit{
     this.isUserLoggedIn=false
     localStorage.removeItem('token')
     sessionStorage.removeItem('userDetails');
-    window.location.reload()
+    this.router.navigateByUrl('/home').then(() => {
+      window.location.reload()
+    });
   }
 
   initializeNavbar(user: any){

@@ -22,8 +22,8 @@ export class CartService {
     return this.http.post<any>(`${this.baseUrl}/removeFromCart`,cartProduct)
   }
 
-  mergeCart(cart: any, email: any){
-    return this.http.post<any>(`${this.baseUrl}/mergeCart`,{ cart: cart, email: email })
+  mergeCart(cart: any, userId: any){
+    return this.http.post<any>(`${this.baseUrl}/mergeCart`,{ cart: cart, userId: userId })
   }
   getCartProductsUserNotLogged(){
     let cart: CartItem[] = JSON.parse(localStorage.getItem('cart') || '[]');

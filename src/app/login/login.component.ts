@@ -132,8 +132,8 @@ export class LoginComponent implements OnInit{
     this.authService.loginUser(this.loginForm.value, this.isRememberMeChecked).subscribe(
       (response)=>{
         this.setLoginDetails(response)
-        this.mergeCart(this.loginForm.value.email)
-        this.mergeWishlist(this.loginForm.value.email)
+        this.mergeCart(response.user.userId)
+        this.mergeWishlist(response.user.userId)
         this.ngxUiLoaderService.stop()
       },error => {
         this.openSnackBar(error.error.message,'Failed!')
@@ -148,9 +148,9 @@ export class LoginComponent implements OnInit{
     window.location.reload()
   }
 
-  mergeCart(email: any){
+  mergeCart(userId: any){
     const cart=this.cartService.getCartProductsUserNotLogged()
-    this.cartService.mergeCart(cart, email).subscribe(
+    this.cartService.mergeCart(cart, userId).subscribe(
       (response)=>{
       },(error)=>{
       }
@@ -158,9 +158,9 @@ export class LoginComponent implements OnInit{
     localStorage.removeItem('cart')
   }
 
-  mergeWishlist(email: any){
+  mergeWishlist(userId: any){
     const wishlist=this.wishlistService.getWishlistUserNotLogged()
-    this.wishlistService.mergeWishlist(wishlist, email).subscribe(
+    this.wishlistService.mergeWishlist(wishlist, userId).subscribe(
       (response)=>{
       },(error)=>{
       }
