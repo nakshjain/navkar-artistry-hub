@@ -134,7 +134,7 @@
         </div>
       </div>
       <div class="checkout" *ngIf="isUserLoggedIn">
-        <button>CHECKOUT</button>
+        <button (click)="checkOut()">CHECKOUT</button>
       </div>
       <div class="checkout" *ngIf="!isUserLoggedIn">
         <button (click)="openLoginDialog()">LOGIN TO CHECKOUT</button>

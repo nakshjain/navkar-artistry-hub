@@ -17,14 +17,14 @@ export class AccountComponent{
       link:'profile',
     },
     {
-      id: 'orders',
-      name:'My Orders',
-      link:'orders',
-    },
-    {
       id: 'address-book',
       name:'Address Book',
       link:'address-book',
+    },
+    {
+      id: 'orders',
+      name:'My Orders',
+      link:'orders',
     },
   ]
 

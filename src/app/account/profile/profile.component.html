@@ -17,7 +17,13 @@
             </button>
           </div>
           <div class="input-detail" #keyInput style="display: none">
-            <input type="text" formControlName="{{ key.key }}" [class.invalid]="isInvalidUserDetail(key.key)">
+            <input *ngIf="key.key !== 'Date of Birth'; else dobEdit" type="text" formControlName="{{ key.key }}" [class.invalid]="isInvalidUserDetail(key.key)">
+            <ng-template #dobEdit>
+              <input matInput [matDatepicker]="dobPicker" placeholder="Select Date of Birth"
+                     formControlName="{{ key.key }}" [class.invalid]="isInvalidUserDetail(key.key)">
+              <mat-datepicker-toggle matSuffix [for]="dobPicker"></mat-datepicker-toggle>
+              <mat-datepicker #dobPicker></mat-datepicker>
+            </ng-template>
           </div>
         </div>
       </ng-container>

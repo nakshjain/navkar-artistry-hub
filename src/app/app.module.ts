@@ -50,6 +50,13 @@ import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
 import { ConfirmDeleteDialogComponent } from './manage-products/confirm-delete-dialog/confirm-delete-dialog.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { PaymentSuccessfulComponent } from './checkout/payment-successful/payment-successful.component';
+import { PaymentFailedComponent } from './checkout/payment-failed/payment-failed.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import { OrdersComponent } from './account/orders/orders.component';
+import { AlertDialogComponent } from './home-page-main/alert-dialog/alert-dialog.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "delay": 0,
@@ -94,36 +101,43 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     WishlistComponent,
     AddToWishlistComponent,
     ManageProductsComponent,
-    ConfirmDeleteDialogComponent
+    ConfirmDeleteDialogComponent,
+    CheckoutComponent,
+    PaymentSuccessfulComponent,
+    PaymentFailedComponent,
+    OrdersComponent,
+    AlertDialogComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatListModule,
-    MatButtonModule,
-    MatSelectModule,
-    SlickCarouselModule,
-    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
-    MatCardModule,
-    NgbModule,
-    MatDialogModule,
-    MatMenuModule,
-    FontAwesomeModule,
-    MatAutocompleteModule,
-    MatInputModule,
-    MatCheckboxModule,
-    ReactiveFormsModule,
-    MatSnackBarModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatSidenavModule,
+        MatListModule,
+        MatButtonModule,
+        MatSelectModule,
+        SlickCarouselModule,
+        NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+        MatCardModule,
+        NgbModule,
+        MatDialogModule,
+        MatMenuModule,
+        FontAwesomeModule,
+        MatAutocompleteModule,
+        MatInputModule,
+        MatCheckboxModule,
+        ReactiveFormsModule,
+        MatSnackBarModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

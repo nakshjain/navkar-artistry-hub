@@ -15,6 +15,10 @@ export class UserService {
     return this.http.get<any>(`${this.baseUrl}/getUserDetails`)
   }
 
+  updateUserDetails(userDetails: any){
+    return this.http.put<any>(`${this.baseUrl}/updateUserDetails`, {userDetails: userDetails})
+  }
+
   addAddress(address: any){
     return this.http.post<any>(`${this.baseUrl}/addAddress`, {address: address})
   }

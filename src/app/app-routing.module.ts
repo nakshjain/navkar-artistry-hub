@@ -18,6 +18,10 @@ import {AddressBookComponent} from "./account/address-book/address-book.componen
 import {ProfileComponent} from "./account/profile/profile.component";
 import {WishlistComponent} from "./wishlist/wishlist.component";
 import {ManageProductsComponent} from "./manage-products/manage-products.component";
+import {CheckoutComponent} from "./checkout/checkout.component";
+import {PaymentSuccessfulComponent} from "./checkout/payment-successful/payment-successful.component";
+import {PaymentFailedComponent} from "./checkout/payment-failed/payment-failed.component";
+import {OrdersComponent} from "./account/orders/orders.component";
 
 const routes: Routes = [
   { path: '', component: HomePageMainComponent },
@@ -37,9 +41,13 @@ const routes: Routes = [
     children:[
       { path: '', redirectTo: '/', pathMatch: 'full' },
       { path: 'profile', component: ProfileComponent},
-      { path: 'address-book', component: AddressBookComponent}
+      { path: 'address-book', component: AddressBookComponent},
+      { path: 'orders', component: OrdersComponent},
     ]
   },
+  { path: 'checkout/:paymentOrderId', canActivate:[authGuard], component: CheckoutComponent},
+  { path: 'paymentSuccessful', canActivate:[authGuard], component: PaymentSuccessfulComponent},
+  { path: 'paymentFailed', canActivate:[authGuard], component: PaymentFailedComponent},
   { path: '**', redirectTo: '' }
 ];
 

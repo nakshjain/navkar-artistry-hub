@@ -6,6 +6,7 @@ import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
 import {LoginComponent} from "../login/login.component";
 import {MatDialog} from "@angular/material/dialog";
 import {NgxUiLoaderService} from "ngx-ui-loader";
+import {OrderService} from "../api/order.service";
 
 @Component({
   selector: 'app-cart',
@@ -16,18 +17,22 @@ export class CartComponent implements OnInit{
   cart:CartItem[]=[]
   totalAmount=0
   isUserLoggedIn=false
+  userId=''
   constructor(private ngxUiLoaderService:NgxUiLoaderService,
               private router: Router,
               private cartService: CartService,
               private snackBar: MatSnackBar,
-              private matDialog: MatDialog) {
+              private matDialog: MatDialog,
+              private orderService: OrderService) {
 
   }
 
   ngOnInit(): void {
     const storedUserDetails = sessionStorage.getItem('userDetails');
     if(storedUserDetails){
+      const user=JSON.parse(storedUserDetails)
       this.isUserLoggedIn=true
+      this.userId=user.userId
     }
     this.getCart()
   }
@@ -69,7 +74,6 @@ export class CartComponent implements OnInit{
       this.getCart()
     }
   }
-
   continueShopping(){
     this.router.navigate(['/shop']);
   }
@@ -121,5 +125,19 @@ export class CartComponent implements OnInit{
     else{
       this.matDialog.closeAll()
     }
+  }
+
+  checkOut() {
+    this.ngxUiLoaderService.start()
+    this.orderService.createPaymentOrder(this.cart, this.userId).subscribe(
+      (response)=>{
+        this.ngxUiLoaderService.stop()
+        const paymentOrderId=response.data.id
+        this.router.navigateByUrl(`/checkout/${paymentOrderId}`)
+      }, (error)=>{
+        this.ngxUiLoaderService.stop()
+        console.log(error)
+      }
+    )
   }
 }
