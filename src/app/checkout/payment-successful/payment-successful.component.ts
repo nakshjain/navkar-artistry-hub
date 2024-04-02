@@ -48,7 +48,7 @@ export class PaymentSuccessfulComponent implements OnInit{
         this.orderService.setPaymentDetails(false,'PAYMENT_FAILED')
         this.countdownInterval = setInterval(() => {
           this.remainingTime--;
-          if (this.remainingTime < 0) {
+          if (this.remainingTime <= 0) {
             clearInterval(this.countdownInterval);
             this.router.navigateByUrl('/my-account/orders');
           }

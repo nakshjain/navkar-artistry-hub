@@ -34,7 +34,7 @@ export class PaymentFailedComponent implements OnInit{
         this.ngxUiLoaderService.stop();
         this.countdownInterval = setInterval(() => {
           this.remainingTime--;
-          if (this.remainingTime < 0) {
+          if (this.remainingTime <= 0) {
             clearInterval(this.countdownInterval);
             this.router.navigateByUrl('/cart');
           }
