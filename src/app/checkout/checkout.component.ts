@@ -41,14 +41,12 @@ export class CheckoutComponent implements OnInit{
     this.ngxUiLoaderService.start()
     this.orderService.verifyOrderId(this.paymentOrderId).subscribe(
       (response)=>{
-        console.log(response)
         this.orderDetails=response.order
         this.totalAmount=response.order.totalAmount
         this.ngxUiLoaderService.stop()
       },(error)=>{
-        console.log(error)
         this.ngxUiLoaderService.stop()
-        // this.router.navigateByUrl('/')
+        this.router.navigateByUrl('/')
       }
     )
   }
