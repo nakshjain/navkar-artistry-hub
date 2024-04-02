@@ -164,6 +164,9 @@
 .product-price{
   text-align: center;
 }
+.rupee::before {
+  content: "\20B9";
+}
 .product-image:hover{
   /*transform: scale(1.2);*/
 }

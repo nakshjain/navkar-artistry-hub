@@ -24,7 +24,7 @@
       <div class="payment-header">Payment Details</div>
       <div class="total-amount">
         <p>Total Payable Amount:</p>
-        <span>Rs.{{totalAmount}}</span>
+        <span class="rupee">{{totalAmount.toLocaleString('en-IN')}}</span>
       </div>
       <div class="pay-now">
         <button (click)="payWithRazorPay()" [disabled]="!selectedAddress">

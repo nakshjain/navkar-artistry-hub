@@ -21,7 +21,7 @@
         </div>
         <div class="product-description">
           <div class="product-name">{{product.name}}</div>
-          <div class="product-price">Rs. {{product.price}}.00</div>
+          <div class="product-price rupee">{{product.price.toLocaleString('en-IN')}}</div>
         </div>
         <div class="edit-product">
           <div *ngIf="product.availability">

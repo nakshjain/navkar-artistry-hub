@@ -3,6 +3,9 @@ button{
   padding: 0;
   background-color: white;
 }
+.rupee::before {
+  content: "\20B9";
+}
 .display{
   font-family: 'Poppins', sans-serif;
   padding: 2%;

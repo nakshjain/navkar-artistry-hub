@@ -39,6 +39,9 @@ button{
   font-size: 150%;
   margin-bottom: 4%;
 }
+.rupee::before {
+  content: "\20B9";
+}
 .total-amount{
   display: flex;
   font-size: 120%;

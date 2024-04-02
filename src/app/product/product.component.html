@@ -18,7 +18,7 @@
     <div class="product-header">
       <div class="product-name">{{product.name}}</div>
       <div class="product-category">{{product.subCategory}} | {{product.category}}</div>
-      <div class="product-price rupee">{{product.price}}</div>
+      <div class="product-price rupee">{{product.price.toLocaleString('en-IN') }}</div>
       <div class="artist"> By Niyati Jain </div>
       <hr>
       <div class="quantity-container">

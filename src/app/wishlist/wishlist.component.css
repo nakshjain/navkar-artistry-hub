@@ -48,6 +48,9 @@ button{
   text-align: center;
   font-size: 110%;
 }
+.rupee::before {
+  content: "\20B9";
+}
 .edit-product{
   display: flex;
 }

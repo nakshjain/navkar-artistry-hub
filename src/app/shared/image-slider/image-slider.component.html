@@ -17,7 +17,7 @@
     <img (click)="viewProductDetails(product.productId)" src="{{ product.imageLinks[0] }}" class="product-image" alt="{{ product.name }}" />
     <div class="about-product">
       <div class="product-name">{{product.name}}</div>
-      <div class="product-price">Rs.{{product.price}}</div>
+      <div class="product-price rupee">{{product.price.toLocaleString('en-IN')}}</div>
     </div>
   </div>
 </ngx-slick-carousel>

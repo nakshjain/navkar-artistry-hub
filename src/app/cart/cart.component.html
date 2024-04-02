@@ -27,7 +27,7 @@
               <div style="font-size: 80%">{{cartItem.product.subCategory.slice(0, -1)}}, {{cartItem.product.category}}</div>
             </div>
           </div>
-          <div class="price">Rs. {{cartItem.product.price}}</div>
+          <div class="price rupee">{{cartItem.product.price.toLocaleString('en-IN')}}</div>
           <div class="quantity">
             <div class="quantity quantity-box">
               <button (click)="updateItem(cartItem,-1)">
@@ -39,7 +39,7 @@
               </button>
             </div>
           </div>
-          <div class="total-per-product">Rs. {{cartItem.product.price*cartItem.quantity}}</div>
+          <div class="total-per-product rupee">{{(cartItem.product.price*cartItem.quantity).toLocaleString('en-IN')}}</div>
           <div class="remove">
             <button (click)="removeItem(cartItem.product)">
               <mat-icon>delete</mat-icon>
@@ -58,7 +58,7 @@
                 </button>
                 <div style="font-size: 80%">{{cartItem.product.subCategory.slice(0, -1)}}, {{cartItem.product.category}}</div>
               </div>
-              <div class="price">Rs. {{cartItem.product.price}}</div>
+              <div class="price rupee">{{cartItem.product.price}}</div>
             </div>
             <div class="quantity-total">
               <div class="quantity">
@@ -72,7 +72,7 @@
                   </button>
                 </div>
               </div>
-              <div class="total-per-product">Rs. {{cartItem.product.price*cartItem.quantity}}</div>
+              <div class="total-per-product rupee">{{(cartItem.product.price*cartItem.quantity).toLocaleString('en-IN')}}</div>
             </div>
           </div>
           <div class="remove">
@@ -93,8 +93,8 @@
           <div class="charge-header">
             Sub Total
           </div>
-          <div class="charge-amount">
-            Rs. {{totalAmount}}.00
+          <div class="charge-amount rupee">
+            {{totalAmount.toLocaleString('en-IN')}}
           </div>
         </div>
         <div class="charge">
@@ -111,7 +111,7 @@
             Platform Fee
           </div>
           <div class="charge-amount">
-            <p style="text-decoration: line-through;margin-right: 3px">Rs. 79.00 </p>
+            <p style="text-decoration: line-through;margin-right: 3px" class="rupee">79.00 </p>
             <p style="color: forestgreen; right:0">Free !</p>
           </div>
         </div>
@@ -120,7 +120,7 @@
             Shipping
           </div>
           <div class="charge-amount">
-            <p style="text-decoration: line-through;margin-right: 3px">Rs. 109.00 </p>
+            <p style="text-decoration: line-through;margin-right: 3px" class="rupee">109.00 </p>
             <p style="color: forestgreen; right:0">Free!</p>
           </div>
         </div>
@@ -129,8 +129,8 @@
         <div class="total-header">
           Total
         </div>
-        <div class="total-amount">
-          Rs. {{totalAmount}}.00
+        <div class="total-amount rupee">
+          {{totalAmount.toLocaleString('en-IN')}}
         </div>
       </div>
       <div class="checkout" *ngIf="isUserLoggedIn">

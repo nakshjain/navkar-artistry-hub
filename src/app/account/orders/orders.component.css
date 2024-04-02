@@ -1,0 +1,78 @@
+.display{
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.5;
+}
+.header{
+  font-weight: bold;
+  font-size: 150%;
+  margin-bottom: 1%;
+}
+.sub-header{
+  margin-bottom: 1%;
+}
+.content{}
+.order{}
+.order {
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border: 1px solid #c7c7c7;
+}
+.order:hover{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+.order p{
+  margin:0;
+}
+.order-header{
+  display: flex;
+}
+.order-date{
+  margin-right: 2%;
+}
+.order-id{
+  margin-left: auto;
+}
+.order-item{
+  display: flex;
+  align-items: center;
+  padding: 0 2%;
+  font-size: 110%;
+}
+.image-container{
+  width:15%;
+  padding: 1%;
+}
+.product-image{
+  width:100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+.name{
+  width: 50%;
+  margin-left: 3%;
+  cursor: pointer;
+}
+.subtotal{
+  width: 20%;
+}
+.rupee::before {
+  content: "\20B9";
+}
+.status{
+  text-transform: capitalize;
+}
+@media (max-width: 768px) {
+  .order-header{
+    font-size: 75%;
+  }
+  .order-id{
+    display: none;
+  }
+  .order-item{
+    font-size: 80%;
+    padding:0;
+  }
+}

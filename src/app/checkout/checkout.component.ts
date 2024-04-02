@@ -64,7 +64,6 @@ export class CheckoutComponent implements OnInit{
   }
 
   payWithRazorPay(){
-    console.log('hi')
     const paymentOrderId=this.getOrderId()
     const options : any={
       key: this.razorPayKey,

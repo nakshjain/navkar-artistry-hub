@@ -46,6 +46,9 @@ img{
   object-fit: cover;
   width: 100%;
 }
+.rupee::before {
+  content: "\20B9";
+}
 @media screen and (max-width: 600px) { /* Adjust the max-width as needed */
   .hide-on-mobile {
     display: none;
