@@ -1,0 +1,36 @@
+.display{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.content{
+  width: 50%;
+  margin: 1% 5% 5%;
+  padding: 2%;
+  background-color: #8bc34a;
+}
+.header{
+  font-size: 150%;
+  font-weight: 500;
+  margin: 1%;
+}
+.transaction-id{
+  font-size: 120%;
+  margin: 1%;
+}
+.redirect button{
+  width: 100%;
+  border: none;
+  background-color: inherit;
+  text-decoration: underline;
+  margin: 1%;
+  color: blue;
+}
+.thanks{
+  margin: 1%;
+}
+@media (max-width: 768px) {
+  .content{
+    width: 90%;
+  }
+}

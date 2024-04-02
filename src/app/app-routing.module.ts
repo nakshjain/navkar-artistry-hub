@@ -46,8 +46,8 @@ const routes: Routes = [
     ]
   },
   { path: 'checkout/:paymentOrderId', canActivate:[authGuard], component: CheckoutComponent},
-  { path: 'paymentSuccessful', canActivate:[authGuard], component: PaymentSuccessfulComponent},
-  { path: 'paymentFailed', canActivate:[authGuard], component: PaymentFailedComponent},
+  { path: 'paymentSuccessful/:paymentOrderId', canActivate:[authGuard], component: PaymentSuccessfulComponent},
+  { path: 'paymentFailed/:paymentOrderId', canActivate:[authGuard], component: PaymentFailedComponent},
   { path: '**', redirectTo: '' }
 ];
 

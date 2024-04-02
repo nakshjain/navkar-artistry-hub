@@ -9,8 +9,13 @@ import {NgxUiLoaderService} from "ngx-ui-loader";
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit{
-  razorPayKey='rzp_test_ePTB6pCtDu49TQ'
+  addressTitle='Select Address'
+  subTitle='Choose delivery address'
+  selectedAddress: any
   paymentOrderId=''
+  orderDetails: any
+  totalAmount=0
+  razorPayKey='rzp_test_ePTB6pCtDu49TQ'
 
   constructor(private route:ActivatedRoute,
               private router:Router,
@@ -22,6 +27,11 @@ export class CheckoutComponent implements OnInit{
     this.verifyOrderId()
   }
 
+  selectAddress(address: any){
+    this.selectedAddress=address
+    this.addAddressToOrderId()
+  }
+
   getOrderId(){
     return this.route.snapshot.params['paymentOrderId']
   }
@@ -31,6 +41,8 @@ export class CheckoutComponent implements OnInit{
     this.ngxUiLoaderService.start()
     this.orderService.verifyOrderId(this.paymentOrderId).subscribe(
       (response)=>{
+        this.orderDetails=response.order
+        this.totalAmount=response.order.totalAmount
         this.ngxUiLoaderService.stop()
       },(error)=>{
         this.ngxUiLoaderService.stop()
@@ -38,7 +50,21 @@ export class CheckoutComponent implements OnInit{
       }
     )
   }
+
+  addAddressToOrderId(){
+    this.ngxUiLoaderService.start()
+    this.orderService.addAddress(this.selectedAddress, this.paymentOrderId).subscribe(
+      (response)=>{
+        this.ngxUiLoaderService.stop()
+      },(error)=>{
+        this.ngxUiLoaderService.stop()
+        this.router.navigateByUrl('/')
+      }
+    )
+  }
+
   payWithRazorPay(){
+    console.log('hi')
     const paymentOrderId=this.getOrderId()
     const options : any={
       key: this.razorPayKey,
@@ -68,20 +94,32 @@ export class CheckoutComponent implements OnInit{
           .subscribe((response: any) => {
             if(response.data.isPaymentVerified){
               this.orderService.setPaymentDetails(true, response.data.paymentId)
-              this.router.navigateByUrl('paymentSuccessful')
+              this.router.navigateByUrl(`paymentSuccessful/${this.paymentOrderId}`)
             }
             else{
               this.orderService.setPaymentDetails(false,'PAYMENT_FAILED')
-              this.router.navigateByUrl('paymentFailed');
+              this.router.navigateByUrl(`paymentFailed/${this.paymentOrderId}`);
             }
           });
       }
     };
     options.modal.ondismiss = () => {
       alert('Transaction has been cancelled.');
-      this.router.navigateByUrl('paymentFailed');
+      this.backToCart()
     };
     const rzp = new this.orderService.nativeWindow.Razorpay(options);
     rzp.open();
+  }
+
+  backToCart() {
+    this.ngxUiLoaderService.start()
+    this.orderService.deleteOrder(this.paymentOrderId).subscribe(
+      (response)=>{
+        this.router.navigateByUrl('/cart')
+        this.ngxUiLoaderService.stop()
+      },(error)=>{
+        this.ngxUiLoaderService.stop()
+      }
+    )
   }
 }

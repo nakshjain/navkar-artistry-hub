@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {AddAddressComponent} from "./add-address/add-address.component";
 import {UserService} from "../../api/user.service";
@@ -11,8 +11,27 @@ import {NgxUiLoaderService} from "ngx-ui-loader";
   styleUrls: ['./address-book.component.css']
 })
 export class AddressBookComponent implements OnInit{
+  @Input()
+  isSelectAddress=false;
+  @Input()
+  title='My Addresses';
+  @Input()
+  subTitle='Add or manage addresses that you often use'
+  @Output() selectedAddressEvent: EventEmitter<any> = new EventEmitter<any>();
+
   userDetails: any;
   addresses:any;
+  selectedAddressId:any
+
+  sendSelectedAddress(addressId: any) {
+    this.selectedAddressId=addressId
+    const selectedAddress=this.getAddress(addressId)
+    this.selectedAddressEvent.emit(selectedAddress);
+  }
+
+  getAddress(addressId: string){
+    return this.userDetails.addresses.find((address: any)=>address._id===addressId)
+  }
 
   constructor(private ngxUiLoaderService: NgxUiLoaderService,
               private matDialog: MatDialog,
@@ -44,6 +63,10 @@ export class AddressBookComponent implements OnInit{
     const userDetails = storedUserDetails ? JSON.parse(storedUserDetails) : null;
     this.addresses=userDetails.addresses
     this.userDetails=userDetails
+    this.selectedAddressId=this.userDetails.defaultAddress
+    if(this.isSelectAddress){
+      this.sendSelectedAddress(this.selectedAddressId)
+    }
     this.sortAddresses()
   }
 

@@ -1,7 +1,7 @@
 <div class="display">
   <div>
-    <div class="header">My Addresses</div>
-    <div class="sub-header">Add or manage addresses that you often use</div>
+    <div class="header">{{title}}</div>
+    <div class="sub-header">{{subTitle}}</div>
   </div>
 
   <div class="address-book">
@@ -43,10 +43,16 @@
         <div class="remove">
           <button (click)="removeAddress(address)">Remove</button>
         </div>
-        <div class="set-as-default" (click)="setDefaultAddress(address)" *ngIf="userDetails.defaultAddress !==address._id">
+        <div class="select-address" (click)="sendSelectedAddress(address._id)" *ngIf="isSelectAddress && selectedAddressId !== address._id">
+          <button>Select Address</button>
+        </div>
+        <div class="mark-as-default selected-address" *ngIf="isSelectAddress && selectedAddressId === address._id">
+          <button>Selected Address</button>
+        </div>
+        <div class="set-as-default" (click)="setDefaultAddress(address)" *ngIf="(userDetails.defaultAddress !== address._id) && !isSelectAddress">
           <button>Set as default</button>
         </div>
-        <div class="mark-as-default" *ngIf="userDetails.defaultAddress ===address._id">
+        <div class="mark-as-default" *ngIf="(userDetails.defaultAddress === address._id) && !isSelectAddress">
           Marked as default
         </div>
       </div>

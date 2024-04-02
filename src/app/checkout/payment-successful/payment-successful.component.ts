@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {OrderService} from "../../api/order.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {NgxUiLoaderService} from "ngx-ui-loader";
 
 @Component({
   selector: 'app-payment-successful',
@@ -8,13 +9,21 @@ import {Router} from "@angular/router";
   styleUrls: ['./payment-successful.component.css']
 })
 export class PaymentSuccessfulComponent implements OnInit{
+  remainingTime: number = 4;
+  countdownInterval: any;
   paymentId=''
   private isPaymentSuccessful=false
+  private paymentOrderId=''
   constructor(private orderService:OrderService,
-              private router: Router) {
+              private router: Router,
+              private ngxUiLoaderService:NgxUiLoaderService,
+              private route:ActivatedRoute) {
   }
 
   ngOnInit(){
+    this.route.params.subscribe(params => {
+      this.paymentOrderId = params['paymentOrderId'];
+    });
     this.checkValidation()
   }
 
@@ -26,7 +35,27 @@ export class PaymentSuccessfulComponent implements OnInit{
   checkValidation(){
     this.getOrderDetails()
     if(!this.isPaymentSuccessful){
-      this.router.navigateByUrl('cart')
+      this.router.navigateByUrl('/my-account/orders')
     }
+    this.goToOrder()
+  }
+
+  goToOrder() {
+    this.ngxUiLoaderService.start()
+    this.orderService.verifyOrderId(this.paymentOrderId).subscribe(
+      (response)=>{
+        this.ngxUiLoaderService.stop()
+        this.orderService.setPaymentDetails(false,'PAYMENT_FAILED')
+        this.countdownInterval = setInterval(() => {
+          this.remainingTime--;
+          if (this.remainingTime < 0) {
+            clearInterval(this.countdownInterval);
+            this.router.navigateByUrl('/my-account/orders');
+          }
+        }, 1000)
+      },(error)=>{
+        this.ngxUiLoaderService.stop()
+      }
+    )
   }
 }

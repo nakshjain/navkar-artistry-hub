@@ -1,7 +1,36 @@
-<p>checkout works!</p>
-<div>
-  Select Address
+<div class="display">
+  <div class="header">
+    <div class="header">
+      <div class="sub-header">
+        <div class="title">Checkout</div>
+        <div>
+          <button (click)="backToCart()">
+            back to cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="select-address">
+      <app-my-addresses
+        [title]="addressTitle"
+        [subTitle]="''"
+        [isSelectAddress]="true"
+        (selectedAddressEvent)="selectAddress($event)"
+      ></app-my-addresses>
+    </div>
+    <div class="payment">
+      <div class="payment-header">Payment Details</div>
+      <div class="total-amount">
+        <p>Total Payable Amount:</p>
+        <span>Rs.{{totalAmount}}</span>
+      </div>
+      <div class="pay-now">
+        <button (click)="payWithRazorPay()" [disabled]="!selectedAddress">
+          Pay Now
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
-<button (click)="payWithRazorPay()">
-  Pay Now
-</button>

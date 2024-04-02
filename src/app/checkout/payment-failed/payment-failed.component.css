@@ -1,0 +1,9 @@
+.display{
+  text-align: center;
+  width: 100%;
+  padding: 10%;
+}
+.title{
+  font-size: 130%;
+  font-weight: 400;
+}

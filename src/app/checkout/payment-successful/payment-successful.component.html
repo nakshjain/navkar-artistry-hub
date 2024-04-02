@@ -1,2 +1,18 @@
-<p>payment-successful works!</p>
-<p>{{paymentId}}</p>
+<div class="display">
+  <div class="content">
+    <div class="header">
+      Your Transaction is Successful
+    </div>
+    <div class="transaction-id">
+      Transaction Id: <span>{{paymentId}}</span>
+    </div>
+    <div class="thanks">
+      Thank you for shopping with us.
+    </div>
+    <div class="redirect">
+      <button (click)="goToOrder()">
+        Redirecting in <span style="color: #4b6cb7">{{ remainingTime }}</span> seconds...
+      </button>
+    </div>
+  </div>
+</div>
