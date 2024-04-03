@@ -1,0 +1,102 @@
+<div class="display">
+  <div class="content" *ngIf="order">
+    <div class="navigation">
+      <a [routerLink]="'my-account/profile'">My Account</a>
+      <span> > </span>
+      <a [routerLink]="'my-account/orders'">My Orders</a>
+      <span> > <span style="cursor: pointer">Order Details</span>
+      </span>
+    </div>
+    <div class="title">
+      Order Details
+    </div>
+    <div class="main-details">
+      <div class="delivery-address main-details-child">
+        <div class="delivery-address-header">
+          Shipping Address
+        </div>
+        <div class="address-detail">
+          <div style="font-weight: 500;">
+            {{address.name}}
+          </div>
+          <div>
+            {{address.streetAddress}}
+          </div>
+          <div>
+            {{address.locality}}
+          </div>
+          <div>
+            {{address.region + ', ' +address.state + ' ' + address.pinCode}}
+          </div>
+          <div>
+            <span style="font-weight: 500">Phone Number</span>
+            {{address.contactNumber}}
+          </div>
+        </div>
+      </div>
+      <hr class="line-break main-details-child">
+      <div class="summary main-details-child">
+        <div class="delivery-address-header">
+          Order Summary
+        </div>
+        <div class="summary-detail">
+          <div class="total">
+            <div class="total-header">Item(s) Subtotal:</div>
+            <div class="price rupee">{{order.totalAmount}}</div>
+          </div>
+          <div class="total">
+            <div class="total-header">Shipping:</div>
+            <div class="price rupee">0</div>
+          </div>
+          <div class="total">
+            <div class="total-header">Platform fee:</div>
+            <div class="price rupee">0</div>
+          </div>
+          <div class="total" style="font-weight: 500">
+            <div class="total-header">Grand Total</div>
+            <div class="price rupee">{{order.totalAmount}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="orders">
+      <div class="order-item-header">
+        <div class="image-container">
+          Image
+        </div>
+        <div class="name">
+          Name
+        </div>
+        <div class="quantity">
+          Quantity
+        </div>
+        <div class="subtotal">
+          Subtotal
+        </div>
+        <div class="status">
+          Status
+        </div>
+      </div>
+      <div *ngFor="let orderItem of order.orderDetails">
+        <hr>
+        <div class="order-item">
+          <div class="image-container">
+            <img [src]="orderItem.product.imageLinks[0]" alt="{{orderItem.product.name}}" class="product-image" (click)="viewProductDetails(orderItem.product.productId)">
+          </div>
+          <div class="name" (click)="viewProductDetails(orderItem.product.productId)">
+            <p>{{orderItem.product.name}}</p>
+          </div>
+          <div class="quantity">
+            <p>{{orderItem.quantity}}</p>
+          </div>
+          <div class="subtotal">
+            <p class="rupee">{{orderItem.subtotal.toLocaleString('en-IN')}}</p>
+          </div>
+          <div class="status">
+            <p>{{ order.status }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

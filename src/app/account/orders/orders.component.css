@@ -32,8 +32,14 @@
 .order-date{
   margin-right: 2%;
 }
-.order-id{
+.order-detail{
   margin-left: auto;
+}
+.view-order-details{
+  cursor: pointer;
+  color: #4b6cb7;
+  width: 100%;
+  text-align: right;
 }
 .order-item{
   display: flex;
@@ -72,7 +78,17 @@
     display: none;
   }
   .order-item{
-    font-size: 80%;
+    font-size: 100%;
     padding:0;
+  }
+  .image-container {
+    width: 25%;
+  }
+  .subtotal{
+    width: 25%;
+    text-align: right;
+  }
+  .status{
+    display: none;
   }
 }

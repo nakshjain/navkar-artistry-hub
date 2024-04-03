@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {CartItem, Product} from "../types/products.types";
+import {CartItem, Product} from "../models/products.types";
 import {HttpClient} from "@angular/common/http";
 import {BASE_URL} from "./config";
 

@@ -22,6 +22,7 @@ import {CheckoutComponent} from "./checkout/checkout.component";
 import {PaymentSuccessfulComponent} from "./checkout/payment-successful/payment-successful.component";
 import {PaymentFailedComponent} from "./checkout/payment-failed/payment-failed.component";
 import {OrdersComponent} from "./account/orders/orders.component";
+import {OrderDetailsComponent} from "./order-details/order-details.component";
 
 const routes: Routes = [
   { path: '', component: HomePageMainComponent },
@@ -34,7 +35,9 @@ const routes: Routes = [
   { path: 'get-quote/:id', component: GetQuoteComponent},
   { path: 'cart', component: CartComponent},
   { path: 'wishlist', component: WishlistComponent},
-  { path: 'manage-products', canActivate:[authGuard,roleGuard], component: ManageProductsComponent},
+  { path: 'checkout/:paymentOrderId', canActivate:[authGuard], component: CheckoutComponent},
+  { path: 'paymentSuccessful/:paymentOrderId', canActivate:[authGuard], component: PaymentSuccessfulComponent},
+  { path: 'paymentFailed/:paymentOrderId', canActivate:[authGuard], component: PaymentFailedComponent},
   { path: 'my-account',
     component: AccountComponent,
     canActivate:[authGuard],
@@ -45,9 +48,8 @@ const routes: Routes = [
       { path: 'orders', component: OrdersComponent},
     ]
   },
-  { path: 'checkout/:paymentOrderId', canActivate:[authGuard], component: CheckoutComponent},
-  { path: 'paymentSuccessful/:paymentOrderId', canActivate:[authGuard], component: PaymentSuccessfulComponent},
-  { path: 'paymentFailed/:paymentOrderId', canActivate:[authGuard], component: PaymentFailedComponent},
+  { path: 'order-details/:orderId', canActivate:[authGuard], component: OrderDetailsComponent},
+  { path: 'manage-products', canActivate:[authGuard,roleGuard], component: ManageProductsComponent},
   { path: '**', redirectTo: '' }
 ];
 

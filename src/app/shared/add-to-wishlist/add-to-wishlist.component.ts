@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {WishlistService} from "../../api/wishlist.service";
-import {Product} from "../../types/products.types";
+import {Product} from "../../models/products.types";
 import {animate, style, transition, trigger} from "@angular/animations";
 @Component({
   selector: 'app-add-to-wishlist',

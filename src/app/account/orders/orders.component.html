@@ -3,7 +3,6 @@
     <div class="header">{{title}}</div>
     <div class="sub-header">{{subTitle}}</div>
   </div>
-
   <div class="content">
     <div *ngFor="let order of orders" class="order">
       <div class="order-header">
@@ -15,9 +14,14 @@
           <p>TOTAL</p>
           <p class="rupee">{{order.totalAmount.toLocaleString('en-IN')}}</p>
         </div>
-        <div class="order-id">
-          <span>ORDER ID: </span>
-          <span>{{order.orderId}}</span>
+        <div class="order-detail">
+          <div class="order-id">
+            <span>ORDER ID: </span>
+            <span>{{order.orderId}}</span>
+          </div>
+          <div class="view-order-details" (click)="viewOrderDetails(order.orderId)">
+            <p>View Order Details</p>
+          </div>
         </div>
       </div>
       <hr style="margin: 2px">

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Product, ProductsByCategory} from "../types/products.types";
+import {Product, ProductsByCategory} from "../models/products.types";
 import {HttpClient} from "@angular/common/http";
 import {map, Observable} from "rxjs";
 import {BASE_URL} from "./config";

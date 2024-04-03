@@ -17,6 +17,10 @@ export class OrderService {
     return this.http.get<any>(`${this.baseUrl}/getAllOrders`)
   }
 
+  getOrderDetails(orderId: string){
+    return this.http.get<any>(`${this.baseUrl}/getOrderDetails/${orderId}`)
+  }
+
   createPaymentOrder(cart: any, userId: any){
     return this.http.post<any>(`${this.baseUrl}/createPaymentOrder`, {cart: cart, userId: userId})
   }

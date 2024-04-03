@@ -1,10 +1,10 @@
 import {Component, EventEmitter, Inject, Output} from '@angular/core'
 import {ProductService} from "../../api/product.service";
-import {categories, subCategories} from "../../types/products-categories";
+import {categories, subCategories} from "../../models/products-categories";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {FormArray, FormBuilder, Validators} from "@angular/forms";
-import {Product} from "../../types/products.types";
+import {Product} from "../../models/products.types";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 
 @Component({

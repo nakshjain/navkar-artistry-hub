@@ -32,7 +32,11 @@ export class OrdersComponent implements OnInit{
     )
   }
 
-  viewProductDetails(productId: string): void {
+  viewProductDetails(productId: string){
     this.router.navigate(['product', productId]);
+  }
+
+  viewOrderDetails(orderId: string) {
+    this.router.navigate((['order-details', orderId]))
   }
 }

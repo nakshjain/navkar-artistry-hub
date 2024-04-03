@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {WishlistService} from "../api/wishlist.service";
 import {Router} from "@angular/router";
 import {NgxUiLoaderService} from "ngx-ui-loader";
-import {Product} from "../types/products.types";
+import {Product} from "../models/products.types";
 
 @Component({
   selector: 'app-wishlist',

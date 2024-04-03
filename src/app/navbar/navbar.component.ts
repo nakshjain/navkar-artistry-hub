@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginComponent} from "../login/login.component";
 import {MatDialog} from "@angular/material/dialog";
-import {Product} from "../types/products.types";
+import {Product} from "../models/products.types";
 import {Router} from "@angular/router";
-import {categories, subCategories} from "../types/products-categories";
+import {categories, subCategories} from "../models/products-categories";
 import {UserService} from "../api/user.service";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 
@@ -23,7 +23,6 @@ export class NavbarComponent implements OnInit{
   isCategorySelected=false
   subCategories=subCategories
   subCategoryNavbarHeader:any
-  isUserAdmin=false
 
   shopHeader: any[] = [
     {
@@ -45,7 +44,11 @@ export class NavbarComponent implements OnInit{
       id: 'my-addresses',
       name:'My Addresses',
       link:'my-account/address-book',
-
+    },
+    {
+      id: 'my-orders',
+      name:'My Orders',
+      link:'my-account/orders',
     }
   ]
 

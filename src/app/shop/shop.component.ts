@@ -6,8 +6,8 @@ import {
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatCheckboxChange} from "@angular/material/checkbox";
 import {ProductService} from "../api/product.service";
-import {categories, subCategories} from "../types/products-categories";
-import {Product} from "../types/products.types";
+import {categories, subCategories} from "../models/products-categories";
+import {Product} from "../models/products.types";
 import {WishlistService} from "../api/wishlist.service";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 
