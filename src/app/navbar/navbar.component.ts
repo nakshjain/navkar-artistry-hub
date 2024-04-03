@@ -36,6 +36,11 @@ export class NavbarComponent implements OnInit{
 
   userOptions: any[]=[
     {
+      id: 'my-orders',
+      name:'My Orders',
+      link:'my-account/orders',
+    },
+    {
       id: 'my-account',
       name:'My Account',
       link:'my-account/profile',
@@ -45,11 +50,6 @@ export class NavbarComponent implements OnInit{
       name:'My Addresses',
       link:'my-account/address-book',
     },
-    {
-      id: 'my-orders',
-      name:'My Orders',
-      link:'my-account/orders',
-    }
   ]
 
   showOptions: boolean = false;
