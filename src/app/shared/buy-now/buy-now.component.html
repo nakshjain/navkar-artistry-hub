@@ -1,0 +1,6 @@
+<div class="display">
+  <button (click)="buyNow()" [disabled]="quantity>product.quantity || quantity<=0">
+    <mat-icon>credit_card</mat-icon>
+    <span>Buy Now</span>
+  </button>
+</div>

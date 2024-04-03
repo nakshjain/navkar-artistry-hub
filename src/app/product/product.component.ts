@@ -4,6 +4,7 @@ import {Category, Product} from "../models/products.types";
 import {ProductService} from "../api/product.service";
 import {categories, subCategories} from "../models/products-categories";
 import {NgxUiLoaderService} from "ngx-ui-loader";
+import {FormBuilder, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-product',
@@ -11,42 +12,25 @@ import {NgxUiLoaderService} from "ngx-ui-loader";
   styleUrls: ['./product.component.css'],
 })
 export class ProductComponent implements OnInit{
-  product: Product;
-  quantity=1
+  product: any;
   mainImage=''
   aboutProduct: any
   quantityAvailable=1
 
-  category: Category;
-  subCategory: Category;
+  category: any;
+  subCategory: any;
 
   similarProducts:Product[]=[]
   titleSimilar='You may also like'
 
+  form = this.fb.group({
+    quantity: [1, [Validators.required, Validators.max(this.quantityAvailable)]]
+  });
+
   constructor(private ngxUiLoaderService:NgxUiLoaderService,
               private route: ActivatedRoute,
-              private productService:ProductService) {
-    this.product = {
-      productId: "",
-      name: "",
-      about: "",
-      imageLinks: [""],
-      category: "",
-      subCategory: "",
-      availability: "",
-      price: 0,
-      quantity: 0
-    };
-    this.category={
-      id:'',
-      name:'',
-      link:''
-    };
-    this.subCategory={
-      id:'',
-      name:'',
-      link:''
-    };
+              private productService:ProductService,
+              private fb:FormBuilder) {
   }
 
   ngOnInit() {
@@ -62,6 +46,9 @@ export class ProductComponent implements OnInit{
       (product)=>{
         this.product=product;
         this.quantityAvailable=product.quantity
+        this.form = this.fb.group({
+          quantity: [1, [Validators.required, Validators.max(this.quantityAvailable)]]
+        });
         this.getProductsByCategory(this.product.category)
         this.getCategory()
         this.getSubCategory()
@@ -110,20 +97,25 @@ export class ProductComponent implements OnInit{
     this.aboutProduct=sentences.map((sentence: string) => `${sentence.trim()}.`);
   }
 
+  get quantityControl() {
+    return this.form.get('quantity');
+  }
+  isInvalidAddress(controlName: string) {
+    const control = this.form.get(controlName);
+    return control?.invalid && (control?.touched || control?.dirty);
+  }
+
   decreaseQuantity() {
-    if(this.quantity > 0){
-      this.quantity-=1
+    let currentValue = this.quantityControl?.value;
+    if (currentValue && currentValue > 1) {
+      this.quantityControl?.setValue(currentValue - 1);
     }
   }
 
-  onInputQuantity(){
-    if(this.quantity < 0){
-      this.quantity=0
-    }else if(this.quantity>this.quantityAvailable){
-      this.quantity=this.quantityAvailable
-    }
-  }
   increaseQuantity() {
-    this.quantity+=1
+    let currentValue = this.quantityControl?.value;
+    if (currentValue && currentValue < this.quantityAvailable) {
+      this.quantityControl?.setValue(currentValue + 1);
+    }
   }
 }

@@ -1,4 +1,4 @@
-<div class="display">
+<div class="display" *ngIf="product">
   <div class="navigation-header">
     <div class="home" routerLink="/home">Home > </div>
     <div class="category" routerLink="/shop/{{category.id}}"> {{category.name}} > </div>
@@ -23,15 +23,26 @@
       <hr>
       <div class="quantity-container">
         <p>Quantity</p>
-        <div class="quantity">
-          <div class="icon-container" (click)="decreaseQuantity()">
-            <mat-icon>remove</mat-icon>
+
+        <form [formGroup]="form">
+          <div class="quantity">
+            <div class="icon-container" (click)="decreaseQuantity()">
+              <mat-icon>remove</mat-icon>
+            </div>
+            <input type="number" formControlName="quantity" [class.invalid]="isInvalidAddress('quantity')">
+            <div class="icon-container" (click)="increaseQuantity()">
+              <mat-icon>add</mat-icon>
+            </div>
           </div>
-          <input type="number" [(ngModel)]="quantity" (input)="onInputQuantity()">
-          <div class="icon-container" (click)="increaseQuantity()">
-            <mat-icon>add</mat-icon>
+          <div *ngIf="isInvalidAddress('quantity')">
+            <div *ngIf="quantityControl?.errors?.['required']">
+              Quantity is required.
+            </div>
+            <div *ngIf="quantityControl?.errors?.['max']">
+              Maximum quantity is {{quantityAvailable}}.
+            </div>
           </div>
-        </div>
+        </form>
       </div>
       <div class="cart-wishlist">
         <div class="cart">
@@ -39,7 +50,7 @@
             [product]="product"
             [borderRadius]="'0px'"
             [height]="'42px'"
-            [quantityToAdd]="quantity"
+            [quantityToAdd]="form.value.quantity"
           ></app-add-to-cart>
         </div>
         <div class="wishlist">
@@ -47,6 +58,12 @@
             [product]="product"
           ></app-add-to-wishlist>
         </div>
+      </div>
+      <div class="buy-now">
+        <app-buy-now
+          [product]="product"
+          [quantity]="form.value.quantity"
+        ></app-buy-now>
       </div>
       <div class="product-about">
         <div class="product-about-title">About this item</div>

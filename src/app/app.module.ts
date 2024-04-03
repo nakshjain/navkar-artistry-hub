@@ -58,6 +58,7 @@ import {MatNativeDateModule} from "@angular/material/core";
 import { OrdersComponent } from './account/orders/orders.component';
 import { AlertDialogComponent } from './home-page-main/alert-dialog/alert-dialog.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
+import { BuyNowComponent } from './shared/buy-now/buy-now.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "delay": 0,
@@ -108,7 +109,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     PaymentFailedComponent,
     OrdersComponent,
     AlertDialogComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    BuyNowComponent
   ],
     imports: [
         BrowserModule,

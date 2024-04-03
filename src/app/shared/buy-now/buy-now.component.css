@@ -1,0 +1,15 @@
+.display{
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+.display button{
+  width: 100%;
+  height: 44px;
+  font-size: 150%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.display span{
+  padding-left: 1%;
+}

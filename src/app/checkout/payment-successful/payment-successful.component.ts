@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {OrderService} from "../../api/order.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NgxUiLoaderService} from "ngx-ui-loader";
+import {CartService} from "../../api/cart.service";
 
 @Component({
   selector: 'app-payment-successful',
@@ -15,6 +16,7 @@ export class PaymentSuccessfulComponent implements OnInit{
   private isPaymentSuccessful=false
   private paymentOrderId=''
   constructor(private orderService:OrderService,
+              private cartService: CartService,
               private router: Router,
               private ngxUiLoaderService:NgxUiLoaderService,
               private route:ActivatedRoute) {
@@ -44,6 +46,16 @@ export class PaymentSuccessfulComponent implements OnInit{
     this.ngxUiLoaderService.start()
     this.orderService.verifyOrderId(this.paymentOrderId).subscribe(
       (response)=>{
+        this.clearCart()
+      },(error)=>{
+        this.ngxUiLoaderService.stop()
+      }
+    )
+  }
+
+  clearCart(){
+    this.cartService.clearCart().subscribe(
+      (res)=>{
         this.ngxUiLoaderService.stop()
         this.orderService.setPaymentDetails(false,'PAYMENT_FAILED')
         this.countdownInterval = setInterval(() => {
@@ -53,7 +65,7 @@ export class PaymentSuccessfulComponent implements OnInit{
             this.router.navigateByUrl('/my-account/orders');
           }
         }, 1000)
-      },(error)=>{
+      },(err)=>{
         this.ngxUiLoaderService.stop()
       }
     )

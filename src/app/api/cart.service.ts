@@ -21,10 +21,13 @@ export class CartService {
   removeFromCart(cartProduct: any){
     return this.http.post<any>(`${this.baseUrl}/removeFromCart`,cartProduct)
   }
-
+  clearCart(){
+    return this.http.delete<any>(`${this.baseUrl}/clearCart`)
+  }
   mergeCart(cart: any, userId: any){
     return this.http.post<any>(`${this.baseUrl}/mergeCart`,{ cart: cart, userId: userId })
   }
+
   getCartProductsUserNotLogged(){
     let cart: CartItem[] = JSON.parse(localStorage.getItem('cart') || '[]');
     return cart
