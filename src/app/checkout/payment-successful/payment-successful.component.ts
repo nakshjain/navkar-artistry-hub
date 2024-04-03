@@ -55,7 +55,7 @@ export class PaymentSuccessfulComponent implements OnInit{
 
   clearCart(){
     this.cartService.clearCart().subscribe(
-      (res)=>{
+      (response)=>{
         this.ngxUiLoaderService.stop()
         this.orderService.setPaymentDetails(false,'PAYMENT_FAILED')
         this.countdownInterval = setInterval(() => {
@@ -65,7 +65,7 @@ export class PaymentSuccessfulComponent implements OnInit{
             this.router.navigateByUrl('/my-account/orders');
           }
         }, 1000)
-      },(err)=>{
+      },(error)=>{
         this.ngxUiLoaderService.stop()
       }
     )

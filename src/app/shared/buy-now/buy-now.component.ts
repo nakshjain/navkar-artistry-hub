@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {CartItem, Product} from "../../models/products.types";
+import {CartItem} from "../../models/products.types";
 import {OrderService} from "../../api/order.service";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {Router} from "@angular/router";

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {Category, Product} from "../models/products.types";
+import {Product} from "../models/products.types";
 import {ProductService} from "../api/product.service";
 import {categories, subCategories} from "../models/products-categories";
 import {NgxUiLoaderService} from "ngx-ui-loader";
