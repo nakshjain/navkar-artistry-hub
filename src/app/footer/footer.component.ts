@@ -10,7 +10,7 @@ import {faFacebook, faTwitter, faInstagram, faYoutube} from "@fortawesome/free-b
 export class FooterComponent {
   phoneNumber='1234567890'
   message=''
-  emailAddress='navkarartistryhub@gmail.com'
+  emailAddress='info@navkarartistryhub.com'
   quickLinks: any[] = [
     {
       id: 'home',

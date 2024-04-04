@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {categories, subCategories} from "../models/products-categories";
 import {UserService} from "../api/user.service";
 import {NgxUiLoaderService} from "ngx-ui-loader";
+import {ProductService} from "../api/product.service";
 
 @Component({
   selector: 'app-navbar',
@@ -52,29 +53,18 @@ export class NavbarComponent implements OnInit{
     },
   ]
 
-  showOptions: boolean = false;
-
-  onInputChange(): void {
-    this.showOptions = this.searchQuery.trim().length > 0;
-  }
-
-  openLoginDialog() {
-    if(!this.isUserLoggedIn){
-      this.matDialog.open(LoginComponent,{
-      })
-    }
-    else{
-      this.matDialog.closeAll()
-    }
-  }
+  options: Product[] = [];
+  filteredOptions: Product[] = [];
 
   constructor(private ngxUiLoaderService:NgxUiLoaderService,
               private matDialog: MatDialog,
               private userService: UserService,
+              private productService:ProductService,
               private router: Router) {
   }
 
   ngOnInit(): void {
+    this.getProducts()
     const storedUserDetails = sessionStorage.getItem('userDetails');
     this.user = storedUserDetails ? JSON.parse(storedUserDetails) : null;
     if(this.user){
@@ -125,6 +115,16 @@ export class NavbarComponent implements OnInit{
     this.openLoginDialog()
   }
 
+  openLoginDialog() {
+    if(!this.isUserLoggedIn){
+      this.matDialog.open(LoginComponent,{
+      })
+    }
+    else{
+      this.matDialog.closeAll()
+    }
+  }
+
   onEnterSearchPressed() {
     const searchQuery=this.searchQuery
     this.searchQuery=''
@@ -150,4 +150,32 @@ export class NavbarComponent implements OnInit{
     this.router.navigate(['/wishlist'])
   }
 
+  getProducts(){
+    this.ngxUiLoaderService.start()
+    this.productService.getAllProducts().subscribe(
+      (response)=>{
+        this.options = response
+        this.ngxUiLoaderService.stop()
+      },(error)=>{
+        this.ngxUiLoaderService.stop()
+      }
+    )
+  }
+
+  onInputChange(): void {
+    if (this.searchQuery.length >= 3) {
+      this.filteredOptions = this.options.filter(option =>
+        option.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        option.category.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        option.subCategory.toLowerCase().includes(this.searchQuery.toLowerCase())
+      ).slice(0, 10)
+    } else {
+      this.filteredOptions = [];
+    }
+  }
+
+  goToProduct(productId: any){
+    this.searchQuery=''
+    this.router.navigate(['/product',productId])
+  }
 }

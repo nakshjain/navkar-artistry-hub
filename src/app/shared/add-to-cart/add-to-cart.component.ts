@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {CartService} from "../../api/cart.service";
 import {CartItem} from "../../models/products.types";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-to-cart',
@@ -26,7 +27,8 @@ export class AddToCartComponent implements OnInit{
   isProductAdding=false
   isUserLoggedIn=false
   constructor(private cartService:CartService,
-              private snackBar:MatSnackBar) {
+              private snackBar:MatSnackBar,
+              private router:Router) {
   }
 
   ngOnInit(){
@@ -41,7 +43,13 @@ export class AddToCartComponent implements OnInit{
     config.horizontalPosition = 'right';
     config.verticalPosition = 'top';
 
-    this.snackBar.open(message, action, config)
+    const snackBarRef = this.snackBar.open(message, action, config)
+
+    if(action==='Go to Cart'){
+      snackBarRef.onAction().subscribe(() => {
+        this.router.navigate(['/cart']);
+      });
+    }
   }
 
   addToCart(){
@@ -49,7 +57,7 @@ export class AddToCartComponent implements OnInit{
       this.isProductAdding=true
       this.cartService.addToCart(this.product,this.quantityToAdd).subscribe(
         (data)=>{
-          this.openSnackBar('Item Added!', 'Success');
+          this.openSnackBar('Item Added!', 'Go to Cart');
           this.isProductAdding=false
           this.cartItem=data.cart
           this.isProductAvailable=this.checkIfAvailable(this.cartItem)
@@ -63,7 +71,7 @@ export class AddToCartComponent implements OnInit{
       this.cartService.addToCartUserNotLogged(this.product)
       this.itemInCart=this.cartService.getCartItemQuantity(this.product)
       this.isProductAvailable=this.product.quantity>this.itemInCart
-      this.openSnackBar('Item Added!', 'Success');
+      this.openSnackBar('Item Added!', 'Go to Cart');
     }
   }
 
@@ -71,7 +79,7 @@ export class AddToCartComponent implements OnInit{
     if(this.isUserLoggedIn){
       this.cartService.removeFromCart(this.product).subscribe(
         (response)=>{
-          this.openSnackBar('Item Removed from Cart', 'Success');
+          this.openSnackBar('Item Removed from Cart', '');
           this.isProductAvailable=true
           this.itemInCart=0
         },(error)=>{
@@ -81,7 +89,7 @@ export class AddToCartComponent implements OnInit{
     }
     else {
       this.cartService.removeFromCartUserNotLogged(this.product)
-      this.openSnackBar('Item Removed from Cart', 'Success');
+      this.openSnackBar('Item Removed from Cart', '');
       this.itemInCart=this.cartService.getCartItemQuantity(this.product)
       this.isProductAvailable=this.product.quantity>this.itemInCart
     }

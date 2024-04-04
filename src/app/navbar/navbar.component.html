@@ -7,7 +7,7 @@
           <input type="text" placeholder="Search..." [(ngModel)]="searchQuery" (keydown.enter)="onEnterSearchPressed()" (input)="onInputChange()" [matAutocomplete]="auto">
         </div>
         <mat-autocomplete #auto>
-          <mat-option *ngIf="showOptions">Red</mat-option>
+          <mat-option *ngFor="let option of filteredOptions" [value]="option.name" (click)="goToProduct(option.productId)">{{ option.name }}</mat-option>
         </mat-autocomplete>
       </div>
       <mat-icon *ngIf="isCategorySelected" (click)="resetCategory()" class="back-sidenav">keyboard_arrow_left</mat-icon>
@@ -78,7 +78,7 @@
                 <input type="text" placeholder="Search..." [(ngModel)]="searchQuery" (keydown.enter)="onEnterSearchPressed()" (input)="onInputChange()" [matAutocomplete]="auto">
               </div>
               <mat-autocomplete #auto>
-                <mat-option *ngIf="showOptions">Red</mat-option>
+                <mat-option *ngFor="let option of filteredOptions" [value]="option.name" (click)="goToProduct(option.productId)">{{ option.name }}</mat-option>
               </mat-autocomplete>
             </div>
             <div class="user">
