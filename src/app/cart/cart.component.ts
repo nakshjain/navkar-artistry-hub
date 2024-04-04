@@ -85,7 +85,7 @@ export class CartComponent implements OnInit{
     if(this.isUserLoggedIn){
       this.cartService.removeFromCart(product).subscribe(
         (response)=>{
-          this.openSnackBar(response.message, 'Success !')
+          this.openSnackBar(response.message, '')
           this.getCart()
         },(error)=>{
           this.openSnackBar(error.error.message, 'Error !')
