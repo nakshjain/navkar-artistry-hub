@@ -10,6 +10,7 @@ import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
   styleUrls: ['./add-address.component.css']
 })
 export class AddAddressComponent {
+  isSpinner=false
   isEditForm=false
   updateAddressId=''
 
@@ -62,27 +63,33 @@ export class AddAddressComponent {
   }
 
   onAddAddress() {
+    this.isSpinner=true
     this.userService.addAddress(this.addressForm.value).subscribe(
       (response)=>{
         this.openSnackBar('Address added successfully', 'Success')
         this.addressForm.reset()
         this.dialogRef.close()
         this.getUserDetails()
+        this.isSpinner=false
       },(error)=>{
         this.openSnackBar(error.error.message, 'Failed')
+        this.isSpinner=false
       }
     )
   }
 
   onUpdateAddress() {
+    this.isSpinner=true
     this.userService.updateAddress(this.addressForm.value, this.updateAddressId).subscribe(
       (response)=>{
         this.openSnackBar('Address updated successfully', 'Success')
         this.addressForm.reset()
         this.dialogRef.close()
         this.getUserDetails()
+        this.isSpinner=false
       },(error)=>{
         this.openSnackBar(error.error.message, 'Failed')
+        this.isSpinner=false
       }
     )
   }

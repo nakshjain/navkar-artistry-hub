@@ -113,12 +113,12 @@ export class LoginComponent implements OnInit{
   }
 
   onRegister() {
-    this.ngxUiLoaderService.start(
-    )
+    this.ngxUiLoaderService.start()
     this.authService.signUpUser(this.signUpForm.value).subscribe(
       (response)=>{
         this.openSnackBar(response.message,'Success!')
         this.clearSignUpFormData()
+        this.toggleSignIn()
         this.ngxUiLoaderService.stop()
       },error => {
         this.openSnackBar(error.error.message,'Failed!')

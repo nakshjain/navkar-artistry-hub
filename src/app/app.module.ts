@@ -59,6 +59,7 @@ import { OrdersComponent } from './account/orders/orders.component';
 import { AlertDialogComponent } from './home-page-main/alert-dialog/alert-dialog.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { BuyNowComponent } from './shared/buy-now/buy-now.component';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "delay": 0,
@@ -110,7 +111,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     OrdersComponent,
     AlertDialogComponent,
     OrderDetailsComponent,
-    BuyNowComponent
+    BuyNowComponent,
+    SpinnerComponent
   ],
     imports: [
         BrowserModule,

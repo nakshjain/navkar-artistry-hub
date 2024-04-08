@@ -1,7 +1,7 @@
 <div class="display">
-  <div class="spinner-container">
-    <div class="spinner" *ngIf="isProductAdding"></div>
-  </div>
+  <app-spinner
+    [isSpinner]="isProductAdding"
+  ></app-spinner>
   <div class="add-to-cart" *ngIf="!isProductAdding">
     <button (click)="addToCart()" [disabled]="!isProductAvailable" [style.border-radius]="borderRadius" [style.height]="height">
       <mat-icon style="transform: scale(0.75)">shopping_cart_checkout</mat-icon>
