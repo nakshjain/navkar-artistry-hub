@@ -36,7 +36,6 @@ export class OrderDetailsComponent implements OnInit{
         this.address=this.order.deliveryAddress
         this.ngxUiLoaderService.stop()
       },(error)=>{
-        console.log(error)
         this.ngxUiLoaderService.stop()
       }
     )

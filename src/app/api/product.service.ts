@@ -80,6 +80,19 @@ export class ProductService {
   addProduct(product: any){
     return this.http.post<any>(`${this.baseUrl}/addProduct`,product)
   }
+
+  addProductImages(images: FormData){
+    return this.http.post<any>(`${this.baseUrl}/addProductImages`,images)
+  }
+
+  deleteProductImage(imageUrl: any, productId: string){
+    return this.http.delete<any>(`${this.baseUrl}/deleteProductImage`,  { body: { imageUrl: imageUrl, productId: productId } })
+  }
+
+  defaultProductImage(productId: string, defaultImageUrl: string){
+    return this.http.put<any>(`${this.baseUrl}/defaultProductImage`,{ productId : productId, defaultImageUrl : defaultImageUrl})
+  }
+
   updateProduct(product: any){
     return this.http.put<any>(`${this.baseUrl}/updateProduct`,product)
   }

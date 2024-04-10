@@ -9,6 +9,7 @@ import {AddProductComponent} from "./add-product/add-product.component";
 import {ConfirmDeleteDialogComponent} from "./confirm-delete-dialog/confirm-delete-dialog.component";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
 import {NgxUiLoaderService} from "ngx-ui-loader";
+import {AddProductImagesComponent} from "./add-product-images/add-product-images.component";
 
 @Component({
   selector: 'app-manage-products',
@@ -56,6 +57,17 @@ export class ManageProductsComponent implements OnInit{
     });
   }
 
+  openAddEditImagesDialog(product?: Product) {
+    const dialogRef=this.matDialog.open(AddProductImagesComponent,{
+      width: '500px',
+      data: product
+    })
+    dialogRef.componentInstance.closeDialogEvent.subscribe(() => {
+      dialogRef.close();
+      this.getProducts()
+    });
+  }
+
   openDeleteProductDialog(product: Product){
     const dialogRef=this.matDialog.open(ConfirmDeleteDialogComponent,{
       width: '500px',
@@ -79,6 +91,10 @@ export class ManageProductsComponent implements OnInit{
 
   editProduct(product: Product) {
     this.openAddEditProductDialog(product)
+  }
+
+  editProductImages(product: Product) {
+    this.openAddEditImagesDialog(product)
   }
 
   deleteProductConfirmation(product: Product) {

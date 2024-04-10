@@ -26,7 +26,7 @@ export class OrdersComponent implements OnInit{
         this.orders=response.orders
         this.ngxUiLoaderService.stop()
       },(error)=>{
-        console.log(error)
+        console.error(error)
         this.ngxUiLoaderService.stop()
       }
     )

@@ -42,7 +42,6 @@ export class BuyNowComponent {
         this.router.navigateByUrl(`/checkout/${paymentOrderId}`)
       }, (error)=>{
         this.ngxUiLoaderService.stop()
-        console.log(error)
       }
     )
   }

@@ -212,7 +212,6 @@ export class LoginComponent implements OnInit{
         this.openSnackBar(response.message,'Success!')
         this.resetPasswordForm()
       },(error)=>{
-        console.log(error)
         this.openSnackBar(error.error.message,'Failed!')
         this.ngxUiLoaderService.stop()
       }

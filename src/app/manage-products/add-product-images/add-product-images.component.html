@@ -1,0 +1,43 @@
+<div class="display">
+  <div class="header">
+    <p>Add Images</p>
+    <div class="icon-container" (click)="closeDialog()">
+      <mat-icon>close</mat-icon>
+    </div>
+  </div>
+  <div class="about-product">
+    <div class="product-header">
+      <div class="title">Title : </div>
+      <div class="data">{{data.name}}</div>
+    </div>
+    <div class="product-header">
+      <div class="title">Category : </div>
+      <div class="data">{{data.category}}</div>
+    </div>
+    <div class="product-header">
+      <div class="title">Subcategory : </div>
+      <div class="data">{{data.subCategory}}</div>
+    </div>
+    <div class="images-container">
+      <div class="image-header">Images</div>
+      <div class="images">
+        <div *ngFor="let imageUrl of data.imageLinks" class="image-container">
+          <img [src]="imageUrl" [alt]="data.name" class="image">
+          <div class="image-controls">
+            <button mat-raised-button color="primary" (click)="defaultImage(imageUrl)" *ngIf="imageUrl!==defaultImageUrl">Set as Default</button>
+            <div *ngIf="imageUrl===defaultImageUrl">Default Image</div>
+            <button mat-raised-button color="warn" (click)="deleteImage(imageUrl)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="add-images">
+    <ngx-dropzone (change)="onSelect($event)">
+      <ngx-dropzone-label>Drag and drop images</ngx-dropzone-label>
+      <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+      </ngx-dropzone-image-preview>
+    </ngx-dropzone>
+  </div>
+  <button mat-raised-button color="primary" (click)="addImages()">Add New Images</button>
+</div>

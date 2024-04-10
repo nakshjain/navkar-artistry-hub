@@ -136,7 +136,7 @@ export class CartComponent implements OnInit{
         this.router.navigateByUrl(`/checkout/${paymentOrderId}`)
       }, (error)=>{
         this.ngxUiLoaderService.stop()
-        console.log(error)
+        console.error(error)
       }
     )
   }

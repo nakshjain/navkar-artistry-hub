@@ -31,14 +31,9 @@ export class AddProductComponent{
     price:[0, Validators.required],
     category: ['', Validators.required],
     subCategory: ['', Validators.required],
-    imageLinks: this.fb.array([['', Validators.required]]),
     availability:['', Validators.required],
     quantity:[0, Validators.required]
   })
-
-  getControls() {
-    return (this.productForm.get('imageLinks') as FormArray).controls;
-  }
 
   @Output() closeDialogEvent = new EventEmitter<void>();
 
@@ -67,15 +62,9 @@ export class AddProductComponent{
       price:[product.price, Validators.required],
       category: [product.category, Validators.required],
       subCategory: [product.subCategory, Validators.required],
-      imageLinks: this.fb.array(product.imageLinks),
       availability:[product.availability.toString(), Validators.required],
       quantity:[product.quantity, Validators.required]
     })
-  }
-
-  addImageLink() {
-    const imageLinksArray = this.productForm.get('imageLinks') as FormArray;
-    imageLinksArray.push(this.fb.control(''));
   }
 
   addProduct() {
@@ -118,6 +107,7 @@ export class AddProductComponent{
 
     this.snackBar.open(message, action, config)
   }
+
   onCategorySelected(category: string) {
     this.categorySelected=category
   }

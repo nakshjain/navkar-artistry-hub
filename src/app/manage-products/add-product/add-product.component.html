@@ -38,16 +38,6 @@
         <input matInput type="number" formControlName="quantity" placeholder="Enter Quantity Available">
       </mat-form-field>
 
-      <ng-container formArrayName="imageLinks">
-        <div (click)="addImageLink()">Add Image Link</div>
-        <div *ngFor="let control of getControls(); let i = index">
-          <mat-form-field appearance="fill">
-            <mat-label>Image Link {{ i + 1 }}</mat-label>
-            <input matInput type="text" [formControlName]="i" placeholder="Image URL">
-          </mat-form-field>
-        </div>
-      </ng-container>
-
       <mat-form-field appearance="fill">
         <mat-label>About</mat-label>
         <textarea matInput formControlName="about" placeholder="About Product" name="about" required></textarea>

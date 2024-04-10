@@ -50,7 +50,7 @@
           <ng-container *ngFor="let product of products">
             <div class="product">
               <div class="image-container">
-                <img (click)="viewProductDetails(product.productId)" [src]="product.imageLinks" class="product-image" alt="{{ product.name }}" />
+                <img (click)="viewProductDetails(product.productId)" [src]="product.imageLinks[0]" class="product-image" alt="{{ product.name }}" />
                 <div class="add-to-wishlist">
                   <app-add-to-wishlist
                     [product]="product">
