@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "navkar-art": {
+    "navkar-artistry-hub": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -67,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "navkar-art:build:production"
+              "browserTarget": "navkar-artistry-hub:build:production"
             },
             "development": {
-              "browserTarget": "navkar-art:build:development"
+              "browserTarget": "navkar-artistry-hub:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "navkar-art:build"
+            "browserTarget": "navkar-artistry-hub:build"
           }
         },
         "test": {
