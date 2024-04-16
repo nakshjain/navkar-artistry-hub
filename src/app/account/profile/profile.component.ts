@@ -3,6 +3,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {UserService} from "../../api/user.service";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-my-account',
@@ -22,10 +23,12 @@ export class ProfileComponent implements OnInit{
   constructor(private fb: FormBuilder,
               private userService:UserService,
               private ngxUiLoaderService: NgxUiLoaderService,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private titleService: Title) {
   }
 
   ngOnInit() {
+    this.titleService.setTitle('Your Account')
     this.getUserDetails()
   }
 

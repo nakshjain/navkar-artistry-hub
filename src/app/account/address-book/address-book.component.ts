@@ -4,6 +4,7 @@ import {AddAddressComponent} from "./add-address/add-address.component";
 import {UserService} from "../../api/user.service";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
 import {NgxUiLoaderService} from "ngx-ui-loader";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-my-addresses',
@@ -14,7 +15,7 @@ export class AddressBookComponent implements OnInit{
   @Input()
   isSelectAddress=false;
   @Input()
-  title='My Addresses';
+  title='Your Addresses';
   @Input()
   subTitle='Add or manage addresses that you often use'
   @Output() selectedAddressEvent: EventEmitter<any> = new EventEmitter<any>();
@@ -23,23 +24,15 @@ export class AddressBookComponent implements OnInit{
   addresses:any;
   selectedAddressId:any
 
-  sendSelectedAddress(addressId: any) {
-    this.selectedAddressId=addressId
-    const selectedAddress=this.getAddress(addressId)
-    this.selectedAddressEvent.emit(selectedAddress);
-  }
-
-  getAddress(addressId: string){
-    return this.userDetails.addresses.find((address: any)=>address._id===addressId)
-  }
-
   constructor(private ngxUiLoaderService: NgxUiLoaderService,
               private matDialog: MatDialog,
               private userService: UserService,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private titleService: Title) {
   }
 
   ngOnInit() {
+    this.titleService.setTitle('Your Addresses')
     this.getUserDetails()
   }
 
@@ -58,6 +51,15 @@ export class AddressBookComponent implements OnInit{
     })
   }
 
+  sendSelectedAddress(addressId: any) {
+    this.selectedAddressId=addressId
+    const selectedAddress=this.getAddress(addressId)
+    this.selectedAddressEvent.emit(selectedAddress);
+  }
+
+  getAddress(addressId: string){
+    return this.userDetails.addresses.find((address: any)=>address._id===addressId)
+  }
   getUserDetails(){
     const storedUserDetails = sessionStorage.getItem('userDetails');
     const userDetails = storedUserDetails ? JSON.parse(storedUserDetails) : null;

@@ -12,7 +12,7 @@ export class AccountComponent{
   }
   navHeaders: any[]=[
     {
-      id: 'my-account',
+      id: 'your-account',
       name:'Personal Information',
       link:'profile',
     },
@@ -23,7 +23,7 @@ export class AccountComponent{
     },
     {
       id: 'orders',
-      name:'My Orders',
+      name:'Your Orders',
       link:'orders',
     },
   ]

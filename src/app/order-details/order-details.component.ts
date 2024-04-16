@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {OrderService} from "../api/order.service";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-order-details',
@@ -16,10 +17,12 @@ export class OrderDetailsComponent implements OnInit{
   constructor(private orderService:OrderService,
               private route:ActivatedRoute,
               private router:Router,
-              private ngxUiLoaderService:NgxUiLoaderService) {
+              private ngxUiLoaderService:NgxUiLoaderService,
+              private titleService: Title) {
   }
 
   ngOnInit() {
+    this.titleService.setTitle('Order Details')
     this.verifyOrderId()
   }
 

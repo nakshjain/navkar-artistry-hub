@@ -5,6 +5,7 @@ import {ProductService} from "../api/product.service";
 import {categories, subCategories} from "../models/products-categories";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {FormBuilder, Validators} from "@angular/forms";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-product',
@@ -30,7 +31,8 @@ export class ProductComponent implements OnInit{
   constructor(private ngxUiLoaderService:NgxUiLoaderService,
               private route: ActivatedRoute,
               private productService:ProductService,
-              private fb:FormBuilder) {
+              private fb:FormBuilder,
+              private titleService: Title) {
   }
 
   ngOnInit() {
@@ -49,6 +51,7 @@ export class ProductComponent implements OnInit{
         this.form = this.fb.group({
           quantity: [1, [Validators.required, Validators.max(this.quantityAvailable)]]
         });
+        this.setTitle()
         this.getProductsByCategory(this.product.category)
         this.getCategory()
         this.getSubCategory()
@@ -117,5 +120,9 @@ export class ProductComponent implements OnInit{
     if (currentValue && currentValue < this.quantityAvailable) {
       this.quantityControl?.setValue(currentValue + 1);
     }
+  }
+
+  setTitle(){
+    this.titleService.setTitle(this.product.name + ' | Navkar Artistry Hub')
   }
 }

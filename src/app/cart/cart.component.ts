@@ -7,6 +7,7 @@ import {LoginComponent} from "../login/login.component";
 import {MatDialog} from "@angular/material/dialog";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {OrderService} from "../api/order.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-cart',
@@ -23,11 +24,13 @@ export class CartComponent implements OnInit{
               private cartService: CartService,
               private snackBar: MatSnackBar,
               private matDialog: MatDialog,
-              private orderService: OrderService) {
+              private orderService: OrderService,
+              private titleService: Title) {
 
   }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Shopping Cart | Navkar Artistry Hub')
     const storedUserDetails = sessionStorage.getItem('userDetails');
     if(storedUserDetails){
       const user=JSON.parse(storedUserDetails)

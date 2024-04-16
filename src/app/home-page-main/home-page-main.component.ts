@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {AlertDialogComponent} from "./alert-dialog/alert-dialog.component";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-home-page-main',
@@ -28,9 +29,11 @@ export class HomePageMainComponent implements OnInit{
     },
   ]
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog,
+              private titleService:  Title) {}
 
   ngOnInit() {
+    this.titleService.setTitle('Navkar Artistry Hub')
     this.demoAlert();
   }
 

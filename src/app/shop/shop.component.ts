@@ -10,6 +10,7 @@ import {categories, subCategories} from "../models/products-categories";
 import {Product} from "../models/products.types";
 import {WishlistService} from "../api/wishlist.service";
 import {NgxUiLoaderService} from "ngx-ui-loader";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-shop',
@@ -17,8 +18,8 @@ import {NgxUiLoaderService} from "ngx-ui-loader";
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit, OnChanges{
-  title='Shop'
-  subTitle=''
+  heading='Shop'
+  subHeading=''
   @Input()
   searchText=''
   @Input()
@@ -69,7 +70,8 @@ export class ShopComponent implements OnInit, OnChanges{
               private router: Router,
               private productService:ProductService,
               private activatedRoute: ActivatedRoute,
-              private wishlistService: WishlistService) {
+              private wishlistService: WishlistService,
+              private titleService: Title) {
   }
 
   ngOnInit() {
@@ -289,18 +291,23 @@ export class ShopComponent implements OnInit, OnChanges{
         subCategoryReceived=params['subCategory']
         if(categoryReceived) {
           this.category = this.categories.find(category => category.id === categoryReceived)
-          this.handleTitle(this.category.name)
+          this.handleHeading(this.category.name)
           if(subCategoryReceived){
             this.subCategory=this.subCategories[this.category.name].find(subCategory => subCategory.id === subCategoryReceived)
-            this.handleTitle(this.category.name, this.subCategory.name)
+            this.handleHeading(this.category.name, this.subCategory.name)
           }
         }
+        this.setTitle()
         this.getProducts()
       })
   }
 
-  handleTitle(title?: string, subTitle?: string){
-    this.title=title || 'Shop'
-    this.subTitle=subTitle || ''
+  handleHeading(title?: string, subTitle?: string){
+    this.heading=title || 'Shop'
+    this.subHeading=subTitle || ''
+  }
+
+  setTitle(){
+    this.titleService.setTitle(this.heading+ ' | Navkar Artistry Hub')
   }
 }

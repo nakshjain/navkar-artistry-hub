@@ -3,6 +3,7 @@ import {WishlistService} from "../api/wishlist.service";
 import {Router} from "@angular/router";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {Product} from "../models/products.types";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-wishlist',
@@ -14,10 +15,12 @@ export class WishlistComponent implements OnInit{
   isUserLoggedIn=false
   constructor(private ngxUiLoaderService:NgxUiLoaderService,
               private wishlistService: WishlistService,
-              private router: Router) {
+              private router: Router,
+              private titleService: Title) {
   }
 
   ngOnInit() {
+    this.titleService.setTitle('Wishlist | Navkar Artistry Hub')
     const storedUserDetails = sessionStorage.getItem('userDetails');
     if(storedUserDetails){
       this.isUserLoggedIn=true

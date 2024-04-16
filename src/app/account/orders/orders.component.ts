@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {OrderService} from "../../api/order.service";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {Router} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-orders',
@@ -9,14 +10,16 @@ import {Router} from "@angular/router";
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit{
-  title='My Orders'
+  title='Your Orders'
   subTitle='Browse Your Order History'
   orders: any
   constructor(private orderService:OrderService,
               private ngxUiLoaderService:NgxUiLoaderService,
-              private router:Router) {
+              private router:Router,
+              private titleService: Title) {
   }
   ngOnInit(){
+    this.titleService.setTitle('Your Orders')
     this.getAllOrders()
   }
   getAllOrders(){
