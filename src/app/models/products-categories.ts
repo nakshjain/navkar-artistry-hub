@@ -32,7 +32,9 @@ export const subCategories:{ [key: string]: Category[] } = {
     { name: 'Bathroom Set', id: 'bathroom-set', link: '/bathroom-set' }
   ],
   'Jewellery': [
-    { name: 'Earrings', id: 'earrings', link: '/earrings' }
+    { name: 'Bracelets', id: 'bracelets', link: '/bracelets' },
+    { name: 'Earrings', id: 'earrings', link: '/earrings' },
+    { name: 'Necklaces', id: 'necklaces', link: '/necklaces' },
   ]
 };
 

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,9 +11,7 @@ import {MatButtonModule} from "@angular/material/button";
 import { HomePageComponent } from './home-page/home-page.component';
 import { ImageSliderComponent } from './shared/image-slider/image-slider.component';
 import {SlickCarouselModule} from "ngx-slick-carousel";
-import {
-  NgxUiLoaderConfig,
-  NgxUiLoaderModule} from "ngx-ui-loader";
+import {NgxUiLoaderConfig, NgxUiLoaderModule} from "ngx-ui-loader";
 import {ProductComponent} from './product/product.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ShopComponent } from './shop/shop.component';
@@ -23,7 +20,6 @@ import {MatCardModule} from "@angular/material/card";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GetQuoteComponent } from './get-quote/get-quote.component';
-import { HomePageMainComponent } from './home-page-main/home-page-main.component';
 import { AddProductComponent } from './manage-products/add-product/add-product.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { LoginComponent } from './login/login.component';
@@ -56,7 +52,7 @@ import { PaymentFailedComponent } from './checkout/payment-failed/payment-failed
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import { OrdersComponent } from './account/orders/orders.component';
-import { AlertDialogComponent } from './home-page-main/alert-dialog/alert-dialog.component';
+import { AlertDialogComponent } from './home-page/alert-dialog/alert-dialog.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { BuyNowComponent } from './shared/buy-now/buy-now.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
@@ -91,7 +87,6 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ProductComponent,
     ShopComponent,
     GetQuoteComponent,
-    HomePageMainComponent,
     AddProductComponent,
     LoginComponent,
     FooterComponent,

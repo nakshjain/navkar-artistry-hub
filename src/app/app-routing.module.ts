@@ -7,7 +7,6 @@ import {MatListModule} from "@angular/material/list";
 import {MatButtonModule} from "@angular/material/button";
 import {ProductComponent} from "./product/product.component";
 import {GetQuoteComponent} from "./get-quote/get-quote.component";
-import {HomePageMainComponent} from "./home-page-main/home-page-main.component";
 import {SearchResultsComponent} from "./search-results/search-results.component";
 import {ShopComponent} from "./shop/shop.component";
 import {authGuard} from "./security/auth.guard";
@@ -23,10 +22,11 @@ import {PaymentSuccessfulComponent} from "./checkout/payment-successful/payment-
 import {PaymentFailedComponent} from "./checkout/payment-failed/payment-failed.component";
 import {OrdersComponent} from "./account/orders/orders.component";
 import {OrderDetailsComponent} from "./order-details/order-details.component";
+import {HomePageComponent} from "./home-page/home-page.component";
 
 const routes: Routes = [
-  { path: '', component: HomePageMainComponent },
-  { path: 'home', component: HomePageMainComponent },
+  { path: '', component: HomePageComponent },
+  { path: 'home', component: HomePageComponent },
   { path: 'shop', component: ShopComponent},
   { path: 'shop/:category', component: ShopComponent},
   { path: 'shop/:category/:subCategory', component: ShopComponent},

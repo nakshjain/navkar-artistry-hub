@@ -1,7 +1,22 @@
-<div *ngFor="let category of allProductsByCategory">
-  <app-image-slider
-    [products]="category.products"
-    [category]="category.category"
-    [title]="category.category"
-  ></app-image-slider>
+<div class="home-page">
+  <div class="title-container">
+    <img src="{{titleBackgroundImage}}">
+    <div class="title-box">
+      <p class="title">{{title}}</p>
+    </div>
+  </div>
+
+  <div class="box-container">
+    <div *ngFor="let element of elements" class="box" (click)="viewCategory(element)">
+      <img src="{{element.imageLink}}" class="image">
+      <p>{{element.heading}}</p>
+    </div>
+  </div>
+  <div class="category-slider" *ngFor="let category of allProductsByCategory">
+    <app-image-slider
+      [products]="category.products"
+      [category]="category.category"
+      [title]="category.category"
+    ></app-image-slider>
+  </div>
 </div>

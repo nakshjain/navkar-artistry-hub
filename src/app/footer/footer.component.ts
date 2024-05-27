@@ -34,25 +34,25 @@ export class FooterComponent {
       id: 'facebook',
       name: 'Facebook',
       icon:faFacebook,
-      link: 'home',
+      link: 'https://www.facebook.com/',
     },
     {
       id: 'instagram',
       name: 'Instagram',
       icon:faInstagram,
-      link: 'faInstagram',
+      link: 'https://www.instagram.com/',
     },
     {
       id: 'twitter',
       name: 'Twitter',
       icon:faTwitter,
-      link: 'faTwitter',
+      link: 'https://www.twitter.com/',
     },
     {
       id: 'youtube',
       name: 'Youtube',
       icon:faYoutube,
-      link: 'Youtube',
+      link: 'https://www.youtube.com/',
     },
   ];
   sendMessageOnWhatsApp() {
