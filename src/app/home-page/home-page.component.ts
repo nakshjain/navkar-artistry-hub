@@ -51,7 +51,7 @@ export class HomePageComponent implements OnInit{
       }
     )
     this.titleService.setTitle(this.title)
-    this.demoAlert();
+    // this.demoAlert();
   }
 
   viewCategory(element: any) {
