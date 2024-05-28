@@ -32,6 +32,11 @@ export class ProductService {
   getProductsByCategory(category: string): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.baseUrl}/getProductsByCategory/${category}`);
   }
+
+  getProductsBySubCategory(category: string, subCategory: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseUrl}/getProductsBySubCategory/${category}/${subCategory}`);
+  }
+
   getAllProductsByCategory(): Observable<ProductsByCategory[]> {
     return this.getAllProducts().pipe(
       map(
@@ -59,22 +64,6 @@ export class ProductService {
   }
   getProductById(id: string): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/getProductById/${id}`);
-  }
-
-  getAllCategories(){
-    return this.getAllProducts().pipe(
-        map((products)=>{
-          const categories: string[]=[]
-          products.forEach((product)=>{
-            if(product.availability) {
-              if(!categories.includes(product.category)) {
-                categories.push(product.category)
-              }
-            }
-          })
-          return categories;
-        })
-    )
   }
 
   addProduct(product: any){

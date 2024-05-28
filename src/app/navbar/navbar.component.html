@@ -80,7 +80,12 @@
                 <input type="text" placeholder="Search..." [(ngModel)]="searchQuery" (keydown.enter)="onEnterSearchPressed()" (input)="onInputChange()" [matAutocomplete]="auto">
               </div>
               <mat-autocomplete #auto>
-                <mat-option *ngFor="let option of filteredOptions" [value]="option.name" (click)="goToProduct(option.productId)">{{ option.name }}</mat-option>
+                <mat-option *ngFor="let option of filteredOptions" [value]="option.name" (click)="goToProduct(option.productId)">
+                  <div class="autocomplete-option">
+                    <img src="{{option.imageLinks[0]}}" alt="" class="autocomplete-image">
+                    <div  class="autocomplete-text">{{ option.name }}</div>
+                  </div>
+                </mat-option>
               </mat-autocomplete>
             </div>
             <div class="user">

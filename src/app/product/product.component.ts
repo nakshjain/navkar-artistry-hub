@@ -52,7 +52,7 @@ export class ProductComponent implements OnInit{
           quantity: [1, [Validators.required, Validators.max(this.quantityAvailable)]]
         });
         this.setTitle()
-        this.getProductsByCategory(this.product.category)
+        this.getProductsBySubCategory(this.product.category, this.product.subCategory)
         this.getCategory()
         this.getSubCategory()
         this.getAboutProduct()
@@ -69,8 +69,8 @@ export class ProductComponent implements OnInit{
     this.mainImage=image
   }
 
-  getProductsByCategory(category: string){
-    this.productService.getProductsByCategory(category).subscribe(
+  getProductsBySubCategory(category: string, subCategory: string){
+    this.productService.getProductsBySubCategory(category, subCategory).subscribe(
       (productsByCategory)=>{
         productsByCategory.forEach((product)=>{
           if(product.productId!==this.product.productId){

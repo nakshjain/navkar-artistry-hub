@@ -106,7 +106,7 @@
 .nav-search{
   padding:0;
   margin: 0 2% 0 0;
-  width: 25%;
+  width: 35%;
   display: flex;
   align-items: center;
   border-bottom: black solid 1px;
@@ -130,6 +130,16 @@
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
   font-size: 85%;
+}
+.autocomplete-option{
+  display: flex;
+  align-items: center;
+}
+.autocomplete-image {
+  width: 50px;
+  height: 50px;
+  margin-right: 5px;
+  padding: 1%;
 }
 .nav-login{
   font-family: 'Poppins', sans-serif;
