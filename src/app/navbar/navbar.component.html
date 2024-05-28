@@ -49,11 +49,13 @@
             <button mat-icon-button (click)="sidenavmenu.toggle()" class="button-menu">
               <mat-icon class="mat-icon">menu</mat-icon>
             </button>
-            <div *ngFor="let element of navbarHeader"  class="nav-elements">
-              <a routerLink="{{element.link}}" class="nav-element">{{element.name}}</a>
-              <div *ngIf="element && subCategories[element.name]" class="sub-categories">
-                <div *ngFor="let subCategory of subCategories[element.name]">
-                  <a routerLink="{{element.link}}/{{subCategory.link}}" class="sub-category">{{subCategory.name}}</a>
+            <div class="nav-left-main">
+              <div *ngFor="let element of navbarHeader"  class="nav-elements">
+                <a routerLink="{{element.link}}" class="nav-element">{{element.name}}</a>
+                <div *ngIf="element && subCategories[element.name]" class="sub-categories">
+                  <div *ngFor="let subCategory of subCategories[element.name]">
+                    <a routerLink="{{element.link}}/{{subCategory.link}}" class="sub-category">{{subCategory.name}}</a>
+                  </div>
                 </div>
               </div>
             </div>

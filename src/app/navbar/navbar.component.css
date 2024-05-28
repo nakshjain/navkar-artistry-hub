@@ -35,13 +35,15 @@
 .nav-left{
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   flex: 1;
-  padding-left: 2.5%;
+}
+.nav-left-main{
+  display: flex;
+  padding-left: 5%;
 }
 .nav-elements{
   font-size:85%;
-  padding: 0 2%;
+  padding: 0 5%;
 }
 .nav-element{
   color: #444;

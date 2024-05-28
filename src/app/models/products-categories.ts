@@ -20,7 +20,8 @@ export const categories:Category[]=[
 export const subCategories:{ [key: string]: Category[] } = {
   'Paintings': [
     { name: 'Madhubani Paintings', id: 'madhubani-paintings', link: '/madhubani-paintings' },
-    { name: 'Abstract Paintings', id: 'abstract-paintings', link: '/abstract-paintings' }
+    { name: 'Abstract Paintings', id: 'abstract-paintings', link: '/abstract-paintings' },
+    { name: 'Impressionism Paintings', id: 'impressionism-paintings', link: '/impressionism-paintings' },
   ],
   'Home Decor': [
     { name: 'Clocks', id: 'clocks', link: '/clocks' },
