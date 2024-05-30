@@ -37,6 +37,12 @@
 .title-image{
   width: 100%;
   object-fit: cover;
+  display: inline-block;
+}
+.title-image-mobile{
+  width: 100%;
+  object-fit: cover;
+  display: none;
 }
 .box-container{
   display: flex;
@@ -65,6 +71,12 @@
 @media (max-width: 768px) {
   .title-box{
     display: none;
+  }
+  .title-image{
+    display: none;
+  }
+  .title-image-mobile{
+    display: inline-block;
   }
   .box-container p{
     font-size: 120%;

@@ -16,6 +16,7 @@ import {categories} from "../models/products-categories";
 export class HomePageComponent implements OnInit{
   title='Navkar Artistry Hub'
   titleBackgroundImage='https://assets.navkarartistryhub.com/home-page/home-page-background.png'
+  titleBackgroundImageMobile='https://assets.navkarartistryhub.com/home-page/home-page-background-mobile.png'
 
   elements=[
     {
