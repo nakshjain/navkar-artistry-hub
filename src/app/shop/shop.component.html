@@ -50,13 +50,13 @@
             </button>
             <div class="price-options" [ngStyle]="{'display': isPriceRangeOpen ? 'block' : 'none'}" >
               <div class="priceInput">
-                <input type="number" [(ngModel)]="selectedMinPrice" min="0" (blur)="selectPriceRange()">
-                <input type="number" [(ngModel)]="selectedMaxPrice" min="0" (blur)="selectPriceRange()">
+                <input type="number" [(ngModel)]="selectedMinPrice" min="0" (change)="selectPriceRange()">
+                <input type="number" [(ngModel)]="selectedMaxPrice" min="0" (change)="selectPriceRange()">
               </div>
               <div class="priceBar">
                 <mat-slider min="{{minPrice}}" max="{{maxPrice}}" discrete="true">
-                  <input matSliderStartThumb [(ngModel)]="selectedMinPrice" (blur)="selectPriceRange()">
-                  <input matSliderEndThumb [(ngModel)]="selectedMaxPrice" (blur)="selectPriceRange()">
+                  <input matSliderStartThumb [(ngModel)]="selectedMinPrice" (change)="selectPriceRange()">
+                  <input matSliderEndThumb [(ngModel)]="selectedMaxPrice" (change)="selectPriceRange()">
                 </mat-slider>
               </div>
             </div>
