@@ -28,6 +28,12 @@ export class ShopComponent implements OnInit, OnChanges{
 
   showOutOfStock=false
 
+  maxPrice=15999
+  minPrice=0
+  selectedMinPrice=this.minPrice;
+  selectedMaxPrice=this.maxPrice;
+  priceRange=''
+
   products: Product[]=[]
   categoriesToDisplay:string[]=[]
   categories=categories
@@ -36,6 +42,7 @@ export class ShopComponent implements OnInit, OnChanges{
   isFilterHidden=true
   isToSortOpen=false
   isCategoriesOpen=true
+  isPriceRangeOpen=true
 
   selectedSortingOption={
     name:'Sort',
@@ -126,7 +133,7 @@ export class ShopComponent implements OnInit, OnChanges{
     }
     this.productService.getProductsByPagination(
       this.selectedSortingOption.value,
-      '',
+      this.priceRange,
       this.searchText,
       this.category.name,
       this.subCategory.name,
@@ -161,6 +168,7 @@ export class ShopComponent implements OnInit, OnChanges{
       this.getProducts();
     }
   }
+
   goToPage(page: number) {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
@@ -172,6 +180,7 @@ export class ShopComponent implements OnInit, OnChanges{
     this.pageNumbers = Array.from({ length: this.totalPages }, (_, i) => i + 1);
     this.calculateVisiblePageNumbers();
   }
+
   calculateVisiblePageNumbers() {
     const visiblePages: number[] = [];
     const totalVisiblePageNumbers = 4; // Number of visible page numbers
@@ -262,8 +271,13 @@ export class ShopComponent implements OnInit, OnChanges{
   toggleSortingDropdown() {
     this.isToSortOpen = !this.isToSortOpen;
   }
+
   toggleCategoriesDropdown() {
     this.isCategoriesOpen = !this.isCategoriesOpen;
+  }
+
+  togglePriceRangeDropdown() {
+    this.isPriceRangeOpen = !this.isPriceRangeOpen;
   }
 
   selectCategoryOption(category: string) {
@@ -280,6 +294,11 @@ export class ShopComponent implements OnInit, OnChanges{
     else{
       this.router.navigate([`/${this.category.link}`]);
     }
+  }
+
+  selectPriceRange(){
+    this.priceRange=this.selectedMinPrice+'-'+this.selectedMaxPrice;
+    this.getProducts()
   }
 
   handleRouting(){

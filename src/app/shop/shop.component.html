@@ -42,6 +42,25 @@
               <div class="category-option" *ngFor="let category of categoriesToDisplay" (click)="selectCategoryOption(category)">{{category}}</div>
             </div>
           </div>
+          <div class="price-range-container category-container">
+            <button (click)="togglePriceRangeDropdown()" class="category">
+              <p>Price Range</p>
+              <mat-icon *ngIf="!isPriceRangeOpen">keyboard_arrow_down</mat-icon>
+              <mat-icon *ngIf="isPriceRangeOpen">keyboard_arrow_up</mat-icon>
+            </button>
+            <div class="price-options" [ngStyle]="{'display': isPriceRangeOpen ? 'block' : 'none'}" >
+              <div class="priceInput">
+                <input type="number" [(ngModel)]="selectedMinPrice" min="0" (blur)="selectPriceRange()">
+                <input type="number" [(ngModel)]="selectedMaxPrice" min="0" (blur)="selectPriceRange()">
+              </div>
+              <div class="priceBar">
+                <mat-slider min="{{minPrice}}" max="{{maxPrice}}" discrete="true">
+                  <input matSliderStartThumb [(ngModel)]="selectedMinPrice" (blur)="selectPriceRange()">
+                  <input matSliderEndThumb [(ngModel)]="selectedMaxPrice" (blur)="selectPriceRange()">
+                </mat-slider>
+              </div>
+            </div>
+          </div>
         </div>
         <hr style="border: 1px solid black;">
       </div>

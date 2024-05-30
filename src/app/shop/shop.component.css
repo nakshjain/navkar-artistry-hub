@@ -111,6 +111,7 @@
 }
 .category p{
   flex: 1;
+  font-size: 120%;
   text-align: left;
 }
 .category-options{
@@ -120,6 +121,33 @@
 .category-option{
   text-align: right;
   width: 100%;
+}
+.price-range-container{}
+.price-options{
+  display: none;
+  padding: 1% 0 1% 11px;
+}
+.priceInput{
+  display: flex;
+  justify-content: space-between;
+}
+.priceInput input{
+  width: 45%;
+  height: 40px;
+  text-align: center;
+}
+.priceBar{
+  width: 100%;
+  text-align: center;
+}
+.mat-mdc-slider{
+  width: 90%;
+  --mdc-slider-handle-color: #2f3234;
+  --mdc-slider-focus-handle-color: black;
+  --mdc-slider-active-track-color: #2f3234;
+  --mdc-slider-inactive-track-color: #2f3234;
+  --mat-mdc-slider-focus-ripple-color: rgb(0, 0, 0, 0.5); /* Adjust opacity here */
+  --mat-mdc-slider-hover-ripple-color: rgba(47, 50, 52, 0.5); /* Adjust opacity here */
 }
 .products-container{
   width: 100%;
