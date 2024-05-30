@@ -1,10 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {ProductsByCategory} from "../models/products.types";
+import {ProductsByCategory, ProductsByCategoryString} from "../models/products.types";
 import {ProductService} from "../api/product.service";
 import {Router} from "@angular/router";
 import {AlertDialogComponent} from "./alert-dialog/alert-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {Title} from "@angular/platform-browser";
+import {NgxUiLoaderService} from "ngx-ui-loader";
+import {categories} from "../models/products-categories";
 
 @Component({
   selector: 'app-home-page',
@@ -36,18 +38,21 @@ export class HomePageComponent implements OnInit{
     },
   ]
 
-  allProductsByCategory: ProductsByCategory[]=[]
+  allProductsByCategory:ProductsByCategory[]=[]
 
   constructor(private productService:ProductService,
               private router: Router,
               private dialog: MatDialog,
-              private titleService:  Title) {
+              private titleService:  Title,
+              private ngxUiLoaderService: NgxUiLoaderService) {
   }
 
   ngOnInit(): void {
+    this.ngxUiLoaderService.start()
     this.productService.getAllProductsByCategory().subscribe(
       (allProductsByCategory)=>{
-        this.allProductsByCategory=allProductsByCategory
+        this.getAllProductsByCategory(allProductsByCategory)
+        this.ngxUiLoaderService.stop()
       }
     )
     this.titleService.setTitle(this.title)
@@ -56,6 +61,17 @@ export class HomePageComponent implements OnInit{
 
   viewCategory(element: any) {
     this.router.navigate([element.link])
+  }
+
+  getAllProductsByCategory(allProductsByCategory: ProductsByCategoryString[]){
+    categories.forEach(
+      (category)=>{
+        const products= allProductsByCategory.find(element=>element.category===category.name)?.products
+        if(products){
+          this.allProductsByCategory.push({category, products})
+        }
+      }
+    )
   }
 
   demoAlert() {

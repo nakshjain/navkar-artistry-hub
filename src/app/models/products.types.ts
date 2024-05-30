@@ -9,8 +9,12 @@ export interface Product {
   price: number
   quantity: number
 }
-export interface ProductsByCategory {
+export interface ProductsByCategoryString {
   category: string
+  products: Product[]
+}
+export interface ProductsByCategory {
+  category: Category
   products: Product[]
 }
 export interface Category{

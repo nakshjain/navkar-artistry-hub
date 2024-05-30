@@ -1,6 +1,6 @@
 <div class="home-page">
   <div class="title-container">
-    <img src="{{titleBackgroundImage}}" alt="{{title}}">
+    <img src="{{titleBackgroundImage}}" class="title-image" alt="{{title}}">
     <div class="title-box">
       <p class="title">{{title}}</p>
     </div>
@@ -8,15 +8,17 @@
 
   <div class="box-container">
     <div *ngFor="let element of elements" class="box" (click)="viewCategory(element)">
-      <img src="{{element.imageLink}}" class="image" alt="{{element.heading}}">
-      <p>{{element.heading}}</p>
+      <div class="image-container">
+        <img src="{{element.imageLink}}" alt="{{element.heading}}" class="category-image">
+        <p>{{element.heading}}</p>
+      </div>
     </div>
   </div>
   <div class="category-slider" *ngFor="let category of allProductsByCategory">
     <app-image-slider
       [products]="category.products"
       [category]="category.category"
-      [title]="category.category"
+      [title]="category.category.name"
     ></app-image-slider>
   </div>
 </div>

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Product, ProductsByCategory} from "../models/products.types";
+import {Product, ProductsByCategoryString} from "../models/products.types";
 import {HttpClient} from "@angular/common/http";
 import {map, Observable} from "rxjs";
 import {BASE_URL} from "./config";
@@ -37,7 +37,7 @@ export class ProductService {
     return this.http.get<Product[]>(`${this.baseUrl}/getProductsBySubCategory/${category}/${subCategory}`);
   }
 
-  getAllProductsByCategory(): Observable<ProductsByCategory[]> {
+  getAllProductsByCategory(): Observable<ProductsByCategoryString[]> {
     return this.getAllProducts().pipe(
       map(
         (products)=>{

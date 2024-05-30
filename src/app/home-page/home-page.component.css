@@ -34,19 +34,39 @@
   margin: 0;
   background-color: #f0f0f0;
 }
+.title-image{
+  width: 100%;
+  object-fit: cover;
+}
 .box-container{
   display: flex;
-  margin: 1%;
+  margin: 1% 0;
 }
 .box{
   flex: 1;
   text-align: center;
   cursor: pointer;
+  padding: 1%;
 }
 .box-container p{
   font-size: 140%;
 }
+.image-container{
+  display: inline-block;
+}
+.category-image{
+  width: 100%;
+  object-fit: cover;
+}
 .category-slider{
   width:100%;
   padding: 1% 0;
+}
+@media (max-width: 768px) {
+  .title-box{
+    display: none;
+  }
+  .box-container p{
+    font-size: 120%;
+  }
 }
