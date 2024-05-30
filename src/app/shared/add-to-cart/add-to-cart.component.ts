@@ -37,6 +37,7 @@ export class AddToCartComponent implements OnInit{
       this.isUserLoggedIn=true
     }
   }
+
   openSnackBar(message: string, action: string): void {
     const config = new MatSnackBarConfig();
     config.duration = 3000;

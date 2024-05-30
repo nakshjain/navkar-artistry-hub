@@ -93,8 +93,24 @@ export class LoginComponent implements OnInit{
     this.isSignUpLock=true
   }
 
+  capitalizeName(name: string) {
+    if (!name.trim()) {
+      return '';
+    }
+    const words = name.split(' ');
+    const capitalizedWords = words.map(word => {
+      const firstLetter = word.charAt(0).toUpperCase();
+      const restOfWord = word.slice(1).toLowerCase();
+      return firstLetter + restOfWord;
+    });
+    return capitalizedWords.join(' ');
+  }
+
   onGenerateOTP(){
     this.ngxUiLoaderService.start()
+    if(this.signUpForm.value.name){
+      this.signUpForm.value.name=this.capitalizeName(this.signUpForm.value.name)
+    }
     this.authService.sendOTP(this.signUpForm.value).subscribe(
       (response)=>{
         this.openSnackBar(response.message,'Success!')
@@ -114,6 +130,9 @@ export class LoginComponent implements OnInit{
 
   onRegister() {
     this.ngxUiLoaderService.start()
+    if(this.signUpForm.value.name){
+      this.signUpForm.value.name=this.capitalizeName(this.signUpForm.value.name)
+    }
     this.authService.signUpUser(this.signUpForm.value).subscribe(
       (response)=>{
         this.openSnackBar(response.message,'Success!')
