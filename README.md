@@ -17,13 +17,13 @@ Navkar Artistry Hub is a platform where users can browse, search, and purchase v
 
 ## Features
 - User registration and authentication
+- Product management (CRUD operations)
 - Product browsing and searching
 - Add to cart
 - Add to wishlist
 - Checkout and place orders
 - Razorpay payment integration
 - Order placement and history
-- Artist product management (add, edit, delete products)
 - Responsive design for various devices
 
 ## Technologies
