@@ -8,6 +8,7 @@ Welcome to the front-end repository of Navkar Artistry Hub, an e-commerce platfo
 - [Technologies](#technologies)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Deployment](#deployment)
 - [License](#license)
 - [Contact](#contact)
 
@@ -54,6 +55,9 @@ To set up the project locally, follow these steps:
 
 ## Usage
 Navigate through the website to explore various handmade art and craft items, including paintings, jewelry, and home decor. Users can register, log in, add items to the cart, add items to the wishlist, and place orders using Razorpay payment integration. Artists can add and manage their products.
+
+## Deployment
+The Navkar Artistry Hub website is deployed and accessible at [navkarartistryhub.com](http://navkarartistryhub.com).
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
