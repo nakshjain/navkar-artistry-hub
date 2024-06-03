@@ -25,6 +25,7 @@ Navkar Artistry Hub is a platform where users can browse, search, and purchase v
 - Razorpay payment integration
 - Order placement and history
 - Responsive design for various devices
+- Images stored in Google Cloud Storage (GCS)
 
 ## Technologies
 - Angular
@@ -32,6 +33,7 @@ Navkar Artistry Hub is a platform where users can browse, search, and purchase v
 - CSS
 - TypeScript
 - Bootstrap
+- Google Cloud Storage (GCS) for storing images
 
 ## Installation
 To set up the project locally, follow these steps:
