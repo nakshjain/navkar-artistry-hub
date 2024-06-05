@@ -1,27 +1,68 @@
-# NavkarArt
+# Navkar Artistry Hub - Front-End
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
+Welcome to the front-end repository of Navkar Artistry Hub, an e-commerce platform showcasing handmade art and craft items such as paintings, jewelry, and home decor. This project is built using the Angular framework as part of the MEAN stack.
 
-## Development server
+## Table of Contents
+- [Introduction](#introduction)
+- [Features](#features)
+- [Technologies](#technologies)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Deployment](#deployment)
+- [License](#license)
+- [Contact](#contact)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Introduction
+Navkar Artistry Hub is a platform where users can browse, search, and purchase various handmade art and craft items. The front-end is responsible for rendering the user interface and handling client-side logic.
 
-## Code scaffolding
+## Features
+- User registration and authentication
+- Product management (CRUD operations)
+- Product browsing and searching
+- Add to cart
+- Add to wishlist
+- Checkout and place orders
+- Razorpay payment integration
+- Order placement and history
+- Responsive design for various devices
+- Images stored in Google Cloud Storage (GCS)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Technologies
+- Angular
+- HTML
+- CSS
+- TypeScript
+- Bootstrap
+- Google Cloud Storage (GCS) for storing images
 
-## Build
+## Installation
+To set up the project locally, follow these steps:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/nakshjain/navkar-artistry-hub.git
+    ```
 
-## Running unit tests
+2. Install dependencies:
+    ```bash
+    npm install
+    ```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+3. Run the development server:
+    ```bash
+    ng serve
+    ```
 
-## Running end-to-end tests
+4. Open your browser and navigate to `http://localhost:4200`.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Usage
+Navigate through the website to explore various handmade art and craft items, including paintings, jewelry, and home decor. Users can register, log in, add items to the cart, add items to the wishlist, and place orders using Razorpay payment integration. Artists can add and manage their products.
 
-## Further help
+## Deployment
+The Navkar Artistry Hub website is deployed and accessible at [navkarartistryhub.com](http://navkarartistryhub.com).
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact
+For any inquiries or feedback, please contact us at [nakshatrajain246@gmail.com].
