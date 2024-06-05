@@ -76,6 +76,9 @@
         <div class="status">
           Status
         </div>
+        <div class="actions">
+          Actions
+        </div>
       </div>
       <div *ngFor="let orderItem of order.orderDetails">
         <hr>
@@ -93,7 +96,12 @@
             <p class="rupee">{{orderItem.subtotal.toLocaleString('en-IN')}}</p>
           </div>
           <div class="status">
-            <p>{{ order.status }}</p>
+            <p>{{ orderItem.status }}</p>
+          </div>
+          <div class="actions">
+            <p (click)="cancelOrder(orderItem)" *ngIf="orderItem.status!=='cancelled'">Cancel</p>
+            <br *ngIf="orderItem.status!=='cancelled'">
+            <p>Need Help?</p>
           </div>
         </div>
       </div>

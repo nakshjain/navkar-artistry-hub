@@ -70,9 +70,13 @@
   width: 40%;
   cursor: pointer;
 }
-.quantity, .subtotal, .status{
-  width: 15%;
+.quantity, .subtotal, .status, .actions{
+  width: 11.25%;
   text-transform: capitalize;
+}
+.actions p{
+  color: blue;
+  cursor: pointer;
 }
 .rupee::before {
   content: "\20B9";

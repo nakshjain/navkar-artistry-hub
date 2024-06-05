@@ -60,6 +60,11 @@ export class OrderService {
   deleteOrder(orderId: string){
     return this.http.delete<any>(`${this.baseUrl}/deleteOrder/${orderId}`)
   }
+
+  cancelOrder(orderId: string, productId: string,quantityOrdered: number){
+    const params= `?productId=${productId}&quantityOrdered=${quantityOrdered}`
+    return this.http.delete<any>(`${this.baseUrl}/cancelOrder/${orderId + params}`)
+  }
 }
 
 function _window(): any {
