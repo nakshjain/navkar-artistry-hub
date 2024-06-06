@@ -80,8 +80,9 @@
           Actions
         </div>
       </div>
+      <hr class="order-item">
+      <br class="order-item-mobile">
       <div *ngFor="let orderItem of order.orderDetails">
-        <hr>
         <div class="order-item">
           <div class="image-container">
             <img [src]="orderItem.product.imageLinks[0]" alt="{{orderItem.product.name}}" class="product-image" (click)="viewProductDetails(orderItem.product.productId)">
@@ -104,6 +105,35 @@
             <p>Need Help?</p>
           </div>
         </div>
+        <div class="order-item-mobile">
+          <div class="image-container">
+            <img [src]="orderItem.product.imageLinks[0]" alt="{{orderItem.product.name}}" class="product-image" (click)="viewProductDetails(orderItem.product.productId)">
+          </div>
+          <div class="details">
+            <div class="details-main">
+              <div class="name" (click)="viewProductDetails(orderItem.product.productId)">
+                <p>{{orderItem.product.name}}</p>
+              </div>
+              <div class="subtotal">
+                <p class="rupee">{{orderItem.pricePerUnit.toLocaleString('en-IN')}}</p>
+              </div>
+            </div>
+            <div class="details-main">
+              <div class="quantity">
+                <p>Qty: {{orderItem.quantity}}</p>
+              </div>
+              <div class="status">
+                <p>Status: {{ orderItem.status }}</p>
+              </div>
+            </div>
+            <div class="actions">
+              <p (click)="openDialog(orderItem)" *ngIf="orderItem.status!=='cancelled'" class="cancelOrder">Cancel Order</p>
+              <br *ngIf="orderItem.status!=='cancelled'">
+              <p class="help">Need Help?</p>
+            </div>
+          </div>
+        </div>
+        <hr>
       </div>
     </div>
   </div>

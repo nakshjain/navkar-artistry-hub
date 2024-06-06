@@ -53,6 +53,11 @@
   align-items: center;
   font-size: 120%;
 }
+.order-item-mobile{
+  display: none;
+  align-items: center;
+  font-size: 120%;
+}
 .order-item-header{
   display: flex;
   align-items: center;
@@ -81,6 +86,7 @@
 .rupee::before {
   content: "\20B9";
 }
+
 @media (max-width: 768px) {
   .display{
     padding: 0;
@@ -109,17 +115,56 @@
   .orders{
     padding: 0;
   }
-  .order-item{
-    font-size: 100%;
-  }
   .order-item-header{
-    font-size: 80%;
+    display: none;
+  }
+  .order-item{
+    display: none;
+  }
+  .order-item-mobile{
+    display: flex;
+    width: 100%;
+  }
+  .image-container{
+    width: 20%;
+  }
+  .details{
+    width: 80%;
+    padding-right: 1.5%;
+  }
+  .details-main{
+    display: flex;
+    width: 100%;
+    align-items: center;
   }
   .name{
-    width: 32%;
+    width: 75%;
+    font-weight: 500;
   }
-  .quantity, .subtotal, .status{
-    text-align: center;
-    width: 17%
+  .subtotal{
+    width: 25%;
+    font-size: 90%;
+    text-align: right;
+  }
+  .quantity{
+    text-align: left;
+    font-size: 70%;
+    width: 15%;
+  }
+  .status{
+    width: 85%;
+    font-size: 90%;
+    text-align: right;
+  }
+  .actions{
+    width: 100%;
+    display: flex;
+    font-size: 90%;
+  }
+  .cancelOrder{
+    flex:1;
+  }
+  .help{
+    margin-left: auto;
   }
 }
