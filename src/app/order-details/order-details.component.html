@@ -99,7 +99,7 @@
             <p>{{ orderItem.status }}</p>
           </div>
           <div class="actions">
-            <p (click)="cancelOrder(orderItem)" *ngIf="orderItem.status!=='cancelled'">Cancel</p>
+            <p (click)="openDialog(orderItem)" *ngIf="orderItem.status!=='cancelled'">Cancel</p>
             <br *ngIf="orderItem.status!=='cancelled'">
             <p>Need Help?</p>
           </div>

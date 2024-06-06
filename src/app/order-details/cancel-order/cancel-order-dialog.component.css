@@ -1,0 +1,71 @@
+*{
+  font-family: 'Poppins', sans-serif;
+}
+.title{
+  font-family: 'Poppins', sans-serif;
+}
+.content{
+  display: flex;
+  width: 100%;
+}
+.image-container{
+  width: 25%;
+  object-fit: cover;
+}
+.image-container img{
+  width: 100%;
+  height: auto;
+}
+.about-product{
+  width: 70%;
+  margin: 0 2.5%;
+  display: flex;
+  flex-direction: column;
+}
+.name{
+  font-size: 140%;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.price, .quantity{
+  margin-bottom: 5px;
+}
+.reason{
+  width: 80%;
+  font-size: 80%;
+}
+.options{
+  padding: 2%;
+}
+.actions{
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+.actions button{
+  font-size: 120%;
+}
+.rupee::before {
+  content: "\20B9";
+}
+.refund{
+  font-size: 70%;
+}
+@media (max-width: 768px) {
+  .content{
+    display: block;
+  }
+  .image-container{
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  .about-product{
+    width: 100%;
+  }
+  .reason{
+    width: 100%;
+  }
+  .actions{
+    justify-content: center;
+  }
+}

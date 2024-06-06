@@ -4,6 +4,8 @@ import {NgxUiLoaderService} from "ngx-ui-loader";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
+import {MatDialog} from "@angular/material/dialog";
+import {CancelOrderDialogComponent} from "./cancel-order/cancel-order-dialog.component";
 
 @Component({
   selector: 'app-order-details',
@@ -20,7 +22,8 @@ export class OrderDetailsComponent implements OnInit{
               private router:Router,
               private ngxUiLoaderService:NgxUiLoaderService,
               private titleService: Title,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private matDialog:MatDialog) {
   }
 
   ngOnInit() {
@@ -73,5 +76,21 @@ export class OrderDetailsComponent implements OnInit{
     config.verticalPosition = 'top';
 
     this.snackBar.open(message, action, config)
+  }
+
+  openDialog(orderItem: any){
+    const dialogRef=this.matDialog.open(CancelOrderDialogComponent,{
+      data:  orderItem
+    })
+
+    dialogRef.afterClosed().subscribe(
+      (result)=>{
+        if(result==='CONFIRM'){
+          this.cancelOrder(orderItem)
+        } else{
+          this.verifyOrderId()
+        }
+      }
+    )
   }
 }

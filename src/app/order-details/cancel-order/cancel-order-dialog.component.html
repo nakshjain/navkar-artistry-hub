@@ -1,0 +1,24 @@
+<div mat-dialog-title class="title">Are you sure you want to cancel the selected item?</div>
+<div mat-dialog-content class="content">
+  <div class="image-container">
+    <img src="{{data.product.imageLinks[0]}}" alt="{{data.product.name}}">
+  </div>
+  <div class="about-product">
+    <div class="name">{{data.product.name}}</div>
+    <div class="quantity-price">
+      <div class="price rupee">{{data.pricePerUnit}}/-</div>
+      <div class="quantity">- {{data.quantity}} Item(s) will be canceled</div>
+    </div>
+    <mat-form-field class="reason" appearance="fill">
+      <mat-label>Select reason for cancellation (optional)</mat-label>
+      <mat-select class="options">
+        <mat-option *ngFor="let reason of reasons" [value]="reason">{{reason}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="refund">**Any paid amount will be refunded to the original payment method within 14 business days.</div>
+  </div>
+</div>
+<div mat-dialog-actions class="actions">
+  <button mat-button color="warn" [mat-dialog-close]="'CONFIRM'">CONFIRM</button>
+  <button mat-button color="primary" [mat-dialog-close]="'CANCEL'">CANCEL</button>
+</div>
