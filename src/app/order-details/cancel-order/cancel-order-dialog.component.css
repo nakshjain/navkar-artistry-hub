@@ -40,7 +40,7 @@
 .actions{
   width: 100%;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 .actions button{
   font-size: 120%;
