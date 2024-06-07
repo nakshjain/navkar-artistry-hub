@@ -1,16 +1,18 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {tap} from "rxjs";
-import {BASE_URL} from "./config";
+import {environment} from "src/environments/environment";
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl =BASE_URL+'/auth'
+  private baseUrl =environment.BASE_URL+'/auth'
   private tokenKey = '';
 
   constructor(private http: HttpClient) {
+    console.log(this.baseUrl)
   }
 
   setToken() {

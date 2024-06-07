@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import {CartItem, Product} from "../models/products.types";
 import {HttpClient} from "@angular/common/http";
-import {BASE_URL} from "./config";
+import {environment} from "src/environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private baseUrl =BASE_URL+'/cart'
+  private baseUrl =environment.BASE_URL+'/cart'
   user:any
   constructor(private http:HttpClient){ }
 

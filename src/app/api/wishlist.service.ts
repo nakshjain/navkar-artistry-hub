@@ -1,15 +1,15 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {BASE_URL} from "./config";
 import {BehaviorSubject} from "rxjs";
 import {Product} from "../models/products.types";
+import {environment} from "src/environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class WishlistService{
   wishlistCache: BehaviorSubject<any[]>= new BehaviorSubject<any[]>([])
-  private baseUrl =BASE_URL+'/wishlist'
+  private baseUrl =environment.BASE_URL+'/wishlist'
   constructor(private http:HttpClient) {
   }
 

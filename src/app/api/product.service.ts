@@ -2,13 +2,13 @@ import {Injectable} from '@angular/core';
 import {Product, ProductsByCategoryString} from "../models/products.types";
 import {HttpClient} from "@angular/common/http";
 import {map, Observable} from "rxjs";
-import {BASE_URL} from "./config";
+import {environment} from "src/environments/environment";
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private baseUrl = BASE_URL+'/product'
+  private baseUrl = environment.BASE_URL+'/product'
 
   constructor(private http: HttpClient) {
   }

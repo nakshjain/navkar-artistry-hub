@@ -1,13 +1,14 @@
 import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
-import {BASE_URL} from "./config";
 import {HttpClient} from "@angular/common/http";
 import {isPlatformBrowser} from "@angular/common";
+import {environment} from "src/environments/environment";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-  private baseUrl =BASE_URL+'/order'
+  private baseUrl =environment.BASE_URL+'/order'
   private paymentId=''
   private isPaymentSuccessful=false
   constructor(private http: HttpClient,
