@@ -9,14 +9,29 @@
   display: flex;
   margin: 0.5%;
 }
-.overall{
+.rating {
   flex: 1;
   display: flex;
+  align-items: center;
 }
-.overall-rating{
+.icon{
+  transform: scale(1.5);
+  cursor: pointer;
 }
-.customize-rating{}
-.write-review{}
+.write-review{
+  display: flex;
+  align-items: center;
+}
+.write-review button{
+  border: none;
+  background-color: inherit;
+  transform: scale(1.2);
+}
+.write-review button:hover {
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #b8b8b8;
+}
 .addReview{}
 .customizeReviews{}
 .content{}

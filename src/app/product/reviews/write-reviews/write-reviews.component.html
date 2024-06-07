@@ -1,5 +1,8 @@
 <div class="display">
-  <div mat-dialog-title>Write a review</div>
+  <div mat-dialog-title class="title header-title">
+    <p>Write a review</p>
+    <mat-icon class="icon" mat-dialog-close>close</mat-icon>
+  </div>
   <div mat-dialog-content>
     <div class="product">
       <div class="image-container">
@@ -36,6 +39,8 @@
       <textarea [(ngModel)]="writtenReview" name="writtenReview"></textarea>
     </div>
     <hr>
-    <button [disabled]="!title || !writtenReview || rating===0" (click)="submitReview()">Submit</button>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button [disabled]="!title || !writtenReview || rating===0" (click)="submitReview()">Submit</button>
   </div>
 </div>

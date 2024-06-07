@@ -1,6 +1,5 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {Product} from "../../../models/products.types";
 import {ProductService} from "../../../api/product.service";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
 

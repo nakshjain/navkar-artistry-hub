@@ -12,8 +12,7 @@ export class ReviewsComponent {
   @Input()
   product: any
 
-  constructor(private matDialog: MatDialog,
-              private router:Router) {
+  constructor(private matDialog: MatDialog) {
   }
 
   openDialog(){
