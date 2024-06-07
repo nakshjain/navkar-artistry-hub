@@ -34,6 +34,14 @@
       <input [(ngModel)]="title" name="title">
     </div>
     <hr>
+    <div class="add-images title">
+      <p>Add images (optional)</p>
+      <ngx-dropzone (change)="onSelect($event)">
+        <ngx-dropzone-label>Drag and drop images</ngx-dropzone-label>
+        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+        </ngx-dropzone-image-preview>
+      </ngx-dropzone>
+    </div>
     <div class="written-review title">
       <p>Compose a written review</p>
       <textarea [(ngModel)]="writtenReview" name="writtenReview"></textarea>

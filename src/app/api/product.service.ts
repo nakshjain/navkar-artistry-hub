@@ -90,7 +90,7 @@ export class ProductService {
     return this.http.delete<any>(`${this.baseUrl}/deleteProduct/${productId}`)
   }
 
-  addReview(productId: any, review: any){
-    return this.http.post<any>(`${this.baseUrl}/addReview/${productId}`, {review: review})
+  addReview(review: FormData){
+    return this.http.post<any>(`${this.baseUrl}/addReview`, review)
   }
 }
