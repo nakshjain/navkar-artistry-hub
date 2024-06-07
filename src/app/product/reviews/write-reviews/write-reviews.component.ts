@@ -53,11 +53,7 @@ export class WriteReviewsComponent implements OnInit{
         i++;
       }
     )
-    const review={
-      title: this.title,
-      writtenReview: this.writtenReview,
-      rating: this.rating
-    }
+
     formData.append('title',this.title)
     formData.append('writtenReview',this.writtenReview)
     formData.append('rating',this.rating.toString())
