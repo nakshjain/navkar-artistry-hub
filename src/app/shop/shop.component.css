@@ -188,6 +188,8 @@
 }
 .product-name{
   text-align: center;
+  max-height: 48px;
+  overflow: hidden;
 }
 .product-price{
   text-align: center;

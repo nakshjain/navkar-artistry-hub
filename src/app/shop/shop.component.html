@@ -77,7 +77,10 @@
                 </div>
               </div>
               <div class="product-description">
-                <div class="product-name">{{product.name}} | {{product.subCategory}}</div>
+                <div class="product-name">
+                  <span>{{product.name}}</span>
+                  <span *ngIf="!subHeading"> | {{product.subCategory}}</span>
+                </div>
                 <div class="product-price rupee">{{product.price.toLocaleString('en-IN')}}</div>
               </div>
               <div *ngIf="product.availability" class="add-to-cart">
