@@ -12,7 +12,6 @@ export class AuthService {
   private tokenKey = '';
 
   constructor(private http: HttpClient) {
-    console.log(this.baseUrl)
   }
 
   setToken() {
