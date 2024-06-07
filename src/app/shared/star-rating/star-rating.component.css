@@ -1,0 +1,12 @@
+.display{
+  display: flex;
+}
+
+.star-rating{
+  transform: scale(1.5);
+  margin: 5px;
+  color: gold;
+}
+.input{
+  cursor: pointer;
+}

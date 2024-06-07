@@ -1,0 +1,22 @@
+<div class="display">
+  <div class="header">
+    <div class="title">Customer Reviews</div>
+    <div class="sub-header">
+      <div class="overall">
+        <div class="overall-rating">
+          <app-star-rating
+            [rating]="product.rating"
+          ></app-star-rating>
+        </div>
+        <div class="customize-rating">
+          H
+        </div>
+      </div>
+      <div class="write-review-container">
+        <button class="write-review" (click)="writeReview()">Write a review</button>
+        <button class="customizeReviews" (click)="customizeReviews()">H</button>
+      </div>
+    </div>
+  </div>
+  <div class="content"></div>
+</div>

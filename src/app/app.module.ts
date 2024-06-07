@@ -60,6 +60,9 @@ import { AddProductImagesComponent } from './manage-products/add-product-images/
 import {NgxDropzoneModule} from "ngx-dropzone";
 import {MatSliderModule} from "@angular/material/slider";
 import { CancelOrderDialogComponent } from './order-details/cancel-order/cancel-order-dialog.component';
+import { ReviewsComponent } from './product/reviews/reviews.component';
+import { WriteReviewsComponent } from './product/reviews/write-reviews/write-reviews.component';
+import { StarRatingComponent } from './shared/star-rating/star-rating.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "delay": 0,
@@ -113,7 +116,10 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     BuyNowComponent,
     SpinnerComponent,
     AddProductImagesComponent,
-    CancelOrderDialogComponent
+    CancelOrderDialogComponent,
+    ReviewsComponent,
+    WriteReviewsComponent,
+    StarRatingComponent
   ],
   imports: [
     BrowserModule,

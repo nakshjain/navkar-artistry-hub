@@ -1,0 +1,22 @@
+.display{}
+.header{}
+.title{
+  font-size: 150%;
+  padding: 0 0.5%;
+  font-weight: 500;
+}
+.sub-header{
+  display: flex;
+  margin: 0.5%;
+}
+.overall{
+  flex: 1;
+  display: flex;
+}
+.overall-rating{
+}
+.customize-rating{}
+.write-review{}
+.addReview{}
+.customizeReviews{}
+.content{}

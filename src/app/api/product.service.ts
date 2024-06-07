@@ -85,7 +85,12 @@ export class ProductService {
   updateProduct(product: any){
     return this.http.put<any>(`${this.baseUrl}/updateProduct`,product)
   }
+
   deleteProduct(productId: any){
     return this.http.delete<any>(`${this.baseUrl}/deleteProduct/${productId}`)
+  }
+
+  addReview(productId: any, review: any){
+    return this.http.post<any>(`${this.baseUrl}/addReview/${productId}`, {review: review})
   }
 }

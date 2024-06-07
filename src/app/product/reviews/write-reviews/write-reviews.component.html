@@ -1,0 +1,41 @@
+<div class="display">
+  <div mat-dialog-title>Write a review</div>
+  <div mat-dialog-content>
+    <div class="product">
+      <div class="image-container">
+        <img src="{{data.imageLinks[0]}}" alt="{{data.name}}">
+      </div>
+      <div class="product-details">
+        <div class="name">
+          {{data.name}}
+        </div>
+        <div class="category">
+          {{data.subCategory}}, {{data.category}}
+        </div>
+        <div class="artist">
+          ~By {{data.artistName}}
+        </div>
+        <hr>
+      </div>
+    </div>
+    <div class="overall-rating">
+      <p>Overall Rating</p>
+      <app-star-rating
+        [isInput]="false"
+        (givenRating)="givenRating($event)"
+      ></app-star-rating>
+    </div>
+    <hr>
+    <div class="title">
+      <p>Add a title</p>
+      <input [(ngModel)]="title" name="title">
+    </div>
+    <hr>
+    <div class="written-review title">
+      <p>Compose a written review</p>
+      <textarea [(ngModel)]="writtenReview" name="writtenReview"></textarea>
+    </div>
+    <hr>
+    <button [disabled]="!title || !writtenReview || rating===0" (click)="submitReview()">Submit</button>
+  </div>
+</div>
