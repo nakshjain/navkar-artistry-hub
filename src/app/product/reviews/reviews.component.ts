@@ -1,7 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {WriteReviewsComponent} from "./write-reviews/write-reviews.component";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-reviews',
