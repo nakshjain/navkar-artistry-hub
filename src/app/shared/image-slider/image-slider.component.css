@@ -1,3 +1,6 @@
+.display{
+  overflow: hidden;
+}
 .header{
   display: flex;
   padding: 0 0 1%
