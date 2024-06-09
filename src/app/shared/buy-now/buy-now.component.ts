@@ -3,6 +3,8 @@ import {CartItem} from "../../models/products.types";
 import {OrderService} from "../../api/order.service";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {Router} from "@angular/router";
+import {LoginComponent} from "../../login/login.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-buy-now',
@@ -17,7 +19,8 @@ export class BuyNowComponent {
   quantity:any
   constructor(private orderService:OrderService,
               private router:Router,
-              private ngxUiLoaderService:NgxUiLoaderService) {
+              private ngxUiLoaderService:NgxUiLoaderService,
+              private matDialog: MatDialog) {
   }
 
   getUserId(){
@@ -34,15 +37,22 @@ export class BuyNowComponent {
       product: this.product
     })
     this.getUserId()
-    this.ngxUiLoaderService.start()
-    this.orderService.createPaymentOrder(cart, this.userId).subscribe(
-      (response)=>{
-        this.ngxUiLoaderService.stop()
-        const paymentOrderId=response.data.id
-        this.router.navigateByUrl(`/checkout/${paymentOrderId}`)
-      }, (error)=>{
-        this.ngxUiLoaderService.stop()
-      }
-    )
+    if(this.userId===''){
+      this.matDialog.open(LoginComponent,{
+      })
+    }
+    else{
+      this.matDialog.closeAll()
+      this.ngxUiLoaderService.start()
+      this.orderService.createPaymentOrder(cart, this.userId).subscribe(
+        (response)=>{
+          this.ngxUiLoaderService.stop()
+          const paymentOrderId=response.data.id
+          this.router.navigateByUrl(`/checkout/${paymentOrderId}`)
+        }, (error)=>{
+          this.ngxUiLoaderService.stop()
+        }
+      )
+    }
   }
 }
