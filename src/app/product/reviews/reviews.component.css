@@ -84,6 +84,14 @@
   height: auto;
   cursor: pointer;
 }
+.no-reviews-message{
+  font-size: 120%;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 @media (max-width: 768px) {
   .reviews{
     display: block;

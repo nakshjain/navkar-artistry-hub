@@ -14,7 +14,7 @@
     </div>
   </div>
   <div class="content">
-    <div class="reviews">
+    <div class="reviews" *ngIf="product.reviews">
       <ng-container  *ngFor="let review of product.reviews">
         <div class="review">
           <div class="user">
@@ -43,6 +43,9 @@
           </div>
         </div>
       </ng-container>
+    </div>
+    <div class="no-reviews-message" *ngIf="product.reviews">
+      <p>There are no reviews for this product yet. Be the first to leave a review!</p>
     </div>
   </div>
 </div>
