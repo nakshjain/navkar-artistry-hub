@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
-import {WriteReviewsComponent} from "./write-reviews/write-reviews.component";
+import {WriteReviewDialogComponent} from "./write-reviews/write-review-dialog.component";
+import {ReadReviewDialogComponent} from "./read-review-dialog/read-review-dialog.component";
 
 @Component({
   selector: 'app-reviews',
@@ -16,7 +17,7 @@ export class ReviewsComponent {
 
   openDialog(){
     console.log(this.product)
-    const dialogRef=this.matDialog.open(WriteReviewsComponent,{
+    const dialogRef=this.matDialog.open(WriteReviewDialogComponent,{
       data:this.product
     })
     dialogRef.afterClosed().subscribe(
@@ -31,5 +32,13 @@ export class ReviewsComponent {
   }
 
   customizeReviews() {
+  }
+
+  readReview(review: any) {
+    review['productName']= this.product.name
+    review['subCategory']=this.product.subCategory
+    this.matDialog.open(ReadReviewDialogComponent,{
+      data: review
+    })
   }
 }

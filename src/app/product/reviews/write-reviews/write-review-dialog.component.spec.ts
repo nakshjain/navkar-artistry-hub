@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WriteReviewsComponent } from './write-reviews.component';
+import { WriteReviewDialogComponent } from './write-review-dialog.component';
 
 describe('WriteReviewsComponent', () => {
-  let component: WriteReviewsComponent;
-  let fixture: ComponentFixture<WriteReviewsComponent>;
+  let component: WriteReviewDialogComponent;
+  let fixture: ComponentFixture<WriteReviewDialogComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [WriteReviewsComponent]
+      declarations: [WriteReviewDialogComponent]
     });
-    fixture = TestBed.createComponent(WriteReviewsComponent);
+    fixture = TestBed.createComponent(WriteReviewDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

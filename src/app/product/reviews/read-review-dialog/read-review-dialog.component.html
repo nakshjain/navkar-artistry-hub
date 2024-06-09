@@ -1,0 +1,40 @@
+<div mat-dialog-title class="header">
+  <div class="product">
+    {{review.productName}}, {{review.subCategory}}
+  </div>
+  <div class="close" mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </div>
+</div>
+<div mat-dialog-content class="display">
+  <div class="images-container">
+    <div class="image-container">
+      <img src="{{selectedImageLink}}" alt="image">
+    </div>
+    <div class="all-images">
+      <div class="image-container images" *ngFor="let image of review.images" (click)="changeImage(image)">
+        <img src="{{image}}" alt="image">
+      </div>
+    </div>
+  </div>
+  <div class="review">
+    <div class="title">
+      {{review.title}}
+    </div>
+    <app-star-rating
+      [rating]="review.rating"
+      [transform]="1"
+    >
+    </app-star-rating>
+    <div class="written-review">
+      {{review.writtenReview}}
+    </div>
+    <br>
+    <div class="user">
+      By {{review.user.name}}
+      <div class="verified" *ngIf="review.verifiedPurchase">
+        <mat-icon>check_circle</mat-icon>
+      </div>
+    </div>
+  </div>
+</div>

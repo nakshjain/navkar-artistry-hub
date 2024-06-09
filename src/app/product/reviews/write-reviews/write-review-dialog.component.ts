@@ -5,11 +5,11 @@ import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 
 @Component({
-  selector: 'app-write-reviews',
-  templateUrl: './write-reviews.component.html',
-  styleUrls: ['./write-reviews.component.css']
+  selector: 'app-write-review-dialog',
+  templateUrl: './write-review-dialog.component.html',
+  styleUrls: ['./write-review-dialog.component.css']
 })
-export class WriteReviewsComponent implements OnInit{
+export class WriteReviewDialogComponent implements OnInit{
   rating=0
   title='';
   writtenReview='';
@@ -17,7 +17,7 @@ export class WriteReviewsComponent implements OnInit{
   user: any
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
-              private dialogRef:MatDialogRef<WriteReviewsComponent>,
+              private dialogRef:MatDialogRef<WriteReviewDialogComponent>,
               private productService:ProductService,
               private snackBar:MatSnackBar,
               private ngxUiLoaderService:NgxUiLoaderService) {
