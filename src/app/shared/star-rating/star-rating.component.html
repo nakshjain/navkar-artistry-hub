@@ -1,8 +1,23 @@
 <div class="display">
   <div class="is-input" *ngIf="!isInput">
-    <mat-icon *ngFor="let icon of matIcons; let i=index" class="star-rating input" (click)="addRating(i)">{{icon}}</mat-icon>
+    <mat-icon
+      *ngFor="let icon of matIcons; let i=index"
+      class="star-rating input"
+      [style.transform]="'scale('+transform+')'"
+      [style.margin]="margin"
+      (click)="addRating(i)"
+    >
+      {{icon}}
+    </mat-icon>
   </div>
   <div class="is-input" *ngIf="isInput">
-    <mat-icon *ngFor="let icon of matIcons" class="star-rating">{{icon}}</mat-icon>
+    <mat-icon
+      *ngFor="let icon of matIcons"
+      class="star-rating"
+      [style.transform]="'scale('+transform+')'"
+      [style.margin]="margin"
+    >
+      {{icon}}
+    </mat-icon>
   </div>
 </div>

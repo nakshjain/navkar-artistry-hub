@@ -13,5 +13,36 @@
       </div>
     </div>
   </div>
-  <div class="content"></div>
+  <div class="content">
+    <div class="reviews">
+      <ng-container  *ngFor="let review of product.reviews">
+      <div class="review">
+        <div class="user">
+          {{ review.user.name }}
+        </div>
+        <div class="rating-title">
+          <app-star-rating
+            [rating]="review.rating"
+            [transform]="0.8"
+            [margin]="'0px'"
+          ></app-star-rating>
+          <div class="review-title">
+            {{review.title}}
+          </div>
+        </div>
+        <div class="verified-purchase" *ngIf="review.verifiedPurchase">Verified Purchase
+          <mat-icon>check_circle</mat-icon>
+        </div>
+        <div class="writtenReview">
+          {{review.writtenReview }}
+        </div>
+        <div class="images" *ngFor="let image of review.images">
+          <div class="image-container" *ngIf="review.images.length!==0">
+            <img src="{{image}}" alt="{{review.title}}">
+          </div>
+        </div>
+      </div>
+      </ng-container>
+    </div>
+  </div>
 </div>

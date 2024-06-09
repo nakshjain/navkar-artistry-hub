@@ -10,7 +10,10 @@ export class StarRatingComponent implements OnChanges{
   rating:any
   @Input()
   isInput=true
-
+  @Input()
+  transform=1.5
+  @Input()
+  margin='5px'
   @Output() givenRating: EventEmitter<any>=new EventEmitter<any>()
 
   matIcons: string[]=[]

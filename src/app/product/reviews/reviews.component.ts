@@ -15,6 +15,7 @@ export class ReviewsComponent {
   }
 
   openDialog(){
+    console.log(this.product)
     const dialogRef=this.matDialog.open(WriteReviewsComponent,{
       data:this.product
     })
