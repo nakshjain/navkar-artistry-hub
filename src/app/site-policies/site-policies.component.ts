@@ -22,6 +22,11 @@ export class SitePoliciesComponent {
       name:'Return Policy',
       link:'/return-policy'
     },
+    {
+      id: 'shipping-delivery-policy',
+      name:'Shipping & Delivery Policy',
+      link:'/shipping-delivery-policy'
+    },
   ]
 
 }

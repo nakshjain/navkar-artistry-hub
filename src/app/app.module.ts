@@ -68,6 +68,7 @@ import { SitePoliciesComponent } from './site-policies/site-policies.component';
 import { TermsOfUseComponent } from './site-policies/terms-of-use/terms-of-use.component';
 import { PrivacyPolicyComponent } from './site-policies/privacy-policy/privacy-policy.component';
 import { ReturnPolicyComponent } from './site-policies/return-policy/return-policy.component';
+import { ShippingDeliveryPolicyComponent } from './site-policies/shipping-delivery-policy/shipping-delivery-policy.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "delay": 0,
@@ -129,7 +130,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     SitePoliciesComponent,
     TermsOfUseComponent,
     PrivacyPolicyComponent,
-    ReturnPolicyComponent
+    ReturnPolicyComponent,
+    ShippingDeliveryPolicyComponent
   ],
   imports: [
     BrowserModule,

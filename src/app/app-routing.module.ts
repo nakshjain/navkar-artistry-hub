@@ -26,6 +26,9 @@ import {HomePageComponent} from "./home-page/home-page.component";
 import {TermsOfUseComponent} from "./site-policies/terms-of-use/terms-of-use.component";
 import {PrivacyPolicyComponent} from "./site-policies/privacy-policy/privacy-policy.component";
 import {ReturnPolicyComponent} from "./site-policies/return-policy/return-policy.component";
+import {
+  ShippingDeliveryPolicyComponent
+} from "./site-policies/shipping-delivery-policy/shipping-delivery-policy.component";
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -56,6 +59,7 @@ const routes: Routes = [
   { path: 'terms-of-use', component: TermsOfUseComponent},
   { path: 'privacy-policy', component: PrivacyPolicyComponent},
   { path: 'return-policy', component: ReturnPolicyComponent},
+  { path: 'shipping-delivery-policy', component: ShippingDeliveryPolicyComponent},
   { path: '**', redirectTo: '' }
 ];
 
