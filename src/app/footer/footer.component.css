@@ -7,6 +7,9 @@ body{
   padding:0;
   box-sizing: border-box;
 }
+hr{
+  color: #ffffff;
+}
 .container{
   max-width: 1170px;
   margin: auto;

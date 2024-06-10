@@ -23,6 +23,9 @@ import {PaymentFailedComponent} from "./checkout/payment-failed/payment-failed.c
 import {OrdersComponent} from "./account/orders/orders.component";
 import {OrderDetailsComponent} from "./order-details/order-details.component";
 import {HomePageComponent} from "./home-page/home-page.component";
+import {TermsOfUseComponent} from "./site-policies/terms-of-use/terms-of-use.component";
+import {PrivacyPolicyComponent} from "./site-policies/privacy-policy/privacy-policy.component";
+import {ReturnPolicyComponent} from "./site-policies/return-policy/return-policy.component";
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -50,6 +53,9 @@ const routes: Routes = [
   },
   { path: 'order-details/:orderId', canActivate:[authGuard], component: OrderDetailsComponent},
   { path: 'manage-products', canActivate:[authGuard,roleGuard], component: ManageProductsComponent},
+  { path: 'terms-of-use', component: TermsOfUseComponent},
+  { path: 'privacy-policy', component: PrivacyPolicyComponent},
+  { path: 'return-policy', component: ReturnPolicyComponent},
   { path: '**', redirectTo: '' }
 ];
 

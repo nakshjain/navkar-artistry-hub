@@ -64,6 +64,10 @@ import { ReviewsComponent } from './product/reviews/reviews.component';
 import { WriteReviewDialogComponent } from './product/reviews/write-reviews/write-review-dialog.component';
 import { StarRatingComponent } from './shared/star-rating/star-rating.component';
 import { ReadReviewDialogComponent } from './product/reviews/read-review-dialog/read-review-dialog.component';
+import { SitePoliciesComponent } from './site-policies/site-policies.component';
+import { TermsOfUseComponent } from './site-policies/terms-of-use/terms-of-use.component';
+import { PrivacyPolicyComponent } from './site-policies/privacy-policy/privacy-policy.component';
+import { ReturnPolicyComponent } from './site-policies/return-policy/return-policy.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   "delay": 0,
@@ -121,7 +125,11 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ReviewsComponent,
     WriteReviewDialogComponent,
     StarRatingComponent,
-    ReadReviewDialogComponent
+    ReadReviewDialogComponent,
+    SitePoliciesComponent,
+    TermsOfUseComponent,
+    PrivacyPolicyComponent,
+    ReturnPolicyComponent
   ],
   imports: [
     BrowserModule,

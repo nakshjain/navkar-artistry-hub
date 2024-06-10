@@ -1,0 +1,10 @@
+.display{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.policy{
+  padding: 5px;
+  cursor: pointer;
+}

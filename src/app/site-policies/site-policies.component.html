@@ -1,0 +1,5 @@
+<div class="display">
+  <div class="policy" *ngFor="let policy of policies" [routerLink]="policy.link">
+    {{policy.name}}
+  </div>
+</div>
