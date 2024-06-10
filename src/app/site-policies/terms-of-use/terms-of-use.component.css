@@ -1,0 +1,18 @@
+.display{
+  font-family: 'Poppins', sans-serif;
+  width: 60%;
+  margin: 0 auto;
+  text-align: justify;
+}
+.header{}
+.content{}
+.title{
+  font-size: 120%;
+  font-weight: 500;
+}
+.description{}
+@media (max-width: 768px) {
+  .display{
+    width: 90%;
+  }
+}
