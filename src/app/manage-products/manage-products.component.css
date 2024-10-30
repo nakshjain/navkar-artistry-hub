@@ -49,8 +49,9 @@ img{
 .rupee::before {
   content: "\20B9";
 }
-@media screen and (max-width: 600px) { /* Adjust the max-width as needed */
-  .hide-on-mobile {
-    display: none;
+@media(max-width: 768px) {
+  mat-card{
+    margin: 0;
+    width: 100%;
   }
 }

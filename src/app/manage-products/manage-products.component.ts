@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {ProductService} from "../api/product.service";
 import {MatTableDataSource} from "@angular/material/table";
 import {Product} from "../models/products.types";
@@ -19,7 +19,8 @@ import {AddProductImagesComponent} from "./add-product-images/add-product-images
 export class ManageProductsComponent implements OnInit{
   allProducts: any
   dataSource: any
-  displayedColumns=['image', 'name', 'category', 'subCategory', 'price', 'availability', 'quantity', 'action']
+  isMobile=false;
+  displayedColumns:string[]=[]
   @ViewChild(MatPaginator) paginator !: MatPaginator
   @ViewChild(MatSort) sort !: MatSort
   constructor(private ngxUiLoaderService:NgxUiLoaderService,
@@ -27,9 +28,23 @@ export class ManageProductsComponent implements OnInit{
               private productService:ProductService,
               private snackBar: MatSnackBar,) {
   }
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.checkScreenSize();
+  }
+
+  private checkScreenSize() {
+    this.isMobile = window.outerWidth <= 768;
+    if(this.isMobile){
+      this.displayedColumns=['image', 'product', 'action']
+    } else{
+      this.displayedColumns=['image', 'name', 'category', 'subCategory', 'price', 'availability', 'quantity', 'action']
+    }
+  }
 
   ngOnInit(): void {
     this.getProducts()
+    this.checkScreenSize();
   }
 
   getProducts(){
