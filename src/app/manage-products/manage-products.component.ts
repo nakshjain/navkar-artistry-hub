@@ -36,7 +36,6 @@ export class ManageProductsComponent implements OnInit{
 
   private checkScreenSize() {
     this.isMobile = window.outerWidth <= 768;
-    this.isMobileSearch=false
     if(this.isMobile){
       this.displayedColumns=['image', 'product', 'action']
     } else{
