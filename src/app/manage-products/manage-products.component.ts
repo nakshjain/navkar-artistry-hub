@@ -20,6 +20,7 @@ export class ManageProductsComponent implements OnInit{
   allProducts: any
   dataSource: any
   isMobile=false;
+  isMobileSearch=false;
   displayedColumns:string[]=[]
   @ViewChild(MatPaginator) paginator !: MatPaginator
   @ViewChild(MatSort) sort !: MatSort
@@ -35,6 +36,7 @@ export class ManageProductsComponent implements OnInit{
 
   private checkScreenSize() {
     this.isMobile = window.outerWidth <= 768;
+    this.isMobileSearch=false
     if(this.isMobile){
       this.displayedColumns=['image', 'product', 'action']
     } else{
@@ -133,5 +135,9 @@ export class ManageProductsComponent implements OnInit{
     config.verticalPosition = 'top';
 
     this.snackBar.open(message, action, config)
+  }
+
+  toggleSearch() {
+    this.isMobileSearch=!this.isMobileSearch
   }
 }

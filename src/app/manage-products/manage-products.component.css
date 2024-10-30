@@ -17,8 +17,8 @@ mat-card-header{
 .add-product button{
   margin-right: 10px;
 }
-.search{
-  /*height: 40px;*/
+.search-mobile{
+  width: 100%;
 }
 .search input{
   border: none;
@@ -53,5 +53,21 @@ img{
   mat-card{
     margin: 0;
     width: 100%;
+  }
+  .header-title{
+    font-size: 150%;
+  }
+  .add-product button{
+    margin-right: 0;
+  }
+  .search-mobile{
+    display: flex;
+  }
+  .search-mobile input{
+    height: 48px;
+    border: none;
+    border-bottom: 1px solid black;
+    font-weight: 500;
+    flex: 1;
   }
 }

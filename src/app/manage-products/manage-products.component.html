@@ -1,16 +1,26 @@
 <mat-card>
   <mat-card-header>
     <div class="header">
-      <div class="header-title">
+      <div class="header-title" *ngIf="!isMobileSearch">
         Manage Products
       </div>
       <div class="add-product">
-        <button mat-raised-button color="primary" (click)="addProduct()">+ Add Product</button>
+        <button mat-raised-button color="primary" (click)="addProduct()" *ngIf="!isMobile">+ Add Product</button>
+        <button mat-icon-button (click)="addProduct()" *ngIf="isMobile && !isMobileSearch">
+          <mat-icon>add</mat-icon>
+        </button>
       </div>
       <div class="search">
-<!--        <mat-form-field>-->
-          <input matInput (keyup)="search($event)" placeholder="Search Product">
-<!--        </mat-form-field>-->
+        <input matInput (keyup)="search($event)" placeholder="Search Product" *ngIf="!isMobile">
+        <button mat-icon-button (click)="toggleSearch()" *ngIf="!isMobileSearch && isMobile">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+      <div class="search-mobile" *ngIf="isMobileSearch && isMobile">
+        <input matInput (keyup)="search($event)" placeholder="Search Product">
+        <button mat-icon-button (click)="toggleSearch()">
+          <mat-icon>cancel</mat-icon>
+        </button>
       </div>
     </div>
   </mat-card-header>
