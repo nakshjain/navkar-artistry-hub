@@ -76,8 +76,12 @@
       </ng-container>
       <ng-container matColumnDef="action" *ngIf="isMobile">
         <th mat-sort-header mat-header-cell *matHeaderCellDef>Action</th>
-        <td mat-cell *matCellDef="let product">
-          <mat-icon>more_vert</mat-icon>
+        <td mat-cell *matCellDef="let product" class="mobile-action-buttons">
+          <div>
+            <button mat-raised-button color="primary" (click)="editProduct(product)">Edit</button>
+            <mat-icon (click)="deleteProductConfirmation(product)">delete</mat-icon>
+          </div>
+          <button mat-raised-button color="accent" (click)="editProductImages(product)">Edit Images</button>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
