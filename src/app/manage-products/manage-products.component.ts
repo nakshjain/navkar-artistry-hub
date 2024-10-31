@@ -138,5 +138,6 @@ export class ManageProductsComponent implements OnInit{
 
   toggleSearch() {
     this.isMobileSearch=!this.isMobileSearch
+    this.dataSource.filter=''
   }
 }
