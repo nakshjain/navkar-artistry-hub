@@ -57,15 +57,9 @@ img{
   align-items: center;
   justify-content: center;
 }
-.mobile-action-buttons div button{
-  font-size: 12px;
-  padding: 0;
-  width: 50%;
-}
 .mobile-action-buttons button{
   font-size: 12px;
   padding: 0;
-  width: 90%;
 }
 @media(max-width: 768px) {
   mat-card{
