@@ -7,6 +7,8 @@ import {MatDialog} from "@angular/material/dialog";
 import {Title} from "@angular/platform-browser";
 import {NgxUiLoaderService} from "ngx-ui-loader";
 import {categories} from "../models/products-categories";
+import {HomeService} from "../api/home.service";
+import {HomePageConfig} from "../models/home.model";
 
 @Component({
   selector: 'app-home-page',
@@ -14,49 +16,36 @@ import {categories} from "../models/products-categories";
   styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent implements OnInit{
-  title='Navkar Artistry Hub'
-  titleBackgroundImage='https://assets.navkarartistryhub.com/home-page/home-page-background.png'
-  titleBackgroundImageMobile='https://assets.navkarartistryhub.com/home-page/home-page-background-mobile.png'
-
-  elements=[
-    {
-      alt:'home-page-paintings',
-      heading:'Paintings',
-      imageLink:'https://assets.navkarartistryhub.com/home-page/home-page-paintings.png',
-      link:'shop/paintings'
-    },
-    {
-      alt:'home-page-home-decor',
-      heading:'Home Decor',
-      imageLink:'https://assets.navkarartistryhub.com/home-page/home-page-home-decor.png',
-      link:'shop/home-decor'
-    },
-    {
-      alt:'home-page-jewellery',
-      heading:'Jewellery',
-      imageLink:'https://assets.navkarartistryhub.com/home-page/home-page-jewellery.png',
-      link:'shop/jewellery'
-    },
-  ]
+  homePageConfig : HomePageConfig | undefined
 
   allProductsByCategory:ProductsByCategory[]=[]
 
-  constructor(private productService:ProductService,
-              private router: Router,
-              private dialog: MatDialog,
-              private titleService:  Title,
-              private ngxUiLoaderService: NgxUiLoaderService) {
+  constructor(
+    private readonly homeService:HomeService,
+    private readonly productService:ProductService,
+    private readonly router: Router,
+    private readonly dialog: MatDialog,
+    private readonly titleService:  Title,
+    private readonly ngxUiLoaderService: NgxUiLoaderService) {
   }
 
   ngOnInit(): void {
     this.ngxUiLoaderService.start()
+    this.homeService.getHomePageDetails().subscribe(
+      (data)=>{
+        console.log(data)
+        this.homePageConfig = data
+        if (this.homePageConfig?.branding?.brandName) {
+          this.titleService.setTitle(this.homePageConfig.branding.brandName);
+        }
+      }
+    )
     this.productService.getAllProductsByCategory().subscribe(
       (allProductsByCategory)=>{
         this.getAllProductsByCategory(allProductsByCategory)
         this.ngxUiLoaderService.stop()
       }
     )
-    this.titleService.setTitle(this.title)
     // this.demoAlert();
   }
 

@@ -1,17 +1,36 @@
-<div class="home-page">
+<div class="home-page" *ngIf="homePageConfig">
+
   <div class="title-container">
-    <img src="{{titleBackgroundImage}}" class="title-image" alt="{{title}}">
-    <img src="{{titleBackgroundImageMobile}}" class="title-image-mobile" alt="{{title}}">
+    <img
+      [src]="homePageConfig.branding.titleBackgroundImage"
+      class="title-image"
+      [alt]="homePageConfig.branding.brandName"
+    />
+
+    <img
+      [src]="homePageConfig.branding.titleBackgroundImageMobile"
+      class="title-image-mobile"
+      [alt]="homePageConfig.branding.brandName"
+    />
+
     <div class="title-box">
-      <p class="title">{{title}}</p>
+      <p class="title">{{ homePageConfig.branding.brandName }}</p>
     </div>
   </div>
 
   <div class="box-container">
-    <div *ngFor="let element of elements" class="box" (click)="viewCategory(element)">
+    <div
+      class="box"
+      *ngFor="let element of homePageConfig.sections[0]?.items"
+      (click)="viewCategory(element)"
+    >
       <div class="image-container">
-        <img src="{{element.imageLink}}" alt="{{element.heading}}" class="category-image">
-        <p>{{element.heading}}</p>
+        <img
+          [src]="element.image"
+          [alt]="element.label"
+          class="category-image"
+        />
+        <p>{{ element.label }}</p>
       </div>
     </div>
   </div>
