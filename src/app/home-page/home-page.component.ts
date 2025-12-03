@@ -33,7 +33,6 @@ export class HomePageComponent implements OnInit{
     this.ngxUiLoaderService.start()
     this.homeService.getHomePageDetails().subscribe(
       (data)=>{
-        console.log(data)
         this.homePageConfig = data
         if (this.homePageConfig?.branding?.brandName) {
           this.titleService.setTitle(this.homePageConfig.branding.brandName);

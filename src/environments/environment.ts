@@ -1,3 +1,3 @@
 export const environment = {
-  BASE_URL : 'https://backend.navkarartistryhub.com'
+  BASE_URL : 'https://api.navkarartistryhub.shop'
 };
